@@ -1,0 +1,39 @@
+service:
+  info:
+    name: Restful Web Service Example
+    version: 1.0.0
+    
+logging:
+  level:
+    org.springframework.boot: INFO
+    org.springframework.web: DEBUG
+    org.springframework.data: INFO
+    
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp    
+  thymeleaf:
+    cache: false
+  jpa:
+    show-sql: true
+    
+    hibernate:
+      ddl-auto: update  
+  
+---
+
+spring.profiles: server
+
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test;MVCC=TRUE
+#     url: jdbc:mysql://ahn13.gnutest.com:3306/test
+#     username: ahn13
+#     password: qwer
+#     driver-class-name: com.mysql.jdbc.Driver
+
+logging:
+  level:
+    org.springframework.web: INFO
