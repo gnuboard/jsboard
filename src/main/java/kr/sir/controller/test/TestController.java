@@ -1,4 +1,4 @@
-package kr.sir.controller;
+package kr.sir.controller.test;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
