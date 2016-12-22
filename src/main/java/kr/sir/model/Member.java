@@ -102,7 +102,7 @@ public class Member{
 	@Column(name = "mb_ip")
 	private String memberIp;
 
-	@Column(name = "mb_leave_date")
+	@Column(name = "mb_leave_date") 
 	private String memberLeaveDate;
 	
 	@Column(name = "mb_intercept_date")
