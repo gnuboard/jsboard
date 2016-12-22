@@ -1,6 +1,6 @@
 service:
   info:
-    name: Restful Web Service Example
+    name: jsboard
     version: 1.0.0
     
 logging:
@@ -20,8 +20,10 @@ spring:
     show-sql: true
     
     hibernate:
-      ddl-auto: update  
-  
+      ddl-auto: create
+      
+table:
+  prfix: g5_   
 ---
 
 spring.profiles: server
