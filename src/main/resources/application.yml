@@ -20,22 +20,17 @@ spring:
     show-sql: true
     
     hibernate:
-      ddl-auto: create
-      
-table:
-  prfix: g5_   
----
+      ddl-auto: update
 
-spring.profiles: server
-
-spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/test;MVCC=TRUE
-#     url: jdbc:mysql://ahn13.gnutest.com:3306/test
-#     username: ahn13
-#     password: qwer
-#     driver-class-name: com.mysql.jdbc.Driver
+     initialize: true
+#     url: jdbc:h2:tcp://localhost/~/test;MVCC=TRUE
+     url: jdbc:mysql://ahn13.gnutest.com:3306/ahn13?
+     username: ahn13
+     password: qwer
+     driver-class-name: com.mysql.jdbc.Driver
 
-logging:
-  level:
-    org.springframework.web: INFO
+
+#logging:
+#  level:
+#    org.springframework.web: INFO

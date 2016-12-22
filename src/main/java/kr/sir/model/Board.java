@@ -3,17 +3,11 @@ package kr.sir.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
-@Table(name="board")
-@NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class Board {
 
 	@Id 
@@ -30,7 +24,7 @@ public class Board {
 	private String boardMobileSubject;
 	
 	
-	@Column(name="bo_device",columnDefinition="enum('both','pc','mobile' NOT NULL DEFAULT 'both'")
+	@Column(name="bo_device",columnDefinition="enum('both','pc','mobile') NOT NULL DEFAULT 'both'")
 	private String boardDevice;
 	
 	
