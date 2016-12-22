@@ -11,132 +11,130 @@ import lombok.Data;
 public class Board {
 
 	@Id 
-	@Column(name = "bo_table", length = 20, nullable=false)
+	@Column(name = "bo_table")
 	private String boardTable;
 	
-	@Column(name="gr_id", length=255, nullable=false)
+	@Column(name="gr_id")
 	private String groupId;
 	
-	@Column(name="bo_subject", length=255, nullable=false)
+	@Column(name="bo_subject")
 	private String boardSubject;
 	
-	@Column(name="bo_mobile_subject", length=255 , nullable=false)
+	@Column(name="bo_mobile_subject")
 	private String boardMobileSubject;
 	
-	
-	@Column(name="bo_device",columnDefinition="enum('both','pc','mobile') NOT NULL DEFAULT 'both'")
+	@Column(name="bo_device")
 	private String boardDevice;
 	
-	
-	@Column(name="bo_admin", columnDefinition="varchar(255) NOT NULL DEFAULT ''")
+	@Column(name="bo_admin")
 	private String boardAdmin;
 	
-	@Column(name="bo_list_level", columnDefinition="varchar(255) NOT NULL DEFAULT ''")
+	@Column(name="bo_list_level")
 	private String boardListLevel;
 	
-	@Column(name="bo_read_level", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_read_level")
 	private int boardReadLevel;	
 	
-	@Column(name="bo_write_level", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_write_level")
 	private int boardWriteLevel;
 	
-	@Column(name="bo_reply_level", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_reply_level")
 	private int boardReplyLevel;
 	
-	@Column(name="bo_comment_level", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_comment_level")
 	private int boardCommentLevel;
 	
-	@Column(name="bo_upload_level", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_upload_level")
 	private int boardUploadLevel;
 	
-	@Column(name="bo_download_level", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_download_level")
 	private int boardDownloadLevel;
 	
-	@Column(name="bo_html_level",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_html_level")
 	private int boardHtmlLevel;
 	
-	@Column(name="bo_link_level", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_link_level")
 	private int boardLinkLevle;
 	
-	@Column(name="bo_count_delete", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_count_delete")
 	private int boardCountDelete;
 	
-	@Column(name="bo_count_modify", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_count_modify")
 	private int boardCountModify;
 	
-	@Column(name="bo_read_point", columnDefinition="int(11) NOT NULL DEFAULT '0'")
+	@Column(name="bo_read_point")
 	private int boardReadPoint;
 	
-	@Column(name="bo_write_point", columnDefinition="int(11) NOT NULL DEFAULT '0'")
+	@Column(name="bo_write_point")
 	private int boardWritePoint;
 	
-	@Column(name="bo_comment_point", columnDefinition="int(11) NOT NULL DEFAULT '0'")
+	@Column(name="bo_comment_point")
 	private int boardCommentPoint;
 	
-	@Column(name="bo_download_point", columnDefinition="int(11) NOT NULL DEFAULT '0'")
+	@Column(name="bo_download_point")
 	private int boardDownloadPoint;
 	
-	@Column(name="bo_use_category", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_use_category")
 	private int boardUseCategory;
 	
-	@Column(name="bo_category_list",columnDefinition="TEXT NOT NULL")
+	@Column(name="bo_category_list")
 	private String boardCategoryList;
 	
-	@Column(name="bo_use_sideview", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_use_sideview")
 	private int boardUseSideview;
 	
-	@Column(name="bo_use_file_content", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_use_file_content")
 	private int boardUseFileContent;
 	
-	@Column(name="bo_use_secret",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_use_secret")
 	private int boardUseSecret;
 	
-	@Column(name="bo_use_dhtml_editor", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_use_dhtml_editor")
 	private int boardUseDhtmlEditor;
 	
-	@Column(name="bo_use_rss_view", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_use_rss_view")
 	private int boardUseRssView;
 	
-	@Column(name="bo_use_good", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_use_good")
 	private int boardUseGood;
 	
-	@Column(name="bo_use_nogood", columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_use_nogood")
 	private int boardUseNogood;
 	
-	@Column(name="bo_use_name",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_use_name")
 	private int boardUseName;
 	
-	@Column(name="bo_use_signature",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_use_signature")
 	private int boardUseSignature;
 	
-	@Column(name="bo_use_ip_view",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_use_ip_view")
 	private int boardUseIpView;
 	
-	@Column(name="bo_use_list_view",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_use_list_view")
 	private int boardUseListView;
 	
-	@Column(name="bo_use_list_file",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_use_list_file")
 	private int boardUseListFile;
 	
-	@Column(name="bo_use_list_content",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="bo_use_list_content")
 	private int boardUseListContent;
 	
-	@Column(name="bo_table_width",columnDefinition="int(11) NOT NULL DEFAULT '0'")
+	@Column(name="bo_table_width")
 	private int boardTableWidth;
 	
-	@Column(name="bo_subject_len",columnDefinition="int(11) NOT NULL DEFAULT '0'")
+	@Column(name="bo_subject_len")
 	private int boardSubjectLen;
 	
-	@Column(name="bo_mobile_subject_len",columnDefinition="int(11) NOT NULL DEFAULT '0'")
+	@Column(name="bo_mobile_subject_len")
 	private int boardMobileSubjectLen;
 	
-	@Column(name="bo_page_rows",columnDefinition="int(11) NOT NULL DEFAULT '0'")
+	@Column(name="bo_page_rows")
 	private int boardPageRows;
 	
-	@Column(name="bo_mobile_page_rows",columnDefinition="int(11) NOT NULL DEFAULT '0'")
+	@Column(name="bo_mobile_page_rows")
 	private int boardMobilePageRows;
 	
-	@Column(name="bo_new",columnDefinition="int(11) NOT NULL DEFAULT '0'")
+	@Column(name="bo_new")
 	private int boardNew;
 	
 	@Column(name="bo_hot")

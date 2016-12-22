@@ -86,7 +86,7 @@ public class Member{
 	private String memberRecommend;
 	
 	@Column(name = "mb_point")
-	private int memberPoint;
+	private int memberPoint; 
 	
 	@Column(name = "mb_today_login")
 	@Temporal(TemporalType.TIMESTAMP)
