@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: jsboard
 Implementation-Version: 1.0
-Built-By: S7
+Built-By: SIR
 Implementation-Vendor-Id: kr.sir
-Build-Jdk: 1.8.0_112
+Build-Jdk: 1.8.0_111
 Implementation-URL: http://projects.spring.io/spring-boot/jsboard/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
