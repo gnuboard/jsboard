@@ -21,6 +21,8 @@ spring:
     
     hibernate:
       ddl-auto: update
+      naming:
+        strategy: PrefixNamingStrategy
 
   datasource:
      initialize: true

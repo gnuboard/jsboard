@@ -1,11 +1,11 @@
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_auth`
+-- Table structure for table `g5_auth`
 --
 
-DROP TABLE IF EXISTS `g6_auth`;
-CREATE TABLE IF NOT EXISTS `g6_auth` (
+DROP TABLE IF EXISTS `g5_auth`;
+CREATE TABLE IF NOT EXISTS `g5_auth` (
   `mb_id` varchar(20) NOT NULL default '',
   `au_menu` varchar(20) NOT NULL default '',
   `au_auth` set('r','w','d') NOT NULL default '',
@@ -15,11 +15,11 @@ CREATE TABLE IF NOT EXISTS `g6_auth` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_board`
+-- Table structure for table `g5_board`
 --
 
-DROP TABLE IF EXISTS `g6_board`;
-CREATE TABLE IF NOT EXISTS `g6_board` (
+DROP TABLE IF EXISTS `g5_board`;
+CREATE TABLE IF NOT EXISTS `g5_board` (
   `bo_table` varchar(20) NOT NULL DEFAULT '',
   `gr_id` varchar(255) NOT NULL DEFAULT '',
   `bo_subject` varchar(255) NOT NULL DEFAULT '',
@@ -120,11 +120,11 @@ CREATE TABLE IF NOT EXISTS `g6_board` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_board_file`
+-- Table structure for table `g5_board_file`
 --
 
-DROP TABLE IF EXISTS `g6_board_file`;
-CREATE TABLE IF NOT EXISTS `g6_board_file` (
+DROP TABLE IF EXISTS `g5_board_file`;
+CREATE TABLE IF NOT EXISTS `g5_board_file` (
   `bo_table` varchar(20) NOT NULL default '',
   `wr_id` int(11) NOT NULL default '0',
   `bf_no` int(11) NOT NULL default '0',
@@ -143,11 +143,11 @@ CREATE TABLE IF NOT EXISTS `g6_board_file` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_board_good`
+-- Table structure for table `g5_board_good`
 --
 
-DROP TABLE IF EXISTS `g6_board_good`;
-CREATE TABLE IF NOT EXISTS `g6_board_good` (
+DROP TABLE IF EXISTS `g5_board_good`;
+CREATE TABLE IF NOT EXISTS `g5_board_good` (
   `bg_id` int(11) NOT NULL auto_increment,
   `bo_table` varchar(20) NOT NULL default '',
   `wr_id` int(11) NOT NULL default '0',
@@ -161,11 +161,11 @@ CREATE TABLE IF NOT EXISTS `g6_board_good` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_board_new`
+-- Table structure for table `g5_board_new`
 --
 
-DROP TABLE IF EXISTS `g6_board_new`;
-CREATE TABLE IF NOT EXISTS `g6_board_new` (
+DROP TABLE IF EXISTS `g5_board_new`;
+CREATE TABLE IF NOT EXISTS `g5_board_new` (
   `bn_id` int(11) NOT NULL auto_increment,
   `bo_table` varchar(20) NOT NULL default '',
   `wr_id` int(11) NOT NULL default '0',
@@ -179,11 +179,11 @@ CREATE TABLE IF NOT EXISTS `g6_board_new` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_config`
+-- Table structure for table `g5_config`
 --
 
-DROP TABLE IF EXISTS `g6_config`;
-CREATE TABLE IF NOT EXISTS `g6_config` (
+DROP TABLE IF EXISTS `g5_config`;
+CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_title` varchar(255) NOT NULL DEFAULT '',
   `cf_theme` varchar(255) NOT NULL DEFAULT '',
   `cf_admin` varchar(255) NOT NULL DEFAULT '',
@@ -321,11 +321,11 @@ CREATE TABLE IF NOT EXISTS `g6_config` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_cert_history`
+-- Table structure for table `g5_cert_history`
 --
 
-DROP TABLE IF EXISTS `g6_cert_history`;
-CREATE TABLE IF NOT EXISTS `g6_cert_history` (
+DROP TABLE IF EXISTS `g5_cert_history`;
+CREATE TABLE IF NOT EXISTS `g5_cert_history` (
   `cr_id` int(11) NOT NULL auto_increment,
   `mb_id` varchar(20) NOT NULL DEFAULT '',
   `cr_company` varchar(255) NOT NULL DEFAULT '',
@@ -340,11 +340,11 @@ CREATE TABLE IF NOT EXISTS `g6_cert_history` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_group`
+-- Table structure for table `g5_group`
 --
 
-DROP TABLE IF EXISTS `g6_group`;
-CREATE TABLE IF NOT EXISTS `g6_group` (
+DROP TABLE IF EXISTS `g5_group`;
+CREATE TABLE IF NOT EXISTS `g5_group` (
   `gr_id` varchar(10) NOT NULL default '',
   `gr_subject` varchar(255) NOT NULL default '',
   `gr_device` ENUM('both','pc','mobile') NOT NULL DEFAULT 'both',
@@ -377,11 +377,11 @@ CREATE TABLE IF NOT EXISTS `g6_group` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_group_member`
+-- Table structure for table `g5_group_member`
 --
 
-DROP TABLE IF EXISTS `g6_group_member`;
-CREATE TABLE IF NOT EXISTS `g6_group_member` (
+DROP TABLE IF EXISTS `g5_group_member`;
+CREATE TABLE IF NOT EXISTS `g5_group_member` (
   `gm_id` int(11) NOT NULL auto_increment,
   `gr_id` varchar(255) NOT NULL default '',
   `mb_id` varchar(20) NOT NULL default '',
@@ -394,11 +394,11 @@ CREATE TABLE IF NOT EXISTS `g6_group_member` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_login`
+-- Table structure for table `g5_login`
 --
 
-DROP TABLE IF EXISTS `g6_login`;
-CREATE TABLE IF NOT EXISTS `g6_login` (
+DROP TABLE IF EXISTS `g5_login`;
+CREATE TABLE IF NOT EXISTS `g5_login` (
   `lo_ip` varchar(255) NOT NULL default '',
   `mb_id` varchar(20) NOT NULL default '',
   `lo_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
@@ -410,11 +410,11 @@ CREATE TABLE IF NOT EXISTS `g6_login` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_mail`
+-- Table structure for table `g5_mail`
 --
 
-DROP TABLE IF EXISTS `g6_mail`;
-CREATE TABLE IF NOT EXISTS `g6_mail` (
+DROP TABLE IF EXISTS `g5_mail`;
+CREATE TABLE IF NOT EXISTS `g5_mail` (
   `ma_id` int(11) NOT NULL auto_increment,
   `ma_subject` varchar(255) NOT NULL default '',
   `ma_content` mediumtext NOT NULL,
@@ -427,11 +427,11 @@ CREATE TABLE IF NOT EXISTS `g6_mail` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_member`
+-- Table structure for table `g5_member`
 --
 
-DROP TABLE IF EXISTS `g6_member`;
-CREATE TABLE IF NOT EXISTS `g6_member` (
+DROP TABLE IF EXISTS `g5_member`;
+CREATE TABLE IF NOT EXISTS `g5_member` (
   `mb_no` int(11) NOT NULL auto_increment,
   `mb_id` varchar(20) NOT NULL default '',
   `mb_password` varchar(255) NOT NULL default '',
@@ -492,11 +492,11 @@ CREATE TABLE IF NOT EXISTS `g6_member` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_memo`
+-- Table structure for table `g5_memo`
 --
 
-DROP TABLE IF EXISTS `g6_memo`;
-CREATE TABLE IF NOT EXISTS `g6_memo` (
+DROP TABLE IF EXISTS `g5_memo`;
+CREATE TABLE IF NOT EXISTS `g5_memo` (
   `me_id` int(11) NOT NULL default '0',
   `me_recv_mb_id` varchar(20) NOT NULL default '',
   `me_send_mb_id` varchar(20) NOT NULL default '',
@@ -510,11 +510,11 @@ CREATE TABLE IF NOT EXISTS `g6_memo` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_point`
+-- Table structure for table `g5_point`
 --
 
-DROP TABLE IF EXISTS `g6_point`;
-CREATE TABLE IF NOT EXISTS `g6_point` (
+DROP TABLE IF EXISTS `g5_point`;
+CREATE TABLE IF NOT EXISTS `g5_point` (
   `po_id` int(11) NOT NULL auto_increment,
   `mb_id` varchar(20) NOT NULL default '',
   `po_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
@@ -535,11 +535,11 @@ CREATE TABLE IF NOT EXISTS `g6_point` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_poll`
+-- Table structure for table `g5_poll`
 --
 
-DROP TABLE IF EXISTS `g6_poll`;
-CREATE TABLE IF NOT EXISTS `g6_poll` (
+DROP TABLE IF EXISTS `g5_poll`;
+CREATE TABLE IF NOT EXISTS `g5_poll` (
   `po_id` int(11) NOT NULL auto_increment,
   `po_subject` varchar(255) NOT NULL default '',
   `po_poll1` varchar(255) NOT NULL default '',
@@ -555,7 +555,7 @@ CREATE TABLE IF NOT EXISTS `g6_poll` (
   `po_cnt2` int(11) NOT NULL default '0',
   `po_cnt3` int(11) NOT NULL default '0',
   `po_cnt4` int(11) NOT NULL default '0',
-  `po_cng6` int(11) NOT NULL default '0',
+  `po_cng5` int(11) NOT NULL default '0',
   `po_cnt6` int(11) NOT NULL default '0',
   `po_cnt7` int(11) NOT NULL default '0',
   `po_cnt8` int(11) NOT NULL default '0',
@@ -572,11 +572,11 @@ CREATE TABLE IF NOT EXISTS `g6_poll` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_poll_etc`
+-- Table structure for table `g5_poll_etc`
 --
 
-DROP TABLE IF EXISTS `g6_poll_etc`;
-CREATE TABLE IF NOT EXISTS `g6_poll_etc` (
+DROP TABLE IF EXISTS `g5_poll_etc`;
+CREATE TABLE IF NOT EXISTS `g5_poll_etc` (
   `pc_id` int(11) NOT NULL default '0',
   `po_id` int(11) NOT NULL default '0',
   `mb_id` varchar(20) NOT NULL default '',
@@ -589,11 +589,11 @@ CREATE TABLE IF NOT EXISTS `g6_poll_etc` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_popular`
+-- Table structure for table `g5_popular`
 --
 
-DROP TABLE IF EXISTS `g6_popular`;
-CREATE TABLE IF NOT EXISTS `g6_popular` (
+DROP TABLE IF EXISTS `g5_popular`;
+CREATE TABLE IF NOT EXISTS `g5_popular` (
   `pp_id` int(11) NOT NULL auto_increment,
   `pp_word` varchar(50) NOT NULL default '',
   `pp_date` date NOT NULL default '0000-00-00',
@@ -605,11 +605,11 @@ CREATE TABLE IF NOT EXISTS `g6_popular` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_scrap`
+-- Table structure for table `g5_scrap`
 --
 
-DROP TABLE IF EXISTS `g6_scrap`;
-CREATE TABLE IF NOT EXISTS `g6_scrap` (
+DROP TABLE IF EXISTS `g5_scrap`;
+CREATE TABLE IF NOT EXISTS `g5_scrap` (
   `ms_id` int(11) NOT NULL auto_increment,
   `mb_id` varchar(20) NOT NULL default '',
   `bo_table` varchar(20) NOT NULL default '',
@@ -622,11 +622,11 @@ CREATE TABLE IF NOT EXISTS `g6_scrap` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_visit`
+-- Table structure for table `g5_visit`
 --
 
-DROP TABLE IF EXISTS `g6_visit`;
-CREATE TABLE IF NOT EXISTS `g6_visit` (
+DROP TABLE IF EXISTS `g5_visit`;
+CREATE TABLE IF NOT EXISTS `g5_visit` (
   `vi_id` int(11) NOT NULL default '0',
   `vi_ip` varchar(255) NOT NULL default '',
   `vi_date` date NOT NULL default '0000-00-00',
@@ -641,11 +641,11 @@ CREATE TABLE IF NOT EXISTS `g6_visit` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_visit_sum`
+-- Table structure for table `g5_visit_sum`
 --
 
-DROP TABLE IF EXISTS `g6_visit_sum`;
-CREATE TABLE IF NOT EXISTS `g6_visit_sum` (
+DROP TABLE IF EXISTS `g5_visit_sum`;
+CREATE TABLE IF NOT EXISTS `g5_visit_sum` (
   `vs_date` date NOT NULL default '0000-00-00',
   `vs_count` int(11) NOT NULL default '0',
   PRIMARY KEY  (`vs_date`),
@@ -655,11 +655,11 @@ CREATE TABLE IF NOT EXISTS `g6_visit_sum` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_unique`
+-- Table structure for table `g5_unique`
 --
 
-DROP TABLE IF EXISTS `g6_uniqid`;
-CREATE TABLE IF NOT EXISTS `g6_uniqid` (
+DROP TABLE IF EXISTS `g5_uniqid`;
+CREATE TABLE IF NOT EXISTS `g5_uniqid` (
   `uq_id` bigint(20) unsigned NOT NULL,
   `uq_ip` varchar(255) NOT NULL,
   PRIMARY KEY (`uq_id`)
@@ -668,11 +668,11 @@ CREATE TABLE IF NOT EXISTS `g6_uniqid` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_autosave`
+-- Table structure for table `g5_autosave`
 --
 
-DROP TABLE IF EXISTS `g6_autosave`;
-CREATE TABLE IF NOT EXISTS `g6_autosave` (
+DROP TABLE IF EXISTS `g5_autosave`;
+CREATE TABLE IF NOT EXISTS `g5_autosave` (
   `as_id` int(11) NOT NULL AUTO_INCREMENT,
   `mb_id` varchar(20) NOT NULL,
   `as_uid` bigint(20) unsigned NOT NULL,
@@ -687,11 +687,11 @@ CREATE TABLE IF NOT EXISTS `g6_autosave` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_qa_config`
+-- Table structure for table `g5_qa_config`
 --
 
-DROP TABLE IF EXISTS `g6_qa_config`;
-CREATE TABLE IF NOT EXISTS `g6_qa_config` (
+DROP TABLE IF EXISTS `g5_qa_config`;
+CREATE TABLE IF NOT EXISTS `g5_qa_config` (
   `qa_title` varchar(255) NOT NULL DEFAULT'',
   `qa_category` varchar(255) NOT NULL DEFAULT'',
   `qa_skin` varchar(255) NOT NULL DEFAULT '',
@@ -733,11 +733,11 @@ CREATE TABLE IF NOT EXISTS `g6_qa_config` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_qa_content`
+-- Table structure for table `g5_qa_content`
 --
 
-DROP TABLE IF EXISTS `g6_qa_content`;
-CREATE TABLE IF NOT EXISTS `g6_qa_content` (
+DROP TABLE IF EXISTS `g5_qa_content`;
+CREATE TABLE IF NOT EXISTS `g5_qa_content` (
   `qa_id` int(11) NOT NULL AUTO_INCREMENT,
   `qa_num` int(11) NOT NULL DEFAULT '0',  
   `qa_parent` int(11) NOT NULL DEFAULT '0',
@@ -772,11 +772,11 @@ CREATE TABLE IF NOT EXISTS `g6_qa_content` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_content`
+-- Table structure for table `g5_content`
 --
 
-DROP TABLE IF EXISTS `g6_content`;
-CREATE TABLE IF NOT EXISTS `g6_content` (
+DROP TABLE IF EXISTS `g5_content`;
+CREATE TABLE IF NOT EXISTS `g5_content` (
   `co_id` varchar(20) NOT NULL DEFAULT '',
   `co_html` tinyint(4) NOT NULL DEFAULT '0',
   `co_subject` varchar(255) NOT NULL DEFAULT '',
@@ -794,11 +794,11 @@ CREATE TABLE IF NOT EXISTS `g6_content` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_faq`
+-- Table structure for table `g5_faq`
 --
 
-DROP TABLE IF EXISTS `g6_faq`;
-CREATE TABLE IF NOT EXISTS `g6_faq` (
+DROP TABLE IF EXISTS `g5_faq`;
+CREATE TABLE IF NOT EXISTS `g5_faq` (
   `fa_id` int(11) NOT NULL AUTO_INCREMENT,
   `fm_id` int(11) NOT NULL DEFAULT '0',
   `fa_subject` text NOT NULL,
@@ -811,11 +811,11 @@ CREATE TABLE IF NOT EXISTS `g6_faq` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_faq_master`
+-- Table structure for table `g5_faq_master`
 --
 
-DROP TABLE IF EXISTS `g6_faq_master`;
-CREATE TABLE IF NOT EXISTS `g6_faq_master` (
+DROP TABLE IF EXISTS `g5_faq_master`;
+CREATE TABLE IF NOT EXISTS `g5_faq_master` (
   `fm_id` int(11) NOT NULL AUTO_INCREMENT,
   `fm_subject` varchar(255) NOT NULL DEFAULT '',
   `fm_head_html` text NOT NULL,
@@ -829,11 +829,11 @@ CREATE TABLE IF NOT EXISTS `g6_faq_master` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_new_win`
+-- Table structure for table `g5_new_win`
 --
 
-DROP TABLE IF EXISTS `g6_new_win`;
-CREATE TABLE IF NOT EXISTS `g6_new_win` (
+DROP TABLE IF EXISTS `g5_new_win`;
+CREATE TABLE IF NOT EXISTS `g5_new_win` (
   `nw_id` int(11) NOT NULL AUTO_INCREMENT,
   `nw_device` varchar(10) NOT NULL DEFAULT 'both',
   `nw_begin_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -852,11 +852,11 @@ CREATE TABLE IF NOT EXISTS `g6_new_win` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `g6_menu`
+-- Table structure for table `g5_menu`
 --
 
-DROP TABLE IF EXISTS `g6_menu`;
-CREATE TABLE IF NOT EXISTS `g6_menu` (
+DROP TABLE IF EXISTS `g5_menu`;
+CREATE TABLE IF NOT EXISTS `g5_menu` (
   `me_id` int(11) NOT NULL AUTO_INCREMENT,
   `me_code` varchar(255) NOT NULL DEFAULT '',
   `me_name` varchar(255) NOT NULL DEFAULT '',
