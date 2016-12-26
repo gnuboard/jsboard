@@ -16,42 +16,42 @@ public class Point {
 
 	@Id
 	@Column(name="po_id")
-	private int pointId;
+	private int Id;
 	
 	@Column(name="mb_id")
 	private String memberId;
 	
 	@Column(name="po_datetime")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date pointDatetime;
+	private Date datetime;
 	
 	@Column(name="po_content")
-	private String pointContent;
+	private String content;
 	
 	@Column(name="po_point")
-	private int pointPoint;
+	private int point;
 	
 	@Column(name="po_use_point")
-	private int pointUsePoint;
+	private int usePoint;
 	
 	@Column(name="po_expired")
-	private int pointExpired;
+	private int expired;
 	
 	@Column(name="po_expire_date")
 	@Temporal(TemporalType.DATE)
-	private Date pointExpireDate;
+	private Date expireDate;
 	
 	@Column(name="po_mb_point")
-	private int pointMbPoint;
+	private int mbPoint;
 	
 	@Column(name="po_rel_table")
-	private String pointRelTable;
+	private String relTable;
 	
 	@Column(name="po_rel_id")
-	private String pointRelId;
+	private String relId;
 	
 	@Column(name="po_rel_action")
-	private String pointRelAction;
+	private String relAction;
 	
 	
 	

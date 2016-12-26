@@ -12,24 +12,21 @@ import lombok.Data;
 
 @Entity
 @Data
-public class BoardNew {
+public class GroupMember {
 	
-	@Id @Column(name="bn_id")
+	@Id @Column(name="gm_id")
 	private int id;
 	
-	@Column(name="bo_table")
-	private String table;
+	@Column(name="gr_id")
+	private String groupId;
 	
-	@Column(name="wr_id")
-	private int writeId;
-	
-	@Column(name="wr_parent")
-	private int parent;
-	
-	@Column(name="bn_datetime")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date datetime;
-
 	@Column(name="mb_id")
 	private String memberId;
+	
+	
+	@Column(name="gm_datetime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateTime;
+	
+
 }

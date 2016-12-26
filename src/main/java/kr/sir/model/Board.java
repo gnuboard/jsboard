@@ -12,286 +12,286 @@ public class Board {
 
 	@Id 
 	@Column(name = "bo_table")
-	private String boardTable;
+	private String table;
 	
 	@Column(name="gr_id")
 	private String groupId;
 	
 	@Column(name="bo_subject")
-	private String boardSubject;
+	private String subject;
 	
 	@Column(name="bo_mobile_subject")
-	private String boardMobileSubject;
+	private String mobileSubject;
 	
 	@Column(name="bo_device")
-	private String boardDevice;
+	private String device;
 	
 	@Column(name="bo_admin")
-	private String boardAdmin;
+	private String admin;
 	
 	@Column(name="bo_list_level")
-	private String boardListLevel;
+	private String listLevel;
 	
 	@Column(name="bo_read_level")
-	private int boardReadLevel;	
+	private int readLevel;	
 	
 	@Column(name="bo_write_level")
-	private int boardWriteLevel;
+	private int writeLevel;
 	
 	@Column(name="bo_reply_level")
-	private int boardReplyLevel;
+	private int replyLevel;
 	
 	@Column(name="bo_comment_level")
-	private int boardCommentLevel;
+	private int commentLevel;
 	
 	@Column(name="bo_upload_level")
-	private int boardUploadLevel;
+	private int uploadLevel;
 	
 	@Column(name="bo_download_level")
-	private int boardDownloadLevel;
+	private int downloadLevel;
 	
 	@Column(name="bo_html_level")
-	private int boardHtmlLevel;
+	private int htmlLevel;
 	
 	@Column(name="bo_link_level")
-	private int boardLinkLevle;
+	private int linkLevle;
 	
 	@Column(name="bo_count_delete")
-	private int boardCountDelete;
+	private int countDelete;
 	
 	@Column(name="bo_count_modify")
-	private int boardCountModify;
+	private int countModify;
 	
 	@Column(name="bo_read_point")
-	private int boardReadPoint;
+	private int readPoint;
 	
 	@Column(name="bo_write_point")
-	private int boardWritePoint;
+	private int writePoint;
 	
 	@Column(name="bo_comment_point")
-	private int boardCommentPoint;
+	private int commentPoint;
 	
 	@Column(name="bo_download_point")
-	private int boardDownloadPoint;
+	private int downloadPoint;
 	
 	@Column(name="bo_use_category")
-	private int boardUseCategory;
+	private int useCategory;
 	
 	@Column(name="bo_category_list")
-	private String boardCategoryList;
+	private String categoryList;
 	
 	@Column(name="bo_use_sideview")
-	private int boardUseSideview;
+	private int useSideview;
 	
 	@Column(name="bo_use_file_content")
-	private int boardUseFileContent;
+	private int useFileContent;
 	
 	@Column(name="bo_use_secret")
-	private int boardUseSecret;
+	private int useSecret;
 	
 	@Column(name="bo_use_dhtml_editor")
-	private int boardUseDhtmlEditor;
+	private int useDhtmlEditor;
 	
 	@Column(name="bo_use_rss_view")
-	private int boardUseRssView;
+	private int useRssView;
 	
 	@Column(name="bo_use_good")
-	private int boardUseGood;
+	private int useGood;
 	
 	@Column(name="bo_use_nogood")
-	private int boardUseNogood;
+	private int useNogood;
 	
 	@Column(name="bo_use_name")
-	private int boardUseName;
+	private int useName;
 	
 	@Column(name="bo_use_signature")
-	private int boardUseSignature;
+	private int useSignature;
 	
 	@Column(name="bo_use_ip_view")
-	private int boardUseIpView;
+	private int useIpView;
 	
 	@Column(name="bo_use_list_view")
-	private int boardUseListView;
+	private int useListView;
 	
 	@Column(name="bo_use_list_file")
-	private int boardUseListFile;
+	private int useListFile;
 	
 	@Column(name="bo_use_list_content")
-	private int boardUseListContent;
+	private int useListContent;
 	
 	@Column(name="bo_table_width")
-	private int boardTableWidth;
+	private int tableWidth;
 	
 	@Column(name="bo_subject_len")
-	private int boardSubjectLen;
+	private int subjectLen;
 	
 	@Column(name="bo_mobile_subject_len")
-	private int boardMobileSubjectLen;
+	private int mobileSubjectLen;
 	
 	@Column(name="bo_page_rows")
-	private int boardPageRows;
+	private int pageRows;
 	
 	@Column(name="bo_mobile_page_rows")
-	private int boardMobilePageRows;
+	private int mobilePageRows;
 	
 	@Column(name="bo_new")
-	private int boardNew;
+	private int newIcon;
 	
 	@Column(name="bo_hot")
-	private int boardHot;
+	private int hotIcon;
 	
 	@Column(name="bo_image_width")
-	private int boardImageWidth;
+	private int imageWidth;
 	
 	@Column(name="bo_skin")
-	private String boardSkin;
+	private String skin;
 	
 	@Column(name="bo_mobile_skin")
-	private String boardMobileSkin;
+	private String mobileSkin;
 	
 	@Column(name="bo_include_head")
-	private String boardIncludeHead;
+	private String includeHead;
 	
 	@Column(name="bo_include_tail")
-	private String boardincludeTail;
+	private String includeTail;
 	
 	@Column(name="bo_content_head")
-	private String boardContentHead;
+	private String contentHead;
 	
 	@Column(name="bo_mobile_content_head")
-	private String boardMobileContentHead;
+	private String mobileContentHead;
 	
 	@Column(name="bo_content_tail")
-	private String boardContentTail;
+	private String contentTail;
 	
 	@Column(name="bo_mobile_content_tail")
-	private String boardMobileContentTail;
+	private String mobileContentTail;
 	
 	@Column(name="bo_insert_content")
-	private String boardInsertContent;
+	private String insertContent;
 	
 	@Column(name="bo_gallery_cols")
-	private int boardGalleryCols;
+	private int galleryCols;
 	
 	@Column(name="bo_gallery_width")
-	private int boardGalleryWidth;
+	private int galleryWidth;
 	
 	@Column(name="bo_gallery_height")
-	private int boardGalleryHeight;
+	private int galleryHeight;
 	
 	@Column(name="bo_mobile_gallery_width")
-	private int boardMobileGalleryWidth;
+	private int mobileGalleryWidth;
 	
 	@Column(name="bo_mobile_gallery_height")
-	private int boardMobileGalleryHeight;
+	private int mobileGalleryHeight;
 	
 	@Column(name="bo_upload_size")
-	private int boardUploadSize;
+	private int uploadSize;
 	
 	@Column(name="bo_reply_order")
-	private int boardReplyOrder;
+	private int replyOrder;
 	
 	@Column(name="bo_use_search")
-	private int boardUseSearch;
+	private int useSearch;
 	
 	@Column(name="bo_order")
-	private int boardOrder;
+	private int order;
 	
 	@Column(name="bo_count_write")
-	private int boardCountWrite;
+	private int countWrite;
 	
 	@Column(name="bo_count_comment")
-	private int boardCountComment;
+	private int countComment;
 	
 	@Column(name="bo_write_min")
-	private int boardWriteMin;
+	private int writeMin;
 	
 	@Column(name="bo_write_max")
-	private int boardWriteMax;
+	private int writeMax;
 	
 	@Column(name="bo_comment_min")
-	private int boardCommentMin;
+	private int commentMin;
 	
 	@Column(name="bo_comment_max")
-	private int boardCommentMax;
+	private int commentMax;
 	
 	@Column(name="bo_notice")
-	private String boardNotice;
+	private String notice;
 	
 	@Column(name="bo_upload_count")
-	private int boardUploadCount;
+	private int uploadCount;
 	
 	@Column(name="bo_use_email")
-	private int boardUseEmail;
+	private int useEmail;
 	
 	@Column(name="bo_use_cert")
-	private String boardUseCert;
+	private String useCert;
 	
 	@Column(name="bo_use_sns")
-	private int boardUseSns;
+	private int useSns;
 	
 	@Column(name="bo_sort_field")
-	private String boardSortField;
+	private String sortField;
 	
 	@Column(name="bo_1_subj")
-	private String board1Subj;
+	private String _1Subj;
 
 	@Column(name="bo_2_subj")
-	private String board2Subj;
+	private String _2Subj;
 	
 	@Column(name="bo_3_subj")
-	private String board3Subj;
+	private String _3Subj;
 	
 	@Column(name="bo_4_subj")
-	private String board4Subj;
+	private String _4Subj;
 	
 	@Column(name="bo_5_subj")
-	private String board5Subj;
+	private String _5Subj;
 	
 	@Column(name="bo_6_subj")
-	private String board6Subj;
+	private String _6Subj;
 	
 	@Column(name="bo_7_subj")
-	private String board7Subj;
+	private String _7Subj;
 	
 	@Column(name="bo_8_subj")
-	private String board8Subj;
+	private String _8Subj;
 	
 	@Column(name="bo_9_subj")
-	private String board9Subj;
+	private String _9Subj;
 	
 	@Column(name="bo_10_subj")
-	private String board10Subj;
+	private String _10Subj;
 	
 	@Column(name="bo_1")
-	private String board1;
+	private String _1;
 	
 	@Column(name="bo_2")
-	private String board2;
+	private String _2;
 	
 	@Column(name="bo_3")
-	private String board3;
+	private String _3;
 	
 	@Column(name="bo_4")
-	private String board4;
+	private String _4;
 	
 	@Column(name="bo_5")
-	private String board5;
+	private String _5;
 	
 	@Column(name="bo_6")
-	private String board6;
+	private String _6;
 	
 	@Column(name="bo_7")
-	private String board7;
+	private String _7;
 	
 	@Column(name="bo_8")
-	private String board8;
+	private String _8;
 	
 	@Column(name="bo_9")
-	private String board9;
+	private String _9;
 	
 	@Column(name="bo_10")
-	private String board10;
+	private String _10;
 }
 
 
