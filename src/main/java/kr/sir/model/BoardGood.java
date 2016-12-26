@@ -4,7 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -12,9 +11,9 @@ import lombok.Data;
 
 @Entity
 @Data
-public class BoardNew {
+public class BoardGood {
 	
-	@Id @Column(name="bn_id")
+	@Column(name="bg_id")
 	private int id;
 	
 	@Column(name="bo_table")
@@ -23,13 +22,14 @@ public class BoardNew {
 	@Column(name="wr_id")
 	private int writeId;
 	
-	@Column(name="wr_parent")
-	private int parent;
+	@Column(name="mb_id")
+	private String memberId;
 	
-	@Column(name="bn_datetime")
+	@Column(name="bg_flag")
+	private String flag;
+	
+	@Column(name="bg_datetime")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datetime;
 
-	@Column(name="mb_id")
-	private String memberId;
 }
