@@ -9,166 +9,166 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="js5_member")
+@Table(name="member")
 public class Member{
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "mb_no")
-	private int id;
+	private int no;
 	
 	@Column(name = "mb_id")
-	private String memberId;
+	private String id;
 	
 	@Column(name = "mb_password")
-	private String memberPassword;
+	private String password;
 	
 	@Column(name = "mb_name")
-	private String memberName;
+	private String name;
 	
 	@Column(name = "mb_nick")
-	private String memberNickName;
+	private String nickName;
 	
 	@Column(name = "mb_nick_date")
 	@Temporal(TemporalType.DATE)
-	private Date memberRickDate;
+	private Date nickDate;
 	
 	@Column(name = "mb_email")
-	private String memberEmail;
+	private String email;
 	
 	@Column(name = "mb_homepage")
-	private String memberHomePage;
+	private String homePage;
 	
 	@Column(name = "mb_level")
-	private int memberLevel;
+	private int level;
 	
 	@Column(name = "mb_sex")
-	private char memberSex;
+	private char sex;
 	
 	@Column(name = "mb_birth")
-	private String memberBirth;
+	private String birth;
 
 	@Column(name = "mb_tel")
-	private String memberTel;
+	private String tel;
 
 	@Column(name = "mb_hp")
-	private String memberHpNo;
+	private String hpNo;
 	
 	@Column(name = "mb_certify")
-	private String memberCertify;
+	private String certify;
 	
 	@Column(name = "mb_adult")
-	private int memberAdult;
+	private int adult;
 	
 	@Column(name = "mb_dupinfo")
-	private String memberDupInfo;
+	private String dupInfo;
 	
 	@Column(name = "mb_zip1")
-	private char memberZipCode1;
+	private char zipCode1;
 	
 	@Column(name = "mb_zip2")
-	private char memberZipCode2;
+	private char zipCode2;
 	
 	@Column(name = "mb_addr1")
-	private String memberAddress1;
+	private String address1;
 
 	@Column(name = "mb_addr2")
-	private String memberAddress2;
+	private String address2;
 	
 	@Column(name = "mb_addr3")
-	private String memberAddress3;
+	private String address3;
 	
 	@Column(name = "mb_addr_jibeon")
-	private String memberAddressJibeon;
+	private String addressJibeon;
 	
 	@Column(name = "mb_signature")
-	private String memberSignature;
+	private String signature;
 	
 	@Column(name = "mb_recommend")
-	private String memberRecommend;
+	private String recommend;
 	
 	@Column(name = "mb_point")
-	private int memberPoint; 
+	private int point; 
 	
 	@Column(name = "mb_today_login")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date memberTodayLogin;
+	private Date todayLogin;
 	
 	@Column(name = "mb_login_ip")
-	private String memberLoginIp;
+	private String loginIp;
 	
 	@Column(name = "mb_datetime")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date memberDatetime;
+	private Date datetime;
 
 	@Column(name = "mb_ip")
-	private String memberIp;
+	private String ip;
 
 	@Column(name = "mb_leave_date") 
-	private String memberLeaveDate;
+	private String leaveDate;
 	
 	@Column(name = "mb_intercept_date")
-	private String memberInterceptDate;
+	private String interceptDate;
 	
 	@Column(name = "mb_email_certify")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date memberEmailCertify;
+	private Date eEmailCertify;
 	
 	@Column(name = "mb_email_certify2")
-	private String memberEmailCertify2;
+	private String emailCertify2;
 	
 	@Column(name = "mb_memo")
-	private String memberMemo;
+	private String memo;
 	
 	@Column(name = "mb_lost_certify")
-	private String memberLostCertify;
+	private String lostCertify;
 	
 	@Column(name = "mb_mailing")
-	private int memberMailing;
+	private int mailing;
 	
 	@Column(name = "mb_sms")
-	private int memberSms;
+	private int sms;
 	
 	@Column(name = "mb_Open")
-	private int memberOpen;
+	private int open;
 	
 	@Column(name = "mb_open_date")
 	@Temporal(TemporalType.DATE)
-	private Date memberOpenDate;
+	private Date openDate;
 	
 	@Column(name = "mb_profile")
-	private String memberProfile;
+	private String profile;
 	
 	@Column(name = "mb_memo_call")
-	private String memberMemoCall;
+	private String memoCall;
 	
 	@Column(name = "mb_1")
-	private String memberExtra1;
+	private String extra1;
 	
 	@Column(name = "mb_2")
-	private String memberExtra2;
+	private String extra2;
 	
 	@Column(name = "mb_3")
-	private String memberExtra3;
+	private String extra3;
 	
 	@Column(name = "mb_4")
-	private String memberExtra4;
+	private String extra4;
 	
 	@Column(name = "mb_5")
-	private String memberExtra5;
+	private String extra5;
 	
 	@Column(name = "mb_6")
-	private String memberExtra6;
+	private String extra6;
 	
 	@Column(name = "mb_7")
-	private String memberExtra7;
+	private String extra7;
 	
 	@Column(name = "mb_8")
-	private String memberExtra8;
+	private String extra8;
 	
 	@Column(name = "mb_9")
-	private String memberExtra9;
+	private String extra9;
 	
 	@Column(name = "mb_10")
-	private String memberExtra10;
+	private String extra10;
 	
 }

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
+// no jpa, native sql.
 @Data
 public class Write {
 

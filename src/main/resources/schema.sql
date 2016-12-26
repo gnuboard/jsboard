@@ -316,7 +316,8 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_7` varchar(255) NOT NULL DEFAULT '',
   `cf_8` varchar(255) NOT NULL DEFAULT '',
   `cf_9` varchar(255) NOT NULL DEFAULT '',
-  `cf_10` varchar(255) NOT NULL DEFAULT ''
+  `cf_10` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`cf_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
