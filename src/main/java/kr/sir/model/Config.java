@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -13,6 +14,10 @@ import lombok.Data;
 @Data
 public class Config {
 
+	@Id
+	@Column(name="cf_id")
+	private int id;
+	
 	@Column(name="cf_title")
 	private String title;
 	

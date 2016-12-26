@@ -10,7 +10,8 @@ import lombok.Data;
 @Data
 public class Group {
 
-	@Id @Column(name="gr_id")
+	@Id 
+	@Column(name="gr_id")
 	private String id;
 	
 	@Column(name="gr_subject")
