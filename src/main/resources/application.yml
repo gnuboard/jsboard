@@ -2,14 +2,11 @@ service:
   info:
     name: jsboard
     version: 1.0.0
-    
-logging:
-  level:
-    org.springframework.boot: INFO
-    org.springframework.web: DEBUG
-    org.springframework.data: INFO
-    
+
+---
+
 spring:
+  profiles: dev
   mvc:
     view:
       prefix: /WEB-INF/jsp/
@@ -20,19 +17,58 @@ spring:
     show-sql: true
     
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       naming:
-        strategy: PrefixNamingStrategy
+        physical-strategy: kr.sir.model.module.PrefixNamingStrategy
 
   datasource:
      initialize: true
-#     url: jdbc:h2:tcp://localhost/~/test;MVCC=TRUE
-     url: jdbc:mysql://ahn13.gnutest.com:3306/ahn13?
-     username: ahn13
-     password: qwer
+     url: "jdbc:mysql://localhost:3306/ahn"
+     username: "ahn23"
+     password: "qwer"
      driver-class-name: com.mysql.jdbc.Driver
+     
+logging:
+  file: logs/application.log
+  level:
+    org.springframework.boot: INFO
+    org.springframework.web: DEBUG
+    org.springframework.data: INFO
 
+#---
 
+#spring:
+#  profiles: test
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/jsp/
+#      suffix: .jsp    
+#  thymeleaf:
+#    cache: false
+#  jpa:
+#    show-sql: true
+#    
+#    hibernate:
+#      ddl-auto: create
+#      naming:
+#        physical-strategy: kr.sir.model.module.PrefixNamingStrategy
+#
+#  datasource:
+#     initialize: true
+#     url: jdbc:mysql://ahn13.gnutest.com:3306/ahn13
+#     username: ahn13
+#     password: qwer
+#     driver-class-name: com.mysql.jdbc.Driver
+#
 #logging:
+#  file: logs/application.log
 #  level:
+#    org.springframework.boot: INFO
 #    org.springframework.web: INFO
+#    org.springframework.data: INFO
+    
+---
+spring:
+  profiles: logging-daily
+logging:
+  config: classpath:logback-spring.xml

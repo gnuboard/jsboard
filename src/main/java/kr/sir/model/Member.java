@@ -9,6 +9,7 @@ import lombok.Data;
 
 @Entity
 @Data
+@Table(name="js5_member")
 public class Member{
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -98,7 +99,7 @@ public class Member{
 	@Column(name = "mb_datetime")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date memberDatetime;
-	
+
 	@Column(name = "mb_ip")
 	private String memberIp;
 

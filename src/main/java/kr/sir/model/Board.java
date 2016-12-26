@@ -4,16 +4,21 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import lombok.Data;
-
 @Entity
-@Data
 public class Board {
 
 	@Id 
 	@Column(name = "bo_table")
 	private String boardTable;
 	
+	public String getBoardTable() {
+		return boardTable;
+	}
+
+	public void setBoardTable(String boardTable) {
+		this.boardTable = boardTable;
+	}
+
 	@Column(name="gr_id")
 	private String groupId;
 	

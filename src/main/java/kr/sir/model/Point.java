@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -20,6 +22,7 @@ public class Point {
 	private String memberId;
 	
 	@Column(name="po_datetime")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date pointDatetime;
 	
 	@Column(name="po_content")
@@ -35,6 +38,7 @@ public class Point {
 	private int pointExpired;
 	
 	@Column(name="po_expire_date")
+	@Temporal(TemporalType.DATE)
 	private Date pointExpireDate;
 	
 	@Column(name="po_mb_point")
