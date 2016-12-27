@@ -1,5 +1,5 @@
 tables:
-  prefix: js10_
+  prefix: js5_
   
 ---
 
@@ -15,13 +15,13 @@ spring:
     show-sql: true
     database: mysql
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       naming:
         physical-strategy: kr.sir.common.PrefixNamingStrategy
 
   datasource:
      initialize: true
-     url: "jdbc:mysql://localhost:3306/ahn?characterEncoding=utf8&useSSL=false"
+     url: "jdbc:mysql://localhost:3316/ahn?characterEncoding=utf8&useSSL=false"
      username: "ahn23"
      password: "qwer"
      driver-class-name: com.mysql.jdbc.Driver

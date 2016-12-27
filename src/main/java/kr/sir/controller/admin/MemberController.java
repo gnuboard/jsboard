@@ -1,6 +1,7 @@
 package kr.sir.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +19,14 @@ public class MemberController {
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
+	
+	@Value("${tables.prefix}") 
+	private String prefix;
 
 	@RequestMapping(value="/", method = {RequestMethod.GET, RequestMethod.HEAD})
-	public String hello() {
-		return "hello jsboard!!!";
+	public String hello(Model model) {
+		model.addAttribute("prefix", prefix);
+		return "hello";
 	}
 	
 	// test - member

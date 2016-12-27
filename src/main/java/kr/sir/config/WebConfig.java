@@ -20,5 +20,7 @@ public class WebConfig{
 		return new MySQLMyISAMDialect();
 	}
 	
+
+	
 }
 
