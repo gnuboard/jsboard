@@ -1,4 +1,4 @@
-package kr.sir.model;
+package kr.sir.domain;
 
 import java.util.Date;
 

@@ -1,14 +1,11 @@
 package kr.sir.controller.admin;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.sir.model.GroupMember;
 import kr.sir.service.admin.MemberService;
 
 @Controller
@@ -27,19 +24,12 @@ public class MemberController {
 		return "hello jsboard!!!";
 	}
 	
-	// member test
-	@RequestMapping(value="/member_i", method = {RequestMethod.GET, RequestMethod.HEAD})
-	public String findMemberById(Model model) {
-		String memberId = memberService.findAdmin();
+	// test - member
+	@RequestMapping(value="/view/MemberById", method = {RequestMethod.GET, RequestMethod.HEAD})
+	public String findMemberByIdUseJPQL(Model model) {
+		String memberId = memberService.findMemberById("admin");
 		model.addAttribute("id", memberId);
 		return "test";
 	}
-
-	// group member test
-	@RequestMapping(value="/allGroupMember", method = {RequestMethod.GET, RequestMethod.HEAD})
-	public String findFirstMember(Model model) {
-		List<GroupMember> allGroupMember = memberService.AllGroupMember();
-		model.addAttribute("group_member", allGroupMember);
-		return "test2";
-	}
+	
 }

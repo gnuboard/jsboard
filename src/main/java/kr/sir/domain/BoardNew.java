@@ -1,4 +1,4 @@
-package kr.sir.model;
+package kr.sir.domain;
 
 import java.util.Date;
 
@@ -14,10 +14,10 @@ import lombok.Data;
 
 @Entity
 @Data
-public class BoardGood {
+public class BoardNew {
 	
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="bg_id")
+	@Id @GeneratedValue(strategy = GenerationType.AUTO) 
+	@Column(name="bn_id")
 	private int id;
 	
 	@Column(name="bo_table")
@@ -26,14 +26,13 @@ public class BoardGood {
 	@Column(name="wr_id")
 	private int writeId;
 	
-	@Column(name="mb_id")
-	private String memberId;
+	@Column(name="wr_parent")
+	private int parent;
 	
-	@Column(name="bg_flag")
-	private String flag;
-	
-	@Column(name="bg_datetime")
+	@Column(name="bn_datetime")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datetime;
 
+	@Column(name="mb_id")
+	private String memberId;
 }

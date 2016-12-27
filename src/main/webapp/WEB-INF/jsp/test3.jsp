@@ -11,13 +11,13 @@
 		<tr>
 			<td>id</td>
 			<td>group id</td>
+			<td>member id</td>
 		</tr>
-	<c:forEach var="g_member" items="${group_member}" varStatus="loop">
 		<tr>
-			<td>${g_member.id}</td>
-			<td>${g_member.groupId}</td>
+			<td>${gMember.id}</td>
+			<td>${gMember.groupId}</td>
+			<td>${gMember.memberId}</td>
 		</tr>
-	</c:forEach>
 	</table>
 </body>
 </html>

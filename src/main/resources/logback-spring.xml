@@ -19,9 +19,9 @@
 	</appender>
  
 	<logger name="org.springframework.web" level="debug"/>
-	<logger name="org.springframework.boot" level="debug"/>
+	<logger name="org.springframework.boot" level="info"/>
 	<logger name="org.springframework.data" level="debug"/>
-	<logger name="org.hibernate.SQL" level="debug" additivity="false" />
+	<logger name="org.hibernate.SQL" level="info" additivity="false" />
     <logger name="org.hibernate.type" level="trace" additivity="false" />
  
 	<root level="INFO">

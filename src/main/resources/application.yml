@@ -1,10 +1,10 @@
-service:
-  info:
-    name: jsboard
-    version: 1.0.0
+tables:
+  prefix: js10_
+  
+---
 
 spring:
-#  profiles: dev
+  profiles: local
   mvc:
     view:
       prefix: /WEB-INF/jsp/
@@ -14,16 +14,14 @@ spring:
   jpa:
     show-sql: true
     database: mysql
-    
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       naming:
-        physical-strategy: kr.sir.model.module.PrefixNamingStrategy
+        physical-strategy: kr.sir.common.PrefixNamingStrategy
 
   datasource:
      initialize: true
      url: "jdbc:mysql://localhost:3306/ahn?characterEncoding=utf8&useSSL=false"
-#     url: "jdbc:mysql://localhost:3316/ahn?characterEncoding=utf8&useSSL=false"
      username: "ahn23"
      password: "qwer"
      driver-class-name: com.mysql.jdbc.Driver
@@ -32,43 +30,43 @@ logging:
   file: logs/application.log
   level:
     org.springframework.boot: INFO
-    org.springframework.web: DEBUG
+    org.springframework.web: INFO
     org.springframework.data: DEBUG
 
-#---
+---
 
-#spring:
-#  profiles: test
-#  mvc:
-#    view:
-#      prefix: /WEB-INF/jsp/
-#      suffix: .jsp    
-#  thymeleaf:
-#    cache: false
-#  jpa:
-#    show-sql: true
-#    
-#    hibernate:
-#      ddl-auto: create
-#      naming:
-#        physical-strategy: kr.sir.model.module.PrefixNamingStrategy
-#
-#  datasource:
-#     initialize: true
-#     url: jdbc:mysql://ahn13.gnutest.com:3306/ahn13
-#     username: ahn13
-#     password: qwer
-#     driver-class-name: com.mysql.jdbc.Driver
-#
-#logging:
-#  file: logs/application.log
-#  level:
-#    org.springframework.boot: INFO
-#    org.springframework.web: INFO
-#    org.springframework.data: INFO
+spring:
+  profiles: test
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp    
+  thymeleaf:
+    cache: false
+  jpa:
+    show-sql: true
+    
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: kr.sir.model.module.PrefixNamingStrategy
+
+  datasource:
+     initialize: true
+     url: jdbc:mysql://ahn13.gnutest.com:3306/ahn13
+     username: ahn13
+     password: qwer
+     driver-class-name: com.mysql.jdbc.Driver
+
+logging:
+  file: logs/application.log
+  level:
+    org.springframework.boot: INFO
+    org.springframework.web: DEBUG
+    org.springframework.data: INFO
     
 ---
 spring:
   profiles: logging-daily
 logging:
-  config: classpath:logback-spring.xml
+  config: classpath:logback-spring.xml    
