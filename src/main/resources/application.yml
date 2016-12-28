@@ -1,10 +1,42 @@
 table:
   prefix: js_
+
+---
+
+spring:
+  profiles: local-g
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp    
+  thymeleaf:
+    cache: false
+  jpa:
+    show-sql: true
+    database: mysql
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: kr.sir.common.PrefixNamingStrategy
+
+  datasource:
+     initialize: true
+     url: "jdbc:mysql://localhost:3306/sirgjw?characterEncoding=utf8&useSSL=false"
+     username: "root"
+     password: "8989"
+     driver-class-name: com.mysql.jdbc.Driver
+     
+logging:
+  file: logs/application.log
+  level:
+    org.springframework.boot: INFO
+    org.springframework.web: INFO
+    org.springframework.data: DEBUG
   
 ---
 
 spring:
-  profiles: local
+  profiles: local-a
   mvc:
     view:
       prefix: /WEB-INF/jsp/
