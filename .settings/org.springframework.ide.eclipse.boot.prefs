@@ -1,2 +1,2 @@
 eclipse.preferences.version=1
-spring.boot.launch.profile.history=local, logging-daily;dev;
+spring.boot.launch.profile.history=local-g, logging-daily;local, logging-daily;dev;

@@ -359,64 +359,64 @@ public class Config {
 	private String kakaoJsApikey;
 	
 	@Column(name="cf_1_sub")
-	private String _1Subj;
+	private String extra1Key;
 	
 	@Column(name="cf_2_sub")
-	private String _2Subj;
+	private String extra2Key;
 	
 	@Column(name="cf_3_sub")
-	private String _3Subj;
+	private String extra3Key;
 	
 	@Column(name="cf_4_sub")
-	private String _4Subj;
+	private String extra4Key;
 	
 	@Column(name="cf_5_sub")
-	private String _5Subj;
+	private String extra5Key;
 	
 	@Column(name="cf_6_sub")
-	private String _6Subj;
+	private String extra6Key;
 	
 	@Column(name="cf_7_sub")
-	private String _7Subj;
+	private String extra7Key;
 	
 	@Column(name="cf_8_sub")
-	private String _8Subj;
+	private String extra8Key;
 	
 	@Column(name="cf_9_sub")
-	private String _9Subj;
+	private String extra9Key;
 	
 	@Column(name="cf_10_sub")
-	private String _10Subj;
+	private String extra10Key;
 	
 	@Column(name="cf_1")
-	private String _1;
+	private String extra1Value;
 	
 	@Column(name="cf_2")
-	private String _2;
+	private String extra2Value;
 	
 	@Column(name="cf_3")
-	private String _3;
+	private String extra3Value;
 	
 	@Column(name="cf_4")
-	private String _4;
+	private String extra4Value;
 	
 	@Column(name="cf_5")
-	private String _5;
+	private String extra5Value;
 	
 	@Column(name="cf_6")
-	private String _6;
+	private String extra6Value;
 	
 	@Column(name="cf_7")
-	private String _7;
+	private String extra7Value;
 	
 	@Column(name="cf_8")
-	private String _8;
+	private String extra8Value;
 	
 	@Column(name="cf_9")
-	private String _9;
+	private String extra9Value;
 	
 	@Column(name="cf_10")
-	private String _10;
+	private String extra10Value;
 	
 	
 }

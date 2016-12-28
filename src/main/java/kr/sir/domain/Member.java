@@ -14,10 +14,10 @@ public class Member{
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "mb_no")
-	private int no;
+	private int id;
 	
 	@Column(name = "mb_id")
-	private String id;
+	private String memberId;
 	
 	@Column(name = "mb_password")
 	private String password;
@@ -26,7 +26,7 @@ public class Member{
 	private String name;
 	
 	@Column(name = "mb_nick")
-	private String nickName;
+	private String nick;
 	
 	@Column(name = "mb_nick_date")
 	@Temporal(TemporalType.DATE)

@@ -30,62 +30,62 @@ public class Group {
 	private int order;
 	
 	@Column(name="gr_1_subj")
-	private String _1Subj;
+	private String extra1Key;
 	
 	@Column(name="gr_2_subj")
-	private String _2Subj;
+	private String extra2Key;
 	
 	@Column(name="gr_3_subj")
-	private String _3Subj;
+	private String extra3Key;
 	
 	@Column(name="gr_4_subj")
-	private String _4Subj;
+	private String extra4Key;
 	
 	@Column(name="gr_5_subj")
-	private String _5Subj;
+	private String extra5Key;
 	
 	@Column(name="gr_6_subj")
-	private String _6Subj;
+	private String extra6Key;
 	
 	@Column(name="gr_7_subj")
-	private String _7Subj;
+	private String extra7Key;
 	
 	@Column(name="gr_8_subj")
-	private String _8Subj;
+	private String extra8Key;
 	
 	@Column(name="gr_9_subj")
-	private String _9Subj;
+	private String extra9Key;
 	
 	@Column(name="gr_10_subj")
-	private String _10Subj;
+	private String extra10Key;
 	
 	@Column(name="gr_1")
-	private String _1;
+	private String extra1Value;
 	
 	@Column(name="gr_2")
-	private String _2;
+	private String extra2Value;
 	
 	@Column(name="gr_3")
-	private String _3;
+	private String extra3Value;
 	
 	@Column(name="gr_4")
-	private String _4;
+	private String extra4Value;
 	
 	@Column(name="gr_5")
-	private String _5;
+	private String extra5Value;
 	
 	@Column(name="gr_6")
-	private String _6;
+	private String extra6Value;
 	
 	@Column(name="gr_7")
-	private String _7;
+	private String extra7Value;
 	
 	@Column(name="gr_8")
-	private String _8;
+	private String extra8Value;
 	
 	@Column(name="gr_9")
-	private String _9;
+	private String extra9Value;
 	
 	@Column(name="gr_10")
-	private String _10;
+	private String extra10Value;
 }

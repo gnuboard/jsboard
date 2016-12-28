@@ -101,35 +101,36 @@ public class Write {
 	@Column(name="wr_twitter_user")
 	private String twitterUser;
 	
+
 	@Column(name="wr_1")
-	private String _1;
+	private String extra1;
 	
 	@Column(name="wr_2")
-	private String _2;
+	private String extra2;
 	
 	@Column(name="wr_3")
-	private String _3;
+	private String extra3;
 	
 	@Column(name="wr_4")
-	private String _4;
+	private String extra4;
 	
 	@Column(name="wr_5")
-	private String _5;
+	private String extra5;
 	
 	@Column(name="wr_6")
-	private String _6;
+	private String extra6;
 	
 	@Column(name="wr_7")
-	private String _7;
+	private String extra7;
 	
 	@Column(name="wr_8")
-	private String _8;
+	private String extra8;
 	
 	@Column(name="wr_9")
-	private String _9;
+	private String extra19;
 	
 	@Column(name="wr_10")
-	private String _10;
+	private String extra10;
 	
 	
 	
