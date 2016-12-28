@@ -17,6 +17,7 @@ import lombok.Data;
 
 public class BoardFile implements Serializable{
 
+
 	private static final long serialVersionUID = 1L;
 
 	@Id @Column(name="bo_table")

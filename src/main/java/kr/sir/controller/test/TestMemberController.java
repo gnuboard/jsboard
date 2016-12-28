@@ -11,7 +11,7 @@ import kr.sir.service.test.MemberService;
 
 @Controller
 @RequestMapping("/test/member")
-public class MemberController {
+public class TestMemberController {
 	
 	@Autowired
 	private MemberService memberService;

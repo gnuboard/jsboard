@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.sir.domain.Member;
-import kr.sir.domain.repository.test.MemberRepository;
+import kr.sir.domain.repository.test.TestMemberRepository;
 import kr.sir.service.test.MemberService;
 
-@Service
+@Service("testServiceImpl")
 public class MemberServiceImpl implements MemberService{
 
 	@Autowired
-	private MemberRepository memberRepository;
+	private TestMemberRepository memberRepository;
 	
 	@Override
 	// findMemberById()

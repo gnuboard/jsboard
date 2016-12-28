@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.sir.domain.GroupMember;
-import kr.sir.service.test.impl.GroupMemberServiceImpl;
+import kr.sir.service.test.GroupMemberService;
 
 @Controller
 @RequestMapping("/test/groupMember")
 public class GroupMemberController {
 
-	private GroupMemberServiceImpl groupMemberService;
+	private GroupMemberService groupMemberService;
 
 	@Autowired
-	public void setGroupMemberService(GroupMemberServiceImpl groupMemberService) {
+	public void setGroupMemberService(GroupMemberService groupMemberService) {
 		this.groupMemberService = groupMemberService;
 	}
 	
