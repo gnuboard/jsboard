@@ -12,18 +12,16 @@ import kr.sir.service.test.MemberService;
 @Service
 public class MemberServiceImpl implements MemberService{
 
+	@Autowired
 	private MemberRepository memberRepository;
 	
-	@Autowired
-	public void setMemberRepository(MemberRepository memberRepository) {
-		this.memberRepository = memberRepository;
-	}
-
+	@Override
 	// findMemberById()
 	public String findMemberById(String memberId) {
 		return memberRepository.findByMemberId(memberId);
 	}
 	
+	@Override
 	// Member findAll()
 	public List<Member> findAll() {
 		return memberRepository.findAll();

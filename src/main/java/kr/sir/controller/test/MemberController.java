@@ -7,18 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.sir.service.test.impl.MemberServiceImpl;
+import kr.sir.service.test.MemberService;
 
 @Controller
 @RequestMapping("/test/member")
 public class MemberController {
 	
-	private MemberServiceImpl memberService;
-	
 	@Autowired
-	public void setMemberService(MemberServiceImpl memberService) {
-		this.memberService = memberService;
-	}
+	private MemberService memberService;
 	
 	@Value("${table.prefix}") 
 	private String prefix;
