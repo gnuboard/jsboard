@@ -1,4 +1,4 @@
-package kr.sir.controller.admin;
+package kr.sir.controller.test;
 
 import java.util.List;
 
@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.sir.domain.GroupMember;
-import kr.sir.service.admin.GroupMemberService;
+import kr.sir.service.test.impl.GroupMemberServiceImpl;
 
 @Controller
-@RequestMapping("/groupMember")
+@RequestMapping("/test/groupMember")
 public class GroupMemberController {
 
-	private GroupMemberService groupMemberService;
+	private GroupMemberServiceImpl groupMemberService;
 
 	@Autowired
-	public void setGroupMemberService(GroupMemberService groupMemberService) {
+	public void setGroupMemberService(GroupMemberServiceImpl groupMemberService) {
 		this.groupMemberService = groupMemberService;
 	}
 	

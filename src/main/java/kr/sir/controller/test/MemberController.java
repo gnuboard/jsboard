@@ -1,4 +1,4 @@
-package kr.sir.controller.admin;
+package kr.sir.controller.test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,20 +7,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.sir.service.admin.MemberService;
+import kr.sir.service.test.impl.MemberServiceImpl;
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/test/member")
 public class MemberController {
 	
-	private MemberService memberService;
+	private MemberServiceImpl memberService;
 	
 	@Autowired
-	public void setMemberService(MemberService memberService) {
+	public void setMemberService(MemberServiceImpl memberService) {
 		this.memberService = memberService;
 	}
 	
-	@Value("${tables.prefix}") 
+	@Value("${table.prefix}") 
 	private String prefix;
 
 	@RequestMapping(value="/", method = {RequestMethod.GET, RequestMethod.HEAD})

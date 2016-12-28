@@ -1,4 +1,4 @@
-package kr.sir.service.homepage;
+package kr.sir.service.admin;
 
 public interface TestService {
 

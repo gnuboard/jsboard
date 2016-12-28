@@ -1,4 +1,4 @@
-package kr.sir.service.admin;
+package kr.sir.service.test.impl;
 
 import java.util.List;
 
@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.sir.domain.GroupMember;
-import kr.sir.domain.repository.admin.GroupMemberRepository;
+import kr.sir.domain.repository.test.GroupMemberRepository;
+import kr.sir.service.test.GroupMemberService;
 
 @Service
-public class GroupMemberService {
+public class GroupMemberServiceImpl implements GroupMemberService {
 	
 	private GroupMemberRepository groupMemberRepository; 
 	
