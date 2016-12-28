@@ -16,7 +16,7 @@ public class Member{
 	@Column(name = "mb_no")
 	private int id;
 	
-	@Column(name = "mb_id")
+	@Column(name = "mb_id", length = 20)
 	private String memberId;
 	
 	@Column(name = "mb_password")
@@ -38,11 +38,11 @@ public class Member{
 	@Column(name = "mb_homepage")
 	private String homePage;
 	
-	@Column(name = "mb_level")
+	@Column(name = "mb_level", columnDefinition="tinyint(4) NOT NULL default '0'")
 	private int level;
 	
-	@Column(name = "mb_sex")
-	private char sex;
+	@Column(name = "mb_sex", columnDefinition="char(1) NOT NULL default ''")
+	private String sex;
 	
 	@Column(name = "mb_birth")
 	private String birth;
@@ -53,20 +53,20 @@ public class Member{
 	@Column(name = "mb_hp")
 	private String hpNo;
 	
-	@Column(name = "mb_certify")
+	@Column(name = "mb_certify", length = 20)
 	private String certify;
 	
-	@Column(name = "mb_adult")
+	@Column(name = "mb_adult", columnDefinition="tinyint(4) NOT NULL default '0'")
 	private int adult;
 	
 	@Column(name = "mb_dupinfo")
 	private String dupInfo;
 	
-	@Column(name = "mb_zip1")
-	private char zipCode1;
+	@Column(name = "mb_zip1", columnDefinition="char(3) NOT NULL default ''")
+	private String zipCode1;
 	
-	@Column(name = "mb_zip2")
-	private char zipCode2;
+	@Column(name = "mb_zip2", columnDefinition="char(3) NOT NULL default ''")
+	private String zipCode2;
 	
 	@Column(name = "mb_addr1")
 	private String address1;
@@ -80,7 +80,7 @@ public class Member{
 	@Column(name = "mb_addr_jibeon")
 	private String addressJibeon;
 	
-	@Column(name = "mb_signature")
+	@Column(name = "mb_signature", columnDefinition="text NOT NULL")
 	private String signature;
 	
 	@Column(name = "mb_recommend")
@@ -103,39 +103,39 @@ public class Member{
 	@Column(name = "mb_ip")
 	private String ip;
 
-	@Column(name = "mb_leave_date") 
+	@Column(name = "mb_leave_date", length = 8) 
 	private String leaveDate;
 	
-	@Column(name = "mb_intercept_date")
+	@Column(name = "mb_intercept_date", length = 8)
 	private String interceptDate;
 	
 	@Column(name = "mb_email_certify")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date eEmailCertify;
+	private Date emailCertify;
 	
 	@Column(name = "mb_email_certify2")
 	private String emailCertify2;
 	
-	@Column(name = "mb_memo")
+	@Column(name = "mb_memo", columnDefinition="text NOT NULL")
 	private String memo;
 	
 	@Column(name = "mb_lost_certify")
 	private String lostCertify;
 	
-	@Column(name = "mb_mailing")
+	@Column(name = "mb_mailing", columnDefinition="tinyint(4) NOT NULL default '0'")
 	private int mailing;
 	
-	@Column(name = "mb_sms")
+	@Column(name = "mb_sms", columnDefinition="tinyint(4) NOT NULL default '0'")
 	private int sms;
 	
-	@Column(name = "mb_Open")
+	@Column(name = "mb_open", columnDefinition="tinyint(4) NOT NULL default '0'")
 	private int open;
 	
 	@Column(name = "mb_open_date")
 	@Temporal(TemporalType.DATE)
 	private Date openDate;
 	
-	@Column(name = "mb_profile")
+	@Column(name = "mb_profile", columnDefinition="text NOT NULL")
 	private String profile;
 	
 	@Column(name = "mb_memo_call")

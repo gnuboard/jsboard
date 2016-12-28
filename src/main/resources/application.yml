@@ -47,7 +47,7 @@ spring:
     show-sql: true
     database: mysql
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       naming:
         physical-strategy: kr.sir.common.PrefixNamingStrategy
 
