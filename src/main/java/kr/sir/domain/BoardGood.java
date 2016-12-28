@@ -21,7 +21,7 @@ public class BoardGood {
 	private int id;
 	
 	@Column(name="bo_table")
-	private String table;
+	private String boardTable;
 	
 	@Column(name="wr_id")
 	private int writeId;

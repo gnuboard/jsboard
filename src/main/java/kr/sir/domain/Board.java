@@ -10,8 +10,7 @@ import lombok.Data;
 @Data
 public class Board {
 
-	@Id 
-	@Column(name = "bo_table")
+	@Id @Column(name = "bo_table")
 	private String table;
 	
 	@Column(name="gr_id")
@@ -234,64 +233,64 @@ public class Board {
 	private String sortField;
 	
 	@Column(name="bo_1_subj")
-	private String _1Subj;
+	private String extra1Key;
 
 	@Column(name="bo_2_subj")
-	private String _2Subj;
+	private String extra2Key;
 	
 	@Column(name="bo_3_subj")
-	private String _3Subj;
+	private String extra3Key;
 	
 	@Column(name="bo_4_subj")
-	private String _4Subj;
+	private String extra4Key;
 	
 	@Column(name="bo_5_subj")
-	private String _5Subj;
+	private String extra5Key;
 	
 	@Column(name="bo_6_subj")
-	private String _6Subj;
+	private String extra6Key;
 	
 	@Column(name="bo_7_subj")
-	private String _7Subj;
+	private String extra7Key;
 	
 	@Column(name="bo_8_subj")
-	private String _8Subj;
+	private String extra8Key;
 	
 	@Column(name="bo_9_subj")
-	private String _9Subj;
+	private String extra9Key;
 	
 	@Column(name="bo_10_subj")
-	private String _10Subj;
+	private String extra10Key;
 	
 	@Column(name="bo_1")
-	private String _1;
+	private String extra1Value;
 	
 	@Column(name="bo_2")
-	private String _2;
+	private String extra2Value;
 	
 	@Column(name="bo_3")
-	private String _3;
+	private String extra3Value;
 	
 	@Column(name="bo_4")
-	private String _4;
+	private String extra4Value;
 	
 	@Column(name="bo_5")
-	private String _5;
+	private String extra5Value;
 	
 	@Column(name="bo_6")
-	private String _6;
+	private String extra6Value;
 	
 	@Column(name="bo_7")
-	private String _7;
+	private String extra7Value;
 	
 	@Column(name="bo_8")
-	private String _8;
+	private String extra8Value;
 	
 	@Column(name="bo_9")
-	private String _9;
+	private String extra9Value;
 	
 	@Column(name="bo_10")
-	private String _10;
+	private String extra10Value;
 }
 
 

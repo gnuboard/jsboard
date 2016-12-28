@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService{
 
 	// findMemberById()
 	public String findMemberById(String memberId) {
-		return memberRepository.findById(memberId);
+		return memberRepository.findByMemberId(memberId);
 	}
 	
 	// Member findAll()
