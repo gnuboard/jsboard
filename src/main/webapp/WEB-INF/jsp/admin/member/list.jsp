@@ -1,25 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="../main/head.jsp"></jsp:include>
 
 <div class="local_ov01 local_ov">  
+<a href="" class="ov_listall">전체목록</a>
+
     총회원수 <fmt:formatNumber value="${countallmember}" pattern="#,###.##"/>명 중, 
-<<<<<<< HEAD
-    <a href="?sst=mb_intercept_date&amp;sod=desc&amp;sfl=<?php echo $sfl ?>&amp;stx=<?php echo $stx ?>">
-    차단 <?php echo number_format($intercept_count) ?></a>명,
     
-    <a href="?sst=mb_leave_date&amp;sod=desc&amp;sfl=<?php echo $sfl ?>&amp;stx=<?php echo $stx ?>">
+    <a href="/adm/member/list?sst=interceptDate&amp;sod=desc&amp;sfl=${sfl}&amp;stx=${stx}">
+    차단 <fmt:formatNumber value="${countblockedmembers}" pattern="#,###.##"/></a>명,
+    
+    <a href="/adm/member/list?sst=leaveDate&amp;sod=desc&amp;sfl=${sfl}&amp;stx=${stx}">
     탈퇴 <fmt:formatNumber value="${countretiredmembers}" pattern="#,###.##"/></a>명
 </div>
 
 
-<form id="fsearch" name="fsearch" class="local_sch01 local_sch" method="get">
+<form id="fsearch" name="fsearch" class="local_sch01 local_sch" method="POST">
 
 <label for="sfl" class="sound_only">검색대상</label>
 <select name="sfl" id="sfl">
-    <option value="mb_id" >회원아이디</option>
+    <option value="mb_id">회원아이디</option>
     <option value="mb_nick">닉네임</option>
     <option value="mb_name">이름</option>
     <option value="mb_level">권한</option>
@@ -43,33 +44,81 @@
     </p>
 </div>
 
-if ($is_admin == 'super')
-<div class="btn_add01 btn_add">
-    <a href="./member_form.php" id="member_add">회원추가</a>
-</div>
-=======
-    <a href="?sst=mb_intercept_date&amp;sod=desc&amp;sfl=<?php echo $sfl ?>&amp;stx=<?php echo $stx ?>">차단 <?php echo number_format($intercept_count) ?></a>명,
-    <a href="?sst=mb_leave_date&amp;sod=desc&amp;sfl=<?php echo $sfl ?>&amp;stx=<?php echo $stx ?>">탈퇴 <fmt:formatNumber value="${countretiredmembers}" pattern="#,###.##"/></a>명
-</div>
+<c:if test="${is_admin eq 'super'}">
+	<div class="btn_add01 btn_add">
+	    <a href="./member_form.php" id="member_add">회원추가</a>
+	</div>
+</c:if>
 
-	<table border="1">
-		<tr>
-			<td>id</td>
-			<td>memberId</td>
-			<td>name</td>
-			<td>nick</td>
-			<td>sex</td>
-			<td>memo</td>
-		</tr>
-	<c:forEach var="member" items="${memberlist}" varStatus="loop">
-		<tr>
-			<td>${member.id}</td>
-			<td>${member.memberId}</td>
-			<td>${member.name}</td>
-			<td>${member.nick}</td>
-			<td>${member.sex}</td>
-			<td>${member.memo}</td>
-		</tr>
-	</c:forEach>
-	</table>
->>>>>>> branch 'master' of https://github.com/gnuboard/jsboard.git
+<!--삭제나 수정버튼 눌렀을 때 서브밋 되는 폼.  -->
+<form name="fmemberlist" id="fmemberlist" action="" onsubmit="return fmemberlist_submit(this);" method="post">
+<input type="hidden" name="sst" value="${sst}">
+<input type="hidden" name="sod" value="${sod}">
+<input type="hidden" name="sfl" value="${sfl}">
+<input type="hidden" name="stx" value="${stx}">
+<input type="hidden" name="page" value="${page}">
+<input type="hidden" name="token" value="">
+</form>
+
+
+
+
+<div class="tbl_head02 tbl_wrap">
+    <table>
+    <caption></caption>
+    <thead>
+    <tr>
+        <th scope="col" rowspan="2" id="mb_list_chk">
+            <label for="chkall" class="sound_only">회원 전체</label>
+            <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
+        </th>
+        <th scope="col" rowspan="2" id="mb_list_id"><?php echo subject_sort_link('mb_id') ?>아이디</a></th>
+        <th scope="col" id="mb_list_name"><?php echo subject_sort_link('mb_name') ?>이름</a></th>
+        <th scope="col" colspan="6" id="mb_list_cert"><?php echo subject_sort_link('mb_certify', '', 'desc') ?>본인확인</a></th>
+        <th scope="col" id="mb_list_mobile">휴대폰</th>
+        <th scope="col" id="mb_list_auth">상태/<?php echo subject_sort_link('mb_level', '', 'desc') ?>권한</a></th>
+        <th scope="col" id="mb_list_lastcall"><?php echo subject_sort_link('mb_today_login', '', 'desc') ?>최종접속</a></th>
+        <th scope="col" rowspan="2" id="mb_list_grp">접근<br>그룹</th>
+        <th scope="col" rowspan="2" id="mb_list_mng">관리</th>
+    </tr>	
+     <tr>
+        <th scope="col" id="mb_list_nick"><?php echo subject_sort_link('mb_nick') ?>닉네임</a></th>
+        <th scope="col" id="mb_list_mailc"><?php echo subject_sort_link('mb_email_certify', '', 'desc') ?>메일<br>인증</a></th>
+        <th scope="col" id="mb_list_open"><?php echo subject_sort_link('mb_open', '', 'desc') ?>정보<br>공개</a></th>
+        <th scope="col" id="mb_list_mailr"><?php echo subject_sort_link('mb_mailling', '', 'desc') ?>메일<br>수신</a></th>
+        <th scope="col" id="mb_list_sms"><?php echo subject_sort_link('mb_sms', '', 'desc') ?>SMS<br>수신</a></th>
+        <th scope="col" id="mb_list_adultc"><?php echo subject_sort_link('mb_adult', '', 'desc') ?>성인<br>인증</a></th>
+        <th scope="col" id="mb_list_deny"><?php echo subject_sort_link('mb_intercept_date', '', 'desc') ?>접근<br>차단</a></th>
+        <th scope="col" id="mb_list_tel">전화번호</th>
+        <th scope="col" id="mb_list_point"><?php echo subject_sort_link('mb_point', '', 'desc') ?> 포인트</a></th>
+        <th scope="col" id="mb_list_join"><?php echo subject_sort_link('mb_datetime', '', 'desc') ?>가입일</a></th>
+    </tr>
+    </thead>
+    
+    
+    
+    
+
+</div><!-- tbl_head02 tbl_wrap -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
