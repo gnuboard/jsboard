@@ -9,14 +9,18 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="member")
+@Table(indexes = {
+		@Index(name = "mb_today_login", columnList = "mb_today_login"),
+		@Index(name = "mb_datetime", columnList = "mb_datetime")
+},uniqueConstraints={@UniqueConstraint(name="mb_id",columnNames={"mb_id"})})
 public class Member{
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "mb_no")
+	@Column(name = "mb_no",columnDefinition="int(11) NOT NULL DEFAULT ''")	
 	private int id;
 	
-	@Column(name = "mb_id", length = 20)
+	
+	@Column(name = "mb_id",columnDefinition="varchar(20) NOT NULL DEFAULT ''")
 	private String memberId;
 	
 	@Column(name = "mb_password")
