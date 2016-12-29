@@ -10,13 +10,17 @@ import kr.sir.service.admin.MemberService;
 @Controller
 @RequestMapping("/adm/member")
 public class MemberController {
-
-	@Autowired
+	
 	private MemberService memberService;
+	
+	@Autowired
+	public void setMemberService(MemberService memberService){
+		this.memberService=memberService;
+	}
 	
 	
 	@RequestMapping(value={"/list","/"})
-	public String memberList(Model model){		
+	public String memberList(Model model,String sfl,String sod,String stx,String sst){		
 	
 		model.addAttribute("memberlist", memberService.getAllMembers());
 		model.addAttribute("countretiredmembers",memberService.getCountRetiredMembers());
