@@ -24,7 +24,7 @@ public class Point {
 
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="po_id", columnDefinition = "int(11) NOT NULL")
-	private int Id;
+	private int id;
 	
 	@Column(name="mb_id", columnDefinition = "varchar(20) NOT NULL default ''")
 	private String memberId;
