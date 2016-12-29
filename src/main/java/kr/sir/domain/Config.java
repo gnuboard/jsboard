@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -13,102 +15,101 @@ import lombok.Data;
 @Entity
 @Data
 public class Config {
-
-	@Id
-	@Column(name="cf_id")
+	
+	@Id @GeneratedValue(strategy = GenerationType.AUTO) 
 	private int id;
 	
-	@Column(name="cf_title")
+	@Column(name="cf_title",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String title;
 	
-	@Column(name="cf_theme")
+	@Column(name="cf_theme",columnDefinition="varhchar(255) NOT NULL DEFAULT ''")
 	private String theme;
 	
-	@Column(name="cf_admin")
+	@Column(name="cf_admin",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String admin;
 	
-	@Column(name="cf_admin_email")
+	@Column(name="cf_admin_email",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String adminEmail;
 	
-	@Column(name="cf_admin_email_name")
+	@Column(name="cf_admin_email_name",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String adminEmailName;
 	
-	@Column(name="cf_add_script")
+	@Column(name="cf_add_script",columnDefinition="TEXT NOT NULL")
 	private String addScript;
 	
-	@Column(name="cf_use_point")
+	@Column(name="cf_use_point",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
 	private int usePoint;
 	
-	@Column(name="cf_point_term")
+	@Column(name="cf_point_term",columnDefinition="int(11) NOT NULL DEFAULT '0'")
 	private int pointTerm;
 	
-	@Column(name="cf_use_copy_log")
+	@Column(name="cf_use_copy_log",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
 	private int useCopyLog;
 	
-	@Column(name="cf_use_email_certify")
+	@Column(name="cf_use_email_certify",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
 	private int useEmailCertify;
 	
-	@Column(name="cf_login_point")
+	@Column(name="cf_login_point",columnDefinition="int(11) NOT NULL DEFALUT '0'")
 	private int loginPoint;
 	
-	@Column(name="cf_cut_name")
+	@Column(name="cf_cut_name",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
 	private int cutName;
 	
-	@Column(name="cf_nick_modify")
+	@Column(name="cf_nick_modify",columnDefinition="int(11) NOT NULL DEFALUT '0'")
 	private int nickModify;
 	
-	@Column(name="cf_new_skin")
+	@Column(name="cf_new_skin",columnDefinition="varchar(255) NOT NULL DEFALUT ''")
 	private String newSkin;
 	
-	@Column(name="cf_new_rows")
+	@Column(name="cf_new_rows",columnDefinition="int(11) NOT NULL DEFALUT '0'")
 	private int newRows;
 	
-	@Column(name="cf_search_skin")
+	@Column(name="cf_search_skin",columnDefinition="varchar(255) NOT NULL DEFALUT ''")
 	private String searchSkin;
 	
-	@Column(name="cf_connect_skin")
+	@Column(name="cf_connect_skin",columnDefinition="varchar(255) NOT NULL DEFALUT ''")
 	private String connectSkin;
 	
-	@Column(name="cf_faq_skin")
+	@Column(name="cf_faq_skin",columnDefinition="varchar(255) NOT NULL DEFALUT ''")
 	private String faqSkin;
 	
-	@Column(name="cf_read_point")
+	@Column(name="cf_read_point",columnDefinition="int(11) NOT NULL DEFALUT '0'")
 	private int readPoint;
 	
-	@Column(name="cf_write_point")
+	@Column(name="cf_write_point",columnDefinition="int(11) NOT NULL DEFALUT '0'")
 	private int writePoint;
 	
-	@Column(name="cf_comment_point")
+	@Column(name="cf_comment_point",columnDefinition="int(11) NOT NULL DEFALUT '0'")
 	private int commentPoint;
 	
-	@Column(name="cf_download_point")
+	@Column(name="cf_download_point",columnDefinition="int(11) NOT NULL DEFALUT '0'")
 	private int downloadPoint;
 	
-	@Column(name="cf_write_pages")
+	@Column(name="cf_write_pages",columnDefinition="int(11) NOT NULL DEFALUT '0'")
 	private int writePages;
 	
-	@Column(name="cf_mobile_pages")
+	@Column(name="cf_mobile_pages",columnDefinition="int(11) NOT NULL DEFALUT '0'")
 	private int mobilePages;
 	
-	@Column(name="cf_link_target")
+	@Column(name="cf_link_target",columnDefinition="varchar(255) NOT NULL DEFALUT ''")
 	private String linkTarget;
 	
-	@Column(name="cf_delay_sec")
+	@Column(name="cf_delay_sec",columnDefinition="int(11) NOT NULL DEFALUT '0'")
 	private int delaySec;
 	
-	@Column(name="cf_filter")
+	@Column(name="cf_filter",columnDefinition="TEXT NOT NULL")
 	private String filter;
 	
-	@Column(name="cf_possible_ip")
+	@Column(name="cf_possible_ip",columnDefinition="TEXT NOT NULL")
 	private String possibleIp;
 	
-	@Column(name="cf_intercept_ip")
+	@Column(name="cf_intercept_ip",columnDefinition="TEXT NOT NULL")
 	private String interceptIp;
 	
-	@Column(name="cf_analyrics")
+	@Column(name="cf_analyrics",columnDefinition="TEXT NOT NULL")
 	private String analyrics;
 	
-	@Column(name="cf_add_meta")
+	@Column(name="cf_add_meta",columnDefinition="TEXT NOT NULL")
 	private String addMeta;
 	
 	@Column(name="cf_syndi_token")

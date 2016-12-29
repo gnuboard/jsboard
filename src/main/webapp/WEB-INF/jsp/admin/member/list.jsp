@@ -6,6 +6,7 @@
 
 <div class="local_ov01 local_ov">  
     총회원수 <fmt:formatNumber value="${countallmember}" pattern="#,###.##"/>명 중, 
+<<<<<<< HEAD
     <a href="?sst=mb_intercept_date&amp;sod=desc&amp;sfl=<?php echo $sfl ?>&amp;stx=<?php echo $stx ?>">
     차단 <?php echo number_format($intercept_count) ?></a>명,
     
@@ -46,3 +47,29 @@ if ($is_admin == 'super')
 <div class="btn_add01 btn_add">
     <a href="./member_form.php" id="member_add">회원추가</a>
 </div>
+=======
+    <a href="?sst=mb_intercept_date&amp;sod=desc&amp;sfl=<?php echo $sfl ?>&amp;stx=<?php echo $stx ?>">차단 <?php echo number_format($intercept_count) ?></a>명,
+    <a href="?sst=mb_leave_date&amp;sod=desc&amp;sfl=<?php echo $sfl ?>&amp;stx=<?php echo $stx ?>">탈퇴 <fmt:formatNumber value="${countretiredmembers}" pattern="#,###.##"/></a>명
+</div>
+
+	<table border="1">
+		<tr>
+			<td>id</td>
+			<td>memberId</td>
+			<td>name</td>
+			<td>nick</td>
+			<td>sex</td>
+			<td>memo</td>
+		</tr>
+	<c:forEach var="member" items="${memberlist}" varStatus="loop">
+		<tr>
+			<td>${member.id}</td>
+			<td>${member.memberId}</td>
+			<td>${member.name}</td>
+			<td>${member.nick}</td>
+			<td>${member.sex}</td>
+			<td>${member.memo}</td>
+		</tr>
+	</c:forEach>
+	</table>
+>>>>>>> branch 'master' of https://github.com/gnuboard/jsboard.git
