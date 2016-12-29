@@ -16,7 +16,7 @@ import lombok.Data;
 public class Member{
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "mb_no",columnDefinition="int(11) NOT NULL DEFAULT ''")	
+	@Column(name = "mb_no",columnDefinition="int(11) NOT NULL")	
 	private int id;
 	
 	@Column(name = "mb_id",columnDefinition="varchar(20) NOT NULL DEFAULT ''")
@@ -92,14 +92,14 @@ public class Member{
 	@Column(name = "mb_point",columnDefinition="int(11) NOT NULL DEFAULT '0'")
 	private int point; 
 	
-	@Column(name = "mb_today_login",columnDefinition="datetime NOT NULL DEFAULT ''")
+	@Column(name = "mb_today_login",columnDefinition="datetime NOT NULL DEFAULT '0000-00-00 00:00:00'")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date todayLogin;
 	
 	@Column(name = "mb_login_ip",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String loginIp;
 	
-	@Column(name = "mb_datetime",columnDefinition="datetime NOT NULL DEFAULT ''")
+	@Column(name = "mb_datetime",columnDefinition="datetime NOT NULL DEFAULT '0000-00-00 00:00:00'")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datetime;
 

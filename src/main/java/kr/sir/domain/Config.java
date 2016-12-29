@@ -23,7 +23,7 @@ public class Config {
 	@Column(name="cf_title",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String title;
 	
-	@Column(name="cf_theme",columnDefinition="varhchar(255) NOT NULL DEFAULT ''")
+	@Column(name="cf_theme",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String theme;
 	
 	@Column(name="cf_admin",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
@@ -146,7 +146,7 @@ public class Config {
 	@Column(name="cf_req_addr",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
 	private int reqAddr;
 	
-	@Column(name="cf_use_signature",columnDefinition="tinyiny(4) NOT NULL DEFAULT '0'")
+	@Column(name="cf_use_signature",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
 	private int useSignature;
 	
 	@Column(name="cf_req_signature",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
@@ -197,7 +197,7 @@ public class Config {
 	@Column(name="cf_email_wr_comment_all",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
 	private int emailWriteCommentAll;
 	
-	@Column(name="cf_email_mb_super_admin",columnDefinition="tinyiny(4) NOT NULL DEFAULT '0'")
+	@Column(name="cf_email_mb_super_admin",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
 	private int emailJoinSuperAdmin;
 	
 	@Column(name="cf_email_mb_member",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
@@ -264,7 +264,7 @@ public class Config {
 	@Column(name="cf_visit",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String visit;
 	
-	@Column(name="cf_max_po_id",columnDefinition="int(11) NOT NULL DEFAULT ''")
+	@Column(name="cf_max_po_id",columnDefinition="int(11) NOT NULL DEFAULT '0'")
 	private int maxPointId;
 	
 	@Column(name="cf_stipulation",columnDefinition="TEXT NOT NULL")
