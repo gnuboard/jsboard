@@ -118,7 +118,7 @@ public class Member{
 	
 	@Column(name = "mb_memo", columnDefinition="text NOT NULL")
 	private String memo;
-	
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 	@Column(name = "mb_lost_certify")
 	private String lostCertify;
 	
