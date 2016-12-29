@@ -12,8 +12,14 @@ import kr.sir.service.admin.MemberService;
 @Service
 public class MemberServiceImpl implements MemberService{
 	
-	@Autowired
+	
 	private MemberRepository memberRepository;
+	
+	@Autowired
+	public void setMemberRepository(MemberRepository memberRepository){
+		this.memberRepository=memberRepository;
+	}
+	
 	
 	//전체멤버목록
 	@Override

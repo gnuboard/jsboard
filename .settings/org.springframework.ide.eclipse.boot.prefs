@@ -2,4 +2,4 @@
 <<<<<<<=HEAD
 >>>>>>>=branch 'master' of https\://github.com/gnuboard/jsboard.git
 eclipse.preferences.version=1
-spring.boot.launch.profile.history=local-a, logging-daily;local-g, logging-daily;local, logging-daily;dev;
+spring.boot.launch.profile.history=local-g, logging-daily;local-a, logging-daily;local, logging-daily;dev;
