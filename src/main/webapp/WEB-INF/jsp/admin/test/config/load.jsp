@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>test</title>
+<title>config data load</title>
 </head>
 <body>
-JPQL로 가져온 js5_member table의 mb_id 값 : ${id}
+config.adminEmailName : ${config.admin} <br>
+config.adminEmail : ${config.adminEmail} <br>
+prefix : ${prefix }
 </body>
 </html>

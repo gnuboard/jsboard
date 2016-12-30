@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,8 +14,8 @@ import lombok.Data;
 @Data
 public class Config {
 	
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="cf_id", columnDefinition = "int(11) NOT NULL")
+	@Id
+	@Column(name="cf_id", columnDefinition = "tinyint(1) NOT NULL DEFAULT '1'")
 	private int id;
 	
 	@Column(name="cf_title",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
