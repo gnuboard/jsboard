@@ -8,7 +8,8 @@ public interface MemberService {
 
 	public List<Member> getAllMembers();
 	public String getCountRetiredMembers();
-	public int getCountBlockedMembers();
-	public long getCountAllMember();
+	public String getCountBlockedMembers();
+	public long getCountAllMembers();
+	
 
 }
