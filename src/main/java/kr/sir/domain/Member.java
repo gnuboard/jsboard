@@ -126,8 +126,8 @@ public class Member{
 	@Column(name = "mb_lost_certify",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String lostCertify;
 	
-	@Column(name = "mb_mailing", columnDefinition="tinyint(4) NOT NULL default '0'")
-	private int mailing;
+	@Column(name = "mb_mailling", columnDefinition="tinyint(4) NOT NULL default '0'")
+	private int mailling;
 	
 	@Column(name = "mb_sms", columnDefinition="tinyint(4) NOT NULL default '0'")
 	private int sms;
@@ -174,6 +174,7 @@ public class Member{
 	
 	@Column(name = "mb_10",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String extra10;
+
 	
 	@Transient
 	private int countGroupMember;

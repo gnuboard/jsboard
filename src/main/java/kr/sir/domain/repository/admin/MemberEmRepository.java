@@ -17,6 +17,8 @@ public class MemberEmRepository {
 	@PersistenceContext
 	EntityManager em;
 	
+	
+	//예시용 메서드 사용하지않음.
 	public List<Member> findBySome1OrderSome2(String where, String orderBy) {
 		String query = "select m from Member m where m." + where + "= :name order by " + orderBy + " desc";
 		return em.createQuery(query, Member.class)
@@ -31,6 +33,11 @@ public class MemberEmRepository {
 				+ "on m.mb_id = gm.mb_id "
 				+ "where m.mb_id = " + memberId;
 		return em.createNativeQuery(query, Member.class).getResultList();
+	}
+
+	public List<Member> findMembers(String sfl,String stx,String sst,String sod){
+		String query="select m from Member m where m.";
+		return null;//작업중
 	}
 
 }

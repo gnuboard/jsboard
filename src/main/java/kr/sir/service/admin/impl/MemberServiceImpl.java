@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.sir.domain.Member;
+import kr.sir.domain.repository.admin.MemberEmRepository;
 import kr.sir.domain.repository.admin.MemberRepository;
 import kr.sir.service.admin.MemberService;
 
@@ -14,11 +15,16 @@ public class MemberServiceImpl implements MemberService{
 	
 	
 	private MemberRepository memberRepository;
+	private MemberEmRepository memberEmRepository;
 	
 	@Autowired
 	public void setMemberRepository(MemberRepository memberRepository){
 		this.memberRepository=memberRepository;
 	}
+	@Autowired
+	public void setMemberRepository(MemberEmRepository memberEmRepository){
+		this.memberEmRepository=memberEmRepository;
+	}	
 	
 	
 	//전체멤버목록
@@ -29,20 +35,27 @@ public class MemberServiceImpl implements MemberService{
 	
 	//총회원수
 	@Override
-	public long getCountAllMember(){		
+	public long getCountAllMembers(){		
 		return memberRepository.count();
 	}
 	
 	//탈퇴회원수
 	@Override
-	public String getCountRetiredMembers(){
-		
+	public String getCountRetiredMembers(){		
 		return memberRepository.getCountRetiredMembers();
 	} 
 	
 	//차단회원수
 	@Override
-	public int getCountBlockedMembers(){
-		return 1;
+	public String getCountBlockedMembers(){
+		return memberRepository.getCountBlockedMembers();
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
