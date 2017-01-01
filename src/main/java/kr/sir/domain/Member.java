@@ -1,12 +1,10 @@
 package kr.sir.domain;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.*;
 
 import lombok.Data;
-
 
 @Entity
 @Data
@@ -175,8 +173,6 @@ public class Member{
 	@Column(name = "mb_10",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String extra10;
 
-	
-	@Transient
 	private int countGroupMember;
 	
 }

@@ -11,5 +11,6 @@ public interface MemberService {
 	public String getCountBlockedMembers();
 	public long getCountAllMembers();
 	
+	public List<Member >getAllMemberList(String prefix);
 
 }

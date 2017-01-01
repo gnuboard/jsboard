@@ -48,13 +48,14 @@ spring:
     database: mysql
     hibernate:
       
-      ddl-auto: update
+      ddl-auto: none
       naming:
         physical-strategy: kr.sir.common.PrefixNamingStrategy
 
   datasource:
      initialize: true
-     url: "jdbc:mysql://localhost:3306/ahn?characterEncoding=utf8&useSSL=false"
+#     url: "jdbc:mysql://localhost:3306/ahn?characterEncoding=utf8&useSSL=false"
+     url: "jdbc:mysql://localhost:3316/ahn?characterEncoding=utf8&useSSL=false"
      username: "ahn23"
      password: "qwer"
      driver-class-name: com.mysql.jdbc.Driver

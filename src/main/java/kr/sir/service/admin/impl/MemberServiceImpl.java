@@ -22,7 +22,7 @@ public class MemberServiceImpl implements MemberService{
 		this.memberRepository=memberRepository;
 	}
 	@Autowired
-	public void setMemberRepository(MemberEmRepository memberEmRepository){
+	public void setMemberEmRepository(MemberEmRepository memberEmRepository){
 		this.memberEmRepository=memberEmRepository;
 	}	
 	
@@ -49,6 +49,12 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public String getCountBlockedMembers(){
 		return memberRepository.getCountBlockedMembers();
+	}
+	
+	@Override
+	public List<Member> getAllMemberList(String prefix) {
+		// TODO Auto-generated method stub
+		return memberEmRepository.getAllMemberList(prefix);
 	}
 	
 	
