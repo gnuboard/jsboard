@@ -2,7 +2,7 @@ package kr.sir.domain.repository.install;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +13,7 @@ import kr.sir.domain.module.ConfigForm;
 public class InstallEmRepository {
 	
 	@PersistenceContext
-	EntityManager em;
+	private EntityManager em;
 	
 	private final double JS_VERSION = 1.0;
 	private final int read_point = 0;
@@ -21,7 +21,12 @@ public class InstallEmRepository {
 	private final int comment_point = 0;
 	private final int download_point = 0;
 	
-	public Query writeConfigInfo(String prefix, ConfigForm configForm) {
+	@Transactional
+	public int writeConfigInfo(String prefix, ConfigForm configForm) {
+		return insertConfigInfo(prefix, configForm);
+	}
+	
+	public int insertConfigInfo(String prefix, ConfigForm configForm) {
 		String query = "insert into `"+ prefix +"config`"
             + "set cf_title = '" + JS_VERSION + "',"
                 + "cf_theme = 'basic',"
@@ -84,10 +89,18 @@ public class InstallEmRepository {
                 + "cf_mobile_page_rows = '15',"
                 + "cf_cert_limit = '2',"
                 + "cf_stipulation = '해당 홈페이지에 맞는 회원가입약관을 입력합니다.',"
-                + "cf_privacy = '해당 홈페이지에 맞는 개인정보처리방침을 입력합니다.'"
+                + "cf_privacy = '해당 홈페이지에 맞는 개인정보처리방침을 입력합니다.',"
+                + "cf_add_script = '',"
+                + "cf_add_meta = '',"
+                + "cf_syndi_except = '',"
+                + "cf_facebook_appid = '',"
+                + "cf_facebook_secret = '',"
+                + "cf_twitter_key = '',"
+                + "cf_twitter_secret = '',"
+                + "cf_kakao_js_apikey = ''"
                 ;
 		
-		return em.createNativeQuery(query, Config.class);
+		return em.createNativeQuery(query, Config.class).executeUpdate(); 
 	}
 
 }

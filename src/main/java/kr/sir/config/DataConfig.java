@@ -14,8 +14,6 @@ import kr.sir.domain.repository.admin.ConfigRepository;
 @Configuration
 public class DataConfig {
 	
-	private final int CONFIG_ID = 1;
-	
 	private ConfigRepository configRepository;
 	
 	@Autowired
@@ -42,7 +40,7 @@ public class DataConfig {
 	
 	@Bean
 	public Config getConfig() {
-		return configRepository.findById(CONFIG_ID);
+		return configRepository.findById(1);
 	}
 	
 }
