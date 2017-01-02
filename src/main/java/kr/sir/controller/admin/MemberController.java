@@ -3,12 +3,16 @@ package kr.sir.controller.admin;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.sir.config.DataConfig;
 import kr.sir.domain.Member;
+import kr.sir.domain.repository.admin.MemberRepository;
 import kr.sir.service.admin.MemberService;
 
 @Controller
@@ -37,17 +41,10 @@ public class MemberController {
 		//탈퇴회원수
 		model.addAttribute("countretiredmembers",memberService.getCountRetiredMembers());
 		//차단회원수
-		model.addAttribute("countblockmembers",memberService.getCountBlockedMembers());
+		model.addAttribute("countblockedmembers",memberService.getCountBlockedMembers());
+		                    
 		
-	
-		
-		//기본. 모든 회원정보 가져오기. 검색이나 정렬조건이  없을 때
-//		if(sfl==null && sod==null && stx==null && sst==null){
-//			List<Member> memberslist=memberService.getAllMembers();			
-//			model.addAttribute("memberslist", memberslist);
-//		}
-		
-		// 접근 그룹까지 가져오기 test
+		// 멤버리스트 + 접근 가능 그룹 수
 		List<Member> memberslist = memberService.getAllMemberList(dataConfig.getPrefix());
 		for (Member member : memberslist) {
 			System.out.println(member.toString());
@@ -56,6 +53,20 @@ public class MemberController {
 		
 		return "admin/member/list";
 	}
+	
+	@RequestMapping(value={"/form/type/{type}"})
+	public String showMemberForm(Model model,@PathVariable("type") String type,@RequestParam String memberId,@RequestParam String w){
+		
+		if(type.equals("update")){
+			model.addAttribute("member",memberService.getOneMemer(memberId));	
+		}else if (type.equals("add")){		}	
+			
+		model.addAttribute("w", w);				
+		
+		return "admin/member/form";
+	}
+	
+	
 	
 	@RequestMapping(value={"/pointlist"})
 	public String pointList(Model model){

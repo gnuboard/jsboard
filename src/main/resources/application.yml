@@ -15,13 +15,13 @@ spring:
     show-sql: true
     database: mysql
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
       naming:
         physical-strategy: kr.sir.common.PrefixNamingStrategy
 
   datasource:
      initialize: true
-     url: "jdbc:mysql://localhost:3306/sirgjw?characterEncoding=utf8&useSSL=false"
+     url: "jdbc:mysql://localhost:3306/sirgjw?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull"
      username: "root"
      password: "8989"
      driver-class-name: com.mysql.jdbc.Driver
