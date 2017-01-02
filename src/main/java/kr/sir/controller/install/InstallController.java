@@ -57,8 +57,8 @@ public class InstallController {
 		// 3. member table에 관리자 정보 insert
 		
 		// 4. config table에 설정 정보 insert
-		System.out.println(configForm.toString());
-		installService.writeConfigInfo(dataConfig.getPrefix(), configForm);
+		int result = installService.writeConfigInfo(dataConfig.getPrefix(), configForm);
+		model.addAttribute("configResult", result);
 		
 		return "/install/step4_result";
 	}

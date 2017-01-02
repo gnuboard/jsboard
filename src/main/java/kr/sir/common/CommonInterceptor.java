@@ -8,7 +8,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import kr.sir.config.DataConfig;
 
-// 공통  인터셉터
+// 공통 인터셉터
 public class CommonInterceptor extends HandlerInterceptorAdapter {
 	
 	private DataConfig dataConfig;
@@ -17,7 +17,7 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 	public void setDataConfig(DataConfig dataConfig) {
 		this.dataConfig = dataConfig;
 	}
-
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -26,14 +26,23 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 			return true;
 		
 		if(configIsNull()) {	// 설치 정보가 없으면
-			if(isInstallPage(request.getServletPath()))		// 설치 step 페이지이면
+			System.out.println("config is null!");
+			if(isInstallPage(request.getServletPath()))	{	// 설치 step 페이지이면
+				System.out.println("install step!");
 				return true;
+			}
 			else {		// DB에 설치 정보가 없으면서, 설치 관련 URL 요청이 아닐 때
 				response.sendRedirect("/install/step/1");
 				return false;
 			}
 		}
 		else {		// 설치 정보가 있으면
+			System.out.println("config is 'not' null!");
+			if(isInstallPage(request.getServletPath()))	{	// 설치 step 페이지이면
+				response.sendRedirect("/index"); 	// 메인 페이지로 보낸다.
+				return false;
+			}
+			System.out.println("pass!");
 			return true;
 		}
 		

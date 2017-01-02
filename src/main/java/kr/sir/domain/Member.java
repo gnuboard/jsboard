@@ -173,6 +173,6 @@ public class Member{
 	@Column(name = "mb_10",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String extra10;
 
-	private int countGroupMember;
+//	private int countGroupMember;
 	
 }

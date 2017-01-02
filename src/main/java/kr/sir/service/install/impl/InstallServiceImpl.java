@@ -18,8 +18,8 @@ public class InstallServiceImpl implements InstallService{
 	}
 	
 	@Override
-	public void writeConfigInfo(String prefix, ConfigForm configForm) {
-		installEmRepository.writeConfigInfo(prefix, configForm);
+	public int writeConfigInfo(String prefix, ConfigForm configForm) {
+		return installEmRepository.writeConfigInfo(prefix, configForm);
 	}
 	
 }
