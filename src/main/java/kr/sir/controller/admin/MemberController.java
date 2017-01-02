@@ -27,7 +27,6 @@ public class MemberController {
 		this.memberService=memberService;
 	}
 	
-	
 	@RequestMapping(value={"/list","/"})
 	public String memberList(Model model,String sfl,String sod,String stx,String sst){		
 		
@@ -43,15 +42,17 @@ public class MemberController {
 	
 		
 		//기본. 모든 회원정보 가져오기. 검색이나 정렬조건이  없을 때
-		if(sfl==null && sod==null && stx==null && sst==null){
-			List<Member> memberslist=memberService.getAllMembers();			
-			model.addAttribute("memberslist", memberslist);
+//		if(sfl==null && sod==null && stx==null && sst==null){
+//			List<Member> memberslist=memberService.getAllMembers();			
+//			model.addAttribute("memberslist", memberslist);
+//		}
+		
+		// 접근 그룹까지 가져오기 test
+		List<Member> memberslist = memberService.getAllMemberList(dataConfig.getPrefix());
+		for (Member member : memberslist) {
+			System.out.println(member.toString());
 		}
-		
-		
-		
-		
-		
+		model.addAttribute("memberslist", memberslist);
 		
 		return "admin/member/list";
 	}

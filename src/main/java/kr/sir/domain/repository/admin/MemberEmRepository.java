@@ -24,12 +24,19 @@ public class MemberEmRepository {
 				.getResultList();
 	}
 	
-	//
+	public List<Member> getAllMemberList(String prefix) {
+		String query = "select count(gm.gm_id) as countGroupMember, m.*"
+				+ " from " + prefix + "member m"
+				+ " join " + prefix + "group_member gm"
+				+ " on m.mb_id = gm.mb_id"
+				+ " group by m.mb_id";
+		
+		return em.createNativeQuery(query, Member.class).getResultList();
+	}
+
 	public List<Member> findMembers(String sfl,String stx,String sst,String sod){
 		String query="select m from Member m where m.";
 		return null;//작업중
 	}
-	
-	
-	
+
 }

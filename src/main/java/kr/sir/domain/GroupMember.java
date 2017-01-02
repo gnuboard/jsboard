@@ -2,15 +2,7 @@ package kr.sir.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import lombok.Data;
 
@@ -35,5 +27,5 @@ public class GroupMember{
 	@Column(name="gm_datetime", columnDefinition = "datetime NOT NULL default '0000-00-00 00:00:00' ")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateTime;
-
+	
 }

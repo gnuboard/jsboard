@@ -100,11 +100,12 @@
     <!-- 접근가능한 그룹수  미구현 -->   
     
     	<!--접근가능한 그룹수가 1개 이상 조건 써야함  -->
-   			<c:set var="group" value="<a href='/adm/member/accessiblegroups?memberId=${member.memberId}'> .$row2['cnt']</a>"/>
+   			<c:set var="group" value="<a href='/adm/member/accessiblegroups?memberId=${member.memberId}'> ${member.countGroupMember}</a>"/>
+   			<!--.$row2['cnt']--> 
    		
    		<!--수정글자에 링크달기  -->
    		<c:choose>
-   			<c:when test="${is_admin eq 'group}">
+   			<c:when test="${is_admin eq 'group'}">
    				<c:set var="s_mod" value=""/>
    			</c:when>
    			<c:otherwise>
