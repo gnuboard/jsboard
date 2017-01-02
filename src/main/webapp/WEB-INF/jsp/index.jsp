@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>js보드 메인</title>
 </head>
 <body>
-hello!!
+
+<h3>메인 페이지</h3>
 </body>
 </html>
