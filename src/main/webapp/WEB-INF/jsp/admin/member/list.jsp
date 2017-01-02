@@ -116,8 +116,12 @@
    		<!--그룹글자에 링크달기  -->	
    		<c:set var="s_grp" value="<a href='/adm/member/accessiblegroups?memberId=${member.memberId}'>그룹</a>"/>	
    			
+   		<!--탈퇴일,차단일   -->
+   		
+   		<c:if test="${! empty member.mb_leave_date}">
+   			<c:set var="leave_date" value=""/>	
    			
-   			
+   		</c:if>
    			
    		
    		
