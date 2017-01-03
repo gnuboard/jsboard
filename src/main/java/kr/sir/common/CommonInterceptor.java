@@ -7,17 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import kr.sir.config.DataConfig;
+import kr.sir.domain.Config;
+import kr.sir.service.install.InstallService;
 
 // 공통 인터셉터
 public class CommonInterceptor extends HandlerInterceptorAdapter {
 	
+	private InstallService installService;
+	
 	private DataConfig dataConfig;
+	
+	@Autowired
+	public void setInstallService(InstallService installService) {
+		this.installService = installService;
+	}
 	
 	@Autowired
 	public void setDataConfig(DataConfig dataConfig) {
 		this.dataConfig = dataConfig;
 	}
-	
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -25,10 +34,8 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 		if(isError(request, "/error"))	// 에러가 발생했을 때 
 			return true;
 		
-		if(configIsNull()) {	// 설치 정보가 없으면
-			System.out.println("config is null!");
+		if(!existConfigTable()) {	// 설치 정보가 없으면
 			if(isInstallPage(request.getServletPath()))	{	// 설치 step 페이지이면
-				System.out.println("install step!");
 				return true;
 			}
 			else {		// DB에 설치 정보가 없으면서, 설치 관련 URL 요청이 아닐 때
@@ -37,12 +44,10 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 			}
 		}
 		else {		// 설치 정보가 있으면
-			System.out.println("config is 'not' null!");
 			if(isInstallPage(request.getServletPath()))	{	// 설치 step 페이지이면
 				response.sendRedirect("/index"); 	// 메인 페이지로 보낸다.
 				return false;
 			}
-			System.out.println("pass!");
 			return true;
 		}
 		
@@ -52,8 +57,10 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 		return request.getServletPath().equals(string);
 	}
 
-	private boolean configIsNull() {
-		return dataConfig.getConfig() == null;
+	private boolean existConfigTable() {
+		int result = installService.existConfigTable(dataConfig.prefix());
+		if(result > 0) return true;
+		return false;
 	}
 	
 	private boolean isInstallPage(String servletPath) {

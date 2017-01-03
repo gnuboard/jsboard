@@ -7,7 +7,7 @@ import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
 
 public class PrefixNamingStrategy extends PhysicalNamingStrategyStandardImpl{
 
-	private static final String TABLE_PREFIX = "js_";
+	private static final String TABLE_PREFIX = "js1_";
 	private static final long serialVersionUID = 1L;
     private static final ImprovedNamingStrategy STRATEGY_INSTANCE = new ImprovedNamingStrategy();
     

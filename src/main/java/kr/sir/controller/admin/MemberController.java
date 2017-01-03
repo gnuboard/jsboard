@@ -6,12 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.sir.config.DataConfig;
-import kr.sir.domain.Config;
 import kr.sir.domain.Member;
 import kr.sir.domain.MemberGroupCount;
 import kr.sir.service.admin.MemberService;;
@@ -32,18 +30,22 @@ public class MemberController {
 		this.memberService=memberService;
 	}
 	
-	@ModelAttribute("config")
+/*	@ModelAttribute("config")
 	public Config getConfig(){
 		return dataConfig.getConfig();
 	}
-	
+	*/
 	
 	
 	@RequestMapping(value={"/list","/"})
 	public String memberList(Model model,String sfl,String sod,String stx,String sst){		
 		
-		/*//설정파일
-		model.addAttribute("config", dataConfig.getConfig());*/
+
+	
+
+		//설정파일
+		/*model.addAttribute("config", dataConfig.config());*/
+
 		//총회원수
 		model.addAttribute("countallmembers", memberService.getCountAllMembers());
 		//탈퇴회원수
@@ -53,7 +55,7 @@ public class MemberController {
 		                    
 		
 		// 멤버리스트 + 접근 가능 그룹 수
-		List<MemberGroupCount> memberslist = memberService.getAllMembersList(dataConfig.getPrefix());
+		List<MemberGroupCount> memberslist = memberService.getAllMembersList("js");
 		for (MemberGroupCount member : memberslist) {
 			System.out.println(member.toString());
 		}

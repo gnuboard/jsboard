@@ -1,11 +1,11 @@
 package kr.sir.controller.install;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.sir.config.DataConfig;
 import kr.sir.domain.module.AgreeForm;
 import kr.sir.domain.module.ConfigForm;
 import kr.sir.service.install.InstallService;
@@ -16,16 +16,9 @@ public class InstallController {
 	
 	private InstallService installService;
 	
-	private DataConfig dataConfig;
-	
 	@Autowired
 	public void setInstallService(InstallService installService) {
 		this.installService = installService;
-	}
-
-	@Autowired
-	public void setDataConfig(DataConfig dataConfig) {
-		this.dataConfig = dataConfig;
 	}
 
 	// 최초 설치 페이지로 이동
@@ -51,13 +44,14 @@ public class InstallController {
 	@RequestMapping(value = "/step/4")
 	public String result(Model model, ConfigForm configForm) {
 		// 1. schema로 db 생성
+		installService.createTable(new ClassPathResource("database.sql"), configForm.getTable_prefix());
 		
 		// 2. application.yml에 table_prefix 등록
 		
 		// 3. member table에 관리자 정보 insert
 		
 		// 4. config table에 설정 정보 insert
-		int result = installService.writeConfigInfo(dataConfig.getPrefix(), configForm);
+		int result = installService.writeConfigInfo(configForm.getTable_prefix(), configForm);
 		model.addAttribute("configResult", result);
 		
 		return "/install/step4_result";
