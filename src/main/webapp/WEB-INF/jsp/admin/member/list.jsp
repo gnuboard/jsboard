@@ -6,7 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
-<link rel="stylesheet" href="/css/admin.css">
+
 
 <body>
 <jsp:include page="../main/head.jsp"></jsp:include>
@@ -25,7 +25,7 @@
         <div class="local_wr">
             <div class="local_ov">
                 <a href="#" class="btn_ov02">전체목록</a>
-                <span class="btn_ov01"><span class="ov_txt">총회원수</span><span class="ov_num"><fmt:formatNumber value="${countallmembers}"  pattern="#,###.##" />명</span></span>
+                <span class="btn_ov01"><span class="ov_txt">총회원수</span><span class="ov_num"><fmt:formatNumber value="${countallmembers}"  pattern="#,###.##"/>명</span></span>
                 <span class="btn_ov01"><a href="/adm/member/list?sst=interceptDate&amp;sod=desc&amp;sfl=${sfl}&amp;stx=${stx}" class="ov_txt"><span class="ov_num">차단 <fmt:formatNumber value="${countblockedmembers}" pattern="#,###.##"/>명</span></a></span>
                 <span class="btn_ov01"><a href="/adm/member/list?sst=leaveDate&amp;sod=desc&amp;sfl=${sfl}&amp;stx=${stx}" class="ov_txt"><span class="ov_num"> 탈퇴 <fmt:formatNumber value="${countretiredmembers}" pattern="#,###.##"/>명</span></a></span>
             </div>
@@ -97,19 +97,19 @@
                 		<c:forEach var="member" items="${memberslist}" varStatus="i">
                 		
                 		
-                		<!--수정버튼 링크  -->
+                		<!--수정버튼 링크 -->
                         <c:choose>
 							<c:when test="${is_admin eq 'group'}">
 								<c:set var="s_mod" value="" />
 							</c:when>
 							<c:otherwise>								
-								<c:set var="s_mod" value="<a href='/adm/member/form/update/w/u/memberId/${member.memberId}' class='btn_03'>수정</a>"/>
+								<c:set var="s_mod" value="<a href='/adm/member/form/update/memberId/${member.memberId}' class='btn_03'>수 정</a>"/>
 							</c:otherwise>
 						</c:choose>
 						
 						
 						<!--그룹버튼링크  -->                       
-                        <c:set var="s_grp" value="<a href='/adm/member/accessiblegroups?memberId=${member.memberId}' class='btn_02'>그룹</a>"/>		
+                        <c:set var="s_grp" value="<a href='/adm/member/accessiblegroups/memberId/${member.memberId}' class='btn_02'>그 룹</a>"/>		
 						
 						<!--탈퇴일  -->
 						<c:if test="${! empty member.leaveDate}">
@@ -171,13 +171,15 @@
             		</td>
                     <td class="td_date">${fn:substring(member.todayLogin,2,10)}</td>
                     <td class="td_num"><a href="adm/member/pointlist?sfl=memberId&amp;stx=${member.memberId}"><fmt:formatNumber value="${member.point}" pattern="#,###.##" /></a></td>
-                    <td rowspan="2" class="td_mng td_mng_s">
-                       
+                    <td rowspan="2" class="td_mng td_mng_s">                       
+                    
+                       ${s_mod}<!--수정버튼  -->
+                       ${s_grp}<!--그룹버튼  --> 
                     </td>
                 </tr>
                  <tr>
                     <td class="td_left">${member.name}</td>
-                    <td class="td_left">${member.nick }</td>
+                    <td class="td_left">${member.nick}</td>
                     <td>
                         <label for="mb_adult_${i}" class="sound_only">성인인증</label>
                         <input type="checkbox" name="mb_adult[${i}]" value="1" id="mb_adult_${i}" <c:if test="${! empty member.adult}">checked</c:if>>
@@ -198,7 +200,7 @@
                     </td>
                    
                     <td class="td_date">${fn:substring(member.datetime,2,10)}</td>
-                    <td>접근그룹</td>
+                    <td>${member.countGroupMember}</td>
                 </tr>
                
                		</c:forEach>

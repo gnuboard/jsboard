@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.sir.domain.Member;
+import kr.sir.domain.MemberGroupCount;
 import kr.sir.domain.repository.admin.MemberEmRepository;
 import kr.sir.domain.repository.admin.MemberRepository;
 import kr.sir.service.admin.MemberService;
@@ -52,9 +53,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public List<Member> getAllMemberList(String prefix) {
+	public List<MemberGroupCount>getAllMembersList(String prefix) {
 		// TODO Auto-generated method stub
-		return memberEmRepository.getAllMemberList(prefix);
+		return memberEmRepository.getAllMembersList(prefix);
 	}
 	
 	//아이디로 회원 전체 정보 셀렉트
@@ -63,9 +64,10 @@ public class MemberServiceImpl implements MemberService{
 		return memberRepository.findByMemberId(memberId);
 	}
 	
-	
-	
-	
+	//관리자가 회원추가
+	public void adminSavesMember(Member member){
+		memberRepository.save(member);
+	}
 	
 	
 	
