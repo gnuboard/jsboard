@@ -127,7 +127,7 @@
 </div>
 <script>
 $(function(){ 
-    $(".tnb_mb_btn").click(function(){
+    $(".tnb_mb_btn").click(function(){ 
         $(".tnb_mb_area").toggle();
     });
 

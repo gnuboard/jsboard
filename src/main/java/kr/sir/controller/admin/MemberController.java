@@ -54,12 +54,14 @@ public class MemberController {
 		return "admin/member/list";
 	}
 	
-	@RequestMapping(value={"/form/type/{type}"})
+	@RequestMapping(value={"/form/{type}"})
 	public String showMemberForm(Model model,@PathVariable("type") String type,@RequestParam String memberId,@RequestParam String w){
 		
 		if(type.equals("update")){
 			model.addAttribute("member",memberService.getOneMemer(memberId));	
-		}else if (type.equals("add")){		}	
+		}else if (type.equals("add")){	
+			
+		}	
 			
 		model.addAttribute("w", w);				
 		

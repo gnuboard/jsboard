@@ -6,9 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
-<%
-
-%>
+<link rel="stylesheet" href="../css/style.css">
 
 <body>
 <jsp:include page="../main/head.jsp"></jsp:include>
@@ -97,7 +95,19 @@
                 <c:choose>
                 	<c:when test="${! empty memberslist}">
                 		<c:forEach var="member" items="${memberslist}" varStatus="i">
-                				
+                		
+                		
+                		<!--수정버튼 링크  -->
+                        <c:choose>
+							<c:when test="${is_admin eq 'group'}">
+								<c:set var="s_mod" value="" />
+							</c:when>
+							<c:otherwise>								
+								<c:set var="s_mod" value='<a href='/adm/member/form/update/w/u/memberId/${member.memberId}' class='btn_03'>'수정</a>"/>
+							</c:otherwise>
+						</c:choose>
+						<!--그룹버튼링크  -->
+                        <a href='/adm/member/accessiblegroups?memberId=${member.memberId}' class="btn_02">그룹</a>		
 						
 						<!--탈퇴일  -->
 						<c:if test="${! empty member.leaveDate}">
@@ -160,17 +170,7 @@
                     <td class="td_date">${fn:substring(member.todayLogin,2,10)}</td>
                     <td class="td_num"><a href="adm/member/pointlist?sfl=memberId&amp;stx=${member.memberId}"><fmt:formatNumber value="${member.point}" pattern="#,###.##" /></a></td>
                     <td rowspan="2" class="td_mng td_mng_s">
-                       <!--수정버튼 링크  -->
-                        <c:choose>
-							<c:when test="${is_admin eq 'group'}">
-								<c:set var="s_mod" value="" />
-							</c:when>
-							<c:otherwise>								
-								<a href='/adm/member/form/type/update/w/u/memberId/${member.memberId}' class='btn_03'>수정</a>
-							</c:otherwise>
-						</c:choose>
-						<!--그룹버튼링크  -->
-                        <a href='/adm/member/accessiblegroups?memberId=${member.memberId}' class="btn_02">그룹</a>
+                       
                     </td>
                 </tr>
                  <tr>
@@ -215,7 +215,7 @@
         <div class="btn_fixed_top">
             <input type="submit" name="act_button" value="선택수정" class="btn_02 btn">
             <input type="submit" name="act_button" value="선택삭제" class="btn_02 btn">
-            <a href="/adm/member/form/type/add" id="member_add" class="btn_submit btn">회원추가</a>
+            <a href="/adm/member/form/add" id="member_add" class="btn_submit btn">회원추가</a>
         </div>
         </form>
         
