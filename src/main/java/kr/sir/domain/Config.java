@@ -106,7 +106,7 @@ public class Config {
 	private String interceptIp;
 	
 	@Column(name="cf_analytics",columnDefinition="TEXT NOT NULL")
-	private String analyrics;
+	private String analytics;
 	
 	@Column(name="cf_add_meta",columnDefinition="TEXT NOT NULL")
 	private String addMeta;
