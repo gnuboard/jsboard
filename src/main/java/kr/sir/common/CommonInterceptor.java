@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import kr.sir.config.DataConfig;
-import kr.sir.domain.Config;
 import kr.sir.service.install.InstallService;
 
 // 공통 인터셉터
@@ -34,6 +33,7 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 		if(isError(request, "/error"))	// 에러가 발생했을 때 
 			return true;
 		
+		// demo 후 session 검사 후 정해둔 값이 없다면 table 조회로 바꾸자.(table 조회 결과를 session에 저장.)
 		if(!existConfigTable()) {	// 설치 정보가 없으면
 			if(isInstallPage(request.getServletPath()))	{	// 설치 step 페이지이면
 				return true;

@@ -1,6 +1,9 @@
 package kr.sir.config;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Value;
+//import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,11 +18,14 @@ public class DataConfig {
 	private String prefix;
 	
 	@Bean
-	public static PropertySourcesPlaceholderConfigurer properties() {
+	public static PropertySourcesPlaceholderConfigurer properties() throws IOException {
 		PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer = new PropertySourcesPlaceholderConfigurer();
+//		PropertiesFactoryBean property = new PropertiesFactoryBean();
+//		property.setLocation(new ClassPathResource("config.properties"));
 		YamlPropertiesFactoryBean yaml = new YamlPropertiesFactoryBean();
 		yaml.setResources(new ClassPathResource("application.yml"));
 		propertySourcesPlaceholderConfigurer.setProperties(yaml.getObject());
+//		propertySourcesPlaceholderConfigurer.setProperties(property.getObject());
 		return propertySourcesPlaceholderConfigurer;
 	}
 	

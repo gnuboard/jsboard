@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-import kr.sir.domain.Config;
 import kr.sir.domain.module.ConfigForm;
-import kr.sir.domain.repository.admin.ConfigRepository;
 import kr.sir.domain.repository.install.InstallEmRepository;
 import kr.sir.service.install.InstallService;
 
@@ -15,33 +13,25 @@ public class InstallServiceImpl implements InstallService{
 	
 	private InstallEmRepository installEmRepository;
 	
-	private ConfigRepository configRepository;
 
 	@Autowired
 	public void setInstallEmRepository(InstallEmRepository installEmRepository) {
 		this.installEmRepository = installEmRepository;
 	}
-	
-	@Autowired
-	public void setConfigRepository(ConfigRepository configRepository) {
-		this.configRepository = configRepository;
-	}
 
+	// 설치할 때 table에 설정 정보 insert
 	@Override
 	public int writeConfigInfo(String prefix, ConfigForm configForm) {
 		return installEmRepository.writeConfigInfo(prefix, configForm);
 	}
 
-	@Override
-	public Config findConfigById(int id) {
-		return configRepository.findById(id);
-	}
-
+	// 설치할때 전체 table 생성
 	@Override
 	public void createTable(ClassPathResource classPathResource, String prefix) {
 		installEmRepository.createTable(classPathResource, prefix);
 	}
 
+	// config table 존재 여부 확인하기
 	@Override
 	public int existConfigTable(String prefix) {
 		System.out.println("prefix" + prefix);

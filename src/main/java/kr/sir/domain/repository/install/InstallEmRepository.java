@@ -20,7 +20,9 @@ public class InstallEmRepository {
 	@PersistenceContext
 	private EntityManager em;
 	
-	// database table create
+	private final String DEFAULT_PREFIX = "js1_";
+	
+	// 전체 table 생성
 	@Transactional
 	public void createTable(ClassPathResource classPathResource, String prefix) {
 		BufferedReader br = null;
@@ -33,14 +35,13 @@ public class InstallEmRepository {
 			while ((fileStr = br.readLine()) != null) {
 				query += fileStr;
 			}
-			if(!prefix.equals("js1_")) {
-				query = query.replaceAll("js1_", prefix);
+			if(!prefix.equals(DEFAULT_PREFIX)) {
+				query = query.replaceAll(DEFAULT_PREFIX, prefix);
 			}
 			String[] querys = query.split(";");
 			for (String sql : querys) {
 				em.createNativeQuery(sql).executeUpdate();
 			}
-			System.out.println(query);
 		} catch(Exception e) {		
 		} finally {
 			if(br!=null) {
@@ -52,13 +53,8 @@ public class InstallEmRepository {
 
 	}
 	
-	
-	// config info insert
+	// insert to config table
 	private final double JS_VERSION = 1.0;
-	private final int read_point = 0;
-	private final int write_point = 0;
-	private final int comment_point = 0;
-	private final int download_point = 0;
 	
 	@Transactional
 	public int writeConfigInfo(String prefix, ConfigForm configForm) {
@@ -82,10 +78,10 @@ public class InstallEmRepository {
                 + "cf_new_rows = '15',"
                 + "cf_search_skin = 'basic',"
                 + "cf_connect_skin = 'basic',"
-                + "cf_read_point = '" + read_point + "',"
-                + "cf_write_point = '" + write_point + "',"
-                + "cf_comment_point = '" + comment_point + "',"
-                + "cf_download_point = '" + download_point + "',"
+                + "cf_read_point = '0',"
+                + "cf_write_point = '0',"
+                + "cf_comment_point = '0',"
+                + "cf_download_point = '0',"
                 + "cf_write_pages = '10',"
                 + "cf_mobile_pages = '5',"
                 + "cf_link_target = '_blank',"
@@ -142,6 +138,7 @@ public class InstallEmRepository {
 		return em.createNativeQuery(query, Config.class).executeUpdate(); 
 	}
 
+	// 설정 table 존재여부 확인
 	public int existConfigTable(String prefix) {
 		String query = "SELECT COUNT(*) cnt FROM information_schema.tables "
 					+ "WHERE table_name = '" + prefix + "config'";
