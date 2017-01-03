@@ -11,7 +11,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>관리자</title>
 
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="/css/admin.css">
 <script src="http://code.jquery.com/jquery-1.12.1.js"></script>
 </head>
 

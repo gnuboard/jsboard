@@ -6,7 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="/css/admin.css">
 
 <body>
 <jsp:include page="../main/head.jsp"></jsp:include>
@@ -103,11 +103,13 @@
 								<c:set var="s_mod" value="" />
 							</c:when>
 							<c:otherwise>								
-								<c:set var="s_mod" value='<a href='/adm/member/form/update/w/u/memberId/${member.memberId}' class='btn_03'>'수정</a>"/>
+								<c:set var="s_mod" value="<a href='/adm/member/form/update/w/u/memberId/${member.memberId}' class='btn_03'>수정</a>"/>
 							</c:otherwise>
 						</c:choose>
-						<!--그룹버튼링크  -->
-                        <a href='/adm/member/accessiblegroups?memberId=${member.memberId}' class="btn_02">그룹</a>		
+						
+						
+						<!--그룹버튼링크  -->                       
+                        <c:set var="s_grp" value="<a href='/adm/member/accessiblegroups?memberId=${member.memberId}' class='btn_02'>그룹</a>"/>		
 						
 						<!--탈퇴일  -->
 						<c:if test="${! empty member.leaveDate}">
