@@ -183,7 +183,7 @@ public class Config {
 	@Column(name="cf_email_wr_super_admin",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
 	private int emailWriteSuperAdmin;
 	
-	@Column(name="cf_emaile_wr_group_admin",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
+	@Column(name="cf_email_wr_group_admin",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
 	private int emailWriteGroupAdmin;
 	
 	@Column(name="cf_email_wr_board_admin",columnDefinition="tinyint(4) NOT NULL DEFAULT '0'")
@@ -358,34 +358,34 @@ public class Config {
 	@Column(name="cf_kakao_js_apikey",columnDefinition="varchar(255) NOT NULL")
 	private String kakaoJsApikey;
 	
-	@Column(name="cf_1_sub",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
+	@Column(name="cf_1_subj",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String extra1Key;
 	
-	@Column(name="cf_2_sub",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
+	@Column(name="cf_2_subj",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String extra2Key;
 	
-	@Column(name="cf_3_sub",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
+	@Column(name="cf_3_subj",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String extra3Key;
 	
-	@Column(name="cf_4_sub",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
+	@Column(name="cf_4_subj",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String extra4Key;
 	
-	@Column(name="cf_5_sub",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
+	@Column(name="cf_5_subj",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String extra5Key;
 	
-	@Column(name="cf_6_sub",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
+	@Column(name="cf_6_subj",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String extra6Key;
 	
-	@Column(name="cf_7_sub",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
+	@Column(name="cf_7_subj",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String extra7Key;
 	
-	@Column(name="cf_8_sub",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
+	@Column(name="cf_8_subj",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String extra8Key;
 	
-	@Column(name="cf_9_sub",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
+	@Column(name="cf_9_subj",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String extra9Key;
 	
-	@Column(name="cf_10_sub",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
+	@Column(name="cf_10_subj",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String extra10Key;
 	
 	@Column(name="cf_1",columnDefinition="varchar(255) NOT NULL DEFAULT ''")

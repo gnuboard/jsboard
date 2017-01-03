@@ -5,8 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import lombok.Data;
 
 @Data
-public class ConfigForm {
-	
+public class ConfigForm {	
 	@NotEmpty
 	private String table_prefix;
 	@NotEmpty

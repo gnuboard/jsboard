@@ -35,7 +35,7 @@ public class MemberController {
 	public String memberList(Model model,String sfl,String sod,String stx,String sst){		
 		
 		//설정파일
-		model.addAttribute("config", dataConfig.getConfig());
+		model.addAttribute("config", dataConfig.config());
 		//총회원수
 		model.addAttribute("countallmembers", memberService.getCountAllMembers());
 		//탈퇴회원수

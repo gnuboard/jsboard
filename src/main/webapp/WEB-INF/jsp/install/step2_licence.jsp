@@ -20,7 +20,7 @@ function frm_submit(f)
 </script>
 <body>
 <div id="top">
-    <h1>GNUBOARD</h1>
+    <h1>JSBOARD</h1>
     <p>INSTALLATION</p>
 </div>
 <div id="contents">

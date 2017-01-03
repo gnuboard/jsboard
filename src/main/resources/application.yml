@@ -1,5 +1,5 @@
 table:
-  prefix: js_
+  prefix: js1_
 
 ---
 
@@ -47,8 +47,7 @@ spring:
     show-sql: true
     database: mysql
     hibernate:
-      
-      ddl-auto: create
+      ddl-auto: none
       naming:
         physical-strategy: kr.sir.common.PrefixNamingStrategy
 
@@ -79,15 +78,15 @@ spring:
     cache: false
   jpa:
     show-sql: true
-    
+    database: mysql
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
       naming:
-        physical-strategy: kr.sir.model.module.PrefixNamingStrategy
+        physical-strategy: kr.sir.common.PrefixNamingStrategy
 
   datasource:
      initialize: true
-     url: jdbc:mysql://ahn13.gnutest.com:3306/ahn13
+     url: "jdbc:mysql://ahn13.gnutest.com:3306/ahn13?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull"
      username: ahn13
      password: qwer
      driver-class-name: com.mysql.jdbc.Driver

@@ -1,25 +1,13 @@
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_auth`
---
-
-DROP TABLE IF EXISTS `g5_auth`;
-CREATE TABLE IF NOT EXISTS `g5_auth` (
+DROP TABLE IF EXISTS `js1_auth`;
+CREATE TABLE IF NOT EXISTS `js1_auth` (
   `mb_id` varchar(20) NOT NULL default '',
   `au_menu` varchar(20) NOT NULL default '',
   `au_auth` set('r','w','d') NOT NULL default '',
   PRIMARY KEY  (`mb_id`,`au_menu`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_board`
---
-
-DROP TABLE IF EXISTS `g5_board`;
-CREATE TABLE IF NOT EXISTS `g5_board` (
+DROP TABLE IF EXISTS `js1_board`;
+CREATE TABLE IF NOT EXISTS `js1_board` (
   `bo_table` varchar(20) NOT NULL DEFAULT '',
   `gr_id` varchar(255) NOT NULL DEFAULT '',
   `bo_subject` varchar(255) NOT NULL DEFAULT '',
@@ -117,14 +105,8 @@ CREATE TABLE IF NOT EXISTS `g5_board` (
   PRIMARY KEY (`bo_table`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_board_file`
---
-
-DROP TABLE IF EXISTS `g5_board_file`;
-CREATE TABLE IF NOT EXISTS `g5_board_file` (
+DROP TABLE IF EXISTS `js1_board_file`;
+CREATE TABLE IF NOT EXISTS `js1_board_file` (
   `bo_table` varchar(20) NOT NULL default '',
   `wr_id` int(11) NOT NULL default '0',
   `bf_no` int(11) NOT NULL default '0',
@@ -140,14 +122,8 @@ CREATE TABLE IF NOT EXISTS `g5_board_file` (
   PRIMARY KEY  (`bo_table`,`wr_id`,`bf_no`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_board_good`
---
-
-DROP TABLE IF EXISTS `g5_board_good`;
-CREATE TABLE IF NOT EXISTS `g5_board_good` (
+DROP TABLE IF EXISTS `js1_board_good`;
+CREATE TABLE IF NOT EXISTS `js1_board_good` (
   `bg_id` int(11) NOT NULL auto_increment,
   `bo_table` varchar(20) NOT NULL default '',
   `wr_id` int(11) NOT NULL default '0',
@@ -158,14 +134,8 @@ CREATE TABLE IF NOT EXISTS `g5_board_good` (
   UNIQUE KEY `fkey1` (`bo_table`,`wr_id`,`mb_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_board_new`
---
-
-DROP TABLE IF EXISTS `g5_board_new`;
-CREATE TABLE IF NOT EXISTS `g5_board_new` (
+DROP TABLE IF EXISTS `js1_board_new`;
+CREATE TABLE IF NOT EXISTS `js1_board_new` (
   `bn_id` int(11) NOT NULL auto_increment,
   `bo_table` varchar(20) NOT NULL default '',
   `wr_id` int(11) NOT NULL default '0',
@@ -176,14 +146,8 @@ CREATE TABLE IF NOT EXISTS `g5_board_new` (
   KEY `mb_id` (`mb_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_config`
---
-
-DROP TABLE IF EXISTS `g5_config`;
-CREATE TABLE IF NOT EXISTS `g5_config` (
+DROP TABLE IF EXISTS `js1_config`;
+CREATE TABLE IF NOT EXISTS `js1_config` (
   `cf_id` int(11) NOT NULL auto_increment,
   `cf_title` varchar(255) NOT NULL DEFAULT '',
   `cf_theme` varchar(255) NOT NULL DEFAULT '',
@@ -317,17 +281,12 @@ CREATE TABLE IF NOT EXISTS `g5_config` (
   `cf_8` varchar(255) NOT NULL DEFAULT '',
   `cf_9` varchar(255) NOT NULL DEFAULT '',
   `cf_10` varchar(255) NOT NULL DEFAULT '',
+  `cf_syndi_except` text NOT NULL,
   PRIMARY KEY (`cf_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_cert_history`
---
-
-DROP TABLE IF EXISTS `g5_cert_history`;
-CREATE TABLE IF NOT EXISTS `g5_cert_history` (
+DROP TABLE IF EXISTS `js1_cert_history`;
+CREATE TABLE IF NOT EXISTS `js1_cert_history` (
   `cr_id` int(11) NOT NULL auto_increment,
   `mb_id` varchar(20) NOT NULL DEFAULT '',
   `cr_company` varchar(255) NOT NULL DEFAULT '',
@@ -339,14 +298,8 @@ CREATE TABLE IF NOT EXISTS `g5_cert_history` (
   KEY `mb_id` (`mb_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_group`
---
-
-DROP TABLE IF EXISTS `g5_group`;
-CREATE TABLE IF NOT EXISTS `g5_group` (
+DROP TABLE IF EXISTS `js1_group`;
+CREATE TABLE IF NOT EXISTS `js1_group` (
   `gr_id` varchar(10) NOT NULL default '',
   `gr_subject` varchar(255) NOT NULL default '',
   `gr_device` ENUM('both','pc','mobile') NOT NULL DEFAULT 'both',
@@ -376,14 +329,8 @@ CREATE TABLE IF NOT EXISTS `g5_group` (
   PRIMARY KEY  (`gr_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_group_member`
---
-
-DROP TABLE IF EXISTS `g5_group_member`;
-CREATE TABLE IF NOT EXISTS `g5_group_member` (
+DROP TABLE IF EXISTS `js1_group_member`;
+CREATE TABLE IF NOT EXISTS `js1_group_member` (
   `gm_id` int(11) NOT NULL auto_increment,
   `gr_id` varchar(255) NOT NULL default '',
   `mb_id` varchar(20) NOT NULL default '',
@@ -393,14 +340,8 @@ CREATE TABLE IF NOT EXISTS `g5_group_member` (
   KEY `mb_id` (`mb_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_login`
---
-
-DROP TABLE IF EXISTS `g5_login`;
-CREATE TABLE IF NOT EXISTS `g5_login` (
+DROP TABLE IF EXISTS `js1_login`;
+CREATE TABLE IF NOT EXISTS `js1_login` (
   `lo_ip` varchar(255) NOT NULL default '',
   `mb_id` varchar(20) NOT NULL default '',
   `lo_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
@@ -409,14 +350,8 @@ CREATE TABLE IF NOT EXISTS `g5_login` (
   PRIMARY KEY  (`lo_ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_mail`
---
-
-DROP TABLE IF EXISTS `g5_mail`;
-CREATE TABLE IF NOT EXISTS `g5_mail` (
+DROP TABLE IF EXISTS `js1_mail`;
+CREATE TABLE IF NOT EXISTS `js1_mail` (
   `ma_id` int(11) NOT NULL auto_increment,
   `ma_subject` varchar(255) NOT NULL default '',
   `ma_content` mediumtext NOT NULL,
@@ -426,14 +361,8 @@ CREATE TABLE IF NOT EXISTS `g5_mail` (
   PRIMARY KEY  (`ma_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_member`
---
-
-DROP TABLE IF EXISTS `g5_member`;
-CREATE TABLE IF NOT EXISTS `g5_member` (
+DROP TABLE IF EXISTS `js1_member`;
+CREATE TABLE IF NOT EXISTS `js1_member` (
   `mb_no` int(11) NOT NULL auto_increment,
   `mb_id` varchar(20) NOT NULL default '',
   `mb_password` varchar(255) NOT NULL default '',
@@ -491,14 +420,8 @@ CREATE TABLE IF NOT EXISTS `g5_member` (
   KEY `mb_datetime` (`mb_datetime`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_memo`
---
-
-DROP TABLE IF EXISTS `g5_memo`;
-CREATE TABLE IF NOT EXISTS `g5_memo` (
+DROP TABLE IF EXISTS `js1_memo`;
+CREATE TABLE IF NOT EXISTS `js1_memo` (
   `me_id` int(11) NOT NULL default '0',
   `me_recv_mb_id` varchar(20) NOT NULL default '',
   `me_send_mb_id` varchar(20) NOT NULL default '',
@@ -509,14 +432,8 @@ CREATE TABLE IF NOT EXISTS `g5_memo` (
   KEY `me_recv_mb_id` (`me_recv_mb_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_point`
---
-
-DROP TABLE IF EXISTS `g5_point`;
-CREATE TABLE IF NOT EXISTS `g5_point` (
+DROP TABLE IF EXISTS `js1_point`;
+CREATE TABLE IF NOT EXISTS `js1_point` (
   `po_id` int(11) NOT NULL auto_increment,
   `mb_id` varchar(20) NOT NULL default '',
   `po_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
@@ -534,14 +451,8 @@ CREATE TABLE IF NOT EXISTS `g5_point` (
   KEY `index2` (`po_expire_date`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_poll`
---
-
-DROP TABLE IF EXISTS `g5_poll`;
-CREATE TABLE IF NOT EXISTS `g5_poll` (
+DROP TABLE IF EXISTS `js1_poll`;
+CREATE TABLE IF NOT EXISTS `js1_poll` (
   `po_id` int(11) NOT NULL auto_increment,
   `po_subject` varchar(255) NOT NULL default '',
   `po_poll1` varchar(255) NOT NULL default '',
@@ -571,14 +482,8 @@ CREATE TABLE IF NOT EXISTS `g5_poll` (
   PRIMARY KEY  (`po_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_poll_etc`
---
-
-DROP TABLE IF EXISTS `g5_poll_etc`;
-CREATE TABLE IF NOT EXISTS `g5_poll_etc` (
+DROP TABLE IF EXISTS `js1_poll_etc`;
+CREATE TABLE IF NOT EXISTS `js1_poll_etc` (
   `pc_id` int(11) NOT NULL default '0',
   `po_id` int(11) NOT NULL default '0',
   `mb_id` varchar(20) NOT NULL default '',
@@ -588,14 +493,8 @@ CREATE TABLE IF NOT EXISTS `g5_poll_etc` (
   PRIMARY KEY  (`pc_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_popular`
---
-
-DROP TABLE IF EXISTS `g5_popular`;
-CREATE TABLE IF NOT EXISTS `g5_popular` (
+DROP TABLE IF EXISTS `js1_popular`;
+CREATE TABLE IF NOT EXISTS `js1_popular` (
   `pp_id` int(11) NOT NULL auto_increment,
   `pp_word` varchar(50) NOT NULL default '',
   `pp_date` date NOT NULL default '0000-00-00',
@@ -604,14 +503,8 @@ CREATE TABLE IF NOT EXISTS `g5_popular` (
   UNIQUE KEY `index1` (`pp_date`,`pp_word`,`pp_ip`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_scrap`
---
-
-DROP TABLE IF EXISTS `g5_scrap`;
-CREATE TABLE IF NOT EXISTS `g5_scrap` (
+DROP TABLE IF EXISTS `js1_scrap`;
+CREATE TABLE IF NOT EXISTS `js1_scrap` (
   `ms_id` int(11) NOT NULL auto_increment,
   `mb_id` varchar(20) NOT NULL default '',
   `bo_table` varchar(20) NOT NULL default '',
@@ -621,14 +514,8 @@ CREATE TABLE IF NOT EXISTS `g5_scrap` (
   KEY `mb_id` (`mb_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_visit`
---
-
-DROP TABLE IF EXISTS `g5_visit`;
-CREATE TABLE IF NOT EXISTS `g5_visit` (
+DROP TABLE IF EXISTS `js1_visit`;
+CREATE TABLE IF NOT EXISTS `js1_visit` (
   `vi_id` int(11) NOT NULL default '0',
   `vi_ip` varchar(255) NOT NULL default '',
   `vi_date` date NOT NULL default '0000-00-00',
@@ -640,41 +527,23 @@ CREATE TABLE IF NOT EXISTS `g5_visit` (
   KEY `index2` (`vi_date`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_visit_sum`
---
-
-DROP TABLE IF EXISTS `g5_visit_sum`;
-CREATE TABLE IF NOT EXISTS `g5_visit_sum` (
+DROP TABLE IF EXISTS `js1_visit_sum`;
+CREATE TABLE IF NOT EXISTS `js1_visit_sum` (
   `vs_date` date NOT NULL default '0000-00-00',
   `vs_count` int(11) NOT NULL default '0',
   PRIMARY KEY  (`vs_date`),
   KEY `index1` (`vs_count`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_unique`
---
-
-DROP TABLE IF EXISTS `g5_uniqid`;
-CREATE TABLE IF NOT EXISTS `g5_uniqid` (
+DROP TABLE IF EXISTS `js1_uniqid`;
+CREATE TABLE IF NOT EXISTS `js1_uniqid` (
   `uq_id` bigint(20) unsigned NOT NULL,
   `uq_ip` varchar(255) NOT NULL,
   PRIMARY KEY (`uq_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_autosave`
---
-
-DROP TABLE IF EXISTS `g5_autosave`;
-CREATE TABLE IF NOT EXISTS `g5_autosave` (
+DROP TABLE IF EXISTS `js1_autosave`;
+CREATE TABLE IF NOT EXISTS `js1_autosave` (
   `as_id` int(11) NOT NULL AUTO_INCREMENT,
   `mb_id` varchar(20) NOT NULL,
   `as_uid` bigint(20) unsigned NOT NULL,
@@ -686,14 +555,8 @@ CREATE TABLE IF NOT EXISTS `g5_autosave` (
   KEY `mb_id` (`mb_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_qa_config`
---
-
-DROP TABLE IF EXISTS `g5_qa_config`;
-CREATE TABLE IF NOT EXISTS `g5_qa_config` (
+DROP TABLE IF EXISTS `js1_qa_config`;
+CREATE TABLE IF NOT EXISTS `js1_qa_config` (
   `qa_title` varchar(255) NOT NULL DEFAULT'',
   `qa_category` varchar(255) NOT NULL DEFAULT'',
   `qa_skin` varchar(255) NOT NULL DEFAULT '',
@@ -732,14 +595,8 @@ CREATE TABLE IF NOT EXISTS `g5_qa_config` (
   `qa_5` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_qa_content`
---
-
-DROP TABLE IF EXISTS `g5_qa_content`;
-CREATE TABLE IF NOT EXISTS `g5_qa_content` (
+DROP TABLE IF EXISTS `js1_qa_content`;
+CREATE TABLE IF NOT EXISTS `js1_qa_content` (
   `qa_id` int(11) NOT NULL AUTO_INCREMENT,
   `qa_num` int(11) NOT NULL DEFAULT '0',  
   `qa_parent` int(11) NOT NULL DEFAULT '0',
@@ -771,14 +628,8 @@ CREATE TABLE IF NOT EXISTS `g5_qa_content` (
   KEY `qa_num_parent` (`qa_num`,`qa_parent`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_content`
---
-
-DROP TABLE IF EXISTS `g5_content`;
-CREATE TABLE IF NOT EXISTS `g5_content` (
+DROP TABLE IF EXISTS `js1_content`;
+CREATE TABLE IF NOT EXISTS `js1_content` (
   `co_id` varchar(20) NOT NULL DEFAULT '',
   `co_html` tinyint(4) NOT NULL DEFAULT '0',
   `co_subject` varchar(255) NOT NULL DEFAULT '',
@@ -793,14 +644,8 @@ CREATE TABLE IF NOT EXISTS `g5_content` (
   PRIMARY KEY (`co_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_faq`
---
-
-DROP TABLE IF EXISTS `g5_faq`;
-CREATE TABLE IF NOT EXISTS `g5_faq` (
+DROP TABLE IF EXISTS `js1_faq`;
+CREATE TABLE IF NOT EXISTS `js1_faq` (
   `fa_id` int(11) NOT NULL AUTO_INCREMENT,
   `fm_id` int(11) NOT NULL DEFAULT '0',
   `fa_subject` text NOT NULL,
@@ -810,14 +655,8 @@ CREATE TABLE IF NOT EXISTS `g5_faq` (
   KEY `fm_id` (`fm_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_faq_master`
---
-
-DROP TABLE IF EXISTS `g5_faq_master`;
-CREATE TABLE IF NOT EXISTS `g5_faq_master` (
+DROP TABLE IF EXISTS `js1_faq_master`;
+CREATE TABLE IF NOT EXISTS `js1_faq_master` (
   `fm_id` int(11) NOT NULL AUTO_INCREMENT,
   `fm_subject` varchar(255) NOT NULL DEFAULT '',
   `fm_head_html` text NOT NULL,
@@ -828,14 +667,8 @@ CREATE TABLE IF NOT EXISTS `g5_faq_master` (
   PRIMARY KEY (`fm_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_new_win`
---
-
-DROP TABLE IF EXISTS `g5_new_win`;
-CREATE TABLE IF NOT EXISTS `g5_new_win` (
+DROP TABLE IF EXISTS `js1_new_win`;
+CREATE TABLE IF NOT EXISTS `js1_new_win` (
   `nw_id` int(11) NOT NULL AUTO_INCREMENT,
   `nw_device` varchar(10) NOT NULL DEFAULT 'both',
   `nw_begin_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -851,14 +684,8 @@ CREATE TABLE IF NOT EXISTS `g5_new_win` (
   PRIMARY KEY (`nw_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `g5_menu`
---
-
-DROP TABLE IF EXISTS `g5_menu`;
-CREATE TABLE IF NOT EXISTS `g5_menu` (
+DROP TABLE IF EXISTS `js1_menu`;
+CREATE TABLE IF NOT EXISTS `js1_menu` (
   `me_id` int(11) NOT NULL AUTO_INCREMENT,
   `me_code` varchar(255) NOT NULL DEFAULT '',
   `me_name` varchar(255) NOT NULL DEFAULT '',
