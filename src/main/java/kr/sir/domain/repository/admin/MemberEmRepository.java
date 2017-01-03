@@ -27,7 +27,7 @@ public class MemberEmRepository {
 	public List<Member> getAllMemberList(String prefix) {
 		String query = "select count(gm.gm_id) as countGroupMember, m.*"
 				+ " from " + prefix + "member m"
-				+ " join " + prefix + "group_member gm"
+				+ " left join " + prefix + "group_member gm"
 				+ " on m.mb_id = gm.mb_id"
 				+ " group by m.mb_id";
 		

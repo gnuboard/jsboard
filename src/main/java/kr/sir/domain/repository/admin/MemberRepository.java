@@ -17,5 +17,8 @@ public interface MemberRepository extends JpaRepository<Member, Integer>{
 	//차단회윈수
 	@Query(value="select count(m.id) from Member m where m.interceptDate <> '' ")
 	public String getCountBlockedMembers();
+	
+	
+	public Member findByMemberId(String memberId);
 
 }

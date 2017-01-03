@@ -57,6 +57,12 @@ public class MemberServiceImpl implements MemberService{
 		return memberEmRepository.getAllMemberList(prefix);
 	}
 	
+	//아이디로 회원 전체 정보 셀렉트
+	@Override
+	public Member getOneMemer(String memberId) {		
+		return memberRepository.findByMemberId(memberId);
+	}
+	
 	
 	
 	
