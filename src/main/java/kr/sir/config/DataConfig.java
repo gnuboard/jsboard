@@ -20,12 +20,9 @@ public class DataConfig {
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer properties() throws IOException {
 		PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer = new PropertySourcesPlaceholderConfigurer();
-//		PropertiesFactoryBean property = new PropertiesFactoryBean();
-//		property.setLocation(new ClassPathResource("config.properties"));
 		YamlPropertiesFactoryBean yaml = new YamlPropertiesFactoryBean();
 		yaml.setResources(new ClassPathResource("application.yml"));
 		propertySourcesPlaceholderConfigurer.setProperties(yaml.getObject());
-//		propertySourcesPlaceholderConfigurer.setProperties(property.getObject());
 		return propertySourcesPlaceholderConfigurer;
 	}
 	

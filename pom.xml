@@ -4,8 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>kr.sir</groupId>
-	<artifactId>jsboard</artifactId>
-	<version>1.0</version>
+	<artifactId>ROOT</artifactId>
 	<packaging>war</packaging>
 
 	<name>jsboard</name>
@@ -23,7 +22,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.7</java.version>
 	</properties>
-
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -74,7 +73,7 @@
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
-
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -83,5 +82,20 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<profiles>
+		<profile> 
+			<id>cafe24test</id>
+			<activation> 
+				<activeByDefault>true</activeByDefault> 
+			</activation> 
+			<properties> 
+				<!-- Default spring profile to use --> 
+				<spring.profiles.active>cafe24-test</spring.profiles.active> 
+				<!-- Default environment  -->
+				<environment>test</environment> 
+			</properties>
+	 	</profile>
+	</profiles>
 
 </project>
