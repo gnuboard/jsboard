@@ -69,7 +69,7 @@ function frm_install_submit(f)
 	        <tr>
 	            <th scope="row"><label for="table_prefix">TABLE명 접두사</label></th>
 	            <td>
-	                <input name="table_prefix" type="text" value="js_" id="table_prefix">
+	                <input name="table_prefix" type="text" value="js1_" id="table_prefix">
 	                <span>가능한 변경하지 마십시오.</span>
 	            </td>
 	        </tr>
