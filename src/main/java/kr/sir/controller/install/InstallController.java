@@ -58,15 +58,15 @@ public class InstallController {
 		OutputStream out = null;
 		 try {
 		     // create and set properties into properties object
-			 System.out.println("properties write!");
 		     Properties props = new Properties();
-		     props.setProperty("table.prefix", configForm.getTable_prefix());
+		     props.setProperty("table:", "");
+		     props.setProperty("  prefix:", configForm.getTable_prefix());
 		     // get or create the file
-		     File f = new File("src/main/resources/config.properties");
+		     File f = new File("src/main/resources/config.yml");
 		     out = new FileOutputStream( f );
 		     // write into it
 		     DefaultPropertiesPersister p = new DefaultPropertiesPersister();
-		     p.store(props, out, "test");
+		     p.store(props, out, "");
 		   } catch (Exception e ) {
 		    e.printStackTrace();
 		   } finally {
