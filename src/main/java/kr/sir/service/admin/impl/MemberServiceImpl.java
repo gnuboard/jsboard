@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 
 import kr.sir.domain.Member;
 import kr.sir.domain.MemberGroupCount;
-import kr.sir.domain.Point;
+import kr.sir.domain.PointBaseEntity;
+import kr.sir.domain.PointJoinMember;
 import kr.sir.domain.repository.admin.MemberEmRepository;
 import kr.sir.domain.repository.admin.MemberRepository;
 import kr.sir.domain.repository.admin.PointEmRepository;
@@ -101,14 +102,14 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	//모든 회원  포인트 합계
-	public int getTotalPoint(){
-		return pointRepository.getTotalPoint();
+	public int getTotalPoint(String prefix){
+		return pointEmRepository.getTotalPoint(prefix);
 	}
 	
 	//모든 포인트 내역
 	@Override
-	public List<Point> getAllPointContent() {	
-		return pointRepository.findAll();
+	public List<PointJoinMember> getAllPointContent(String prefix) {	
+		return pointEmRepository.getAllPointContent(prefix);
 	}
 	
 	

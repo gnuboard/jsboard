@@ -62,28 +62,36 @@
             </thead>          
             <tbody>
             
-            <c:forEach var="pointContent" items="${allPointContent}">
-            	   
-            	
-            	
-            	
-            <tr>
-                <td class="td_chk">
-                    <label class="sound_only">2017-01-03 첫로그인 내역</label>
-                    <input type="checkbox">
-                </td>
-                <td class="td_left">id123</td>
-                <td class="td_left">이름</td>
-                <td class="td_left">닉네임</td>
-                <td class="td_left">2017-01-03 첫로그인</td>
-                <td class="td_num">100</td>
-                <td class="td_datetime">2017-01-03 09:07:31</td>
-                <td class="td_datetime2">2017-01-11</td>
-                <td class="td_num">13,680</td>
-            </tr>
+            <c:if test="${! empty allPointContent }">
+	            <c:forEach var="pointContent" items="${allPointContent}" varStatus="i">
+	            	   
+	            	
+	            	
+	            	
+	            <tr>
+	                <td class="td_chk">
+	                	<input type="hidden" name="memberid[${i}]" value="${pointContent.memberId}" id="mb_id_${i}">
+	          			<input type="hidden" name="id[${i}]" value="${pointConten.id}" id="po_id_${i}">
+	                    <label class="sound_only">${pointContent.content}</label>
+	                    <input type="checkbox">
+	                </td>
+	                <td class="td_left">${pointContent.memberId}</td>
+	                <td class="td_left">${pointContent.name }</td>
+	                <td class="td_left">${pointContent.nick }</td>
+	                <td class="td_left">${pointContent.content }</td>
+	                <td class="td_num"><%-- <fmt:formatNumber var="${pointContent.point}" pattern="#,###.##"/> --%>${pointContent.point} </td>
+	                <td class="td_datetime">${fn:substring(pointContent.datetime,0,18)}</td>
+	                <td class="td_datetime2">${fn:substring(pointContent.datetime,0,18)}</td>
+	                <td class="td_num"><fmt:formatNumber var="${pointContent.memberPoint}" pattern="#,###.##"/></td>
+	            </tr>
+	          	
+	          	</c:forEach>
+          	</c:if>
           	
-          	</c:forEach>
-          
+          	<c:if test="${empty allPointContent}">
+          		<tr><td colspan="9" class="empty_table">자료가 없습니다.</td></tr>
+          	</c:if>
+          	
             </tbody>
             </table>
         </div>

@@ -4,7 +4,8 @@ import java.util.List;
 
 import kr.sir.domain.Member;
 import kr.sir.domain.MemberGroupCount;
-import kr.sir.domain.Point;
+import kr.sir.domain.PointBaseEntity;
+import kr.sir.domain.PointJoinMember;
 
 public interface MemberService {
 
@@ -39,9 +40,9 @@ public interface MemberService {
 	public long getCountPointlist();
 	
 	//모든 회원 포인트 합계
-	public int getTotalPoint();
+	public int getTotalPoint(String prefix);
 	
 	//모든 회원 포인트 내역
-	public List<Point> getAllPointContent();
+	public List<PointJoinMember> getAllPointContent(String prefix);
 
 }

@@ -148,7 +148,7 @@ public class MemberController {
 				memberService.adminDeletesMember(Integer.parseInt(id));
 			}
 		}		
-		return "forward:"+request.getContextPath()+"/adm/member/list";
+		return "forward:"+"/adm/member/list";
 	}
 	
 	
@@ -162,10 +162,12 @@ public class MemberController {
 		model.addAttribute("countPointlist", memberService.getCountPointlist());
 		
 		//전체 포인트 합계
-		model.addAttribute("totalPoint",memberService.getTotalPoint());
+		/*model.addAttribute("totalPoint",memberService.getTotalPoint("js1_"));*/
 		
 		//전체포인트내용
-		model.addAttribute("allPointContent", memberService.getAllPointContent());
+		model.addAttribute("allPointContent", memberService.getAllPointContent("js1_"));
+		
+		
 		
 		
 		return "admin/member/point_list";

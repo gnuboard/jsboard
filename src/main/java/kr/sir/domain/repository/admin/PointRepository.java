@@ -8,7 +8,7 @@ import kr.sir.domain.Point;
 @Repository
 public interface PointRepository extends JpaRepository<Point, Integer> {
 		
-		//모든 회원 포인트 합계
+		//모든 회원 포인트 처리 건수
 		@Query(value="select count(p.id) from Point p")
-		public int getTotalPoint();
+		public int getCountPoint();
 }
