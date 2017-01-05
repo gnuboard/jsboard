@@ -1,6 +1,3 @@
-table:
-  prefix: js1_
-  
 spring:
   mvc:
     view:
