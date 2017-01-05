@@ -12,6 +12,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
 import kr.sir.domain.Config;
+import kr.sir.domain.Member;
 import kr.sir.domain.module.ConfigForm;
 
 @Repository
@@ -54,14 +55,13 @@ public class InstallEmRepository {
 	}
 	
 	// insert to config table
-	private final double JS_VERSION = 1.0;
-	
 	@Transactional
 	public int writeConfigInfo(String prefix, ConfigForm configForm) {
 		return insertConfigInfo(prefix, configForm);
 	}
 	
 	public int insertConfigInfo(String prefix, ConfigForm configForm) {
+		double JS_VERSION = 1.0;
 		String query = "insert into `"+ prefix +"config`"
             + "set cf_title = '" + JS_VERSION + "',"
                 + "cf_theme = 'basic',"
@@ -136,6 +136,21 @@ public class InstallEmRepository {
                 ;
 		
 		return em.createNativeQuery(query, Config.class).executeUpdate(); 
+	}
+
+	// admin 추가
+	@Transactional
+	public int writeAdminInfo(String prefix, Member member) {
+		String query = "insert into `"+ prefix +"member`"
+            + "set mb_id = '" + member.getMemberId() + "',"
+                + "mb_password = '" + member.getPassword() + "',"
+                + "mb_name = '" + member.getName() + "',"
+                + "mb_email = '" + member.getEmail() + "',"
+                + "mb_signature = '',"
+                + "mb_memo = '',"
+                + "mb_lost_certify = '',"
+                + "mb_profile = ''";
+		return em.createNativeQuery(query, Member.class).executeUpdate(); 
 	}
 
 }

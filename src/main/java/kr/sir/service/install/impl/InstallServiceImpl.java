@@ -13,6 +13,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.yaml.snakeyaml.Yaml;
 
+import kr.sir.domain.Member;
 import kr.sir.domain.module.ConfigForm;
 import kr.sir.domain.repository.install.InstallEmRepository;
 import kr.sir.service.install.InstallService;
@@ -37,6 +38,11 @@ public class InstallServiceImpl implements InstallService {
 	@Override
 	public void createTable(ClassPathResource classPathResource, String prefix) {
 		installEmRepository.createTable(classPathResource, prefix);
+	}
+	
+	@Override
+	public int writeAdminInfo(String prefix, Member member) {
+		return installEmRepository.writeAdminInfo(prefix, member);
 	}
 
 	// config.yml에 table prefix 정보 저장하기
@@ -84,7 +90,5 @@ public class InstallServiceImpl implements InstallService {
 			bw.close();
 		}
 	}
-	
-	
 
 }
