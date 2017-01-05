@@ -282,6 +282,7 @@ CREATE TABLE IF NOT EXISTS `js1_config` (
   `cf_9` varchar(255) NOT NULL DEFAULT '',
   `cf_10` varchar(255) NOT NULL DEFAULT '',
   `cf_syndi_except` text NOT NULL,
+  `cf_syndi_token` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`cf_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 

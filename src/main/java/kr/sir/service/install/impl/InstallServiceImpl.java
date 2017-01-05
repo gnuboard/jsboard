@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,12 +37,6 @@ public class InstallServiceImpl implements InstallService {
 	@Override
 	public void createTable(ClassPathResource classPathResource, String prefix) {
 		installEmRepository.createTable(classPathResource, prefix);
-	}
-
-	// config table 존재 여부 확인하기
-	@Override
-	public int existConfigTable(String prefix) {
-		return installEmRepository.existConfigTable(prefix);
 	}
 
 	// config.yml에 table prefix 정보 저장하기

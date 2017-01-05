@@ -13,7 +13,7 @@ public class Prefix {
 	public String getTablePrefix() throws FileNotFoundException {
 		Yaml yaml = new Yaml();
 		InputStream io = new FileInputStream(new File("src/main/resources/config.yml"));
-		
+		System.out.println("File access!!");
 		@SuppressWarnings("unchecked")
 		Map<String, Object> map = (Map<String, Object>) yaml.load(io);
 		Object prefixObj = map.get("prefix");

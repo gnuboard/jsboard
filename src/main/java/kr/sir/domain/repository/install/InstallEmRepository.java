@@ -138,18 +138,4 @@ public class InstallEmRepository {
 		return em.createNativeQuery(query, Config.class).executeUpdate(); 
 	}
 
-	// 설정 table 존재여부 확인
-	public int existConfigTable(String prefix) {
-		String query = "SELECT COUNT(*) cnt FROM information_schema.tables "
-					+ "WHERE table_name = '" + prefix + "config'";
-		Object obj = em.createNativeQuery(query).getSingleResult();
-		System.out.println(obj.toString());
-		int resultInt = 0;
-		if(obj != null) {
-			String result = obj.toString();
-			resultInt = Integer.parseInt(result);
-		}
-		return resultInt;
-	}
-
 }
