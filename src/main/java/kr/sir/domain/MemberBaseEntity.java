@@ -43,7 +43,7 @@ public abstract class MemberBaseEntity{
 	
 	@Column(name = "mb_nick_date",columnDefinition="date NOT NULL DEFAULT '0000-00-00'")
 	@Temporal(TemporalType.DATE)
-	private Date nickDate = defaultDate(); 
+	private Date nickDate = new Date(); 
 	
 	@Column(name = "mb_email",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String email= "";
@@ -111,7 +111,7 @@ public abstract class MemberBaseEntity{
 	
 	@Column(name = "mb_datetime",columnDefinition="datetime NOT NULL DEFAULT '0000-00-00 00:00:00'")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date datetime = defaultTimestamp();
+	private Date datetime = new Date();
 
 	@Column(name = "mb_ip",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String ip= "";
@@ -146,7 +146,7 @@ public abstract class MemberBaseEntity{
 	
 	@Column(name = "mb_open_date",columnDefinition="date NOT NULL DEFAULT '0000-00-00'")
 	@Temporal(TemporalType.DATE)
-	private Date openDate = defaultDate();
+	private Date openDate = new Date();
 	
 	@Column(name = "mb_profile", columnDefinition="TEXT NOT NULL")
 	private String profile= "";
@@ -184,15 +184,9 @@ public abstract class MemberBaseEntity{
 	@Column(name = "mb_10",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String extra10= "";
 
-	private Date defaultDate(){
-		Calendar c = Calendar.getInstance();
-		c.set(0, 0, 0);
-		return c.getTime();
-	}
-
 	private Date defaultTimestamp() {
 		Calendar c = Calendar.getInstance();
-		c.set(0, 0, 0, 0, 0, 0);
+		c.set(1900, 0, 1, 1, 1, 1);
 		return c.getTime();
 	}
 }
