@@ -70,8 +70,8 @@ public class InstallTestController {
 		return new Date().toString();
 	}
 	
-	@RequestMapping(value="/config", method = {RequestMethod.GET, RequestMethod.HEAD})
-	public String getConfig() throws FileNotFoundException, IOException {
-		return configService.getConfig().toString();
+	@RequestMapping(value="/file/path", method = {RequestMethod.GET, RequestMethod.HEAD})
+	public String resourcePath() throws FileNotFoundException, IOException {
+		return this.getClass().getResource("/application.yml").getFile();
 	}
 }

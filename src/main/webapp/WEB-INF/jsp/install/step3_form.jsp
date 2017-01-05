@@ -81,27 +81,27 @@ function frm_install_submit(f)
 	
 	        <tbody>
 	        <tr>
-	            <th scope="row"><label for="admin_id">회원 ID</label></th>
+	            <th scope="row"><label for="memberId">회원 ID</label></th>
 	            <td>
-	                <input name="admin_id" type="text" value="admin" id="admin_id">
+	                <input name="memberId" type="text" value="admin" id="memberId">
 	            </td>
 	        </tr>
 	        <tr>
-	            <th scope="row"><label for="admin_pass">비밀번호</label></th>
+	            <th scope="row"><label for="password">비밀번호</label></th>
 	            <td>
-	                <input name="admin_pass" type="text" id="admin_pass">
+	                <input name="password" type="text" id="password">
 	            </td>
 	        </tr>
 	        <tr>
-	            <th scope="row"><label for="admin_name">이름</label></th>
+	            <th scope="row"><label for="name">이름</label></th>
 	            <td>
-	                <input name="admin_name" type="text" value="최고관리자" id="admin_name">
+	                <input name="name" type="text" value="최고관리자" id="name">
 	            </td>
 	        </tr>
 	        <tr>
-	            <th scope="row"><label for="admin_email">E-mail</label></th>
+	            <th scope="row"><label for="email">E-mail</label></th>
 	            <td>
-	                <input name="admin_email" type="text" value="admin@domain.com" id="admin_email">
+	                <input name="email" type="text" value="admin@domain.com" id="email">
 	            </td>
 	        </tr>
 	        </tbody>

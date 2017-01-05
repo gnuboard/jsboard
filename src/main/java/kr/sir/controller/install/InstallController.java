@@ -2,6 +2,7 @@ package kr.sir.controller.install;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -9,9 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.sir.domain.InstallAdmin;
 import kr.sir.domain.Member;
 import kr.sir.domain.module.AgreeForm;
-import kr.sir.domain.module.ConfigForm;
 import kr.sir.service.install.InstallService;
 
 @Controller
@@ -46,32 +47,34 @@ public class InstallController {
 	
 	// 설정 결과 페이지로 이동
 	@RequestMapping(value = "/step/4")
-	public String result(Model model, ConfigForm configForm) throws FileNotFoundException, IOException {
+	public String result(Model model, InstallAdmin adminForm) throws FileNotFoundException, IOException {
 		// 1. schema로 db 생성
-		installService.createTable(new ClassPathResource("database.sql"), configForm.getTable_prefix());
+		installService.createTable(new ClassPathResource("database.sql"), adminForm.getTable_prefix());
 		
 		// 2. application.yml에 table_prefix 등록
-		installService.writeConfigToYaml(configForm.getTable_prefix());
+		installService.writeConfigToYaml(adminForm.getTable_prefix());
 		
 		// 3. member table에 관리자 정보 insert
-		adminInfoSave(configForm.getTable_prefix(), configForm);
+		int adminInsertResult = adminInfoSave(adminForm.getTable_prefix(), adminForm);
 		
 		// 4. config table에 설정 정보 insert
-		int result = installService.writeConfigInfo(configForm.getTable_prefix(), configForm);
-		model.addAttribute("configResult", result);
+		int configInsertResult = installService.writeConfigInfo(adminForm.getTable_prefix(), adminForm);
+		
+		model.addAttribute("adminInsertResult", adminInsertResult);
+		model.addAttribute("configInsertResult", configInsertResult);
 		
 		return "/install/step4_result";
 	}
 
-	private void adminInfoSave(String prefix, ConfigForm configForm) {
+	private int adminInfoSave(String prefix, InstallAdmin adminForm) throws UnknownHostException {
 		Member member = new Member();
 		
-		member.setMemberId(configForm.getAdmin_id());
-		member.setPassword(configForm.getAdmin_pass());
-		member.setName(configForm.getAdmin_name());
-		member.setEmail(configForm.getAdmin_email());
+		member.setMemberId(adminForm.getMemberId());
+		member.setPassword(adminForm.getPassword());
+		member.setName(adminForm.getName());
+		member.setEmail(adminForm.getEmail());
 		
-		installService.writeAdminInfo(prefix, member);
+		return installService.writeAdminInfo(prefix, member);
 	}
 	
 }

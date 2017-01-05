@@ -1,3 +1,6 @@
+server:
+  context-path: /
+
 spring:
   mvc:
     view:

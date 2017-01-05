@@ -3,7 +3,7 @@ package kr.sir.domain.repository.install;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.net.UnknownHostException;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
@@ -13,9 +13,10 @@ import javax.transaction.Transactional;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
+import kr.sir.common.CommonUtil;
 import kr.sir.domain.Config;
+import kr.sir.domain.InstallAdmin;
 import kr.sir.domain.Member;
-import kr.sir.domain.module.ConfigForm;
 
 @Repository
 public class InstallEmRepository {
@@ -58,17 +59,13 @@ public class InstallEmRepository {
 	
 	// insert to config table
 	@Transactional
-	public int writeConfigInfo(String prefix, ConfigForm configForm) {
-		return insertConfigInfo(prefix, configForm);
-	}
-	
-	public int insertConfigInfo(String prefix, ConfigForm configForm) {
+	public int writeConfigInfo(String prefix, InstallAdmin adminForm) {
 		double JS_VERSION = 1.0;
 		String query = "insert into `"+ prefix +"config`"
             + "set cf_title = '" + JS_VERSION + "',"
                 + "cf_theme = 'basic',"
-                + "cf_admin = '" + configForm.getAdmin_id() + "',"
-                + "cf_admin_email = '" + configForm.getAdmin_email() + "',"
+                + "cf_admin = '" + adminForm.getMemberId() + "',"
+                + "cf_admin_email = '" + adminForm.getMemberId() + "',"
                 + "cf_admin_email_name = '" + JS_VERSION + "',"
                 + "cf_use_point = '1',"
                 + "cf_use_copy_log = '1',"
@@ -142,10 +139,7 @@ public class InstallEmRepository {
 
 	// admin 추가
 	@Transactional
-	public int writeAdminInfo(String prefix, Member member) {
-		Date date = new Date();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
-		String today = formatter.format(date);
+	public int writeAdminInfo(String prefix, Member member) throws UnknownHostException {
 		String query = "insert into `"+ prefix +"member`"
             + "set mb_id = '" + member.getMemberId() + "',"
                 + "mb_password = '" + member.getPassword() + "',"		// 암호화 필요.
@@ -159,9 +153,8 @@ public class InstallEmRepository {
                 + "mb_mailling = '1',"		// 메일수신	
                 + "mb_sms = '0',"		// SMS수신
                 + "mb_open = '1',"		// 정보공개
-                + "mb_datetime = '" + today + "',"		// 회원가입일
-                + "mb_ip = '" + "000.000.000.000" + "',"		// ip
-                + "mb_login_ip = '" + "000.000.000.000" + "',"		// login ip
+                + "mb_datetime = '" + CommonUtil.getToday(new Date()) + "',"		// 회원가입일
+                + "mb_ip = '" + CommonUtil.getIpAddress() + "',"		// ip
                 + "mb_signature = '',"
                 + "mb_memo = '',"
                 + "mb_lost_certify = '',"

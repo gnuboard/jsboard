@@ -10,8 +10,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 // 공통 인터셉터
 public class CommonInterceptor extends HandlerInterceptorAdapter {
 	
-	private Prefix prefix = new Prefix(); 
-	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -40,7 +38,7 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 	}
 
 	private boolean existConfigTable() throws FileNotFoundException {
-		String table_prefix = prefix.getTablePrefix();
+		String table_prefix = CommonUtil.getTablePrefix();
 		if(table_prefix != "")
 			return true;
 		return false;
@@ -53,4 +51,5 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 	private boolean isInstallPage(String servletPath) {
 		return servletPath.length() >= 8 && servletPath.substring(0, 8).equals("/install");
 	}
+	
 }

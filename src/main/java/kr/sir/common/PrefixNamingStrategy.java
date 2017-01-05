@@ -11,7 +11,6 @@ public class PrefixNamingStrategy extends PhysicalNamingStrategyStandardImpl{
 
 	private static final long serialVersionUID = 1L;
     private static final ImprovedNamingStrategy STRATEGY_INSTANCE = new ImprovedNamingStrategy();
-    private static final Prefix TABLE_PREFIX = new Prefix(); 
     
 	@Override
 	public Identifier toPhysicalTableName(Identifier name, JdbcEnvironment context) {
@@ -21,7 +20,7 @@ public class PrefixNamingStrategy extends PhysicalNamingStrategyStandardImpl{
 	protected String classToTableName(String className) {
 		String tablePrefix = "";
 		try {
-			tablePrefix = TABLE_PREFIX.getTablePrefix();
+			tablePrefix = CommonUtil.getTablePrefix();
 		} catch (FileNotFoundException e) {
 			System.out.println("파일이 존재하지 않습니다. "+ e.getMessage());
 		}
