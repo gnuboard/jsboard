@@ -3,6 +3,8 @@ package kr.sir.domain.repository.install;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -141,11 +143,25 @@ public class InstallEmRepository {
 	// admin 추가
 	@Transactional
 	public int writeAdminInfo(String prefix, Member member) {
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+		String today = formatter.format(date);
 		String query = "insert into `"+ prefix +"member`"
             + "set mb_id = '" + member.getMemberId() + "',"
-                + "mb_password = '" + member.getPassword() + "',"
+                + "mb_password = '" + member.getPassword() + "',"		// 암호화 필요.
                 + "mb_name = '" + member.getName() + "',"
+                + "mb_nick = '" + member.getName() + "',"
+                + "mb_level = '10',"	// 회원 권한
+                + "mb_point = '100',"	// 포인트
                 + "mb_email = '" + member.getEmail() + "',"
+                + "mb_certify = '',"		// 본인확인
+                + "mb_adult = '0',"		// 성인인증
+                + "mb_mailling = '1',"		// 메일수신	
+                + "mb_sms = '0',"		// SMS수신
+                + "mb_open = '1',"		// 정보공개
+                + "mb_datetime = '" + today + "',"		// 회원가입일
+                + "mb_ip = '" + "000.000.000.000" + "',"		// ip
+                + "mb_login_ip = '" + "000.000.000.000" + "',"		// login ip
                 + "mb_signature = '',"
                 + "mb_memo = '',"
                 + "mb_lost_certify = '',"
