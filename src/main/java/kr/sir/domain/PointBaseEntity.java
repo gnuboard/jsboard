@@ -29,39 +29,39 @@ public abstract class PointBaseEntity {
 	private int id;
 	
 	@Column(name="mb_id", columnDefinition = "varchar(20) NOT NULL default ''")
-	private String memberId;
+	private String memberId="";
 	
 	@Column(name="po_datetime", columnDefinition = "datetime NOT NULL default '0000-00-00 00:00:00'")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date datetime;
+	private Date datetime=new Date();
 	
 	@Column(name="po_content", columnDefinition = "varchar(255) NOT NULL default ''")
-	private String content;
+	private String content="";
 	            
 	@Column(name="po_point", columnDefinition = "int(11) NOT NULL default '0'")
-	private int point;
+	private int point=0;
 	
 	@Column(name="po_use_point", columnDefinition = "int(11) NOT NULL default '0'")
-	private int usePoint;
+	private int usePoint=0;
 	
 	@Column(name="po_expired", columnDefinition="tinyint(4) NOT NULL default '0'")
-	private int expired;
+	private int expired=0;
 	
 	@Column(name="po_expire_date", columnDefinition = "date NOT NULL default '0000-00-00'")
 	@Temporal(TemporalType.DATE)
 	private Date expireDate;
 	
 	@Column(name="po_mb_point", columnDefinition = "int(11) NOT NULL default '0'")
-	private int memberPoint;
+	private int memberPoint=0;
 	
 	@Column(name="po_rel_table", columnDefinition = "varchar(20) NOT NULL default ''")
-	private String relTable;
+	private String relTable="";
 	
 	@Column(name="po_rel_id", columnDefinition = "varchar(20) NOT NULL default ''")
-	private String relId;
+	private String relId="";
 	
 	@Column(name="po_rel_action", columnDefinition = "varchar(255) NOT NULL default ''")
-	private String relAction;
+	private String relAction="";
 	
 	
 	

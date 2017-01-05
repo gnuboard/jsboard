@@ -121,8 +121,8 @@ public class MemberController {
 	@RequestMapping(value={"/update"})
 	public String memberUpdate(Member member){
 		
-		memberService.adminUpdatesMember(member);
-		return "adm/member/form";
+		memberService.adminSavesMember(member);
+		return "redirect:./list";
 	}
 	
 	
