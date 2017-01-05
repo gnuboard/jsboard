@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.sir.domain.Member;
 import kr.sir.domain.MemberGroupCount;
+import kr.sir.domain.Point;
 import kr.sir.domain.PointBaseEntity;
 import kr.sir.domain.PointJoinMember;
 import kr.sir.domain.repository.admin.MemberEmRepository;
@@ -111,6 +112,26 @@ public class MemberServiceImpl implements MemberService{
 	public List<PointJoinMember> getAllPointContent(String prefix) {	
 		return pointEmRepository.getAllPointContent(prefix);
 	}
+	
+	//관리자가 회원에게 포인트 주기
+	@Override
+	public String addPoint(Point point) {
+		Member member=memberRepository.findByMemberId(point.getMemberId());
+		String msg="";
+		if(member==null){
+			msg="존재하는 회원아이디가 아닙니다.";
+		}
+		
+		if((point.getPoint()<0) &&( point.getPoint() * (-1) > point.getMemberPoint())){
+			msg="포인트를 깍는 경우 현재 포인트보다 작으면 안됩니다.";
+		}
+		
+		/*point.set
+		
+		pointRepository.save(point);*/
+		return "";
+	}
+	
 	
 	
 	

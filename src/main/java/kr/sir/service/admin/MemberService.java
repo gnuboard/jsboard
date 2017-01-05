@@ -47,7 +47,7 @@ public interface MemberService {
 	public List<PointJoinMember> getAllPointContent(String prefix);
 	
 	//관리자가 회원에게 포인트 추기
-	public void addPoint(Point point);
+	public String addPoint(Point point);
 	
 
 }
