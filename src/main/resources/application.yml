@@ -23,6 +23,7 @@ spring:
   datasource:
      initialize: true
      url: "jdbc:mysql://localhost:3306/sirgjw?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull"
+#     url: "jdbc:mysql://sirgjw.gnutest.com:3306/sirgjw?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull"
      username: "root"
      password: "8989"
      driver-class-name: com.mysql.jdbc.Driver

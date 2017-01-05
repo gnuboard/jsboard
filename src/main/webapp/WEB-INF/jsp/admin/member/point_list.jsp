@@ -7,6 +7,9 @@
 
 
 
+
+
+
 <div id="container">
     <!-- 중간 레이아웃 -->
     <h1 id="container_title">포인트관리</h1>
@@ -16,7 +19,7 @@
         <div class="local_wr">
             <div class="local_ov">
                 <a href="${pageContext.request.contextPath}/adm/member/pointlist" class="btn_ov02">전체목록</a>
-                <span class="btn_ov01"><span class="ov_txt">전체 </span><span class="ov_num"> ${countPointlist} </span></span>
+                <span class="btn_ov01"><span class="ov_txt">전체 </span><span class="ov_num"> ${countPointlist} 건 </span></span>
                 <span class="btn_ov01"><span class="ov_txt">전체포인트 합계 </span><span class="ov_num"> <fmt:formatNumber value="${totalPoint}" pattern="#,###.##"/>포인트 </span></span>
             </div>                                                                                  
             <form id="fsearch" name="fsearch" class="local_sch" method="post">
@@ -79,11 +82,11 @@
 	                <td class="td_left">${pointContent.name }</td>
 	                <td class="td_left">${pointContent.nick }</td>
 	                <td class="td_left">${pointContent.content }</td>
-	                <td class="td_num"><%-- <fmt:formatNumber var="${pointContent.point}" pattern="#,###.##"/> --%>${pointContent.point} </td>
+	                <td class="td_num"><fmt:formatNumber value="${pointContent.point}" pattern="#,###.##"/> ${pointContent.point}  </td>
 	                <td class="td_datetime">${fn:substring(pointContent.datetime,0,18)}</td>
 	                <td class="td_datetime2">${fn:substring(pointContent.datetime,0,18)}</td>
-	                <td class="td_num"><fmt:formatNumber var="${pointContent.memberPoint}" pattern="#,###.##"/></td>
-	            </tr>
+	                <td class="td_num"><fmt:formatNumber value="${pointContent.memberPoint}" pattern="#,###.##"/> </td>
+	            </tr>                       
 	          	
 	          	</c:forEach>
           	</c:if>
@@ -100,7 +103,7 @@
         </div>
         </form>
 
-        <form>
+        <form action="/adm/member/addpoint">
         <div class="add_form">
             <h2 class="h2_frm">개별회원 포인트 증감 설정</h2>
             <div class="table_basic table_form">
@@ -119,10 +122,14 @@
                         <th scope="row"><label>포인트<strong class="sound_only">필수</strong></label></th>
                         <td><input type="text" required class="required frm_input"></td>
                     </tr>
+                    
+                    <c:if test="${config.pointTerm>0}">
                     <tr>
                         <th scope="row"><label>포인트 유효기간</label></th>
-                        <td><input type="text" class="frm_input" size="5"> 일</td>
+                        <td><input type="text" class="frm_input" size="5" name="expireTerm" value="${config.pointTerm}"> 일</td>
                     </tr>
+                   </c:if>
+                   
                     </tbody>
                 </table>
             </div>

@@ -20,7 +20,7 @@ public class PointEmRepository{
 	public int getTotalPoint(String prefix) {
 		String query = "select sum(po_point) as totalPoint from "+prefix+"point";
 					
-		return  em.createQuery(query, int.class).getSingleResult();
+		return  (int) em.createNativeQuery(query, Integer.class).getSingleResult();
 	}
 	
 	//포인트 처리 내용 전부 + 일부 회원 정보

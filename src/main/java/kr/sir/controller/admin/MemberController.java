@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.sir.config.DataConfig;
 import kr.sir.domain.Member;
 import kr.sir.domain.MemberGroupCount;
+import kr.sir.domain.Point;
 import kr.sir.service.admin.MemberService;;
 
 @Controller
@@ -148,7 +150,7 @@ public class MemberController {
 				memberService.adminDeletesMember(Integer.parseInt(id));
 			}
 		}		
-		return "forward:"+"/adm/member/list";
+		return "forward:/adm/member/list";
 	}
 	
 	
@@ -162,7 +164,7 @@ public class MemberController {
 		model.addAttribute("countPointlist", memberService.getCountPointlist());
 		
 		//전체 포인트 합계
-		/*model.addAttribute("totalPoint",memberService.getTotalPoint("js1_"));*/
+	/*	model.addAttribute("totalPoint",memberService.getTotalPoint("js1_"));*/
 		
 		//전체포인트내용
 		model.addAttribute("allPointContent", memberService.getAllPointContent("js1_"));
@@ -172,6 +174,17 @@ public class MemberController {
 		
 		return "admin/member/point_list";
 	}
+	
+	@RequestMapping(value={"/addpoint"})
+	public String addPoint(Model model,Point point){
+		memberService.addPoint(point);
+		
+		return "forward:/adm/member/pointlist";
+	}
+	
+	
+	
+	
 	
 
 }
