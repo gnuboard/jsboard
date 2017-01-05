@@ -1,14 +1,11 @@
 table:
   prefix: js1_
-
----
-
+  
 spring:
-  profiles: local-g
   mvc:
     view:
       prefix: /WEB-INF/jsp/
-      suffix: .jsp    
+      suffix: .jsp
   thymeleaf:
     cache: false
   jpa:
@@ -19,6 +16,10 @@ spring:
       naming:
         physical-strategy: kr.sir.common.PrefixNamingStrategy
 
+---
+
+spring:
+  profiles: local-g
   datasource:
      initialize: true
      url: "jdbc:mysql://localhost:3306/sirgjw?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull"
@@ -37,20 +38,6 @@ logging:
 
 spring:
   profiles: local-a
-  mvc:
-    view:
-      prefix: /WEB-INF/jsp/
-      suffix: .jsp    
-  thymeleaf:
-    cache: false
-  jpa:
-    show-sql: true
-    database: mysql
-    hibernate:
-      ddl-auto: none
-      naming:
-        physical-strategy: kr.sir.common.PrefixNamingStrategy
-
   datasource:
      initialize: true
      url: "jdbc:mysql://localhost:3306/ahn?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull"
@@ -69,37 +56,26 @@ logging:
 ---
 
 spring:
-  profiles: test
-  mvc:
-    view:
-      prefix: /WEB-INF/jsp/
-      suffix: .jsp    
-  thymeleaf:
-    cache: false
-  jpa:
-    show-sql: true
-    database: mysql
-    hibernate:
-      ddl-auto: none
-      naming:
-        physical-strategy: kr.sir.common.PrefixNamingStrategy
-
+  profiles: cafe24-test
   datasource:
      initialize: true
-     url: "jdbc:mysql://ahn13.gnutest.com:3306/ahn13?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull"
-     username: ahn13
-     password: qwer
+     url: "jdbc:mysql://localhost:3306/sirjsp?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull"
+#     url: "jdbc:mysql://sirjsp.cafe24.com:3306/sirjsp?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull"
+     username: sirjsp
+     password: sirjsp12
      driver-class-name: com.mysql.jdbc.Driver
 
 logging:
   file: logs/application.log
   level:
     org.springframework.boot: INFO
-    org.springframework.web: DEBUG
-    org.springframework.data: INFO
+    org.springframework.web: INFO
+    org.springframework.data: DEBUG
     
 ---
+
 spring:
   profiles: logging-daily
+  
 logging:
   config: classpath:logback-spring.xml    

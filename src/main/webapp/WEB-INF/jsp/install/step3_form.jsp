@@ -36,11 +36,11 @@ function frm_install_submit(f)
     }
 
 
-    if(/^[a-z][a-z0-9]/i.test(f.admin_id.value) == false) {
-        alert('최고관리자 회원 ID는 첫자는 반드시 영문자 그리고 영문자와 숫자로만 만드셔야 합니다.');
-        f.admin_id.focus();
-        return false;
-    }
+//     if(/^[a-z][a-z0-9]/i.test(f.admin_id.value) == false) {
+//         alert('최고관리자 회원 ID는 첫자는 반드시 영문자 그리고 영문자와 숫자로만 만드셔야 합니다.');
+//         f.admin_id.focus();
+//         return false;
+//     }
 
     return true;
 }

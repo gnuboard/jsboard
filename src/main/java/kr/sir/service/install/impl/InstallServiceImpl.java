@@ -34,7 +34,6 @@ public class InstallServiceImpl implements InstallService{
 	// config table 존재 여부 확인하기
 	@Override
 	public int existConfigTable(String prefix) {
-		System.out.println("prefix" + prefix);
 		return installEmRepository.existConfigTable(prefix);
 	}
 	

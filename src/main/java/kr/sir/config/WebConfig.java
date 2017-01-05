@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.HttpPutFormContentFilter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import kr.sir.common.CommonInterceptor;
@@ -23,6 +24,13 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	public MySQLDialect mySQLDialect() {
 		return new MySQLMyISAMDialect();
 	}
+	
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) { 
+		registry.addResourceHandler("/resources/**")
+				.addResourceLocations("/resources/");
+	}
+	
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
