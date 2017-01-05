@@ -1,13 +1,16 @@
 package kr.sir.controller.admin;
 
-import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.sir.config.DataConfig;
 import kr.sir.domain.Member;
@@ -21,6 +24,7 @@ public class MemberController {
 	private MemberService memberService;
 	private DataConfig dataConfig;
 
+	
 	@Autowired
 	public void setDataConfig(DataConfig dataConfig) {
 		this.dataConfig = dataConfig;
@@ -29,13 +33,16 @@ public class MemberController {
 	public void setMemberService(MemberService memberService){
 		this.memberService=memberService;
 	}
-	
-/*	@ModelAttribute("config")
+	/*
+	@ModelAttribute("config")
 	public Config getConfig(){
 		return dataConfig.getConfig();
 	}
 	*/
 	
+	public String prefix(){
+		return dataConfig.prefix();
+	}
 	
 	@RequestMapping(value={"/list","/"})
 	public String memberList(Model model,String sfl,String sod,String stx,String sst){		
@@ -55,7 +62,7 @@ public class MemberController {
 		                    
 		
 		// 멤버리스트 + 접근 가능 그룹 수
-		List<MemberGroupCount> memberslist = memberService.getAllMembersList("js");
+		List<MemberGroupCount> memberslist = memberService.getAllMembersList("js1_");
 		for (MemberGroupCount member : memberslist) {
 			System.out.println(member.toString());
 		}
@@ -94,15 +101,13 @@ public class MemberController {
 			member.setAdult(0);
 		}		
 		
-		if(zipCode.length()>0){
-			
+		if(zipCode.length()>0){			
 			System.out.println("우편번호1:"+zipCode.substring(0, 3));
-			System.out.println("우편번호2:"+zipCode.substring(3));
-			
+			System.out.println("우편번호2:"+zipCode.substring(3));			
 			member.setZipCode1(zipCode.substring(0, 3));
 			member.setZipCode2(zipCode.substring(3));
 		}
-		if(member.getAddressJibeon().length()<0){
+	/*	if(member.getAddressJibeon().length()<0){
 			member.setAddressJibeon("");
 		}		
 		member.setBirth("0000-00-00");
@@ -117,9 +122,8 @@ public class MemberController {
 		member.setMemoCall("");
 		member.setNickDate(new Date());
 		member.setOpenDate(new Date());
-		System.out.println("지번:"+member.getAddressJibeon());
-		
-		
+		System.out.println("지번:"+member.getAddressJibeon());*/
+				
 		memberService.adminSavesMember(member);
 		return "admin/member/form";
 	}
@@ -127,20 +131,62 @@ public class MemberController {
 	@RequestMapping(value={"/update"})
 	public String memberUpdate(Member member){
 		
+		memberService.adminUpdatesMember(member);
 		return "admin/member/form";
+	}
+	
+	@RequestMapping(value={"/updateordelete"})
+	public String memberDelete(HttpServletRequest request,Model model,@RequestParam("act_button") String actButton,@RequestParam(value="chk[]") List<String> chk){
+		
+		
+		if(actButton.equals("선택수정")){
+			for (String number : chk) {
+				System.out.println(number);
+			}
+		}else if (actButton.equals("선택삭제")){
+			for (String id : chk) {
+				memberService.adminDeletesMember(Integer.parseInt(id));
+			}
+		}		
+		return "forward:"+request.getContextPath()+"/adm/member/list";
 	}
 	
 	
 	
 	
 	
-	
-	
-	@RequestMapping(value={"/pointlist"})
-	public String pointList(Model model){
-		model.addAttribute("test","포인트리스트");
+	@RequestMapping(value = { "/pointlist" })
+	public String pointList(Model model) {
+
+		//포인트 건 수
+		model.addAttribute("countPointlist", memberService.getCountPointlist());
+		
+		//전체 포인트 합계
+		model.addAttribute("totalPoint",memberService.getTotalPoint());
+		
+		//전체포인트내용
+		model.addAttribute("allPointContent", memberService.getAllPointContent());
+		
+		
 		return "admin/member/point_list";
 	}
 	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

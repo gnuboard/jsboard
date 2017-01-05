@@ -22,49 +22,65 @@
                 회원자료 삭제 시 다른 회원이 기존 회원아이디를 사용하지 못하도록 회원아이디, 이름, 닉네임은 삭제하지 않고 영구 보관합니다.
             </p>
         </div>
-        <div class="local_wr">
+        
+      	<div class="local_wr">
+        	<form id="fsearch" name="fsearch" class="local_sch" method="post">
             <div class="local_ov">
                 <a href="#" class="btn_ov02">전체목록</a>
                 <span class="btn_ov01"><span class="ov_txt">총회원수</span><span class="ov_num"><fmt:formatNumber value="${countallmembers}"  pattern="#,###.##"/>명</span></span>
                 <span class="btn_ov01"><a href="/adm/member/list?sst=interceptDate&amp;sod=desc&amp;sfl=${sfl}&amp;stx=${stx}" class="ov_txt"><span class="ov_num">차단 <fmt:formatNumber value="${countblockedmembers}" pattern="#,###.##"/>명</span></a></span>
                 <span class="btn_ov01"><a href="/adm/member/list?sst=leaveDate&amp;sod=desc&amp;sfl=${sfl}&amp;stx=${stx}" class="ov_txt"><span class="ov_num"> 탈퇴 <fmt:formatNumber value="${countretiredmembers}" pattern="#,###.##"/>명</span></a></span>
-            </div>
-          
-          
-          
-            <form id="fsearch" name="fsearch" class="local_sch" method="post">
-           	 	<label for="sfl" class="sound_only">검색대상</label>
-           			 <select name="sfl" id="sfl">
-		                <option value="memberId">회원아이디</option>
-		                <option value="nick">닉네임</option>
-		                <option value="name">이름</option>
-		                <option value="level">권한</option>
-		                <option value="email">E-MAIL</option>
-		                <option value="tel">전화번호</option>
-		                <option value="hp">휴대폰번호</option>
-		                <option value="point">포인트</option>
-		                <option value="datetime">가입일시</option>
-		                <option value="ip">IP</option>
-		                <option value="recommend">추천인</option>
-		            </select>
-           		 <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
-           		 <input type="text" name="stx" id="stx" required class="sch_input">
-           		 <input type="submit" class="btn_sch" value="검색">
+        	</div>        	
+        	
+			<label for="sfl" class="sound_only">검색대상</label>
+			<select name="sfl" id="sfl">
+				<option value="memberId">회원아이디</option>
+				<option value="nick">닉네임</option>
+				<option value="name">이름</option>
+				<option value="level">권한</option>
+				<option value="email">E-MAIL</option>
+				<option value="tel">전화번호</option>
+				<option value="hp">휴대폰번호</option>
+				<option value="point">포인트</option>
+				<option value="datetime">가입일시</option>
+				<option value="ip">IP</option>
+				<option value="recommend">추천인</option>
+			</select>
+			    <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+			    <input type="text" name="stx" id="stx" required class="sch_input">
+			    <input type="submit" class="btn_sch" value="검색">
+			 </form>  
+		</div>
 
-            </form>
-        </div><!--   local_wr  -->
+        
+    
+
+<form name="fmemberlist" id="fmemberlist" action="/adm/member/updateordelete/" onsubmit="return fmemberlist_submit(this);" method="post">
+<div class="btn_fixed_top">
+	<input type="submit" name="act_button" value="선택수정" class="btn_02 btn" onclick="document.pressed=this.value">
+    <input type="submit" name="act_button" value="선택삭제" class="btn_02 btn" onclick="document.pressed=this.value">
+    <a href="/adm/member/form/add" id="member_add" class="btn_submit btn">회원추가</a>
+</div>
+	<input type="hidden" name="sst" value="${sst}">
+	<input type="hidden" name="sod" value="${sod}">
+	<input type="hidden" name="sfl" value="${sfl}">
+	<input type="hidden" name="stx" value="${stx}">
+	<input type="hidden" name="page" value="${page}">
+	<input type="hidden" name="token" value="">       
+        
        
-       
-       
-        <form>
-        <div id="member_list" class="table_basic table_01 table_2line">
+<!--  <div class="local_wr">
+    
+ </div>  --> 
+      
+        <div id="member_list" class="table_basic table_01 table_2line">            
             <table border=1>
                 <caption>회원관리 리스트</caption>
                 <thead>
                 <tr>
                     <th scope="col" rowspan="2">
                         <label for="chkall" class="sound_only">회원 전체</label>
-                        <input type="checkbox" name="chkall" id="chkall">
+                        <input type="checkbox" name="chkall" id="chkall" value="1" onclick="check_all(this.form)">
                     </th>
                     <th scope="col" colspan="2">아이디</th>
                     <th scope="col" rowspan="2">본인확인</th>
@@ -77,7 +93,7 @@
                     <th scope="col">포인트</th>
                     <th scope="col" rowspan="2">관리</th>
                 </tr>
-                 <tr>
+                <tr>
                     <th scope="col">이름</th>
                     <th scope="col">닉네임</th>
                     <th scope="col">성인인증</th>
@@ -125,11 +141,11 @@
                 		
                 		
                 		<c:choose>
-                			<c:when test="${! empty member.leaveDate }">
+                			<c:when test="${ member.leaveDate != '' }">
                 				<c:set var="leaveMsg" value="<span class='td_txt_color1'>탈퇴</span>"></c:set>
                 			</c:when>
                 			
-                			<c:when test="${! empty member.interceptDate}">
+                			<c:when test="${ member.interceptDate != ''}">
                 				<c:set var="interceptMsg" value="<span class='td_txt_color1'>차단됨</span>"></c:set>
                 				<c:set var="interceptTitle" value="차단해제"></c:set>
                 			</c:when>
@@ -143,8 +159,9 @@
                 
                 <tr>
                     <td rowspan="2" class="td_chk">
+                    	<input type="hidden" name="memberId[${i}]" value="${member.memberId}" id="memberId_${i}">
                         <label for="chk_${i}" class="sound_only">${member.name}</label>
-                        <input type="checkbox" name="chk[]" id="chk_${i}">
+                        <input type="checkbox" name="chk[]" id="chk_${i}" value="${member.id}">
                     </td>
                     <td colspan="2" class="td_left">${member.memberId}</td>
                     <td rowspan="2">
@@ -173,11 +190,11 @@
                     <td class="td_num"><a href="adm/member/pointlist?sfl=memberId&amp;stx=${member.memberId}"><fmt:formatNumber value="${member.point}" pattern="#,###.##" /></a></td>
                     <td rowspan="2" class="td_mng td_mng_s">                       
                     
-                       ${s_mod}<!--수정버튼  -->
-                       ${s_grp}<!--그룹버튼  --> 
+                    	${s_mod}<!--수정버튼  -->
+                       	${s_grp}<!--그룹버튼  --> 
                     </td>
                 </tr>
-                 <tr>
+                <tr>
                     <td class="td_left">${member.name}</td>
                     <td class="td_left">${member.nick}</td>
                     <td>
@@ -216,15 +233,9 @@
                 </tbody>
             </table>
         </div>
-        <div class="btn_fixed_top">
-            <input type="submit" name="act_button" value="선택수정" class="btn_02 btn">
-            <input type="submit" name="act_button" value="선택삭제" class="btn_02 btn">
-            <a href="/adm/member/form/add" id="member_add" class="btn_submit btn">회원추가</a>
-        </div>
-        </form>
+</form>  
         
-        <div class="pagination">
-           
+        <div class="pagination">           
             <div class="pg_wr">
                 <a href="#" class="first">맨 처음으로</a>
                 <a href="#" class="prev">이전</a>
@@ -240,13 +251,7 @@
                 <a href="#" class="last">맨 마지막으로</a>
             </div>
         </div>
-
     </div>
-
- 
-
-
-
 
 
 <script>
@@ -257,6 +262,7 @@
 		}
 
 		if (document.pressed == "선택삭제") {
+			
 			if (!confirm("선택한 자료를 정말 삭제하시겠습니까?")) {
 				return false;
 			}
