@@ -5,18 +5,18 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.sir.config.DataConfig;
+import kr.sir.domain.Config;
 import kr.sir.domain.Member;
 import kr.sir.domain.MemberGroupCount;
 import kr.sir.domain.Point;
+import kr.sir.service.admin.ConfigService;
 import kr.sir.service.admin.MemberService;;
 
 @Controller
@@ -24,50 +24,38 @@ import kr.sir.service.admin.MemberService;;
 public class MemberController {
 	
 	private MemberService memberService;
-	private DataConfig dataConfig;
+	private ConfigService configService;
 
 	
 	@Autowired
-	public void setDataConfig(DataConfig dataConfig) {
-		this.dataConfig = dataConfig;
+	public void setConfigService(ConfigService configService) {
+		this.configService = configService;
 	}
 	@Autowired
 	public void setMemberService(MemberService memberService){
 		this.memberService=memberService;
 	}
-	/*
+	
 	@ModelAttribute("config")
 	public Config getConfig(){
-		return dataConfig.getConfig();
-	}
-	*/
-	
-	public String prefix(){
-		return dataConfig.prefix();
+		return configService.getConfig();
 	}
 	
+	
+	//관리자페이지에서 회원목록 보기
 	@RequestMapping(value={"/list","/"})
 	public String memberList(Model model,String sfl,String sod,String stx,String sst){		
 		
-
-	
-
-		//설정파일
-		/*model.addAttribute("config", dataConfig.config());*/
-
 		//총회원수
 		model.addAttribute("countallmembers", memberService.getCountAllMembers());
 		//탈퇴회원수
 		model.addAttribute("countretiredmembers",memberService.getCountRetiredMembers());
 		//차단회원수
-		model.addAttribute("countblockedmembers",memberService.getCountBlockedMembers());
-		                    
+		model.addAttribute("countblockedmembers",memberService.getCountBlockedMembers());	                    
 		
 		// 멤버리스트 + 접근 가능 그룹 수
 		List<MemberGroupCount> memberslist = memberService.getAllMembersList("js1_");
-		for (MemberGroupCount member : memberslist) {
-			System.out.println(member.toString());
-		}
+		
 		model.addAttribute("memberslist", memberslist);
 		
 		return "admin/member/list";
@@ -137,6 +125,8 @@ public class MemberController {
 		return "admin/member/form";
 	}
 	
+	
+	//관리자페이지에서 회원 삭제하거나 체크수정하기
 	@RequestMapping(value={"/updateordelete"})
 	public String memberDelete(HttpServletRequest request,Model model,@RequestParam("act_button") String actButton,@RequestParam(value="chk[]") List<String> chk){
 		
@@ -152,11 +142,8 @@ public class MemberController {
 		}		
 		return "forward:/adm/member/list";
 	}
-	
-	
-	
-	
-	
+		
+	//관리자페이지에서 회원들 포인트 관리 내역 보기
 	@RequestMapping(value = { "/pointlist" })
 	public String pointList(Model model) {
 
@@ -167,14 +154,13 @@ public class MemberController {
 	/*	model.addAttribute("totalPoint",memberService.getTotalPoint("js1_"));*/
 		
 		//전체포인트내용
-		model.addAttribute("allPointContent", memberService.getAllPointContent("js1_"));
-		
-		
-		
+		model.addAttribute("allPointContent", memberService.getAllPointContent("js1_"));	
 		
 		return "admin/member/point_list";
 	}
 	
+	
+	//관리자페이지에서 회원에게 포인트 추가또는 삭제
 	@RequestMapping(value={"/addpoint"})
 	public String addPoint(Model model,Point point){
 		memberService.addPoint(point);
