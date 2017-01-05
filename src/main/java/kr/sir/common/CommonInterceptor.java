@@ -1,31 +1,17 @@
 package kr.sir.common;
 
+import java.io.FileNotFoundException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
-import kr.sir.config.DataConfig;
-import kr.sir.service.install.InstallService;
 
 // 공통 인터셉터
 public class CommonInterceptor extends HandlerInterceptorAdapter {
 	
-	private InstallService installService;
+	private Prefix prefix = new Prefix(); 
 	
-	private DataConfig dataConfig;
-	
-	@Autowired
-	public void setInstallService(InstallService installService) {
-		this.installService = installService;
-	}
-	
-	@Autowired
-	public void setDataConfig(DataConfig dataConfig) {
-		this.dataConfig = dataConfig;
-	}
-
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -53,16 +39,17 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 		
 	}
 
+	private boolean existConfigTable() throws FileNotFoundException {
+		String table_prefix = prefix.getTablePrefix();
+		if(table_prefix != "")
+			return true;
+		return false;
+	}
+
 	private boolean isError(HttpServletRequest request, String string) {
 		return request.getServletPath().equals(string);
 	}
 
-	private boolean existConfigTable() {
-		int result = installService.existConfigTable(dataConfig.prefix());
-		if(result > 0) return true;
-		return false;
-	}
-	
 	private boolean isInstallPage(String servletPath) {
 		return servletPath.length() >= 8 && servletPath.substring(0, 8).equals("/install");
 	}

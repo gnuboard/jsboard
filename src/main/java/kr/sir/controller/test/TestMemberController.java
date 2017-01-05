@@ -16,7 +16,7 @@ public class TestMemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	@Value("${table.prefix}") 
+	@Value("${prefix}") 
 	private String prefix;
 
 	@RequestMapping(value="/", method = {RequestMethod.GET, RequestMethod.HEAD})

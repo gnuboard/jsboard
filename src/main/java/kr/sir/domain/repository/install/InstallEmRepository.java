@@ -142,8 +142,13 @@ public class InstallEmRepository {
 	public int existConfigTable(String prefix) {
 		String query = "SELECT COUNT(*) cnt FROM information_schema.tables "
 					+ "WHERE table_name = '" + prefix + "config'";
-		String result = em.createNativeQuery(query).getSingleResult().toString();
-		int resultInt = Integer.parseInt(result);
+		Object obj = em.createNativeQuery(query).getSingleResult();
+		System.out.println(obj.toString());
+		int resultInt = 0;
+		if(obj != null) {
+			String result = obj.toString();
+			resultInt = Integer.parseInt(result);
+		}
 		return resultInt;
 	}
 

@@ -31,7 +31,6 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 				.addResourceLocations("/resources/");
 	}
 	
-	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(commonInterceptor()).addPathPatterns("/**");

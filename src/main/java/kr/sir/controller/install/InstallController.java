@@ -1,5 +1,8 @@
 package kr.sir.controller.install;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 //import java.io.File;
 //import java.io.FileOutputStream;
 //import java.io.IOException;
@@ -58,35 +61,15 @@ public class InstallController {
 	
 	// 설정 결과 페이지로 이동
 	@RequestMapping(value = "/step/4")
-	public String result(Model model, ConfigForm configForm) {
+	public String result(Model model, ConfigForm configForm) throws FileNotFoundException, IOException {
 		// 1. schema로 db 생성
 		installService.createTable(new ClassPathResource("database.sql"), configForm.getTable_prefix());
 		
 		// 2. application.yml에 table_prefix 등록
-		// 아래 코드 정리, properties에 있는 값 DataConfig.prefix 에 가져오도록 셋팅하기
-//		OutputStream out = null;
-//		 try {
-//		     // create and set properties into properties object
-//		     Properties props = new Properties();
-//		     props.setProperty("table.prefix", configForm.getTable_prefix());
-//		     // get or create the file
-//		     File f = new File("src/main/resources/config.properties");
-//		     out = new FileOutputStream( f );
-//		     // write into it
-//		     DefaultPropertiesPersister p = new DefaultPropertiesPersister();
-//		     p.store(props, out, "");
-//		   } catch (Exception e ) {
-//		    e.printStackTrace();
-//		   } finally {
-//			   try {
-//				out.close();
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		   }
+		installService.writeConfigToYaml(configForm.getTable_prefix());
+		
 		// 3. member table에 관리자 정보 insert
-		adminInfoSave(configForm);
+//		adminInfoSave(configForm);
 		
 		// 4. config table에 설정 정보 insert
 		int result = installService.writeConfigInfo(configForm.getTable_prefix(), configForm);
