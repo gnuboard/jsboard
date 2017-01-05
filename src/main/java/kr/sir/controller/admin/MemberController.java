@@ -91,11 +91,11 @@ public class MemberController {
 			member.setAdult(0);
 		}		
 		
-		if(zipCode.length()>0){			
-			System.out.println("우편번호1:"+zipCode.substring(0, 3));
+		if(zipCode.length()>0 && !zipCode.equals("")){			
+			/*System.out.println("우편번호1:"+zipCode.substring(0, 3));
 			System.out.println("우편번호2:"+zipCode.substring(3));			
 			member.setZipCode1(zipCode.substring(0, 3));
-			member.setZipCode2(zipCode.substring(3));
+			member.setZipCode2(zipCode.substring(3));*/
 		}
 	/*	if(member.getAddressJibeon().length()<0){
 			member.setAddressJibeon("");
@@ -115,7 +115,7 @@ public class MemberController {
 		System.out.println("지번:"+member.getAddressJibeon());*/
 				
 		memberService.adminSavesMember(member);
-		return "admin/member/form";
+		return "admin/member/list";
 	}
 	
 	@RequestMapping(value={"/update"})

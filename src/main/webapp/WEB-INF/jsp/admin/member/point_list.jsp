@@ -18,7 +18,7 @@
 
         <div class="local_wr">
             <div class="local_ov">
-                <a href="${pageContext.request.contextPath}/adm/member/pointlist" class="btn_ov02">전체목록</a>
+                <a href="/adm/member/pointlist" class="btn_ov02">전체목록</a>
                 <span class="btn_ov01"><span class="ov_txt">전체 </span><span class="ov_num"> ${countPointlist} 건 </span></span>
                 <span class="btn_ov01"><span class="ov_txt">전체포인트 합계 </span><span class="ov_num"> <fmt:formatNumber value="${totalPoint}" pattern="#,###.##"/>포인트 </span></span>
             </div>                                                                                  
@@ -66,11 +66,7 @@
             <tbody>
             
             <c:if test="${! empty allPointContent }">
-	            <c:forEach var="pointContent" items="${allPointContent}" varStatus="i">
-	            	   
-	            	
-	            	
-	            	
+	            <c:forEach var="pointContent" items="${allPointContent}" varStatus="i"> 	            	
 	            <tr>
 	                <td class="td_chk">
 	                	<input type="hidden" name="memberid[${i}]" value="${pointContent.memberId}" id="mb_id_${i}">
