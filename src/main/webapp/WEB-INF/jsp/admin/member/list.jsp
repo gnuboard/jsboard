@@ -173,16 +173,17 @@
                     <td><c:if test="${fn:substring(member.emailCertify,0,2)=='20'}"><strong class="td_txt_color_1">인증</strong></c:if> <c:if test="${fn:substring(member.emailCertify,0,2)!='20'}">미인증</c:if></td>
                     <td>
                         <label for="mb_mailling_${i}" class="sound_only">메일수신</label>
-                        <input type="checkbox" id="mb_mailling_[${i}]" value="1" <c:if test="${! empty member.mailling}">checked</c:if> >
+                        <input type="checkbox" id="mb_mailling_[${i}]" value="1" <c:if test="${member.mailling=='1'}">checked</c:if> >
                     </td>
                     <td>
                         <label for="mb_open_${i}" class="sound_only">정보공개</label>
-                        <input type="checkbox" id="mb_open_[${i}]" value="1" <c:if test="${! empty member.open}">checked</c:if>  >
+                        <input type="checkbox" id="mb_open_[${i}]" value="1" <c:if test="${member.open=='1'}">checked</c:if>  >
                     </td>
                     <td class="td_left">${member.hpNo }</td>
                     <td>
                     	<c:choose>
-                      		<c:when test="${! empty leaveMsg || ! empty interceptMsg}">${leaveMsg}  ${interceptMsg}</c:when> 
+                      		<c:when test="${! empty leaveMsg  }">   ${leaveMsg}       </c:when> 
+                      		<c:when test="${! empty interceptMsg}"> ${interceptMsg}   </c:when>
            			  		<c:otherwise>정상</c:otherwise>
            			  	</c:choose> 
             		</td>
@@ -199,15 +200,15 @@
                     <td class="td_left">${member.nick}</td>
                     <td>
                         <label for="mb_adult_${i}" class="sound_only">성인인증</label>
-                        <input type="checkbox" name="mb_adult[${i}]" value="1" id="mb_adult_${i}" <c:if test="${! empty member.adult}">checked</c:if>>
+                        <input type="checkbox" name="mb_adult[${i}]" value="1" id="mb_adult_${i}" <c:if test="${member.adult=='1'}">checked</c:if>>
                     </td>
                     <td>
                         <label for="mb_sms_${i}" class="sound_only">SMS수신</label>
-                        <input type="checkbox" name="mb_sms[${i}]" id="mb_sms_${i}" value="1" <c:if test="${! empty member.sms}">checked</c:if>>
+                        <input type="checkbox" name="mb_sms[${i}]" id="mb_sms_${i}" value="1" <c:if test="${member.sms=='1'}">checked</c:if>>
                     </td>
                     <td>
                         <label for="mb_intercept_date_${i}" class="sound_only">접근차단</label>
-                        <input type="checkbox" <c:if test="${! empty member.interceptDate}">checked</c:if> value="${member.interceptDate}" id="mb_intercept_date_${i}">
+                        <input type="checkbox" <c:if test="${fn:substring(member.interceptDate,0,2)=='20'}">checked</c:if> value="${member.interceptDate}" id="mb_intercept_date_${i}">
                     </td>
                     <td class="td_left">${member.tel}<!--<?php echo get_text($row['mb_tel']);  --></td>
                     

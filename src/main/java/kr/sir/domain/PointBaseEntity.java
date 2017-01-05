@@ -49,7 +49,7 @@ public abstract class PointBaseEntity {
 	
 	@Column(name="po_expire_date", columnDefinition = "date NOT NULL default '0000-00-00'")
 	@Temporal(TemporalType.DATE)
-	private Date expireDate;
+	private Date expireDate=new Date();
 	
 	@Column(name="po_mb_point", columnDefinition = "int(11) NOT NULL default '0'")
 	private int memberPoint=0;

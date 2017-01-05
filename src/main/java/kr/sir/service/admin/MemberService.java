@@ -28,8 +28,8 @@ public interface MemberService {
 	//회원한명검색
 	public Member getOneMemer(String memberId);
 	
-	//관리자가 회원 추가
-	public void adminSavesMember(Member member);
+	//관리자가 회원 추가,수정
+	public void adminSavesMember(Member member,String isCertify);
 	
 	//관리자가 회원 삭제
 	public void adminDeletesMember(int id);

@@ -85,11 +85,7 @@ public class MemberController {
 	@RequestMapping(value={"/add"})
 	public String memberAdd(Member member,String zipCode,String isCertify){
 	
-		if(isCertify.equals("0")){
-			member.setAdult(0);
-		}else if(!member.getCertify().equals("ipin") && !member.getCertify().equals("hp")){
-			member.setAdult(0);
-		}		
+			
 		
 		if(zipCode.length()>0 && !zipCode.equals("")){			
 			/*System.out.println("우편번호1:"+zipCode.substring(0, 3));
@@ -114,14 +110,14 @@ public class MemberController {
 		member.setOpenDate(new Date());
 		System.out.println("지번:"+member.getAddressJibeon());*/
 				
-		memberService.adminSavesMember(member);
+		memberService.adminSavesMember(member,isCertify);
 		return "redirect:./list";
 	}
 	
 	@RequestMapping(value={"/update"})
-	public String memberUpdate(Member member){
+	public String memberUpdate(Member member,String isCertify){
 		
-		memberService.adminSavesMember(member);
+		memberService.adminSavesMember(member,isCertify);
 		return "redirect:./list";
 	}
 	

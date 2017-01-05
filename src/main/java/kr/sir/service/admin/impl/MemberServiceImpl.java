@@ -79,7 +79,12 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	//관리자가 회원추가
-	public void adminSavesMember(Member member){
+	public void adminSavesMember(Member member,String isCertify){
+		if(isCertify.equals("0")){
+			member.setAdult(0);
+		}else if(!member.getCertify().equals("ipin") && !member.getCertify().equals("hp")){
+			member.setAdult(0);
+		}	
 		memberRepository.save(member);
 	}
 	

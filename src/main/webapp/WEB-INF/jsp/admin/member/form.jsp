@@ -114,16 +114,16 @@ auth_check($auth[$sub_menu], 'w');
             <tr>
                 <th scope="row">본인확인</th>
                 <td>
-                    <input type="radio" name="isCertify" value="1" id="mb_certify_yes" <c:if test="${! empty member.certify}">checked</c:if> >
+                    <input type="radio" name="isCertify" value="1" id="mb_certify_yes" <c:if test="${member.certify=='1'}">checked</c:if> >
                     <label for="mb_certify_yes">예</label>
-                    <input type="radio" name="isCertify" value="0" id="mb_certify_no" <c:if test="${empty member.certify}">checked</c:if> >
+                    <input type="radio" name="isCertify" value="0" id="mb_certify_no" <c:if test="${empty member.certify||member.certify=='0'}">checked</c:if> >
                     <label for="mb_certify_no">아니오</label>
                 </td>
                 <th scope="row"><label for="mb_adult">성인인증</label></th>
                 <td>
-                    <input type="radio" name="adult" value="1" id="mb_adult_yes" <c:if test="${! empty member.adult}">checked</c:if>>
+                    <input type="radio" name="adult" value="1" id="mb_adult_yes" <c:if test="${member.adult=='1'}">checked</c:if>>
                     <label for="mb_adult_yes">예</label>
-                    <input type="radio" name="adult" value="0" id="mb_adult_no" <c:if test="${empty member.adult}">checked</c:if>>
+                    <input type="radio" name="adult" value="0" id="mb_adult_no" <c:if test="${empty member.adult||member.adult=='0'}">checked</c:if>>
                     <label for="mb_adult_no">아니오</label>
                 </td>
             </tr>
@@ -159,25 +159,25 @@ auth_check($auth[$sub_menu], 'w');
             <tr>
                 <th scope="row">메일 수신</th>
                 <td>
-                    <input type="radio" name="mb_mailling" value="1" id="mb_mailling_yes" <c:if test="${member.mailling==1}">checked</c:if>  >
+                    <input type="radio" name="mailling" value="1" id="mb_mailling_yes" <c:if test="${member.mailling==1}">checked</c:if>  >
                     <label for="mb_mailling_yes">예</label>
-                    <input type="radio" name="mb_mailling" value="0" id="mb_mailling_no" <c:if test="${member.mailling==0}">checked</c:if>>
+                    <input type="radio" name="mailling" value="0" id="mb_mailling_no" <c:if test="${member.mailling==0}">checked</c:if>>
                     <label for="mb_mailling_no">아니오</label>
                 </td>
                 <th scope="row"><label for="mb_sms_yes">SMS 수신</label></th>
                 <td>
-                    <input type="radio" name="mb_sms" value="1" id="mb_sms_yes" <c:if test="${member.sms==1}">checked</c:if> >
+                    <input type="radio" name="sms" value="1" id="mb_sms_yes" <c:if test="${member.sms==1}">checked</c:if> >
                     <label for="mb_sms_yes">예</label>
-                    <input type="radio" name="mb_sms" value="0" id="mb_sms_no" <c:if test="${member.sms==0}">checked</c:if>>
+                    <input type="radio" name="sms" value="0" id="mb_sms_no" <c:if test="${member.sms==0}">checked</c:if>>
                     <label for="mb_sms_no">아니오</label>
                 </td>
             </tr>
             <tr>
                 <th scope="row"><label for="mb_open">정보 공개</label></th>
                 <td colspan="3">
-                    <input type="radio" name="mb_open" value="1" id="mb_open_yes" <c:if test="${member.open==1}">checked</c:if>>
+                    <input type="radio" name="open" value="1" id="mb_open_yes" <c:if test="${member.open==1}">checked</c:if>>
                     <label for="mb_open_yes">예</label>
-                    <input type="radio" name="mb_open" value="0" id="mb_open_no" <c:if test="${member.open==0}">checked</c:if>>
+                    <input type="radio" name="open" value="0" id="mb_open_no" <c:if test="${member.open==0}">checked</c:if>>
                     <label for="mb_open_no">아니오</label>
                 </td>
             </tr>

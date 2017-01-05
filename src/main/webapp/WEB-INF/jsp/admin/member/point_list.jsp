@@ -99,7 +99,7 @@
         </div>
         </form>
 
-        <form action="/adm/member/addpoint">
+        <form action="/adm/member/addpoint" method="post">
         <div class="add_form">
             <h2 class="h2_frm">개별회원 포인트 증감 설정</h2>
             <div class="table_basic table_form">
