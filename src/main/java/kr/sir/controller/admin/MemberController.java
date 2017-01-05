@@ -115,14 +115,14 @@ public class MemberController {
 		System.out.println("지번:"+member.getAddressJibeon());*/
 				
 		memberService.adminSavesMember(member);
-		return "admin/member/list";
+		return "redirect:./list";
 	}
 	
 	@RequestMapping(value={"/update"})
 	public String memberUpdate(Member member){
 		
 		memberService.adminUpdatesMember(member);
-		return "admin/member/form";
+		return "adm/member/form";
 	}
 	
 	
@@ -140,7 +140,7 @@ public class MemberController {
 				memberService.adminDeletesMember(Integer.parseInt(id));
 			}
 		}		
-		return "forward:/adm/member/list";
+		return "forward:./list";
 	}
 		
 	//관리자페이지에서 회원들 포인트 관리 내역 보기

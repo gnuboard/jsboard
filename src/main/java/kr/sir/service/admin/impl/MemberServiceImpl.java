@@ -124,11 +124,9 @@ public class MemberServiceImpl implements MemberService{
 		
 		if((point.getPoint()<0) &&( point.getPoint() * (-1) > point.getMemberPoint())){
 			msg="포인트를 깍는 경우 현재 포인트보다 작으면 안됩니다.";
-		}
+		}		
 		
-		/*point.set
-		
-		pointRepository.save(point);*/
+		pointRepository.save(point);
 		return "";
 	}
 	

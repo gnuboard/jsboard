@@ -71,13 +71,13 @@
                     <div class="gnb_oparea">
                         <h3>회원관리</h3>
                         <ul>
-                            <li><a href="/adm/member/list">회원관리</a></li>
-                           <!--  <li><a href="./mail_list.html">회원메일발송</a></li>
+                            <li><a href="/adm/member/list"><b>회원관리</b></a></li>
+                            <li><a href="./mail_list.html">회원메일발송</a></li>
                             <li><a href="./visit_list.html">접속자집계</a></li>
                             <li><a href="./visit_search.html">접속자검색</a></li>
                             <li><a href="./visit_delete.html">접속자로그삭제</a></li>
-                            <li><a href="/adm/member/pointlist">포인트관리 </a></li>
-                            <li><a href="./poll_list.html">투표관리 </a></li> -->
+                            <li><a href="/adm/member/pointlist"><b>포인트관리</b> </a></li>
+                            <li><a href="./poll_list.html">투표관리 </a></li> 
                         </ul>
                     </div>
                 </div>
