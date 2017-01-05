@@ -2,6 +2,7 @@ package kr.sir.controller.test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,6 +63,11 @@ public class InstallTestController {
 	public String getCountAllMembers() throws FileNotFoundException, IOException {
 		String count = "count : " + memberService.getCountAllMembers();
 		return count;
+	}
+	
+	@RequestMapping(value="/date", method = {RequestMethod.GET, RequestMethod.HEAD})
+	public String date() throws FileNotFoundException, IOException {
+		return new Date().toString();
 	}
 	
 	@RequestMapping(value="/config", method = {RequestMethod.GET, RequestMethod.HEAD})
