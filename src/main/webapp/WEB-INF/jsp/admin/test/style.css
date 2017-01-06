@@ -1,0 +1,150 @@
+@charset "utf-8";
+
+/* 초기화 */
+html {overflow-y:scroll}
+body {margin:0;padding:0;font-size:0.75em;font-family: Malgun Gothic,"맑은 고딕",AppleGothic,Dotum,"돋움", sans-serif;}
+html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
+h1, h2, h3, h4, h5, h6 {font-size:1em;font-family:Malgun Gothic,"맑은 고딕",AppleGothic,Dotum,"돋움", sans-serif;}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
+
+ul{margin:0;padding:0;list-style:none}
+li,dt,dd,ol{margin:0;padding:0}
+ol{list-style-position:inside}
+legend {position:absolute;margin:0;padding:0;font-size:0;line-height:0;text-indent:-9999em;overflow:hidden}
+label, input, button, select, img {vertical-align:middle}
+input, button {margin:0;padding:0;font-family:Malgun Gothic,"맑은 고딕",AppleGothic,Dotum,"돋움", sans-serif;font-size:1em}
+button,input[type="submit"] {cursor:pointer}
+textarea, select {font-family:Malgun Gothic,"맑은 고딕",AppleGothic,Dotum,"돋움", sans-serif;;font-size:1em}
+select {margin:0}
+p {margin:0;padding:0;word-break:break-all}
+pre {overflow-x:scroll;font-size:1.1em}
+a:link, a:visited {color:#000;text-decoration:none}
+
+#container{margin:30px auto;max-width:1000px;position:relative}
+#container .container_tit{margin:20px 0 10px;font-size:1.25em}
+
+/*테이블*/
+.table_basic table{width:100%;border-collapse:collapse}
+.table_basic table caption{padding:0;font-size:0;line-height:0;overflow:hidden;text-indent:-999px;width:0;height:0}
+.table_basic table thead th{background:#f3f3f3;padding:10px;border-top:1px solid #333;border-bottom:1px solid #ddd}
+.table_basic table tbody td{padding:10px;border-top:1px solid #eee;border-bottom:1px solid #eee;text-align:left}
+.table_basic table tbody tr:hover{background:#fafafa}
+.table_form table tbody th{padding:10px;border-top:1px solid #ddd;border-bottom:1px solid #ddd;background:#f3f3f3;text-align:left;width:150px}
+.table_form table tbody td{padding:10px;border-top:1px solid #eee;border-bottom:1px solid #eee;background:#fff;text-align:left}
+.table_form table tbody td textarea{width:98%;min-height:300px;padding:5px 1%;border:1px solid #ccc;background:#fff}
+.td_num_c{text-align:center !important;width:50px}
+.td_chk{text-align:center !important;width:30px}
+.td_date{text-align:center !important;width:50px}
+.td_name{width:100px}
+.sound_only {display:inline-block !important;position:absolute;top:0;left:0;margin:0 !important;padding:0 !important;width:1px !important;height:1px !important;font-size:0;line-height:0;border:0 !important;overflow:hidden !important}
+.frm_input{height:35px;border:1px solid #ccc;line-height:35px;;vertical-align: middle;}
+.frm_input_full{width:100%}
+
+/*버튼*/
+.btn{height:40px;background:#eee;border:0;padding:0 15px;border-radius:3px;vertical-align:middle}
+a.btn{display:inline-block;line-height:40px}
+a.btn:hover,.btn:hover{background:#ccc;}
+a.btn_b02,.btn_b02{background:#444;color:#fff;}
+a.btn_b02:hover,.btn_b02:hover{background:#000}
+a.btn_admin,.btn_admin{background:#ff0000;color:#fff;}
+a.btn_admin:hover,.btn_admin:hover{background:#d20000}
+.btn_submit{background:#444;color:#fff;}
+.btn_submit:hover{background:#000}
+.btn_confirm{text-align:center;margin:20px 0}
+
+/*게시판*/
+.bo_cate{margin:10px 0}
+.bo_cate h2{position:absolute;padding:0;font-size:0;line-height:0;overflow:hidden;text-indent:-999px;width:0;height:0}
+.bo_cate ul{margin-left:1px}
+.bo_cate ul:after{display:block;visibility:hidden;clear:both;content:""}
+.bo_cate ul li{float:left;min-width:100px;text-align:center;background:#f3f3f3;border:1px solid #ddd;margin-left:-1px}
+.bo_cate ul li.on{background:#3f51b5}
+.bo_cate ul li a{color:#555;display:block;;padding:10px;}
+.bo_cate ul li.on a{color:#fff}
+
+.bo_fx:after{display:block;visibility:hidden;clear:both;content:""}
+#bo_list_total{float:left;position:Absolute;top:0;right:0;;color:#666;font-size:0.92em}
+.bo_fx .btn_bo_user,.bo_v_com{float:right;margin:10px 0}
+.bo_fx .btn_bo_adm,.bo_v_nb{float:left;margin:10px 0}
+
+#bo_list .bo_cate_link{font-weight:bold;color:#3f51b5}
+#bo_list .bo_notice{background:#e7effb;font-weight:bold}
+#bo_list .bo_notice .notice_icon{display:inline-block;padding:2px 3px;background:#ff40a8;font-size:0.92em;color:#fff}
+
+/*게시판 view*/
+#bo_v_title{;padding:15px 0}
+#bo_v_title .bo_view_cate{font-size:0.92em;display:inline-block;line-height:19px;background:#3f51b5;color:#fff;font-weight:normal;padding:0 5px;}
+#bo_v_title strong{margin:5px 0 0;display:block;font-size:1.5em}
+
+#bo_v_info{padding:10px  ;border-bottom:1px solid #ddd;border-top:1px solid #ddd;background:#f3f3f3;color:#666}
+#bo_v_info:after{display:block;visibility:hidden;clear:both;content:""}
+#bo_v_info h2 {position:absolute;font-size:0;line-height:0;overflow:hidden}
+#bo_v_info .if_right{float:right;}
+
+#bo_v_file {;padding:10px 0;border:1px solid #ddd}
+#bo_v_file h2 {position:absolute;font-size:0;line-height:0;overflow:hidden}
+#bo_v_file li{;padding:5px 15px ;font-size:0.92em;color:#888}
+#bo_v_file li:after{display:block;visibility:hidden;clear:both;content:""}
+#bo_v_file li .bo_v_file_cnt{float:right}
+#bo_v_file li a{color:#3f51b5;font-weight:normal;text-decoration:underline}
+
+#bo_v_link {margin-top:-1px;padding:10px 0;border:1px solid #ddd}
+#bo_v_link h2 {position:absolute;font-size:0;line-height:0;overflow:hidden}
+#bo_v_link li{padding:5px 15px ;color:#666;font-size:0.92em;color:#888}
+#bo_v_link li:after{display:block;visibility:hidden;clear:both;content:""}
+#bo_v_link li .bo_v_link_cnt{float:right;}
+#bo_v_link li a{color:#3f51b5;font-weight:normal;text-decoration:underline}
+
+#bo_v_atc {padding:20px 0;}
+#bo_v_atc h2 {position:absolute;font-size:0;line-height:0;overflow:hidden}
+#bo_v_con{line-height:1.7em;word-break: break-all; overflow: hidden;margin:10px 0}
+#bo_v_btn{position:relative;text-align:right;margin:20px 0 0;}
+#bo_v_btn:after{display:block;visibility:hidden;clear:both;content:""}
+#bo_v_btn .bo_v_scrap{float:left}
+#bo_v_btn .bo_v_good{float:right}
+#bo_v_btn  a{display:inline-block;padding:0 10px;line-height:30px;border:1px solid #aaa;border-radius:3px;}
+#bo_v_btn  a:hover{background-color:#f3f3f3}
+#bo_v_btn .bo_v_scrap .sns{width:30px;height:30px;padding:0;text-indent:999999px;overflow:hidden;vertical-align:top}
+.sns_f{background:url(./img/facebook.png) no-repeat 50% 50%}
+.sns_t{background:url(./img/twitter.png) no-repeat 50% 50%}
+.sns_g{background:url(./img/google.png) no-repeat 50% 50%}
+
+
+/*댓글*/
+#bo_vc{margin:20px 0}
+#bo_vc h2 {position:absolute;font-size:0;line-height:0;overflow:hidden}
+#bo_vc .cmt_ul{border-bottom:1px solid #ddd;background:#f3f3f3}
+#bo_vc .cmt_ul li{position:relative}
+#bo_vc .cmt_li{border-top:1px solid #ddd;border-bottom:0;padding:20px 20px 0}
+#bo_vc .cmt_ul ul{}
+#bo_vc .cmt_li_2{border-top:1px dotted #ddd;padding:10px 0 0 20px;background:url(./img/reply.gif) no-repeat 5px 12px  }
+#bo_vc .if_member{font-size:1.083em}
+#bo_vc .if_date{color:#888}
+#bo_vc .if_ip{color:#888}
+#bo_vc .cmt_con{margin:10px 0 20px;line-height:1.7em}
+#bo_vc .cmt_btn{position:absolute;top:20px;right:20px}
+#bo_vc .cmt_li_2 .cmt_btn{position:absolute;top:20px;right:0px}
+#bo_vc .cmt_btn a{display:inline-block;background:#fff;padding:5px;line-height:0.92em;border:1px solid #ddd;color:#777}
+
+/*댓글입력*/
+#bo_vc_w{background:#f3f3f3;border:1px solid #ddd;padding:20px;}
+#bo_vc_w h2 {position:absolute;font-size:0;line-height:0;overflow:hidden}
+#bo_vc_w .cmt_wt_if{margin:5px 0 }
+#bo_vc_w .cmt_wt_if label{font-size:0.92em;display:inline-block;margin-right:5px;color:#888}
+#bo_vc_w .captcha{margin:5px 0 }
+#bo_vc_w .cmt_wt_text{clear:both}
+#bo_vc_w .cmt_wt_wr{position:relative;clear:both;padding-right:88px}
+#bo_vc_w .cmt_wt_wr .btn_submit{position:absolute;top:0;right:0;height:72px;width:80px;background:#fff;background:#3f51b5;color:#fff;border:0}
+#bo_vc_w .cmt_wt_wr .btn_submit:hover{background:#4962ea}
+#bo_vc_w .cmt_wt_wr textarea{width:98%;height:60px;padding:5px 1%;border:1px solid #aaa;}
+#bo_vc_sns{margin-left:10px;float:right}
+#bo_vc_sns label{display:inline-block;width:20px;height:20px;text-indent:-99999px;overflow:hidden}
+
+/*게시판 검색*/
+#bo_sch{text-align:center}
+#bo_sch select{height: 29px;border-color:#ccc}
+#bo_sch .btn_submit{height: 29px;border:0;background:#444;color:#fff;padding:0 5px}
+#bo_sch .frm_input{height: 27px;line-height: 27px;}
+
+/*게시판 글쓰기*/
+#bo_w h2{position:absolute;font-size:0;line-height:0;overflow:hidden}

@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.sir.common.CommonUtil;
 import kr.sir.config.DataConfig;
-import kr.sir.service.admin.ConfigService;
 import kr.sir.service.admin.MemberService;
 import kr.sir.service.install.InstallService;
 
 @RestController
 @RequestMapping("/test")
-public class InstallTestController {
+public class TestInstallController {
 	
 	
 	private InstallService installService;
@@ -24,8 +24,6 @@ public class InstallTestController {
 	private MemberService memberService; 
 	
 	private DataConfig dataConfig;
-	
-	private ConfigService configService;
 	
 	@Autowired
 	public void setInstallService(InstallService installService) {
@@ -40,11 +38,6 @@ public class InstallTestController {
 	@Autowired
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
-	}
-
-	@Autowired
-	public void setConfigService(ConfigService configService) {
-		this.configService = configService;
 	}
 
 	@RequestMapping(value="/file/write/", method = {RequestMethod.GET, RequestMethod.HEAD})
@@ -73,5 +66,10 @@ public class InstallTestController {
 	@RequestMapping(value="/file/path", method = {RequestMethod.GET, RequestMethod.HEAD})
 	public String resourcePath() throws FileNotFoundException, IOException {
 		return this.getClass().getResource("/application.yml").getFile();
+	}
+	
+	@RequestMapping(value="/yml/prefix", method = {RequestMethod.GET, RequestMethod.HEAD})
+	public String yamlPrefix() throws FileNotFoundException {
+		return CommonUtil.getTablePrefix();
 	}
 }

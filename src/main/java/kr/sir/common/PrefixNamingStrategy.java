@@ -1,7 +1,5 @@
 package kr.sir.common;
 
-import java.io.FileNotFoundException;
-
 import org.hibernate.boot.model.naming.Identifier;
 import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
 import org.hibernate.cfg.ImprovedNamingStrategy;
@@ -18,15 +16,7 @@ public class PrefixNamingStrategy extends PhysicalNamingStrategyStandardImpl{
 	}
 
 	protected String classToTableName(String className) {
-		String tablePrefix = "";
-		try {
-			tablePrefix = CommonUtil.getTablePrefix();
-		} catch (FileNotFoundException e) {
-			System.out.println("파일이 존재하지 않습니다. "+ e.getMessage());
-		}
-		return STRATEGY_INSTANCE.classToTableName(tablePrefix + className);
+		return STRATEGY_INSTANCE.classToTableName(CommonUtil.getTablePrefix() + className);
 	}
-
-	
 
 }

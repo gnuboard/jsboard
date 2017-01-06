@@ -1,25 +1,22 @@
 package kr.sir.common;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
-import org.yaml.snakeyaml.Yaml;
+import org.springframework.beans.factory.config.YamlMapFactoryBean;
+import org.springframework.core.io.ClassPathResource;
 
 public class CommonUtil {
 
-	public static String getTablePrefix() throws FileNotFoundException {
-		Yaml yaml = new Yaml();
-		InputStream io = new FileInputStream(new File("src/main/resources/config.yml"));
+	public static String getTablePrefix(){
+		YamlMapFactoryBean yaml = new YamlMapFactoryBean();
+		yaml.setResources(new ClassPathResource("config.yml"));
+		
+		Map<String, Object> map = yaml.getObject();
 
-		@SuppressWarnings("unchecked")
-		Map<String, Object> map = (Map<String, Object>) yaml.load(io);
 		Object prefixObj = map.get("prefix");
 		if(prefixObj != null)
 			return prefixObj.toString();

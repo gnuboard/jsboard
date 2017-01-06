@@ -47,6 +47,10 @@
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<dependency> 
+			<groupId>com.h2database</groupId> 
+			<artifactId>h2</artifactId> 
+		</dependency> 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -72,6 +76,11 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+		<dependency>
+		    <groupId>org.yaml</groupId>
+		    <artifactId>snakeyaml</artifactId>
+		</dependency>
 	</dependencies>
 	
 	<build>
@@ -92,8 +101,8 @@
 			<properties> 
 				<!-- Default spring profile to use --> 
 				<spring.profiles.active>cafe24-test</spring.profiles.active> 
-				<!-- Default environment  -->
-				<environment>test</environment> 
+<!-- 				Default environment  -->
+<!-- 				<environment>test</environment>  -->
 			</properties>
 	 	</profile>
 	</profiles>

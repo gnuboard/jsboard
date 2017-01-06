@@ -37,7 +37,7 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 		
 	}
 
-	private boolean existConfigTable() throws FileNotFoundException {
+	private boolean existConfigTable() {
 		String table_prefix = CommonUtil.getTablePrefix();
 		if(table_prefix != "")
 			return true;

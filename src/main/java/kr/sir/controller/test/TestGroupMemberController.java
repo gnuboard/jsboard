@@ -13,7 +13,7 @@ import kr.sir.service.test.GroupMemberService;
 
 @Controller
 @RequestMapping("/test/groupMember")
-public class GroupMemberController {
+public class TestGroupMemberController {
 
 	private GroupMemberService groupMemberService;
 

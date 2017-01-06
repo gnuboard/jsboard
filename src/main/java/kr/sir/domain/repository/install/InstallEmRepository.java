@@ -27,7 +27,7 @@ public class InstallEmRepository {
 	private final String DEFAULT_PREFIX = "js1_";
 	
 	// 전체 table 생성
-	@Transactional
+	@Transactional(dontRollbackOn = Exception.class)
 	public void createTable(ClassPathResource classPathResource, String prefix) {
 		BufferedReader br = null;
 		
