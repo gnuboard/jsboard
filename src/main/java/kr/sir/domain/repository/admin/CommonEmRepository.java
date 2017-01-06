@@ -16,6 +16,7 @@ public class CommonEmRepository {
 	@PersistenceContext
 	EntityManager em;
 	
+	// 검색
 	public List<?> search(String keyword, String searchWord, Object entity) {
 		String query = "select * from "
 					+ CommonUtil.getTablePrefix() + entity.getClass().getSimpleName().toLowerCase()

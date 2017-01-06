@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS `js1_auth` (
 
 DROP TABLE IF EXISTS `js1_board`;
 CREATE TABLE IF NOT EXISTS `js1_board` (
-  `bo_id` smallint(6) NOT NULL auto_increment,
   `bo_table` varchar(20) NOT NULL DEFAULT '',
   `gr_id` varchar(255) NOT NULL DEFAULT '',
   `bo_subject` varchar(255) NOT NULL DEFAULT '',
@@ -103,12 +102,12 @@ CREATE TABLE IF NOT EXISTS `js1_board` (
   `bo_8` varchar(255) NOT NULL DEFAULT '',
   `bo_9` varchar(255) NOT NULL DEFAULT '',
   `bo_10` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`bo_id`)
+  PRIMARY KEY (`bo_table`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `js1_board_file`;
 CREATE TABLE IF NOT EXISTS `js1_board_file` (
-  `bo_id` smallint(6) NOT NULL default '0',
+  `bo_table` varchar(20) NOT NULL default '',
   `wr_id` int(11) NOT NULL default '0',
   `bf_no` int(11) NOT NULL default '0',
   `bf_source` varchar(255) NOT NULL default '',
@@ -120,19 +119,31 @@ CREATE TABLE IF NOT EXISTS `js1_board_file` (
   `bf_height` smallint(6) NOT NULL default '0',
   `bf_type` tinyint(4) NOT NULL default '0',
   `bf_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
-  PRIMARY KEY  (`bo_id`,`wr_id`,`bf_no`)
+  PRIMARY KEY  (`bo_table`,`wr_id`,`bf_no`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `js1_board_good`;
 CREATE TABLE IF NOT EXISTS `js1_board_good` (
   `bg_id` int(11) NOT NULL auto_increment,
-  `bo_id` smallint(6) NOT NULL default '0',
+  `bo_table` varchar(20) NOT NULL default '',
   `wr_id` int(11) NOT NULL default '0',
   `mb_id` varchar(20) NOT NULL default '',
   `bg_flag` varchar(255) NOT NULL default '',
   `bg_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`bg_id`),
-  UNIQUE KEY `fkey1` (`bo_id`,`wr_id`,`mb_id`)
+  UNIQUE KEY `fkey1` (`bo_table`,`wr_id`,`mb_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `js1_board_new`;
+CREATE TABLE IF NOT EXISTS `js1_board_new` (
+  `bn_id` int(11) NOT NULL auto_increment,
+  `bo_table` varchar(20) NOT NULL default '',
+  `wr_id` int(11) NOT NULL default '0',
+  `wr_parent` int(11) NOT NULL default '0',
+  `bn_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  `mb_id` varchar(20) NOT NULL default '',
+  PRIMARY KEY  (`bn_id`),
+  KEY `mb_id` (`mb_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `js1_config`;
@@ -685,52 +696,4 @@ CREATE TABLE IF NOT EXISTS `js1_menu` (
   `me_use` tinyint(4) NOT NULL DEFAULT '0',
   `me_mobile_use` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`me_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `js1_write`;
-CREATE TABLE IF NOT EXISTS `js1_write` (
-  `wr_id` int(11) NOT NULL AUTO_INCREMENT,
-  `bo_id` smallint(6) NOT NULL default '0',
-  `wr_num` int(11) NOT NULL DEFAULT '0',
-  `wr_reply` varchar(10) NOT NULL,
-  `wr_parent` int(11) NOT NULL DEFAULT '0',
-  `wr_is_comment` tinyint(4) NOT NULL DEFAULT '0',
-  `wr_comment` int(11) NOT NULL DEFAULT '0',
-  `wr_comment_reply` varchar(5) NOT NULL,
-  `ca_name` varchar(255) NOT NULL,
-  `wr_option` set('html1','html2','secret','mail') NOT NULL,
-  `wr_subject` varchar(255) NOT NULL,
-  `wr_content` text NOT NULL,
-  `wr_link1` text NOT NULL,
-  `wr_link2` text NOT NULL,
-  `wr_link1_hit` int(11) NOT NULL DEFAULT '0',
-  `wr_link2_hit` int(11) NOT NULL DEFAULT '0',
-  `wr_hit` int(11) NOT NULL DEFAULT '0',
-  `wr_good` int(11) NOT NULL DEFAULT '0',
-  `wr_nogood` int(11) NOT NULL DEFAULT '0',
-  `mb_id` varchar(20) NOT NULL,
-  `wr_password` varchar(255) NOT NULL,
-  `wr_name` varchar(255) NOT NULL,
-  `wr_email` varchar(255) NOT NULL,
-  `wr_homepage` varchar(255) NOT NULL,
-  `wr_datetime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `wr_file` tinyint(4) NOT NULL DEFAULT '0',
-  `wr_last` varchar(19) NOT NULL,
-  `wr_ip` varchar(255) NOT NULL,
-  `wr_facebook_user` varchar(255) NOT NULL,
-  `wr_twitter_user` varchar(255) NOT NULL,
-  `wr_1` varchar(255) NOT NULL,
-  `wr_2` varchar(255) NOT NULL,
-  `wr_3` varchar(255) NOT NULL,
-  `wr_4` varchar(255) NOT NULL,
-  `wr_5` varchar(255) NOT NULL,
-  `wr_6` varchar(255) NOT NULL,
-  `wr_7` varchar(255) NOT NULL,
-  `wr_8` varchar(255) NOT NULL,
-  `wr_9` varchar(255) NOT NULL,
-  `wr_10` varchar(255) NOT NULL,
-  PRIMARY KEY (`wr_id`),
-  KEY `wr_board` (`wr_id`,`bo_id`),
-  KEY `wr_num_reply_parent` (`wr_num`,`wr_reply`,`wr_parent`),
-  KEY `wr_is_comment` (`wr_is_comment`,`wr_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;

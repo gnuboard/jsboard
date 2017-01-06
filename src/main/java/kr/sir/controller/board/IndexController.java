@@ -1,14 +1,14 @@
-package kr.sir.controller.homepage;
+package kr.sir.controller.board;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value="/index")
-public class HomeMainController {
+public class IndexController {
 
 	@RequestMapping(value="")
 	public String index() {
-		return "/index";
+		return "/board/index";
 	}
 }

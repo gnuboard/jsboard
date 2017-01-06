@@ -2,6 +2,8 @@ package kr.sir.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.Data;
@@ -10,7 +12,11 @@ import lombok.Data;
 @Data
 public class Board {
 
-	@Id @Column(name = "bo_table", columnDefinition = "varchar(20) NOT NULL DEFAULT ''")
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "bo_id", columnDefinition = "shortint(6) NOT NULL")
+	private int id;
+	
+	@Column(name = "bo_table", columnDefinition = "varchar(20) NOT NULL DEFAULT ''")
 	private String table;
 	
 	@Column(name="gr_id", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")

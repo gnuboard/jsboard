@@ -9,5 +9,6 @@
 <body>
 
 <h3>메인 페이지</h3>
+<a href="/board/list">게시판 가기</a>
 </body>
-</html>
+</html> 

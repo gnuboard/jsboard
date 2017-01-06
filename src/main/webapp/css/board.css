@@ -52,6 +52,21 @@ a.btn_admin:hover,.btn_admin:hover{background:#d20000}
 .btn_submit:hover{background:#000}
 .btn_confirm{text-align:center;margin:20px 0}
 
+/*pagination*/
+.pagination{text-align:center;margin:30px 0}
+.pagination h2 {position:absolute;font-size:0;line-height:0;overflow:hidden}
+.pg_wr{display:inline-block;padding:0;margin:0;}
+.pg_wr a{color:#9f9f9f;display:inline-block;float: left;padding: 0 10px;line-height:30px;text-decoration: none;border: 1px solid #ddd;margin-left:-1px}
+.pg_wr a:hover{background-color:#f3f3f3}
+.pg_wr a:first-child{border-top-left-radius:5px;border-bottom-left-radius:5px;}
+.pg_wr a:last-child{border-top-right-radius:5px;border-bottom-right-radius:5px;}
+.pg_wr a.active{background:#3f51b5;color:#fff;}
+.pg_wr .first{background:url(../img/page_1.png) 50% 50% no-repeat;width:30px;padding:0;text-indent:-999px;overflow:hidden}
+.pg_wr .prev{background:url(../img/page_2.png) 50% 50% no-repeat;width:30px;padding:0;text-indent:-999px;overflow:hidden}
+.pg_wr .next{background:url(../img/page_3.png) 50% 50% no-repeat;width:30px;padding:0;text-indent:-999px;overflow:hidden}
+.pg_wr .last{background:url(../img/page_4.png) 50% 50% no-repeat;width:30px;padding:0;text-indent:-999px;overflow:hidden}
+
+
 /*게시판*/
 .bo_cate{margin:10px 0}
 .bo_cate h2{position:absolute;padding:0;font-size:0;line-height:0;overflow:hidden;text-indent:-999px;width:0;height:0}
@@ -105,9 +120,9 @@ a.btn_admin:hover,.btn_admin:hover{background:#d20000}
 #bo_v_btn  a{display:inline-block;padding:0 10px;line-height:30px;border:1px solid #aaa;border-radius:3px;}
 #bo_v_btn  a:hover{background-color:#f3f3f3}
 #bo_v_btn .bo_v_scrap .sns{width:30px;height:30px;padding:0;text-indent:999999px;overflow:hidden;vertical-align:top}
-.sns_f{background:url(./img/facebook.png) no-repeat 50% 50%}
-.sns_t{background:url(./img/twitter.png) no-repeat 50% 50%}
-.sns_g{background:url(./img/google.png) no-repeat 50% 50%}
+.sns_f{background:url(../img/facebook.png) no-repeat 50% 50%}
+.sns_t{background:url(../img/twitter.png) no-repeat 50% 50%}
+.sns_g{background:url(../img/google.png) no-repeat 50% 50%}
 
 
 /*댓글*/

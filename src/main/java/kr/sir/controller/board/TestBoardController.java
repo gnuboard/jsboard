@@ -1,4 +1,4 @@
-package kr.sir.controller.homepage;
+package kr.sir.controller.board;
 
 public class TestBoardController {
 
