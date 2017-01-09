@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import kr.sir.domain.Write;
 
 @Repository
-public interface BoardRepository extends JpaRepository<Write, Integer>{
+public interface JsBoardRepository extends JpaRepository<Write, Integer>{
 	
 	public Page<Write> findByBoardId(int boardId, Pageable pageable);
 	

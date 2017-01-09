@@ -6,22 +6,22 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import kr.sir.domain.Write;
-import kr.sir.domain.repository.board.BoardRepository;
-import kr.sir.service.board.BoardService;
+import kr.sir.domain.repository.board.JsBoardRepository;
+import kr.sir.service.board.JsBoardService;
 
 @Service
-public class BoardServiceImpl implements BoardService {
+public class JsBoardServiceImpl implements JsBoardService {
 
-	private BoardRepository boardRepository;
+	private JsBoardRepository jsBoardRepository;
 
 	@Autowired
-	public void setBoardRepository(BoardRepository boardRepository) {
-		this.boardRepository = boardRepository;
+	public void setBoardRepository(JsBoardRepository jsBoardRepository) {
+		this.jsBoardRepository = jsBoardRepository;
 	}
 
 	@Override
 	public Page<Write> findByBoardId(int boardId, PageRequest pageRequest) {
-		return boardRepository.findByBoardId(boardId, pageRequest);
+		return jsBoardRepository.findByBoardId(boardId, pageRequest);
 	}
 
 }

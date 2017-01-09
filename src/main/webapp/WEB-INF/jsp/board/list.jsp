@@ -89,10 +89,14 @@
         
         <div class="pagination">
             <h2>페이징</h2>
+			            
             <div class="pg_wr">
-                <a href="#" class="first">맨 처음으로</a>
-                <a href="#" class="prev">이전</a>
-                <a href="#">1</a>
+            	<c:if test = "${ currentPage > onePageGroupSize}" >
+	                <a href="#" class="first">맨 처음으로</a>
+                	<a href="#" class="prev">이전</a>
+                </c:if>
+                
+                <a href="/list/i">1</a>
                 <a href="#">2</a>
                 <a href="#">3</a>
                 <a href="#">4</a>
@@ -100,9 +104,12 @@
                 <a href="#" class="active">6</a>
                 <a href="#">7</a>
                 <a href="#">8</a>
-                <a href="#" class="next">다음</a>
-                <a href="#" class="last">맨 마지막으로</a>
+                <c:if test = "${ currentPage <= totalPages - (totalPages % onePageGroupSize) }" >
+	                <a href="#" class="next">다음</a>
+	                <a href="#" class="last">맨 마지막으로</a>
+	            </c:if>
             </div>
+            
         </div>
 
         <fieldset id="bo_sch">

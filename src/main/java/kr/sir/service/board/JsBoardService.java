@@ -5,7 +5,7 @@ import org.springframework.data.domain.PageRequest;
 
 import kr.sir.domain.Write;
 
-public interface BoardService {
+public interface JsBoardService {
 	
 	// 게시글 가져오기
 	public Page<Write> findByBoardId(int boardId, PageRequest pageRequest);
