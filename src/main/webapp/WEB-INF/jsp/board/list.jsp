@@ -91,22 +91,23 @@
             <h2>페이징</h2>
 			            
             <div class="pg_wr">
-            	<c:if test = "${ currentPage > onePageGroupSize}" >
-	                <a href="#" class="first">맨 처음으로</a>
-                	<a href="#" class="prev">이전</a>
+            	<c:if test = "${ currentPage > PageGroupPerSize}" >
+	                <a href="./1" class="first">맨 처음으로</a>
+                	<a href="./${prevPageGroupLastPage}" class="prev">이전</a>
                 </c:if>
-                
-                <a href="/list/i">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#" class="active">6</a>
-                <a href="#">7</a>
-                <a href="#">8</a>
-                <c:if test = "${ currentPage <= totalPages - (totalPages % onePageGroupSize) }" >
-	                <a href="#" class="next">다음</a>
-	                <a href="#" class="last">맨 마지막으로</a>
+                <c:forEach var="i" begin="${currentPageGroupFirstPage}" end="${currentPageGroupLastPage}">
+                	<c:choose>
+	                	<c:when test = "${ currentPage eq i}" >
+			                <a href="./${i}" class="active">${i}</a>
+		                </c:when>
+		                <c:otherwise>
+		                	<a href="./${i}">${i}</a>
+		                </c:otherwise>
+	                </c:choose>
+                </c:forEach>
+                <c:if test = "${ currentPage <= totalPages - (totalPages % PageGroupPerSize) }" >
+	                <a href="./${nextPageGroupFirstPage}" class="next">다음</a>
+	                <a href="./${totalPages}" class="last">맨 마지막으로</a>
 	            </c:if>
             </div>
             
