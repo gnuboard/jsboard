@@ -37,16 +37,16 @@ public class JsboardController {
 		
 		Page<Write> result = boardService.findByBoardId(paramBoardId, pageRequest);
 		List<Write> writeList = result.getContent();
-		int totalPages = result.getTotalPages();
-		long totalCount = result.getTotalElements();
-		int currentPage = result.getNumber();
-//		boolean hasNextPage = result.hasNext();
+		int totalPages = result.getTotalPages();			// 전체 페이지 수
+		long totalCount = result.getTotalElements();		// 전체 게시물 수
+		int currentPage = result.getNumber();				// 현재 페이지
+		boolean hasNextPage = result.hasNext();				// 다음 페이지 여부
 		
 		model.addAttribute("currentPage", currentPage + 1);	// 0부터 시작.
 		model.addAttribute("totalPages", totalPages);
 //		model.addAttribute("hasNextPage", hasNextPage);
 		model.addAttribute("writeList", writeList);
-		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("totalCount", totalCount); 
 		
 		return "/board/list";
 	}
