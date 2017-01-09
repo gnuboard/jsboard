@@ -21,7 +21,7 @@ public class BoardFile implements Serializable{
 
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "bo_id", columnDefinition = "shortint(6) NOT NULL")
-	private int bo_id;
+	private int boardId;
 	
 //	@Id
 //	@Column(name="bo_table", columnDefinition = "varchar(20) NOT NULL default ''")
