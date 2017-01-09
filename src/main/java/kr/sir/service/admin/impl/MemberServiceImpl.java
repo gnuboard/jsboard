@@ -108,7 +108,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	//모든 회원  포인트 합계
-	public int getTotalPoint(String prefix){
+	public Point getTotalPoint(String prefix){
 		return pointEmRepository.getTotalPoint(prefix);
 	}
 	
@@ -120,23 +120,35 @@ public class MemberServiceImpl implements MemberService{
 	
 	//관리자가 회원에게 포인트 주기
 	@Override
-	public String addPoint(Point point) {
-		Member member=memberRepository.findByMemberId(point.getMemberId());
+	public String addPoint(Point point,String prefix) {
 		String msg="";
-		if(member==null){
-			msg="존재하는 회원아이디가 아닙니다.";
-		}
+
+		//1.아이디가 존재하는지 체크
+		Member member=memberRepository.findByMemberId(point.getMemberId());
 		
-		if((point.getPoint()<0) &&( point.getPoint() * (-1) > point.getMemberPoint())){
-			msg="포인트를 깍는 경우 현재 포인트보다 작으면 안됩니다.";
+		if(member==null || member.getMemberId().isEmpty()){
+			msg="존재 하지 않은 회원 ";
+		}else if( (point.getPoint()<0) && (point.getPoint()*-1 > member.getPoint())){
+			//2.포인트를 깍는 경우 현재 포인트보다 작으면 안됨.
+			msg="포인트를 깍는 경우 현재 포인트보다 작으면 안됨.";
+		}else{
+			//3.현재 포인트에 받은 포인트를 더해 포인트를 총합함.
+			int totalPoint=member.getPoint()+point.getPoint();
+			
+			point.setMemberPoint(totalPoint);
+			
+			member.setPoint(totalPoint);
+
+			
+			//포인트관리창에 관리 건수 추가
+			pointRepository.save(point);		
+			
+			//회원디비에 포인트만 수정
+			memberRepository.save(member);
+			
+			 msg="포인트추가&삭감 성공";
 		}		
-		
-		pointRepository.save(point);
-		return "";
+		return msg;
 	}
-	
-	
-	
-	
-	
+		
 }

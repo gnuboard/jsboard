@@ -8,7 +8,7 @@ import lombok.Data;
 @Entity
 public class PointJoinMember extends PointBaseEntity{
 
-	private String memberId;
+	
 	private String name;
 	private String nick;
 	private String email;

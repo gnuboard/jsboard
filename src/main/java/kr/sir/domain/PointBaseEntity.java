@@ -1,5 +1,6 @@
 package kr.sir.domain;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -49,7 +50,7 @@ public abstract class PointBaseEntity {
 	
 	@Column(name="po_expire_date", columnDefinition = "date NOT NULL default '0000-00-00'")
 	@Temporal(TemporalType.DATE)
-	private Date expireDate=new Date();
+	private Date expireDate=defaultTimestamp();
 	
 	@Column(name="po_mb_point", columnDefinition = "int(11) NOT NULL default '0'")
 	private int memberPoint=0;
@@ -63,6 +64,13 @@ public abstract class PointBaseEntity {
 	@Column(name="po_rel_action", columnDefinition = "varchar(255) NOT NULL default ''")
 	private String relAction="";
 	
-	
+	private Date defaultTimestamp() {
+		Calendar c = Calendar.getInstance();
+		c.set(9998, 11, 31, 23, 59, 59);
+		/*c.set(Calendar.YEAR, 9999);
+		c.set(Calendar.MONTH, 12-1);
+		c.set(Calendar.);*/
+		return c.getTime();
+	}
 	
 }

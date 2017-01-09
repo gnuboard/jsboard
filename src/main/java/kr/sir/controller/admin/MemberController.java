@@ -1,5 +1,6 @@
 package kr.sir.controller.admin;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.sir.common.CommonUtil;
 import kr.sir.domain.Config;
 import kr.sir.domain.Member;
 import kr.sir.domain.MemberGroupCount;
@@ -136,32 +139,38 @@ public class MemberController {
 				memberService.adminDeletesMember(Integer.parseInt(id));
 			}
 		}		
-		return "forward:./list";
+		return "redirect:./list";
 	}
 		
 	//관리자페이지에서 회원들 포인트 관리 내역 보기
-	@RequestMapping(value = { "/pointlist" })
+	@RequestMapping(value={"/pointlist"})
 	public String pointList(Model model) {
 
 		//포인트 건 수
 		model.addAttribute("countPointlist", memberService.getCountPointlist());
 		
 		//전체 포인트 합계
-	/*	model.addAttribute("totalPoint",memberService.getTotalPoint("js1_"));*/
+		/*model.addAttribute("totalPoint",memberService.getTotalPoint(CommonUtil.getTablePrefix()));*/
 		
 		//전체포인트내용
-		model.addAttribute("allPointContent", memberService.getAllPointContent("js1_"));	
+		model.addAttribute("allPointContent", memberService.getAllPointContent(CommonUtil.getTablePrefix()));	
 		
 		return "admin/member/point_list";
 	}
 	
 	
 	//관리자페이지에서 회원에게 포인트 추가또는 삭제
-	@RequestMapping(value={"/addpoint"})
-	public String addPoint(Model model,Point point){
-		memberService.addPoint(point);
+	@RequestMapping(value={"/updatepoint"})
+	public String addPoint(Model model,Point point) {
+		String msg=memberService.addPoint(point,CommonUtil.getTablePrefix());
 		
-		return "forward:/adm/member/pointlist";
+		System.out.println(" 포인트내용:"+point.getContent());
+		System.out.println(" 회원아이디:"+point.getMemberId());
+		System.out.println(" 회원포인트:"+point.getPoint());	
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("url", "/adm/member/pointlist");
+		return "redirect:./list ";
 	}
 	
 	

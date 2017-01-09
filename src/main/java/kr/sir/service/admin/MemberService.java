@@ -41,13 +41,13 @@ public interface MemberService {
 	public long getCountPointlist();
 	
 	//모든 회원 포인트 합계
-	public int getTotalPoint(String prefix);
+	public Point getTotalPoint(String prefix);
 	
 	//모든 회원 포인트 내역
 	public List<PointJoinMember> getAllPointContent(String prefix);
 	
 	//관리자가 회원에게 포인트 추기
-	public String addPoint(Point point);
+	public String addPoint(Point point,String prefix);
 	
 
 }
