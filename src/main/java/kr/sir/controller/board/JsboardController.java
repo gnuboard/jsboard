@@ -30,34 +30,40 @@ public class JsboardController {
 
 	@RequestMapping(value="/list/{pageNumber}", method={RequestMethod.GET})
 	public String list(Model model, @PathVariable int pageNumber) {
-		
 		int paramCurrentPage = pageNumber - 1;					// 현재 몇 페이지 인지	
 		int paramPagePerPosts = 10;								// 한 페이지 당 게시물 수 
 		int paramBoardId = 1;									// 어떤 게시판인지
 		
-		PageRequest pageRequest = new PageRequest(paramCurrentPage, paramPagePerPosts, new Sort(Direction.ASC, "id"));
+		PageRequest pageRequest = new PageRequest(paramCurrentPage, paramPagePerPosts, new Sort(Direction.DESC, "id"));
 		Page<Write> result = jsBoardService.findByBoardId(paramBoardId, pageRequest);	// Paging, sorting 한 게시판 가져오기
 		
 		model = CommonUtil.pagingInfo(result, model);
+		model.addAttribute("pagePerPosts", paramPagePerPosts);	// 한 페이지 당 게시물 수 
 
 		return "/board/list";
-		
 	}
 	
 	@RequestMapping(value="/list/{pageNumber}", method={RequestMethod.DELETE})
 	public String delete(Model model, @PathVariable int pageNumber, BoardForm boardForm) {
+		int result = 0;
+		int totalCount = boardForm.getTotalCount();
+		int pagePerPosts = boardForm.getPagePerPosts();
+		int redirectPageNumber = 0;
 		
 		if(boardForm.getId() != null) {
-			String[] id = boardForm.getId().split(",");
-			System.out.println("id.length : " + id.length);
-			for(int i=0; i<id.length; i++) {
-				System.out.println("id["+i+"] : " + id[i]);
-				jsBoardService.delete(Integer.parseInt(id[i]));
+			result = jsBoardService.deleteInIds(boardForm.getId());		// 삭제한 게시물 수만큼 return 됨
+			
+			// 삭제 후 전체 게시물 수 변화에 따라 redirect page를 재조정
+			totalCount = totalCount - result;
+			if(totalCount % pagePerPosts > 0) {
+				redirectPageNumber = pageNumber;
+			} else {
+				redirectPageNumber = totalCount / pagePerPosts;
 			}
-		
 		}
+		model.addAttribute("delResult", result);
 		
-		return "redirect:/board/list/"+pageNumber;
+		return "redirect:/board/list/"+redirectPageNumber;
 	}
 
 }

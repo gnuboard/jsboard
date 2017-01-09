@@ -12,4 +12,6 @@ public interface JsBoardService {
 	
 	// 게시글 선택 삭제
 	public void delete(int writeId);
+
+	public int deleteInIds(String ids);
 }

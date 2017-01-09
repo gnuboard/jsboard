@@ -6,5 +6,6 @@ import lombok.Data;
 public class BoardForm{
 	
 	private String id;
-	
+	private int totalCount;
+	private int PagePerPosts;
 }
