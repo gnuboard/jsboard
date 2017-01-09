@@ -7,7 +7,34 @@
     <meta charset="UTF-8">
     <title>게시판</title>
     <link rel="stylesheet" href="/css/board.css">
- </head>
+</head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+function selectDelete() {
+
+	if(confirm("선택한 게시물을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.\n\n답변글이 있는 게시글을 선택하신 경우\n답변글도 선택하셔야 게시글이 삭제됩니다.")) {
+		submitDelete();
+	} else {
+		return false;
+	}
+	
+}
+
+function submitDelete() {
+
+	$("input:hidden[name=_method]").val("DELETE");
+	var form = $("#BoardForm");
+	var formData = $("#BoardForm").serialize();
+	$.ajax({
+		url : form.action,
+		type : "delete",
+		cache : false,
+		data : formData,
+		dataType : "json",
+	});
+
+}
+</script>
  <body>
  <div id="container">
     <h1 class="container_tit">게시판 이름.(bo_id로 board테이블에서 가져오기)</h1>
@@ -30,6 +57,7 @@
                 <a href="./add" class="btn_b02 btn">글쓰기</a>
             </div>
         </div>
+       	<form action="./${currentPage}" name="BoardForm" id="BoardForm">
         <div class="table_basic">
             <table>
                 <caption>게시판01(bo_id로 board테이블에서 가져오기) 목록</caption>
@@ -38,7 +66,7 @@
                     <th scope="col">번호</th>
                     <th scope="col">
                         <label class="sound_only">현재 페이지 게시물 전체</label>
-                        <input type="checkbox">
+                        <input type="checkbox" name="all_post">
                     </th>
                     <th scope="col">제목</th>
                     <th scope="col">글쓴이</th>
@@ -64,7 +92,8 @@
                     <td class="td_num_c">${write.id}</td>
                     <td class="td_chk">
                         <label class="sound_only">${write.subject} 게시물</label>
-                        <input type="checkbox">
+                       	<input type="hidden" name="_method"/>
+                       	<input type="checkbox" name="id" value="${write.id}">
                     </td>
                     <td><a href="#" class="bo_cate_link">[${write.categoryName}]</a> <a href="#">${write.subject}</a></td>
                     <td class="td_name">${write.name}</td>
@@ -77,7 +106,7 @@
         </div>
         <div class="bo_fx">
             <div class="btn_bo_adm">
-                <input type="submit" value="선택삭제" class="btn">
+                <input type="submit" value="선택삭제" class="btn" onclick="selectDelete();">
                 <input type="submit" value="선택복사" class="btn">
                 <input type="submit" value="선택이동" class="btn">
             </div>
@@ -86,6 +115,7 @@
                 <a href="./add" class="btn_b02 btn">글쓰기</a>    
             </div>
         </div>
+        </form>
         
         <div class="pagination">
             <h2>페이징</h2>
@@ -134,5 +164,5 @@
         </fieldset>
     </div>
 </div>
- </body>
+</body>
 </html>

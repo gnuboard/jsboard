@@ -24,4 +24,9 @@ public class JsBoardServiceImpl implements JsBoardService {
 		return jsBoardRepository.findByBoardId(boardId, pageRequest);
 	}
 
+	@Override
+	public void delete(int writeId) {
+		jsBoardRepository.delete(writeId);
+	}
+
 }

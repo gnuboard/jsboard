@@ -62,7 +62,7 @@ public class CommonUtil {
 		int prevPageGroupLastPage = 							// 이전 페이지 그룹의 마지막 페이지
 								currentPageGroupLastPage == totalPages
 								? totalPages - (totalPages-PageGroupPerSize)
-									: currentPageGroupLastPage - PageGroupPerSize;          
+									: currentPageGroupLastPage - PageGroupPerSize;
 		
 		model.addAttribute("currentPage", currentPage + 1);		// 0부터 시작.
 		model.addAttribute("totalPages", totalPages);
