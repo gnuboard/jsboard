@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>관리자</title>
+
+<link rel="stylesheet" href="./css/style.css">
+<script src="http://code.jquery.com/jquery-1.12.1.js"></script>
+</head>
+<body>
+
+
+<div class="new_win">
+    <h2>메뉴 추가</h2>
+
+    <form>
+    <div class="new_win_con" id="menu_form">
+        <div class="menu_select">
+            <label>대상선택</label>
+            <select>
+                <option>직접입력</option>
+                <option>게시판그룹</option>
+                <option>게시판</option>
+                <option>내용관리</option>
+            </select>
+        </div>
+        <!--직접입력-->
+
+        <div class="table_basic table_form">
+            <table>
+            <caption>직접입력 추가</caption>
+            <tbody>
+            <tr>
+                <th scope="col">메뉴 </th>
+                <td><input type="text" class="frm_input"></td>
+            </tr>
+            <tr>
+                <th scope="col">링크
+                    <span class="tooltip">
+                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                        <span class="tooltip_area">링크는 http://를 포함해서 입력해 주세요.</span>
+                    </span>
+                </th>
+                <td><input type="text" class="frm_input frm_input_full"></td>
+            </tr>
+            </tbody>
+            </table>
+        </div>
+        <!--게시판그룹/게시판/내용관리-->
+        <!--div class="table_basic table_01">
+            <table>
+            <caption>게시판그룹</caption>
+            <thead>
+            <tr>
+                <th scope="col">제목</th>
+                <th scope="col">선택</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="td_left">게시판01</td>
+                <td class="td_mng td_mng_s">
+                    <button type="button" class="btn_03"><span class="sound_only">게시판01 </span>선택</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="td_left">컨텐츠몰</td>
+                <td class="td_mng td_mng_s">
+                    <button type="button" class="btn_03"><span class="sound_only">컨텐츠몰 </span>선택</button>
+                </td>
+            </tr>
+
+
+            </tbody>
+            </table>
+        </div>-->
+    </div>
+
+    <div class="new_win_btn">
+        <input type="submit" class="btn_submit btn" value="추가">
+        <input type="button" class="btn_02 btn" value="창닫기" onclick="window.close();">
+    </div>
+
+   
+
+    </form>
+
+    
+
+</div>
+
+
+
+</body>
+</html>

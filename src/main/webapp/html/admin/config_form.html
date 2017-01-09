@@ -1,0 +1,1262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="Generator" content="EditPlus®">
+<meta name="Author" content="">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>관리자</title>
+
+<link rel="stylesheet" href="./css/style.css">
+<script src="http://code.jquery.com/jquery-1.12.1.js"></script>
+</head>
+<body>
+
+
+<div id="hd">
+    <h1>관리자</h1>
+    <div id="hd_top">
+        <button type="button" id="btn_gnb" class="btn_gnb_close">메뉴</button>
+        <div id="logo">
+            <a href="./index.html"><img src="./img/logo.png" alt="관리자"></a>
+        </div>
+        <div id="tnb">
+            <ul>
+                <li class="tnb_li"><a href="#" class="tnb_community" target="_blank">커뮤니티 바로가기</a></li>
+                <li class="tnb_li"><a href="#" class="tnb_service">부가서비스</a></li>
+                <li class="tnb_li"><button type="button" class="tnb_mb_btn">관리자<span class="./img/btn_gnb.png">메뉴열기</span></button>
+                    <ul class="tnb_mb_area">
+                        <li><a href="#">관리자정보</a></li>
+                        <li id="tnb_logout"><a href="#">로그아웃</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="gnb" class="gnb_large">
+        <h2>카테고리</h2>
+        <ul class="gnb_ul">
+            <li class="gnb_li on">
+                <button type="button" class="btn_op menu-1">환경설정</button>
+                <div class="gnb_oparea_wr">
+                    <div class="gnb_oparea">
+                        <h3>환경설정</h3>
+                        <ul>
+                            <li><a href="./config_form.html" class="on">기본환경설정</a></li>
+                            <li><a href="./auth_list.html">관리권한설정</a></li>
+                            <li><a href="./theme.html">테마설정</a></li>
+                            <li><a href="./menu_list.html">메뉴설정</a></li>
+                            <li><a href="./sendmail_test.html">메일테스트</a></li>
+                            <li><a href="./newwinlist.html">팝업레이어관리</a></li>
+                            <li><a href="./session_file_delete.html">세션파일 일괄삭제</a></li>
+                            <li><a href="./cache_file_delete.html">캐시파일 일괄삭제</a></li>
+                            <li><a href="./captcha_file_delete.html">캡챠파일 일괄삭제</a></li>
+                            <li><a href="./thumbnail_file_delete.html">썸네일파일 일괄삭제</a></li>
+                            <li><a href="./browscap.html">Browscap 업데이트</a></li>
+                            <li><a href="./browscap_convert.html">접속로그 변환</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <li class="gnb_li">
+                <button type="button" class="btn_op menu-2">회원관리</button>
+                <div class="gnb_oparea_wr">
+                    <div class="gnb_oparea">
+                        <h3>회원관리</h3>
+                        <ul>
+                            <li><a href="./member_list.html">회원관리</a></li>
+                            <li><a href="./mail_list.html">회원메일발송</a></li>
+                            <li><a href="./visit_list.html">접속자집계</a></li>
+                            <li><a href="./visit_search.html">접속자검색</a></li>
+                            <li><a href="./visit_delete.html">접속자로그삭제</a></li>
+                            <li><a href="./point_list.html">포인트관리 </a></li>
+                            <li><a href="./poll_list.html">투표관리 </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <li class="gnb_li">
+                <button type="button" class="btn_op menu-3">게시판관리</button>
+                <div class="gnb_oparea_wr">
+                    <div class="gnb_oparea">
+                        <h3>게시판관리</h3>
+                        <ul>
+                            <li><a href="./board_list.html">게시판관리</a></li>
+                            <li><a href="./boardgroup_list.html">게시판그룹관리</a></li>
+                            <li><a href="./popular_list.html">인기검색어관리</a></li>
+                            <li><a href="./popular_rank.html">인기검색어순위</a></li>
+                            <li><a href="./qa_config.html">1:1문의설정</a></li>
+                            <li><a href="./contentlist.html">내용관리</a></li>
+                            <li><a href="./faqmasterlist.html">FAQ관리</a></li>
+                            <li><a href="./write_count.html">글,댓글 현황</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <li class="gnb_li">
+                <button type="button" class="btn_op menu-4">SMS관리</button>
+                <div class="gnb_oparea_wr">
+                    <div class="gnb_oparea">
+                        <h3>SMS관리</h3>
+                        <ul>
+                            <li><a href="./sms_config.html">SMS 기본설정</a></li>
+                            <li><a href="./member_update.html">회원정보업데이트</a></li>
+                            <li><a href="./sms_write.html">문자 보내기</a></li>
+                            <li><a href="./history_list.html">전송내역-건별</a></li>
+                            <li><a href="./history_num.html">전송내역-번호별</a></li>
+                            <li><a href="./form_group.html">이모티콘 그룹</a></li>
+                            <li><a href="./form_list.html">이모티콘 관리</a></li>
+                            <li><a href="./num_group.html">휴대폰번호 그룹</a></li>
+                            <li><a href="./num_book.html">휴대폰번호 관리</a></li>
+                            <li><a href="./num_book_file.html">휴대폰번호 파일</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<script>
+$(function(){ 
+    $(".tnb_mb_btn").click(function(){
+        $(".tnb_mb_area").toggle();
+    });
+
+    $("#btn_gnb").click(function(){
+        $("#container").toggleClass("container-small");
+        $("#gnb").toggleClass("gnb_small");
+        $("#btn_gnb").toggleClass("btn_gnb_open");
+    });
+
+    $(".gnb_ul li .btn_op" ).click(function() {
+        $(this).parent().addClass("on").siblings().removeClass("on");
+    });
+
+});
+</script>
+<!-- 상단 레이아웃 -->
+
+<div id="container">
+    <!-- 중간 레이아웃 -->
+    <h1 id="container_title">기본환경설정</h1>
+
+    <div id="container_wr">
+        <div id="config_form">
+        <form>
+
+            <ul class="tab_01">
+               <li><button type="button"  class="selected">기본환경</button></li>
+               <li><button type="button">게시판기본</button></li>
+               <li><button type="button">회원가입</button></li>
+               <li><button type="button">본인확인</button></li>
+               <li><button type="button">메일환경</button></li>
+               <li><button type="button">SNS</button></li>
+               <li><button type="button">레이아웃추가</button></li>
+               <li><button type="button">SMS</button></li>
+               <li><button type="button">여분필드</button></li>
+            </ul>
+
+            <!--기본환경설정-->
+            <ul class="contents table_basic table_form">
+                <li class="tab_content">
+                    <div id="cf_basic" class="tab_wr">
+                        <h2>기본환경설정</h2>
+                        <table>
+                            <caption>기본환경설정</caption>
+                            <tr>
+                                <th scope="row"><label for="cf_title">홈페이지 제목 <strong class="sound_only">필수</strong></label></th>
+                                <td colspan="3"><input type="text" id="cf_title" name="cf_title" required class="frm_input required" size="40"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="cf_admin">최고관리자 <strong class="sound_only">필수</strong></label></th>
+                                <td colspan="3">
+                                    <select name="cf_admin" id="cf_admin">
+                                        <option>선택안함</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <label for="cf_admin_email">관리자 메일 주소 <strong class="sound_only">필수</strong></label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">관리자가 보내고 받는 용도로 사용하는 메일 주소를 입력합니다.<br>(회원가입, 인증메일, 테스트, 회원메일발송 등에서 사용)</span>
+                                    </span>
+                                </th>
+                                <td colspan="3"><input type="text" required class="frm_input required" name="cf_admin_email" id="cf_admin_email" size="40"></td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_admin_email_name">관리자 메일 발송이름 <strong class="sound_only">필수</strong></label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">필수 관리자가 보내고 받는 용도로 사용하는 메일의 발송이름을 입력합니다.<br>(회원가입, 인증메일, 테스트, 회원메일발송 등에서 사용)</span>
+                                    </span>
+                                </th>
+                                <td colspan="3"><input type="text" required class="frm_input required" id="cf_admin_email_name" name="cf_admin_email_name" size="40"></td>
+                            </tr>
+                            
+                            <tr>
+                                <th scope="row"><label for="cf_use_point">포인트 사용</label></th>
+                                <td colspan="3"><input type="checkbox" id="cf_use_point" name="cf_use_point"> 사용</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_login_point">로그인시 포인트 <strong class="sound_only">필수</strong></label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">회원이 로그인시 하루에 한번만 적립</span>
+                                    </span>
+                                </th>
+                                <td><input type="text" required class="frm_input required" name="cf_login_point"  id="cf_login_point" size="10"> 점</td>
+                                <th scope="row"><label for="cf_memo_send_point">쪽지보낼시 차감 포인트 <strong class="sound_only">필수</strong></label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">양수로 입력하십시오. 0점은 쪽지 보낼시 포인트를 차감하지 않습니다.</span>
+                                    </span>
+                                </th>
+                                <td><input type="text" required class="frm_input required"  name="cf_memo_send_point"  id="cf_memo_send_point" size="10"> 점</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_cut_name">이름(닉네임) 표시</label></th>
+                                <td colspan="3"><input type="text" name="cf_cut_name" id="cf_cut_name" required class="frm_input" size="10"> 자리만 표시</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_nick_modify">닉네임 수정</label></th>
+                                <td>수정하면 <input type="text"  class="frm_input" id="cf_nick_modify"  name="cf_nick_modify" size="3"> 일 동안 바꿀 수 없음</td>
+                                <th scope="row"><label for="cf_open_modify">정보공개 수정</label></th>
+                                <td>수정하면 <input type="text" name="cf_open_modify" id="cf_open_modify" class="frm_input" size="3"> 일 동안 바꿀 수 없음</td>
+                            </tr>
+                            
+                            <tr>
+                                <th scope="row"><label for="cf_new_del">최근게시물 삭제</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">설정일이 지난 최근게시물 자동 삭제</span>
+                                    </span>
+                                </th>
+                                <td><input type="text"  class="frm_input" id="cf_new_del" name="cf_new_del" size="3"> 일 </td>
+                                <th scope="row"><label for="cf_memo_del">쪽지 삭제</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">설정일이 지난 쪽지 자동 삭제</span>
+                                    </span>
+                                </th>
+                                <td><input type="text"  class="frm_input" name="cf_memo_del" id="cf_memo_del" size="3"> 일 </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_visit_del">접속자로그 삭제</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">설정일이 지난 접속자 로그 자동 삭제</span>
+                                    </span>
+                                </th>
+                                <td><input type="text"  class="frm_input" name="cf_visit_del" id="cf_visit_del" size="3"> 일 </td>
+                                <th scope="row"><label for="cf_popular_del">인기검색어 삭제</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">설정일이 지난 인기검색어 자동 삭제</span>
+                                    </span>
+                                </th>
+                                <td><input type="text" id="cf_popular_del" name="cf_popular_del" class="frm_input" size="3"> 일 </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_login_minutes">현재 접속자</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">설정값 이내의 접속자를 현재 접속자로 인정</span>
+                                    </span>
+                                </th>
+                                <td><input type="text"  name="cf_login_minutes" id="cf_login_minutes" class="frm_input" size="3"> 분 </td>
+                                <th scope="row"><label for="cf_new_rows">최근게시물 라인수</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">목록 한페이지당 라인수</span>
+                                    </span>
+                                </th>
+                                <td><input type="text"  name="cf_new_rows" id="cf_new_rows" class="frm_input" size="3"> 라인 </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_page_rows">한페이지당 라인수</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">목록(리스트) 한페이지당 라인수</span>
+                                    </span>
+                                </th>
+                                <td><input type="text" name="cf_page_rows" id="cf_page_rows"  class="frm_input" size="3"> 라인 </td>
+                                <th scope="row"><label for="cf_mobile_page_rows">모바일 한페이지당 라인수</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">모바일 목록 한페이지당 라인수</span>
+                                    </span>
+                                </th>
+                                <td><input type="text" id="cf_mobile_page_rows" name="cf_mobile_page_rows" class="frm_input" size="3"> 라인 </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_write_pages">페이지 표시 수</label></th>
+                                <td><input type="text" name="cf_write_pages" id="cf_write_pages"  class="frm_input" size="3"> 페이지씩 표시 </td>
+                                <th scope="row"><label for="cf_mobile_pages">모바일 페이지 표시 수</label></th>
+                                <td><input type="text" name="cf_mobile_pages" id="cf_mobile_pages" class="frm_input" size="3"> 페이지씩 표시 </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_new_skin">최근게시물 스킨</label></th>
+                                <td>
+                                    <select name="cf_new_skin" id="cf_new_skin">
+                                        <option>선택</option>
+                                    </select>
+                                </td>
+                                <th scope="row"><label for="cf_mobile_new_skin">모바일 최근게시물 스킨</label></th>
+                                <td>
+                                    <select name="cf_mobile_new_skin" id="cf_mobile_new_skin">
+                                        <option>선택</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_search_skin">검색 스킨</label></th>
+                                <td>
+                                    <select name="cf_search_skin" id="cf_search_skin">
+                                        <option>선택</option>
+                                    </select>
+                                </td>
+                                <th scope="row"><label for="cf_mobile_search_skin">모바일 검색 스킨필수</label></th>
+                                <td>
+                                    <select name="cf_mobile_search_skin" id="cf_mobile_search_skin">
+                                        <option>선택</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_connect_skin">접속자 스킨</label></th>
+                                <td>
+                                    <select name="cf_connect_skin" id="cf_connect_skin">
+                                        <option>선택</option>
+                                    </select>
+                                </td>
+                                <th scope="row"><label for="cf_mobile_connect_skin">모바일 접속자 스킨필수</label></th>
+                                <td>
+                                    <select name="cf_mobile_connect_skin" id="cf_mobile_connect_skin">
+                                        <option>선택</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_faq_skin">FAQ 스킨</label></th>
+                                <td>
+                                    <select name="cf_faq_skin" id="cf_faq_skin">
+                                        <option>선택</option>
+                                    </select>
+                                </td>
+                                <th scope="row"><label for="cf_mobile_faq_skin">모바일 FAQ 스킨필수</label></th>
+                                <td>
+                                    <select name="cf_mobile_faq_skin" id="cf_mobile_faq_skin">
+                                        <option>선택</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_editor">에디터 선택</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">http://000.com/g5/plugin/editor 밑의 DHTML 에디터 폴더를 선택합니다.</span>
+                                    </span>
+                                </th>
+                                <td colspan="3">
+                                    <select name="cf_editor" id="cf_editor">
+                                        <option>선택</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_captcha_mp3">음성캡챠 선택</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">http://000.com/g5/plugin/kcaptcha/mp3 밑의 음성 폴더를 선택합니다.</span>
+                                    </span>
+                                </th>
+                                <td colspan="3">
+                                    <select name="cf_captcha_mp3" id="cf_captcha_mp3">
+                                        <option>선택</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_use_copy_log">복사, 이동시 로그</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">게시물 아래에 누구로 부터 복사, 이동됨 표시</span>
+                                    </span>
+                                </th>
+                                <td colspan="3"><input type="checkbox" name="cf_use_copy_log" id="cf_use_copy_log">남김</td>
+                            </tr>
+     
+                            <tr>
+                                <th scope="row"><label for="cf_point_term">포인트 유효기간</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">기간을 0으로 설정시 포인트 유효기간이 적용되지 않습니다.</span>
+                                    </span>
+                                </th>
+                                <td colspan="3"><input type="text" name="cf_point_term" id="cf_point_term" class="frm_input" size="3">  일</td>
+                            </tr>
+     
+                            <tr>
+                                <th scope="row"><label for="cf_possible_ip">접근가능 IP</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">입력된 IP의 컴퓨터만 접근할 수 있습니다.123.123.+ 도 입력 가능. (엔터로 구분)</span>
+                                    </span>
+                                </th>
+                                <td><textarea  name="cf_possible_ip" id="cf_possible_ip"></textarea></td>
+              
+                                <th scope="row"><label for="cf_intercept_ip">접근차단 IP</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">입력된 IP의 컴퓨터는 접근할 수 없음. 123.123.+ 도 입력 가능. (엔터로 구분)</span>
+                                    </span>
+                                </th>
+                                <td><textarea name="cf_intercept_ip" id="cf_intercept_ip"></textarea></td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_analytics">방문자분석 스크립트</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">방문자분석 스크립트 코드를 입력합니다. 예) 구글 애널리틱스</span>
+                                    </span>
+                                </th>
+                                <td colspan="3"><textarea name="cf_analytics" id="cf_analytics"></textarea></td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_add_meta">추가 메타태그</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">추가로 사용하실 meta 태그를 입력합니다.</span>
+                                    </span>
+                                </th>
+                                <td colspan="3"><textarea name="cf_add_meta" id="cf_add_meta"></textarea></td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><label for="cf_syndi_token">네이버 신디케이션<br>연동키</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">네이버 신디케이션 연동키(token)을 입력하면 네이버 신디케이션을 사용할 수 있습니다.<br>연동키는 네이버 웹마스터도구 -> 네이버 신디케이션에서 발급할 수 있습니다.</span>
+                                    </span>
+                                </th>
+                                <td colspan="3"><input type="text"  name="cf_syndi_token" id="cf_syndi_token" class="frm_input" size="60"></td>
+                            </tr>
+
+
+                            <tr>
+                                <th scope="row"><label for="cf_syndi_except">네이버 신디케이션<br>제외게시판</label>
+                                    <span class="tooltip">
+                                        <button type="button" name="cf_syndi_except" id="cf_syndi_except" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">네이버 신디케이션 수집에서 제외할 게시판 아이디를 | 로 구분하여 입력하십시오. 예) notice|adult<br>참고로 그룹접근사용 게시판, 글읽기 권한 2 이상 게시판, 비밀글은 신디케이션 수집에서 제외됩니다.</span>
+                                    </span>
+                                </th>
+                                <td colspan="3"><input type="text" class="frm_input" size="60"></td>
+                            </tr>
+                        </table>
+                        <div class="btn_confirm">
+                            <button type="button" class="btn_02 btn">테마 스킨설정 가져오기</button>
+                        </div>
+                    </div>
+                </li>
+                <!--게시판기본-->
+                <li class="tab_content">
+                    <div id="cf_board" class="tab_wr">
+                        <h2>게시판기본</h2>
+                        <table>
+                        <caption>게시판기본</caption>
+                        <tr>
+                            <th scope="row"><label for="cf_delay_sec">글쓰기 간격<strong class="sound_only">필수</strong></label></th>
+                            <td><input type="text" name="cf_delay_sec" id="cf_delay_sec" class="frm_input required" size="3" required> 초 지난후 가능</td>
+                            <th scope="row"><label for="cf_link_target">새창 링크</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">글내용중 자동 링크되는 타켓을 지정합니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <select name="cf_link_target" id="cf_link_target">
+                                    <option>선택</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><label for="cf_read_point">글읽기 포인트<strong class="sound_only">필수</strong></label></th>
+                            <td><input type="text" name="cf_read_point"  id="cf_read_point"  class="frm_input required" size="10" required> 점</td>
+                            <th scope="row"><label for="cf_write_point">글쓰기 포인트</label></th>
+                            <td><input type="text" name="cf_write_point" id="cf_write_point" class="frm_input required" size="10" required> 점</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><label for="cf_comment_point">댓글쓰기 포인트</label></th>
+                            <td><input type="text" name="cf_comment_point" id="cf_comment_point" required class="required frm_input" size="3"> 점</td>
+                            <th scope="row"><label for="cf_download_point">다운로드 포인트</label></th>
+                            <td><input type="text" name="cf_download_point" id="cf_download_point" required class="required frm_input" size="3"> 점</td>
+                        </tr>
+
+                        <tr>
+                             <th scope="row"><label for="cf_search_part">검색 단위</label></th>
+                            <td colspan="3"><input type="text" name="cf_search_part" id="cf_search_part" class="frm_input" size="4"> 건 단위로 검색</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><label for="cf_image_extension">이미지 업로드 확장자</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">게시판 글작성시 이미지 파일 업로드 가능 확장자. | 로 구분</span>
+                                </span>
+                            </th>
+                            <td colspan="3"><input type="text" name="cf_image_extension" id="cf_image_extension" class="frm_input"  size="60"></td>
+                        </tr>
+
+                         <tr>
+                            <th scope="row"><label for="cf_flash_extension">플래쉬 업로드 확장자</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">게시판 글작성시 플래쉬 파일 업로드 가능 확장자. | 로 구분</span>
+                                </span>
+                            </th>
+                            <td colspan="3"><input type="text" name="cf_flash_extension" id="cf_flash_extension" class="frm_input"  size="60"></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><label for="cf_movie_extension">동영상 업로드 확장자</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">게시판 글작성시 동영상 파일 업로드 가능 확장자. | 로 구분</span>
+                                </span>
+                            </th>
+                            <td colspan="3"><input type="text" name="cf_movie_extension"  id="cf_movie_extension" class="frm_input"  size="60"></td>
+                        </tr>
+                        </table>
+                    </div>
+                </li>
+                <!--회원가입 설정-->
+                <li class="tab_content">
+                    <div id="cf_member" class="tab_wr">
+                        <h2>회원가입설정</h2>
+                        <table>
+                        <caption>회원가입설정</caption>
+                        <tr>
+                            <th scope="row"><label for="cf_member_skin">회원 스킨<strong class="sound_only">필수</strong></label></th>
+                            <td>
+                                <select name="cf_member_skin" id="cf_member_skin">
+                                    <option>선택</option>
+                                </select>
+                            </td>
+                            <th scope="row"><label for="cf_mobile_member_skin">모바일<br>회원 스킨<strong class="sound_only">필수</strong></label></th>
+                            <td>
+                                <select name="cf_mobile_member_skin" id="cf_mobile_member_skin">
+                                    <option>선택</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">홈페이지 입력</th>
+                            <td>
+                                <input type="checkbox" name="cf_use_homepage" value="1" id="cf_use_homepage"> <label for="cf_use_homepage">보이기</label>
+                                <input type="checkbox" name="cf_req_homepage" value="1" id="cf_req_homepage"> <label for="cf_req_homepage">필수입력</label>
+                            </td>
+                            <th scope="row">주소 입력</th>
+                            <td>
+                                <input type="checkbox" name="cf_use_addr" value="1" id="cf_use_addr"> <label for="cf_use_addr">보이기</label>
+                                <input type="checkbox" name="cf_req_addr" value="1" id="cf_req_addr"> <label for="cf_req_addr">필수입력</label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">전화번호 입력</th>
+                            <td>
+                                <input type="checkbox" name="cf_use_tel" value="1" id="cf_use_tel"> <label for="cf_use_tel">보이기</label>
+                                <input type="checkbox" name="cf_req_tel" value="1" id="cf_req_tel"> <label for="cf_req_tel">필수입력</label>
+                            </td>
+                            <th scope="row">휴대폰번호 입력</th>
+                            <td>
+                                <input type="checkbox" name="cf_use_hp" value="1" id="cf_use_hp"> <label for="cf_use_hp">보이기</label>
+                                <input type="checkbox" name="cf_req_hp" value="1" id="cf_req_hp"> <label for="cf_req_hp">필수입력</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">서명 입력</th>
+                            <td>
+                                <input type="checkbox" name="cf_use_signature" value="1" id="cf_use_signature"> <label for="cf_use_signature">보이기</label>
+                                <input type="checkbox" name="cf_req_signature" value="1" id="cf_req_signature"> <label for="cf_req_signature">필수입력</label>
+                            </td>
+                            <th scope="row">자기소개 입력</th>
+                            <td>
+                                <input type="checkbox" name="cf_use_profile" value="1" id="cf_use_profile"> <label for="cf_use_profile">보이기</label>
+                                <input type="checkbox" name="cf_req_profile" value="1" id="cf_req_profile"> <label for="cf_req_profile">필수입력</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_register_level">회원가입시 권한</label></th>
+                            <td>
+                                <select name="cf_register_level" id="cf_register_level">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                            </td>
+                            <th scope="row"><label for="cf_register_point">회원가입시 포인트</label></th>
+                            <td><input type="text" name="cf_register_point" id="cf_register_point" class="frm_input" size="5"> 점</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" id="th310"><label for="cf_leave_day">회원탈퇴후 삭제일</label></th>
+                            <td colspan="3"><input type="text" name="cf_leave_day" id="cf_leave_day" class="frm_input" size="2"> 일 후 자동 삭제</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_use_member_icon">회원아이콘 사용</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">게시물에 게시자 닉네임 대신 아이콘 사용</span>
+                                </span>
+                            </th>
+                            <td>
+                                <select name="cf_use_member_icon" id="cf_use_member_icon">
+                                    <option>선택</option>
+                                </select>
+                            </td>
+                            <th scope="row"><label for="cf_icon_level">아이콘 업로드 권한</label></th>
+                            <td>  
+                                <select name="cf_icon_level" id="cf_icon_level">
+                                    <option>선택</option>
+                                </select>이상
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><label for="cf_member_icon_size">회원아이콘 용량</label></th>
+                            <td><input type="text" name="cf_member_icon_size" id="cf_member_icon_size" class="frm_input" size="10"> 바이트 이하</td>
+                            <th scope="row">회원아이콘 사이즈</th>
+                            <td>
+                                <label for="cf_member_icon_width">가로</label>
+                                <input type="text" name="cf_member_icon_width" id="cf_member_icon_width" class="frm_input" size="2">
+                                <label for="cf_member_icon_height">세로</label>
+                                <input type="text" name="cf_member_icon_height" id="cf_member_icon_height" class="frm_input" size="2">
+                                픽셀 이하
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_use_recommend">추천인제도 사용</label></th>
+                            <td><input type="checkbox" name="cf_use_recommend" value="1" id="cf_use_recommend"> 사용</td>
+                            <th scope="row"><label for="cf_recommend_point">추천인 포인트</label></th>
+                            <td><input type="text" name="cf_recommend_point" id="cf_recommend_point" class="frm_input"> 점</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_prohibit_id">아이디,닉네임 금지단어</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">회원아이디, 닉네임으로 사용할 수 없는 단어를 정합니다. 쉼표 (,) 로 구분</span>
+                                </span>
+                            </th>
+                            <td>
+                                <textarea name="cf_prohibit_id" id="cf_prohibit_id" rows="5"></textarea>
+                            </td>
+                            <th scope="row"><label for="cf_prohibit_email">입력 금지 메일</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">입력 받지 않을 도메인을 지정합니다. 엔터로 구분 ex) hotmail.com</span>
+                                </span>
+                            </th>
+                            <td>
+                                <textarea name="cf_prohibit_email" id="cf_prohibit_email" rows="5"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_stipulation">회원가입약관</label></th>
+                            <td colspan="3"><textarea name="cf_stipulation" id="cf_stipulation" rows="10"></textarea></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_privacy">개인정보처리방침</label></th>
+                            <td colspan="3"><textarea id="cf_privacy" name="cf_privacy" rows="10"></textarea></td>
+                        </tr>
+
+                        </table>
+                    </div>
+                </li>
+                <li class="tab_content">
+                    <div class="tab_wr">
+                        <h2>본인확인설정</h2>
+                        <table>
+                        <caption>본인확인설정</caption>
+                         <tr>
+                            <th scope="row"><label for="cf_cert_use">본인확인</label></th>
+                            <td>
+                                <select name="cf_cert_use" id="cf_cert_use">
+                                    <option>선택</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="cf_cert_service"><label for="cf_cert_ipin">아이핀 본인확인</label></th>
+                            <td class="cf_cert_service">
+                                <select name="cf_cert_ipin" id="cf_cert_ipin">
+                                   <option>선택</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="cf_cert_service"><label for="cf_cert_hp">휴대폰 본인확인</label></th>
+                            <td class="cf_cert_service">
+                                <select name="cf_cert_hp" id="cf_cert_hp">
+                                    <option>선택</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="cf_cert_service"><label for="cf_cert_kcb_cd">코리아크레딧뷰로<br>KCB 회원사ID</label>
+                            
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">KCB 회원사ID를 입력해 주십시오.<br>서비스에 가입되어 있지 않다면, KCB와 계약체결 후 회원사ID를 발급 받으실 수 있습니다.<br>이용하시려는 서비스에 대한 계약을 아이핀, 휴대폰 본인확인 각각 체결해주셔야 합니다.<br>아이핀 본인확인 테스트의 경우에는 KCB 회원사ID가 필요 없으나,<br>휴대폰 본인확인 테스트의 경우 KCB 에서 따로 발급 받으셔야 합니다.</span>
+                            </span>
+                            </th>
+                            <td class="cf_cert_service">
+                                
+                                <input type="text" name="cf_cert_kcb_cd" id="cf_cert_kcb_cd" class="frm_input" size="20"> <a href="http://sir.kr/main/service/b_ipin.php" target="_blank" class="btn_frmline">KCB 아이핀 서비스 신청페이지</a>
+                                <a href="http://sir.kr/main/service/b_cert.php" target="_blank" class="btn_frmline">KCB 휴대폰 본인확인 서비스 신청페이지</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="cf_cert_service"><label for="cf_cert_kcp_cd">NHN KCP 사이트코드</label>
+                             <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">SM으로 시작하는 5자리 사이트 코드중 뒤의 3자리만 입력해 주십시오.<br>서비스에 가입되어 있지 않다면, 본인확인 서비스 신청페이지에서 서비스 신청 후 사이트코드를 발급 받으실 수 있습니다.</span>
+                            </span>
+                            </th>
+                            <td class="cf_cert_service">
+                                <span class="sitecode">SM</span>
+                                <input type="text" name="cf_cert_kcp_cd" id="cf_cert_kcp_cd" class="frm_input" size="3"> <a href="http://sir.kr/main/service/p_cert.php" target="_blank" class="btn_frmline">NHN KCP 휴대폰 본인확인 서비스 신청페이지</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="cf_cert_service"><label for="cf_lg_mid">LG유플러스 상점아이디</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">LG유플러스 상점아이디 중 si_를 제외한 나머지 아이디만 입력해 주십시오.<br>서비스에 가입되어 있지 않다면, 본인확인 서비스 신청페이지에서 서비스 신청 후 상점아이디를 발급 받으실 수 있습니다.<br><strong>LG유플러스 휴대폰본인확인은 ActiveX 설치가 필요하므로 Internet Explorer 에서만 사용할 수 있습니다.</strong></span>
+                                </span>
+                            </th>
+                            <td class="cf_cert_service">
+                                <span class="sitecode">si_</span>
+                                <input type="text" name="cf_lg_mid" id="cf_lg_mid" class="frm_input" size="20"> <a href="http://sir.kr/main/service/lg_cert.php" target="_blank" class="btn_frmline">LG유플러스 본인확인 서비스 신청페이지</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="cf_cert_service"><label for="cf_lg_mert_key">LG유플러스 MERT KEY</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">LG유플러스 상점MertKey는 상점관리자 -> 계약정보 -> 상점정보관리에서 확인하실 수 있습니다.</span>
+                                </span>
+                            </th>
+                            <td class="cf_cert_service">
+                                <input type="text" name="cf_lg_mert_key" id="cf_lg_mert_key" class="frm_input" size="40">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="cf_cert_service"><label for="cf_cert_limit">본인확인 이용제한</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">하루동안 아이핀과 휴대폰 본인확인 인증 이용회수를 제한할 수 있습니다.<br>회수제한은 실서비스에서 아이핀과 휴대폰 본인확인 인증에 개별 적용됩니다.<br>0 으로 설정하시면 회수제한이 적용되지 않습니다.</span>
+                                </span>
+                            </th>
+                            <td class="cf_cert_service">
+                                <input type="text" name="cf_cert_limit" id="cf_cert_limit" class="frm_input" size="3"> 회
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="cf_cert_service"><label for="cf_cert_req">본인확인 필수</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">회원가입 때 본인확인을 필수로 할지 설정합니다. 필수로 설정하시면 본인확인을 하지 않은 경우 회원가입이 안됩니다.</span>
+                                </span>
+                            </th>
+                            <td class="cf_cert_service">
+                                <input type="checkbox" name="cf_cert_req" value="1" id="cf_cert_req"> 예
+                            </td>
+                        </tr>
+                        </table>
+                    </div>
+                </li>
+
+                <li class="tab_content">
+                    <div class="tab_wr">
+                        <h2>기본메일환경설정</h2>
+                        <table>
+                        <caption>기본 메일 환경 설정</caption>
+                        <tbody>
+                        <tr>
+                            <th scope="row"><label for="cf_email_use">메일발송 사용</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">체크하지 않으면 메일발송을 아예 사용하지 않습니다. 메일 테스트도 불가합니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="checkbox" name="cf_email_use" value="1" id="cf_email_use"> 사용
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_use_email_certify">메일인증 사용</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area"></span>
+                                </span>
+                            
+                            </th>
+                            <td>
+                                <input type="checkbox" name="cf_use_email_certify" value="1" id="cf_use_email_certify"> 사용
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_formmail_is_member">폼메일 사용 여부</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area"></span>
+                                </span>
+                            
+                            </th>
+                            <td>
+                                <input type="checkbox" name="cf_formmail_is_member" value="1" id="cf_formmail_is_member"> 회원만 사용
+                            </td>
+                        </tr>
+                        </table>
+                    </div>
+                    <div class="tab_wr">
+                        <h2>게시판 글 작성 시 메일 설정</h2>
+
+                        <table>
+                        <caption>게시판 글 작성 시 메일 설정</caption>
+                        <tr>
+                            <th scope="row"><label for="cf_email_wr_super_admin">최고관리자</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">최고관리자에게 메일을 발송합니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="checkbox" name="cf_email_wr_super_admin" value="1" id="cf_email_wr_super_admin"> 사용
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_email_wr_group_admin">그룹관리자</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">그룹관리자에게 메일을 발송합니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="checkbox" name="cf_email_wr_group_admin" value="1" id="cf_email_wr_group_admin" > 사용
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_email_wr_board_admin">게시판관리자</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">게시판관리자에게 메일을 발송합니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="checkbox" name="cf_email_wr_board_admin" value="1" id="cf_email_wr_board_admin"> 사용
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_email_wr_write">원글작성자</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">게시자님께 메일을 발송합니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="checkbox" name="cf_email_wr_write" value="1" id="cf_email_wr_write" > 사용
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_email_wr_comment_all">댓글작성자</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">원글에 댓글이 올라오는 경우 댓글 쓴 모든 분들께 메일을 발송합니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="checkbox" name="cf_email_wr_comment_all" value="1" id="cf_email_wr_comment_all"> 사용
+                            </td>
+                        </tr>
+                        </table>
+                    </div>
+                    <div class="tab_wr">
+                        <h2>회원가입 시 메일 설정</h2>
+                        <table>
+                        <caption>회원가입 시 메일 설정</caption>
+                        <tr>
+                            <th scope="row"><label for="cf_email_mb_super_admin">최고관리자 메일발송</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">최고관리자에게 메일을 발송합니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="checkbox" name="cf_email_mb_super_admin" value="1" id="cf_email_mb_super_admin"> 사용
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_email_mb_member">회원님께 메일발송</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">회원가입한 회원님께 메일을 발송합니다.</span>
+                                </span>
+                            
+                            </th>
+                            <td>
+                                <input type="checkbox" name="cf_email_mb_member" value="1" id="cf_email_mb_member"> 사용
+                            </td>
+                        </tr>
+                        </table>
+                    </div>
+                    <div class="tab_wr">
+                        <h2>투표 기타의견 작성 시 메일 설정</h2>
+                        <table>
+                        <caption>투표 기타의견 작성 시 메일 설정</caption>
+                        <tr>
+                            <th scope="row"><label for="cf_email_po_super_admin">최고관리자 메일발송</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">최고관리자에게 메일을 발송합니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="checkbox" name="cf_email_po_super_admin" value="1" id="cf_email_po_super_admin" > 사용
+                            </td>
+                        </tr>
+                        </table>
+                    </div>
+                </li>
+                <!--sns-->
+                <li class="tab_content">
+                    <div class="tab_wr">
+                        <h2>소셜네트워크서비스 설정</h2>
+                        <table>
+                        <caption>소셜네트워크서비스 설정</caption>
+                       
+                        <tr>
+                            <th scope="row"><label for="cf_facebook_appid">페이스북 앱 ID</label></th>
+                            <td>
+                                <input type="text" name="cf_facebook_appid" id="cf_facebook_appid" class="frm_input"> <a href="https://developers.facebook.com/apps" target="_blank" class="btn_frmline">앱 등록하기</a>
+                            </td>
+                            <th scope="row"><label for="cf_facebook_secret">페이스북 앱 Secret</label></th>
+                            <td>
+                                <input type="text" name="cf_facebook_secret"  id="cf_facebook_secret" class="frm_input" size="35">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_twitter_key">트위터 컨슈머 Key</label></th>
+                            <td>
+                                <input type="text" name="cf_twitter_key"  id="cf_twitter_key" class="frm_input"> <a href="https://dev.twitter.com/apps" target="_blank" class="btn_frmline">앱 등록하기</a>
+                            </td>
+                            <th scope="row"><label for="cf_twitter_secret">트위터 컨슈머 Secret</label></th>
+                            <td>
+                                <input type="text" name="cf_twitter_secret"  id="cf_twitter_secret" class="frm_input" size="35">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_googl_shorturl_apikey">구글 짧은주소 API Key</label></th>
+                            <td>
+                                <input type="text" name="cf_googl_shorturl_apikey" id="cf_googl_shorturl_apikey" class="frm_input"> <a href="http://code.google.com/apis/console/" target="_blank" class="btn_frmline">API Key 등록하기</a>
+                            </td>
+                            <th scope="row"><label for="cf_kakao_js_apikey">카카오 Javascript API Key</label></th>
+                            <td>
+                                <input type="text" name="cf_kakao_js_apikey" id="cf_kakao_js_apikey" class="frm_input"> <a href="http://developers.kakao.com/" target="_blank" class="btn_frmline">앱 등록하기</a>
+                            </td>
+                        </tr>
+                        </table>
+                    </div>
+                </li>
+                <!--레이아웃추가-->
+                <li class="tab_content">
+                    <div class="tab_wr">
+                        <h2>레이아웃 추가설정</h2>
+                        <table>
+                        <caption>레이아웃 추가설정</caption>
+          
+                        <tr>
+                            <th scope="row"><label for="cf_add_script">추가 script, css</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">HTML의 &lt;/HEAD&gt; 태그위로 추가될 JavaScript와 css 코드를 설정합니다.<br>관리자 페이지에서는 이 코드를 사용하지 않습니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <textarea name="cf_add_script" id="cf_add_script"></textarea>
+                            </td>
+                        </tr>
+                        </table>
+                    </div>
+                </li>
+
+                <!--SMS-->
+                <li class="tab_content">
+                    <div class="tab_wr">
+                        <h2>SMS</h2>
+                        <table>
+                        <caption>SMS</caption>
+          
+                        <tr>
+                            <th scope="row"><label for="cf_sms_use">SMS 사용</label></th>
+                            <td>
+                                <select id="cf_sms_use" name="cf_sms_use">
+                                    <option>사용안함</option>
+                                    <option>아이코드</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_sms_type">SMS 전송유형</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">전송유형을 SMS로 선택하시면 최대 80바이트까지 전송하실 수 있으며<br>LMS로 선택하시면 90바이트 이하는 SMS로, 그 이상은 1500바이트까지 LMS로 전송됩니다.<br>요금은 건당 SMS는 16원, LMS는 48원입니다.</span>
+                                </span>
+                            
+                            </th>
+                            <td>
+                                <select id="cf_sms_type" name="cf_sms_type">
+                                    <option>SMS</option>
+                                    <option>LMS</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_icode_id">아이코드 회원아이디</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">아이코드에서 사용하시는 회원아이디를 입력합니다.</span>
+                                </span>
+
+                            </th>
+                            <td>
+                                <input type="text" name="cf_icode_id" id="cf_icode_id" class="frm_input" size="20">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cf_icode_pw">아이코드 비밀번호</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">아이코드에서 사용하시는 비밀번호를 입력합니다.</span>
+                                </span>
+
+                            </th>
+                            <td>
+                                <input type="password" name="cf_icode_pw" id="cf_icode_pw" class="frm_input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">요금제</th>
+                            <td>
+                                <input type="hidden" name="cf_icode_server_ip">
+                                충전제
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">아이코드 SMS 신청<br>회원가입</th>
+                            <td>
+                                <a href="http://icodekorea.com/res/join_company_fix_a.php?sellid=sir2" target="_blank" class="btn_frmline">아이코드 회원가입</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">충전 잔액</th>
+                            <td>
+                                100,000 원.
+                                <a href="#" target="_blank" class="btn_frmline">충전하기</a>
+                            </td>
+                        </tr>
+                        </table>
+                    </div>
+                </li>
+
+                <li class="tab_content">
+                    <div class="tab_wr">
+                        <h2>여분필드 기본 설정</h2>
+                        <table>
+                        <caption>여분필드 기본 설정</caption>
+                        <tr>
+                            <th scope="row">여분필드1</th>
+                            <td class="td_extra">
+                                <label for="cf_1_subj">여분필드1 제목</label>
+                                <input type="text" name="cf_1_subj" id="cf_1_subj" class="frm_input" size="30">
+                                <label for="cf_1">여분필드1 값</label>
+                                <input type="text" name="cf_1" id="cf_1" class="frm_input" size="30">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">여분필드2</th>
+                            <td class="td_extra">
+                                <label for="cf_2_subj">여분필드2 제목</label>
+                                <input type="text" name="cf_2_subj" id="cf_2_subj" class="frm_input" size="30">
+                                <label for="cf_2">여분필드2 값</label>
+                                <input type="text" name="cf_2" id="cf_2" class="frm_input" size="30">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">여분필드3</th>
+                            <td class="td_extra">
+                                <label for="cf_3_subj">여분필드3 제목</label>
+                                <input type="text" name="cf_3_subj" id="cf_3_subj" class="frm_input" size="30">
+                                <label for="cf_3">여분필드3 값</label>
+                                <input type="text" name="cf_3" id="cf_3" class="frm_input" size="30">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">여분필드4</th>
+                            <td class="td_extra">
+                                <label for="cf_4_subj">여분필드4 제목</label>
+                                <input type="text" name="cf_4_subj" id="cf_4_subj" class="frm_input" size="30">
+                                <label for="cf_4">여분필드4 값</label>
+                                <input type="text" name="cf_4" id="cf_4" class="frm_input" size="30">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">여분필드5</th>
+                            <td class="td_extra">
+                                <label for="cf_5_subj">여분필드5 제목</label>
+                                <input type="text" name="cf_5_subj" id="cf_5_subj" class="frm_input" size="30">
+                                <label for="cf_5">여분필드5 값</label>
+                                <input type="text" name="cf_5" id="cf_5" class="frm_input" size="30">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">여분필드6</th>
+                            <td class="td_extra">
+                                <label for="cf_6_subj">여분필드6 제목</label>
+                                <input type="text" name="cf_6_subj" id="cf_6_subj" class="frm_input" size="30">
+                                <label for="cf_6">여분필드6 값</label>
+                                <input type="text" name="cf_6" id="cf_6" class="frm_input" size="30">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">여분필드7</th>
+                            <td class="td_extra">
+                                <label for="cf_7_subj">여분필드7 제목</label>
+                                <input type="text" name="cf_7_subj" id="cf_7_subj" class="frm_input" size="30">
+                                <label for="cf_7">여분필드7 값</label>
+                                <input type="text" name="cf_7" id="cf_7" class="frm_input" size="30">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">여분필드8</th>
+                            <td class="td_extra">
+                                <label for="cf_8_subj">여분필드8 제목</label>
+                                <input type="text" name="cf_8_subj" id="cf_8_subj" class="frm_input" size="30">
+                                <label for="cf_8">여분필드8 값</label>
+                                <input type="text" name="cf_8" id="cf_8" class="frm_input" size="30">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">여분필드9</th>
+                            <td class="td_extra">
+                                <label for="cf_9_subj">여분필드9 제목</label>
+                                <input type="text" name="cf_9_subj" id="cf_9_subj" class="frm_input" size="30">
+                                <label for="cf_9">여분필드9 값</label>
+                                <input type="text" name="cf_9" id="cf_9" class="frm_input" size="30">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">여분필드10</th>
+                            <td class="td_extra">
+                                <label for="cf_10_subj">여분필드10 제목</label>
+                                <input type="text" name="cf_10_subj" id="cf_10_subj" class="frm_input" size="30">
+                                <label for="cf_10">여분필드10 값</label>
+                                <input type="text" name="cf_10" id="cf_10" class="frm_input" size="30">
+                            </td>
+                        </tr>
+
+                        </table>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="btn_fixed_top">
+                <input type="submit" value="확인" id="btn_submit" class="btn_submit btn">
+            </div>
+        </form>
+        </div>
+    </div>
+
+    <script>
+    $(function(){ 
+        $(".contents li").hide();
+        $(".contents li:first").show();
+        $(".tab_01 li").click(function(){
+            var tabType = $(this).index();
+            $('.contents li').hide();
+            $('.contents li').eq(tabType).show();
+            $('.tab_01 li button').removeClass('selected');
+            $('.tab_01 li button').eq(tabType).addClass('selected'); 
+        })
+     
+     
+        $(".tooltip_btn").mouseover(function(){
+            $(this).next(".tooltip_area").fadeIn();
+        }).mouseout(function(){
+            $(".tooltip_area").fadeOut("fast");
+        }).mousemove(function(e){
+            $(".tooltip_area").css({
+                top:e.pageY+0+"px",
+                left:e.pageX+10+"px"
+            });
+        });
+    });
+
+    </script>
+
+
+    <!-- 하단 레이아웃 -->
+    <div id="ft">
+        <p>
+            Copyright © abc.com. All rights reserved.
+        </p>
+        <button type="button" class="scroll_top"><span class="top_img"></span><span class="top_txt">TOP</span></button>
+    </div>
+</div>
+<script>
+$(".scroll_top").click(function(){
+     $("body,html").animate({scrollTop:0},400);
+})
+</script>
+
+
+
+</body>
+</html>

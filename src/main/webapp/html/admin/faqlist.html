@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="Generator" content="EditPlus®">
+<meta name="Author" content="">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>관리자</title>
+
+<link rel="stylesheet" href="./css/style.css">
+<script src="http://code.jquery.com/jquery-1.12.1.js"></script>
+</head>
+<body>
+
+
+<div id="hd">
+    <h1>관리자</h1>
+    <div id="hd_top">
+        <button type="button" id="btn_gnb" class="btn_gnb_close">메뉴</button>
+        <div id="logo">
+            <a href="./index.html"><img src="./img/logo.png" alt="관리자"></a>
+        </div>
+        <div id="tnb">
+            <ul>
+                <li class="tnb_li"><a href="#" class="tnb_community" target="_blank">커뮤니티 바로가기</a></li>
+                <li class="tnb_li"><a href="#" class="tnb_service">부가서비스</a></li>
+                <li class="tnb_li"><button type="button" class="tnb_mb_btn">관리자<span class="./img/btn_gnb.png">메뉴열기</span></button>
+                    <ul class="tnb_mb_area">
+                        <li><a href="#">관리자정보</a></li>
+                        <li id="tnb_logout"><a href="#">로그아웃</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="gnb" class="gnb_large">
+        <h2>카테고리</h2>
+        <ul class="gnb_ul">
+            <li class="gnb_li on">
+                <button type="button" class="btn_op menu-1">환경설정</button>
+                <div class="gnb_oparea_wr">
+                    <div class="gnb_oparea">
+                        <h3>환경설정</h3>
+                        <ul>
+                            <li><a href="./config_form.html" class="on">기본환경설정</a></li>
+                            <li><a href="./auth_list.html">관리권한설정</a></li>
+                            <li><a href="./menu_list.html">메뉴설정</a></li>
+                            <li><a href="./sendmail_test.html">메일테스트</a></li>
+                            <li><a href="./newwinlist.html">팝업레이어관리</a></li>
+                            <li><a href="./session_file_delete.html">세션파일 일괄삭제</a></li>
+                            <li><a href="./cache_file_delete.html">캐시파일 일괄삭제</a></li>
+                            <li><a href="./captcha_file_delete.html">캡챠파일 일괄삭제</a></li>
+                            <li><a href="./thumbnail_file_delete.html">썸네일파일 일괄삭제</a></li>
+                            <li><a href="./browscap.html">Browscap 업데이트</a></li>
+                            <li><a href="./browscap_convert.html">접속로그 변환</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <li class="gnb_li">
+                <button type="button" class="btn_op menu-2">회원관리</button>
+                <div class="gnb_oparea_wr">
+                    <div class="gnb_oparea">
+                        <h3>회원관리</h3>
+                        <ul>
+                            <li><a href="./member_list.html">회원관리</a></li>
+                            <li><a href="./mail_list.html">회원메일발송</a></li>
+                            <li><a href="./visit_list.html">접속자집계</a></li>
+                            <li><a href="./visit_search.html">접속자검색</a></li>
+                            <li><a href="./visit_delete.html">접속자로그삭제</a></li>
+                            <li><a href="./point_list.html">포인트관리 </a></li>
+                            <li><a href="./poll_list.html">투표관리 </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <li class="gnb_li">
+                <button type="button" class="btn_op menu-3">게시판관리</button>
+                <div class="gnb_oparea_wr">
+                    <div class="gnb_oparea">
+                        <h3>게시판관리</h3>
+                        <ul>
+                            <li><a href="./board_list.html">게시판관리</a></li>
+                            <li><a href="./boardgroup_list.html">게시판그룹관리</a></li>
+                            <li><a href="./popular_list.html">인기검색어관리</a></li>
+                            <li><a href="./popular_rank.html">인기검색어순위</a></li>
+                            <li><a href="./qa_config.html">1:1문의설정</a></li>
+                            <li><a href="./contentlist.html">내용관리</a></li>
+                            <li><a href="./faqmasterlist.html">FAQ관리</a></li>
+                            <li><a href="./write_count.html">글,댓글 현황</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <li class="gnb_li">
+                <button type="button" class="btn_op menu-4">SMS관리</button>
+                <div class="gnb_oparea_wr">
+                    <div class="gnb_oparea">
+                        <h3>SMS관리</h3>
+                        <ul>
+                            <li><a href="./sms_config.html">SMS 기본설정</a></li>
+                            <li><a href="./member_update.html">회원정보업데이트</a></li>
+                            <li><a href="./sms_write.html">문자 보내기</a></li>
+                            <li><a href="./history_list.html">전송내역-건별</a></li>
+                            <li><a href="./history_num.html">전송내역-번호별</a></li>
+                            <li><a href="./form_group.html">이모티콘 그룹</a></li>
+                            <li><a href="./form_list.html">이모티콘 관리</a></li>
+                            <li><a href="./num_group.html">휴대폰번호 그룹</a></li>
+                            <li><a href="./num_book.html">휴대폰번호 관리</a></li>
+                            <li><a href="./num_book_file.html">휴대폰번호 파일</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<script>
+$(function(){ 
+    $(".tnb_mb_btn").click(function(){
+        $(".tnb_mb_area").toggle();
+    });
+
+    $("#btn_gnb").click(function(){
+        $("#container").toggleClass("container-small");
+        $("#gnb").toggleClass("gnb_small");
+        $("#btn_gnb").toggleClass("btn_gnb_open");
+    });
+
+    $(".gnb_ul li .btn_op" ).click(function() {
+        $(this).parent().addClass("on").siblings().removeClass("on");
+    });
+
+});
+</script>
+<!-- 상단 레이아웃 -->
+
+<div id="container">
+    <!-- 중간 레이아웃 -->
+    <h1 id="container_title">FAQ 상세관리 : 자주하시는 질문</h1>
+
+    <div id="container_wr">
+
+        <div class="local_desc">
+            <ol>
+                <li>FAQ는 무제한으로 등록할 수 있습니다</li>
+                <li><strong>FAQ 상세내용 추가</strong>를 눌러 자주하는 질문과 답변을 입력합니다.</li>
+            </ol>
+        </div>
+       <div class="local_ov1">
+            <span class="btn_ov01"><span class="ov_txt">FAQ 상세내용</span><span class="ov_num"> 10건</span></span>
+        </div>
+        <div class="table_basic table_01">
+            <table>
+            <caption>FAQ 상세관리 : 자주하시는 질문 목록</caption>
+            <thead>
+                <tr>
+                    <th scope="col">번호</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">순서</th>
+                    <th scope="col">관리</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="td_num_c">1</td>
+                    <td class="td_left">제목</td>
+                    <td class="td_num_c">0</td>
+                    <td class="td_mng td_mng_m"><a href="" class="btn_03">수정</a><a href="" class="btn_02">삭제</a></td>
+                </tr>
+                <tr class="td_bg1">
+                    <td class="td_num_c">1</td>
+                    <td class="td_left">제목</td>
+                    <td class="td_num_c">0</td>
+                    <td class="td_mng td_mng_m"><a href="" class="btn_03">수정</a><a href="" class="btn_02">삭제</a></td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        <div class="btn_fixed_top">
+            <a href="./faqmasterlist.html" class="btn btn_02">FAQ 관리</a>
+            <a href="./faqform.html" class="btn_submit btn">FAQ 상세내용 추가</a>
+        </div>
+
+    </div>
+
+    <script>
+    $(function(){ 
+        $(".contents li").hide();
+        $(".contents li:first").show();
+        $(".tab_01 li").click(function(){
+            var tabType = $(this).index();
+            $('.contents li').hide();
+            $('.contents li').eq(tabType).show();
+            $('.tab_01 li button').removeClass('selected');
+            $('.tab_01 li button').eq(tabType).addClass('selected'); 
+        })
+     
+     
+        $(".tooltip_btn").mouseover(function(){
+            $(this).next(".tooltip_area").fadeIn();
+        }).mouseout(function(){
+            $(".tooltip_area").fadeOut("fast");
+        }).mousemove(function(e){
+            $(".tooltip_area").css({
+                top:e.pageY+0+"px",
+                left:e.pageX+10+"px"
+            });
+        });
+    });
+
+    </script>
+
+
+    <!-- 하단 레이아웃 -->
+    <div id="ft">
+        <p>
+            Copyright © abc.com. All rights reserved.
+        </p>
+        <button type="button" class="scroll_top"><span class="top_img"></span><span class="top_txt">TOP</span></button>
+    </div>
+</div>
+<script>
+$(".scroll_top").click(function(){
+     $("body,html").animate({scrollTop:0},400);
+})
+</script>
+
+
+
+</body>
+</html>
