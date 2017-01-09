@@ -24,9 +24,4 @@ public class BoardServiceImpl implements BoardService {
 		return boardRepository.findByBoardId(boardId, pageRequest);
 	}
 
-	@Override
-	public String getTotalCount() {
-		return boardRepository.getTotalCount();
-	}
-	
 }

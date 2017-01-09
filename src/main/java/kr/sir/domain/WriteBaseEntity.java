@@ -114,7 +114,6 @@ public abstract class WriteBaseEntity implements Serializable{
 	
 	@Column(name="wr_twitter_user")
 	private String twitterUser;
-	
 
 	@Column(name="wr_1")
 	private String extra1;
@@ -145,9 +144,6 @@ public abstract class WriteBaseEntity implements Serializable{
 	
 	@Column(name="wr_10")
 	private String extra10;
-	
-	
-	
 	
 }
 

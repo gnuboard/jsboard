@@ -7,9 +7,6 @@ import kr.sir.domain.Write;
 
 public interface BoardService {
 	
-	// 게시글 총 수
-	public String getTotalCount();
-	
 	// 게시글 가져오기
 	public Page<Write> findByBoardId(int boardId, PageRequest pageRequest);
 }

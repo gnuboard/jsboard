@@ -29,18 +29,20 @@ public class JsboardController {
 	@RequestMapping(value="/list")
 	public String index(Model model, Write write) {
 		
-		PageRequest pageRequest = new PageRequest(0, 10, new Sort(Direction.ASC, "id"));
+		int paramCurrentPage = 0;
+		int paramPagePerPosts = 10;
+		int paramBoardId = 1;
 		
-		Page<Write> result = boardService.findByBoardId(1, pageRequest);
+		PageRequest pageRequest = new PageRequest(paramCurrentPage, paramPagePerPosts, new Sort(Direction.ASC, "id"));
+		
+		Page<Write> result = boardService.findByBoardId(paramBoardId, pageRequest);
 		List<Write> writeList = result.getContent();
 		int totalPages = result.getTotalPages();
 		long totalCount = result.getTotalElements();
 		int currentPage = result.getNumber();
 //		boolean hasNextPage = result.hasNext();
 		
-//		String totalCount = boardService.getTotalCount();
-		
-		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("currentPage", currentPage + 1);	// 0부터 시작.
 		model.addAttribute("totalPages", totalPages);
 //		model.addAttribute("hasNextPage", hasNextPage);
 		model.addAttribute("writeList", writeList);

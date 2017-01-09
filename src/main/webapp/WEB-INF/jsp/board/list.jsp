@@ -22,7 +22,7 @@
     <div id="bo_list">
         <div id="bo_list_total">
             Total <strong>${totalCount}</strong>건
-            <strong>1</strong> 페이지
+            <strong>${currentPage}</strong> 페이지
         </div>
         <div class="bo_fx">
             <div class="btn_bo_user">
