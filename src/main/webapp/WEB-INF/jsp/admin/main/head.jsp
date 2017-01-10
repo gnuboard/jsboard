@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
 <!doctype html>
 <html lang="en">
 <head>
@@ -90,7 +93,7 @@
                         <h3>게시판관리</h3>
                         <ul>
                             <li><a href="/adm/board/list">게시판관리</a></li>
-                            <li><a href="/adm/board/boardgrouplist">게시판그룹관리</a></li>
+                            <li><a href="/adm/board/boardgroupslist">게시판그룹관리</a></li>
                            <!--  <li><a href="./popular_list.html">인기검색어관리</a></li>
                             <li><a href="./popular_rank.html">인기검색어순위</a></li>
                             <li><a href="./qa_config.html">1:1문의설정</a></li>
