@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<jsp:useBean id="today" class="java.util.Date" />
+
 
 <!-- $sub_menu = "200100";
 include_once('./_common.php');
@@ -59,7 +59,7 @@ auth_check($auth[$sub_menu], 'w');
 
         <form name="fmember" id="fmember" action="${actionLink}" onsubmit="return fmember_submit(this);" method="post" enctype="multipart/form-data">
        
-        
+        <input type="hidden" name="_method" value=""/>
         <div class="table_basic table_form">
             <table>
             <caption>회원 추가</caption>
@@ -114,9 +114,9 @@ auth_check($auth[$sub_menu], 'w');
             <tr>
                 <th scope="row">본인확인</th>
                 <td>
-                    <input type="radio" name="isCertify" value="1" id="mb_certify_yes" <c:if test="${member.certify=='1'}">checked</c:if> >
+                    <input type="radio" name="isCertify" value="1" id="mb_certify_yes" <c:if test="${!empty member.certify}">checked</c:if> >
                     <label for="mb_certify_yes">예</label>
-                    <input type="radio" name="isCertify" value="0" id="mb_certify_no" <c:if test="${empty member.certify||member.certify=='0'}">checked</c:if> >
+                    <input type="radio" name="isCertify" value="0" id="mb_certify_no" <c:if test="${empty member.certify}">checked</c:if> >
                     <label for="mb_certify_no">아니오</label>
                 </td>
                 <th scope="row"><label for="mb_adult">성인인증</label></th>
@@ -253,12 +253,46 @@ auth_check($auth[$sub_menu], 'w');
                 </td>
             </tr>
 
-			 <c:forEach begin="1" end="10" var="j">
-            	<tr>
-                	<th scope="row"><label for="mb_${j}">여분 필드 ${j}</label></th>
-                	<td colspan="3"><input type="text" name="extra${j}" id="mb_${j}" class="frm_input" size="30" maxlength="255"></td>
-            	</tr>
-            </c:forEach>
+            <tr>
+               	<th scope="row"><label for="mb_1">여분 필드 1</label></th>
+               	<td colspan="3"><input type="text" name="extra1" id="mb_1" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_2">여분 필드 2</label></th>
+               	<td colspan="3"><input type="text" name="extra2" id="mb_2" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_3">여분 필드 3</label></th>
+               	<td colspan="3"><input type="text" name="extra3" id="mb_3" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_4">여분 필드 4</label></th>
+               	<td colspan="3"><input type="text" name="extra4" id="mb_4" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_5">여분 필드 5</label></th>
+               	<td colspan="3"><input type="text" name="extra5" id="mb_5" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_6">여분 필드 6</label></th>
+               	<td colspan="3"><input type="text" name="extra6" id="mb_6" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_7">여분 필드 7</label></th>
+               	<td colspan="3"><input type="text" name="extra7" id="mb_7" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_8">여분 필드 8</label></th>
+               	<td colspan="3"><input type="text" name="extra8" id="mb_8" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_9">여분 필드 9</label></th>
+               	<td colspan="3"><input type="text" name="extra9" id="mb_9" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_10">여분 필드 10</label></th>
+               	<td colspan="3"><input type="text" name="extra10" id="mb_10" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
             </tbody>
             </table>
         </div>
@@ -268,5 +302,18 @@ auth_check($auth[$sub_menu], 'w');
         </div>
         </form>
     </div>
- 
+    
+     
+ <script>
+function fmember_submit(f) {
+
+		if(${type} == 'add') {
+			
+		}else if (${type} == 'update') {
+			$("input:hidden[name=_method]").val("PUT");
+			
+		}
+		return true;
+	}
+</script>
  <jsp:include page="../main/tail.jsp"></jsp:include>

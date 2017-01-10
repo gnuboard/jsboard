@@ -57,9 +57,10 @@
 
 <form name="fmemberlist" id="fmemberlist" action="/adm/member/updateordelete/" onsubmit="return fmemberlist_submit(this);" method="post">
 <div class="btn_fixed_top">
+	<input type="hidden" name="_method" value=""/>
 	<input type="submit" name="act_button" value="선택수정" class="btn_02 btn" onclick="document.pressed=this.value">
     <input type="submit" name="act_button" value="선택삭제" class="btn_02 btn" onclick="document.pressed=this.value">
-    <a href="/adm/member/form/add" id="member_add" class="btn_submit btn">회원추가</a>
+    <a href="/adm/member/form" id="member_add" class="btn_submit btn">회원추가</a>
 </div>
 	<input type="hidden" name="sst" value="${sst}">
 	<input type="hidden" name="sod" value="${sod}">
@@ -119,7 +120,7 @@
 								<c:set var="s_mod" value="" />
 							</c:when>
 							<c:otherwise>								
-								<c:set var="s_mod" value="<a href='/adm/member/form/update/memberId/${member.memberId}' class='btn_03'>수 정</a>"/>
+								<c:set var="s_mod" value="<a href='/adm/member/form/${member.memberId}' class='btn_03'>수 정</a>"/>
 							</c:otherwise>
 						</c:choose>
 						
@@ -267,7 +268,12 @@
 			if (!confirm("선택한 자료를 정말 삭제하시겠습니까?")) {
 				return false;
 			}
+			$("input:hidden[name=_method]").val("DELETE");
+		}else if (document.pressed == "선택수정") {
+			$("input:hidden[name=_method]").val("PUT");
+			
 		}
+		
 
 		return true;
 	}
