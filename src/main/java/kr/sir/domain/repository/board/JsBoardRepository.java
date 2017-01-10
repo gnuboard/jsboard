@@ -10,6 +10,7 @@ import kr.sir.domain.Write;
 @Repository
 public interface JsBoardRepository extends JpaRepository<Write, Integer>{
 	
+	// Paging 처리한 게시판 가져오기
 	public Page<Write> findByBoardId(int boardId, Pageable pageable);
 	
 }

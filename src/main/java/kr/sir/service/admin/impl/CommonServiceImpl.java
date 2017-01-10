@@ -19,8 +19,8 @@ public class CommonServiceImpl implements CommonService{
 	}
 
 	@Override
-	public List<?> search(String keyword, String searchWord, Object entity) {
-		return commonEmRepository.search(keyword, searchWord, entity);
+	public List<?> search(String keyword, String searchWord, Object entity, String orderBy) {
+		return commonEmRepository.search(keyword, searchWord, entity, orderBy);
 	}
 
 }

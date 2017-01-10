@@ -10,11 +10,12 @@
  </head>
  <body>
  <div id="container">
-    ${searchWord}, ${keyword}	<br>
+    검색어 : ${searchWord} <br>
+    검색 키워드 : ${keyword} <br>
     <c:forEach var="member" items="${searchMember}" varStatus="i">
-    	${member.memberId} <br>
-    	${member.nick} <br>
-    	${member.datetime} <br>
+    	memberId : ${member.memberId} <br>
+    	nick : ${member.nick} <br>
+    	datetime : ${member.datetime} <br>
     	
     </c:forEach>
 </div>

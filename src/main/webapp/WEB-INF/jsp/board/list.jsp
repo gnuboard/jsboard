@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -53,7 +53,7 @@ function selectCopy() {
 </script>
  <body>
  <div id="container">
-    <h1 class="container_tit">게시판 이름.(bo_id로 board테이블에서 가져오기)</h1>
+    <h1 class="container_tit">board.bo_table</h1>
     <div class="bo_cate">
         <h2>게시판01 카테고리</h2>
         <ul>
@@ -113,7 +113,9 @@ function selectCopy() {
                         <label class="sound_only">${write.subject} 게시물</label>
                        	<input type="checkbox" name="id" value="${write.id}">
                     </td>
-                    <td><a href="#" class="bo_cate_link">[${write.categoryName}]</a> <a href="#">${write.subject}</a></td>
+                    <td><a href="/board/view/${write.id}/${currentPage}" class="bo_cate_link">[${write.categoryName}]</a>
+                    	<a href="/board/view/${write.id}/${currentPage}">${write.subject}</a>
+                   	</td>
                     <td class="td_name">${write.name}</td>
                     <td class="td_date"><fmt:formatDate value="${write.datetime}" pattern="yy/MM/dd"/></td>
                     <td class="td_num_c">${write.hit}</td>

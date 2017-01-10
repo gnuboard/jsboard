@@ -30,6 +30,11 @@
             </select>
             <label name="searchWord" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
             <input type="text" name="searchWord" class="frm_input required" size="15" maxlength="20">
+            <label for="keyword" class="sound_only">정렬순서</label>
+            <select name="orderBy">
+                <option value="desc">내림차순</option>
+                <option value="asc">오름차순</option>
+            </select>
             <input type="submit" value="검색" class="btn_submit">
             </form>
         </fieldset>
