@@ -270,12 +270,85 @@ textarea{width:100%;;border:1px solid #d5d5d5;min-height:80px}
 .session_del p{line-height:1.7em;padding:10px 15px ;background:#f7ecea;border:1px solid #ffb6c1}
 
 /*테마*/
+#theme ul{margin:0 -10px}
 #theme ul:after{display:block;visibility:hidden;clear:both;content:""}
-#theme ul li{float:left;width:25%;padding:5px}
+#theme ul li{float:left;width:25%;padding:10px}
 #theme .theme_wr{border:1px solid #d2d2d2;position:relative;background:#f3f3f3}
 #theme .theme_img img{width:100%;height:auto}
-#theme .theme_tit{border-top:1px solid #d2d2d2;font-weight:bold}
-#theme .theme_tit a{display:block;padding: 10px 50px 10px 15px;line-height:25px}
-#theme .theme_btn{position:absolute;bottom:5px;right:5px}
+#theme .theme_tit{border-top:1px solid #d2d2d2;;padding: 10px 120px 10px 15px;font-weight:bold}
+#theme .theme_tit a{display:block;line-height:25px}
+#theme .theme_btn{position:absolute;bottom:8px;right:5px}
+#theme .theme_btn a{display:inline-block;line-height:28px;padding:0 5px;border-radius:5px;vertical-align:middle;font-weight:bold;float:left}
+#theme .theme_btn button{line-height:28px;padding:0 8px;border-radius:5px;border:0;vertical-align:middle;font-weight:bold;float:left;margin-left:2px}
+#theme .theme_btn .btn_cancle{background:#fff;color:#3f51b5}
+#theme .theme_sl .theme_wr{background:#444;border:1px solid #444}
+#theme .theme_sl .theme_tit a{color:#fff}
+.theme_sl_icon{position:absolute;top:5px;left:5px;background:#ff4081;color:#fff;font-size:0.92em;line-height:23px;padding: 0 6px}
+.theme_clear{clear:both}
+
+#theme_detail{display:none;position:fixed;top:50%;height:540px;width:900px;margin-top:-271px;background:#fff;background:#f3f3f3;border:1px solid #000;
+-webkit-box-shadow: 1px 2px 5px  rgba(150,150,150,100.5);
+   -moz-box-shadow: 1px 2px 5px  rgba(150,150,150,0.5);
+        box-shadow: 1px 2px 5px  rgba(150,150,150,0.5);z-index:1000}
+#theme_detail:after{display:block;visibility:hidden;clear:both;content:""}
+#theme_detail h2{font-size:1.25em;background:#fff;padding:0 15px;line-height:40px;border-bottom:1px solid #d8d8d8}
+.theme_dt_img{float:left;padding:20px}
+.theme_dt_img img{border:1px solid #aaa;}
+.theme_dt_if{float:left;width:235px;padding:20px 0}
+.theme_dt_if table{width:100%;border-collapse:collapse;;margin:15px 0 0 ;font-size:0.92em}
+.theme_dt_if table th{padding:5px;background:#fff;border-bottom:1px solid #f3f3f3;vertical-align:top;color:#3f51b5}
+.theme_dt_if table td{padding:5px;background:#fff;border-bottom:1px solid #f3f3f3}
+.theme_dt_if table td a{text-decoration:underline}
+.theme_dt_if p{line-height:1.5em}
+.if_p_bg{display:inline-block;width:20px;height:1px ;background:#000;margin:30px 0 10px}
+#theme_detail .theme_dt_btn{position:absolute;top:0px;right:0px;background:#fff;}
+#theme_detail .theme_dt_btn .close_btn{background:url('../img/close.png') 50% 50% no-repeat;width:40px;height:40px;overflow:hidden;border:0;text-indent:-99999px;border-left:1px solid #d8d8d8}
+#theme_detail .theme_dt_btn .btn_02{line-height:28px;display:inline-block;vertical-align:top;margin-top:6px;padding:0 6px;border-radius:5px}
+#theme_detail .theme_dt_btn .btn_03{line-height:28px;border:0;vertical-align:top;margin-top:6px;padding:0 6px;border-radius:5px}
+
 
 /*부가서비스*/
+.service_wrap{margin:0 -10px}
+.service_wrap:after{display:block;visibility:hidden;clear:both;content:""}
+.sevice{float:left;width:33.333%;padding:10px;margin-bottom:10px;text-align:center;}
+.sevice h3{font-size:1.25em;margin:10px 0;}
+.sevice p{line-height:1.5em;margin:10px 20px ;text-align:left}
+.sevice  .sevice_wr{border:1px solid #ddd;height:430px;position:relative}
+.sevice_1 ul{position:absolute;bottom:0;left:0;width:100%}
+.sevice_1 ul:after{display:block;visibility:hidden;clear:both;content:""}
+.sevice_1 ul {width:100%;padding:0; margin:0;border-top:1px solid #ddd;}
+.sevice_1 ul li{list-style:none;float:left;border-right:1px solid #ddd;width:33.3333%;}
+.sevice_1 ul li a{display:inline-block;height:56px;line-height:56px;width:100%;
+ background: -webkit-linear-gradient(#fff, #eee);
+background: -o-linear-gradient(#fff, #eee); 
+background: -moz-linear-gradient(#fff, #eee);
+background: linear-gradient(#fff, #eee);}
+.sevice_1 ul li img{}
+.sevice_1 ul li.last{border:0}
+.sevice_1 .svc_btn{position:absolute;bottom:0;left:0;width:100%;width:100%;padding:0; margin:0;border-top:1px solid #ddd;}
+.sevice .svc_btn a{display:inline-block;height:56px;line-height:56px;;width:100%;
+ background: -webkit-linear-gradient(#fff, #eee);
+background: -o-linear-gradient(#fff, #eee); 
+background: -moz-linear-gradient(#fff, #eee);
+background: linear-gradient(#fff, #eee);}
+.service_wrap .svc_img{margin:40px 0 10px}
+.sevice_2{clear:both;margin:10px;border:1px solid #ddd;padding:20px;height:110px;position:relative}
+.sevice_2 h3{font-size:1.25em;margin: 0 0 10px;}
+.sevice_2 .svc_btn{position:absolute;top:0;right:0;height:108px;width:150px;text-align:center;border-left:1px solid #ddd;}
+.sevice_2 .svc_btn a{display:block;height:108px;line-height:108px;;width:100%;
+ background: -webkit-linear-gradient(#fff, #eee);
+background: -o-linear-gradient(#fff, #eee); 
+background: -moz-linear-gradient(#fff, #eee);
+background: linear-gradient(#fff, #eee);}
+
+/*접속자로그삭제*/
+.visit_del_bt{margin:5px 0;border-top:1px solid #eee;padding:5px 0}
+.visit_del_bt .btn_submit{border:0;height:35px;padding: 0 5px;border-radius:3px}
+
+/*휴대폰번호 그룹*/
+.numgr_sch .frm_input{height:30px}
+
+/*회원정보 업데이트*/
+#res_msg{line-height:1.7em;padding:10px 15px;margin:10px 0 ;background:#f7ecea;border:1px solid #ffb6c1}
+#sms_mbup dt{font-weight:bold}
+#sms_mbup dd{margin-bottom:10px}
