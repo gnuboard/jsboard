@@ -36,7 +36,7 @@
         </div>
 
         <form name="fpointlist" id="fpointlist" method="post" action="/adm/member/deletepoint" onsubmit="return fpointlist_submit(this);">
-        
+        	<input type="hidden" name="_method" value=""/>
 			<input type="hidden" name="sst" value="${sst}">
 			<input type="hidden" name="sod" value="${sod}">
 			<input type="hidden" name="sfl" value="${sfl}">
@@ -71,7 +71,7 @@
 	                	<input type="hidden" name="memberid[${i.index}]" value="${pointContent.memberId}" id="mb_id_${i.index}">
 	          			<input type="hidden" name="id[${i.index}]" value="${pointConten.id}" id="po_id_${i.index}">
 	                    <label class="sound_only">${pointContent.content}</label>
-	                    <input type="checkbox" name="chk[]" id="chk_${i.index}">
+	                    <input type="checkbox" name="chk[]" id="chk_${i.index}" value="${pointContent.id}">
 	                    
 	                </td>
 	                <td class="td_left">${pointContent.memberId}</td>
@@ -98,7 +98,8 @@
         </div>
         </form>
 
-        <form action="/adm/member/updatepoint" method="post">
+        <form name="fupdatepoint" action="/adm/member/updatepoint" method="post" onsubmit="return fupdatepoint_submit(this);">
+        <input type="hidden" name="_method" value=""/>
         <div class="add_form">
             <h2 class="h2_frm">개별회원 포인트 증감 설정</h2>
             <div class="table_basic table_form">
@@ -148,15 +149,22 @@ function fpointlist_submit(f)
         if(!confirm("선택한 자료를 정말 삭제하시겠습니까?")) {
             return false;
         }
+        $("input:hidden[name=_method]").val("DELETE");
     }
+    return true;    
+}
 
-    return true;
+function fupdatepoint_submit(f){
+	 $("input:hidden[name=_method]").val("PUT");
+	 return true;
 }
 
 
-	
-
-
 </script>    
+    
+    
+    
+    
+    
     
 <jsp:include page="../main/tail.jsp"></jsp:include>    

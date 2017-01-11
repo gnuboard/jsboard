@@ -10,5 +10,5 @@ public class MemberSearch extends MemberBaseEntity {
 	
 	private String searchWord;
 	private String keyword;
-	
+	private String orderBy;
 }

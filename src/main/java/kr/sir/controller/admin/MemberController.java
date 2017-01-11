@@ -1,6 +1,5 @@
 package kr.sir.controller.admin;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.sir.common.CommonUtil;
 import kr.sir.domain.Config;
 import kr.sir.domain.Member;
 import kr.sir.domain.MemberGroupCount;
@@ -39,6 +37,7 @@ public class MemberController {
 		this.memberService=memberService;
 	}
 	
+	//모든 컨트롤러에 config모델이 전달됨.
 	@ModelAttribute("config")
 	public Config getConfig(){
 		return configService.getConfig();
@@ -57,7 +56,7 @@ public class MemberController {
 		model.addAttribute("countblockedmembers",memberService.getCountBlockedMembers());	                    
 		
 		// 멤버리스트 + 접근 가능 그룹 수
-		List<MemberGroupCount> memberslist = memberService.getAllMembersList("js1_");
+		List<MemberGroupCount> memberslist = memberService.getAllMembersList();
 		
 		model.addAttribute("memberslist", memberslist);
 		
@@ -65,16 +64,17 @@ public class MemberController {
 	}
 	
 	//회원추가 폼
-	@RequestMapping(value={"/form/{type}"})
-	public String showAddMemberForm(Model model,@PathVariable String type){
-		model.addAttribute("type", type);
+	@RequestMapping(value={"/form"})
+	public String showAddMemberForm(Model model,String type){
+		model.addAttribute("type", "add");
 		
 		return "admin/member/form";
 	}
-	//회원 수정 폼
-	@RequestMapping(value={"/form/{type}/memberId/{memberId}"})
-	public String showUpdateMemberForm(Model model,@PathVariable String type,@PathVariable String memberId){
-		model.addAttribute("type", type);
+	
+	//회원 수정 폼(추가폼이랑 같은 뷰를 사용)
+	@RequestMapping(value={"/form/{memberId}"})
+	public String showUpdateMemberForm(Model model,String type,@PathVariable String memberId){
+		model.addAttribute("type", "update");
 		
 		Member member=memberService.getOneMemer(memberId);
 		
@@ -85,10 +85,9 @@ public class MemberController {
 		return "admin/member/form";
 	}
 	
-	@RequestMapping(value={"/add"})
-	public String memberAdd(Member member,String zipCode,String isCertify){
-	
-			
+	//괸리자가 회원 추가
+	@RequestMapping(value={"/add"},method=RequestMethod.POST)
+	public String memberAdd(Member member,String zipCode,String isCertify){		
 		
 		if(zipCode.length()>0 && !zipCode.equals("")){			
 			/*System.out.println("우편번호1:"+zipCode.substring(0, 3));
@@ -117,7 +116,9 @@ public class MemberController {
 		return "redirect:./list";
 	}
 	
-	@RequestMapping(value={"/update"})
+	
+	//관리자가 회원 수정(회원 추가와 같은 메서드 사용)
+	@RequestMapping(value={"/update"},method=RequestMethod.PUT) 
 	public String memberUpdate(Member member,String isCertify){
 		
 		memberService.adminSavesMember(member,isCertify);
@@ -125,22 +126,28 @@ public class MemberController {
 	}
 	
 	
-	//관리자페이지에서 회원 삭제하거나 체크수정하기
-	@RequestMapping(value={"/updateordelete"})
-	public String memberDelete(HttpServletRequest request,Model model,@RequestParam("act_button") String actButton,@RequestParam(value="chk[]") List<String> chk){
-		
-		
-		if(actButton.equals("선택수정")){
-			for (String number : chk) {
-				System.out.println(number);
-			}
-		}else if (actButton.equals("선택삭제")){
+	//관리자 회원 리스트 페이지에서 회원 삭제
+	@RequestMapping(value={"/updateordelete"},method=RequestMethod.DELETE)
+	public String deleteMember(Model model,@RequestParam(value="chk[]") List<String> chk){
+			
 			for (String id : chk) {
 				memberService.adminDeletesMember(Integer.parseInt(id));
+				System.out.println("삭제완료");
+				
 			}
-		}		
-		return "redirect:./list";
+			
+		return "redirect:../list";
 	}
+	
+	//관리자 회원 리스트에서 회원 수정(미구현)
+	@RequestMapping(value={"/updateordelete"},method=RequestMethod.PUT)
+	public String updateMember(@RequestParam(value="chk[]") List<String> chk){
+		
+		System.out.println("수정완료");
+		return "redirect:../list";
+	}
+	
+	
 		
 	//관리자페이지에서 회원들 포인트 관리 내역 보기
 	@RequestMapping(value={"/pointlist"})
@@ -149,35 +156,48 @@ public class MemberController {
 		//포인트 건 수
 		model.addAttribute("countPointlist", memberService.getCountPointlist());
 		
-		//전체 포인트 합계
+		//전체 포인트 합계 (sum)이안되서 대기중
 		/*model.addAttribute("totalPoint",memberService.getTotalPoint(CommonUtil.getTablePrefix()));*/
 		
 		//전체포인트내용
-		model.addAttribute("allPointContent", memberService.getAllPointContent(CommonUtil.getTablePrefix()));	
+		model.addAttribute("allPointContent", memberService.getAllPointContent());	
 		
 		return "admin/member/point_list";
 	}
 	
 	
-	//관리자페이지에서 회원에게 포인트 추가또는 삭제
-	@RequestMapping(value={"/updatepoint"})
-	public String addPoint(Model model,Point point) {
-		String msg=memberService.addPoint(point,CommonUtil.getTablePrefix());
+	//관리자페이지에서 회원에게 포인트증감	
+	@RequestMapping(value={"/updatepoint"},method=RequestMethod.PUT)
+	public String addPoint(Model model,Point point,HttpServletRequest request) {
+		String msg=memberService.addPoint(point);
 		
+		System.out.println("포인트증감 메소드="+request.getMethod());
 		System.out.println(" 포인트내용:"+point.getContent());
 		System.out.println(" 회원아이디:"+point.getMemberId());
 		System.out.println(" 회원포인트:"+point.getPoint());	
 		
-		model.addAttribute("msg",msg);
-		model.addAttribute("url", "/adm/member/pointlist");
-		return "redirect:./list ";
+		//에러메시지를 출력하려고 했으나 실패함
+	/*	model.addAttribute("msg",msg);		
+		model.addAttribute("url", "/adm/member/pointlist");*/
+		return "redirect:./pointlist";
 	}
 	
 	
 	
 	
 	
-
+	// 포인트관리 내역 삭제
+	@RequestMapping(value={"/deletepoint"}, method=RequestMethod.DELETE)
+	public String deletePoint(Model model,@RequestParam(value="chk[]") List<String> chk,HttpServletRequest request ){
+		
+		System.out.println("포인트내역삭제 method= " +request.getMethod());
+		for (String id : chk) {
+			memberService.deletePointlist(Integer.parseInt(id));
+		}
+		
+		
+		return "redirect:./pointlist";
+	}
 }
 
 

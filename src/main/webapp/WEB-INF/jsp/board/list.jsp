@@ -1,16 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>게시판</title>
     <link rel="stylesheet" href="/css/board.css">
- </head>
+</head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+function selectDelete() {
+	if(confirm("선택한 게시물을 정말 삭제하시겠습니까?\n\n"
+			+"한번 삭제한 자료는 복구할 수 없습니다.\n\n"
+			+"답변글이 있는 게시글을 선택하신 경우\n"
+			+"답변글도 선택하셔야 게시글이 삭제됩니다.")
+		== true) {
+		$("input:hidden[name=_method]").val("DELETE");
+	} else {
+		return;
+	}
+}
+
+function submitDelete() {
+// 	$.ajax({
+// 		url : "/board/delete",
+// 		type : "DELETE",
+// 		cache : false,
+// 		data : $("#boardForm").serialize(),
+// 		dataType : "json",
+// 		success : function(data) {
+// 			alert("삭제 성공!, data : " + data.result);
+// 		},
+// 		error:function(request,status,error){
+// 	        alert("code:"+request.status+"\n"+"error:"+error);
+// 	    }
+// 	});
+}
+
+function checkAllClicked(){
+	if($("#check_all").is(":checked")) {
+		$("input:checkbox[name='id']").prop("checked", true);
+	} else {
+		$("input:checkbox[name='id']").prop("checked", false);
+	}
+}
+
+function selectCopy() {
+	alert("선택 수정");
+}
+
+</script>
  <body>
  <div id="container">
-    <h1 class="container_tit">게시판 이름.(bo_id로 board테이블에서 가져오기)</h1>
+    <h1 class="container_tit">board.bo_table</h1>
     <div class="bo_cate">
         <h2>게시판01 카테고리</h2>
         <ul>
@@ -27,9 +70,13 @@
         <div class="bo_fx">
             <div class="btn_bo_user">
                 <a href="" class="btn_admin btn">관리자</a>
-                <a href="./add" class="btn_b02 btn">글쓰기</a>
+                <a href="/board/add" class="btn_b02 btn">글쓰기</a>
             </div>
         </div>
+       	<form action="/board/list/${currentPage}" name="boardForm" id="boardForm" method="post">
+       	<input type="hidden" name="totalCount" value="${totalCount}" />
+       	<input type="hidden" name="pagePerPosts" value="${pagePerPosts}" />
+       	<input type="hidden" name="_method" value=""/>
         <div class="table_basic">
             <table>
                 <caption>게시판01(bo_id로 board테이블에서 가져오기) 목록</caption>
@@ -38,7 +85,7 @@
                     <th scope="col">번호</th>
                     <th scope="col">
                         <label class="sound_only">현재 페이지 게시물 전체</label>
-                        <input type="checkbox">
+                        <input type="checkbox" name="check_all" id="check_all" onclick="checkAllClicked();">
                     </th>
                     <th scope="col">제목</th>
                     <th scope="col">글쓴이</th>
@@ -64,9 +111,11 @@
                     <td class="td_num_c">${write.id}</td>
                     <td class="td_chk">
                         <label class="sound_only">${write.subject} 게시물</label>
-                        <input type="checkbox">
+                       	<input type="checkbox" name="id" value="${write.id}">
                     </td>
-                    <td><a href="#" class="bo_cate_link">[${write.categoryName}]</a> <a href="#">${write.subject}</a></td>
+                    <td><a href="/board/view/${write.id}/${currentPage}" class="bo_cate_link">[${write.categoryName}]</a>
+                    	<a href="/board/view/${write.id}/${currentPage}">${write.subject}</a>
+                   	</td>
                     <td class="td_name">${write.name}</td>
                     <td class="td_date"><fmt:formatDate value="${write.datetime}" pattern="yy/MM/dd"/></td>
                     <td class="td_num_c">${write.hit}</td>
@@ -77,32 +126,46 @@
         </div>
         <div class="bo_fx">
             <div class="btn_bo_adm">
-                <input type="submit" value="선택삭제" class="btn">
-                <input type="submit" value="선택복사" class="btn">
+                <input type="submit" value="선택삭제" class="btn" onclick="selectDelete();">
+                <input type="submit" value="선택복사" class="btn" onclick="selectCopy();">
                 <input type="submit" value="선택이동" class="btn">
             </div>
         
             <div class="btn_bo_user">
-                <a href="./add" class="btn_b02 btn">글쓰기</a>    
+                <a href="/board/add" class="btn_b02 btn">글쓰기</a>    
             </div>
         </div>
+        </form>
         
         <div class="pagination">
             <h2>페이징</h2>
+			            
             <div class="pg_wr">
-                <a href="#" class="first">맨 처음으로</a>
-                <a href="#" class="prev">이전</a>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#" class="active">6</a>
-                <a href="#">7</a>
-                <a href="#">8</a>
-                <a href="#" class="next">다음</a>
-                <a href="#" class="last">맨 마지막으로</a>
+            	<c:if test = "${ currentPage > pageGroupPerSize}" >
+	                <a href="/board/list/1" class="first">맨 처음으로</a>
+                	<a href="/board/list/${prevPageGroupLastPage}" class="prev">이전</a>
+                </c:if>
+                <c:forEach var="i" begin="${currentPageGroupFirstPage}" end="${currentPageGroupLastPage}">
+                	<c:choose>
+	                	<c:when test = "${ currentPage eq i}" >
+			                <a href="/board/list/${i}" class="active">${i}</a>
+		                </c:when>
+		                <c:otherwise>
+		                	<a href="/board/list/${i}">${i}</a>
+		                </c:otherwise>
+	                </c:choose>
+                </c:forEach>
+                <c:choose>
+                	<c:when test = "${ totalPages eq pageGroupPerSize }" >
+                	</c:when>
+	                <c:when test = "${ currentPage <= totalPages - (totalPages % pageGroupPerSize) }" >
+		                <a href="/board/list/${nextPageGroupFirstPage}" class="next">다음</a>
+		                <a href="/board/list/${totalPages}" class="last">맨 마지막으로</a>
+		            </c:when>
+		            
+	            </c:choose>
             </div>
+            
         </div>
 
         <fieldset id="bo_sch">
@@ -126,5 +189,5 @@
         </fieldset>
     </div>
 </div>
- </body>
+</body>
 </html>
