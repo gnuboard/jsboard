@@ -9,6 +9,7 @@ public class BoardForm{
 	private int totalCount;
 	private int pagePerPosts;
 	private int currentPage;
+	private String currentCategory;
 	
 	public int redirectPageNumber(int deletedArticleCount, int pageNumber) {
 		totalCount = totalCount - deletedArticleCount;

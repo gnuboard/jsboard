@@ -1,5 +1,7 @@
 package kr.sir.service.board.impl;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -33,6 +35,16 @@ public class JsBoardServiceImpl implements JsBoardService {
 	@Override
 	public Page<Write> findByBoardId(int boardId, PageRequest pageRequest) {
 		return jsBoardRepository.findByBoardId(boardId, pageRequest);
+	}
+	
+	// 게시판 가져오기 ( 카테고리로 검색 )
+	@Override
+	public Page<Write> findByCategoryName(int boardId, String categoryName, PageRequest pageRequest) {
+		if(categoryName.equals("all")) {
+			return jsBoardRepository.findByBoardId(boardId, pageRequest);
+		} else {
+			return jsBoardRepository.findByBoardIdAndCategoryName(boardId, categoryName, pageRequest);
+		}
 	}
 
 	// 게시글 선택 삭제
@@ -89,5 +101,18 @@ public class JsBoardServiceImpl implements JsBoardService {
 	public void delArticle(int articleId) {
 		jsBoardRepository.delete(articleId);
 	}
-	
+
+	// 카테고리 이름 리스트 가져오기
+	@Override
+	public List<String> findCategoryNames() {
+		List<String> categoryList = jsBoardEmRepository.findCategoryNames();
+		return categoryList;
+	}
+
+	// 글쓰기, 수정 기능
+	@Override
+	public Write save(Write write) {
+		return jsBoardRepository.save(write);
+	}
+
 }

@@ -1,5 +1,7 @@
 package kr.sir.domain.repository.board;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -24,7 +26,7 @@ public class JsBoardEmRepository {
 		return em.createNativeQuery(query, Write.class).executeUpdate();
 	}
 
-	// 이전 글 찾기
+	// 이전 or 다음 글 찾기
 	public int findPrevOrNextArticle(int articleNumber, String prevOrNext) {
 		String query = querySelect(prevOrNext);
 		return findArticleNumber(query, articleNumber);
@@ -56,4 +58,10 @@ public class JsBoardEmRepository {
 		}
 	}
 	
+	// 카테고리 리스트 가져오기
+	@SuppressWarnings("unchecked")
+	public List<String> findCategoryNames() {
+		String query = "select distinct(w.categoryName) as categoryName from Write w";
+		return em.createQuery(query).getResultList();
+	}
 }
