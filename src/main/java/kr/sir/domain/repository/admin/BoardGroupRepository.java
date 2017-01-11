@@ -2,9 +2,9 @@ package kr.sir.domain.repository.admin;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import kr.sir.domain.Group;
+import kr.sir.domain.BoardGroup;
 
-public interface BoardGroupRepository extends JpaRepository<Group, String>{
+public interface BoardGroupRepository extends JpaRepository<BoardGroup, String>{
 
-	public Group findById(String id);
+	public BoardGroup findById(String id);
 }

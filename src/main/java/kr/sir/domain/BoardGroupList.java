@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class GroupList extends GroupBaseEntity{
+public class BoardGroupList extends BoardGroupBaseEntity{
 
 	private int countIncludeBoards;
 	private int countAccessibleMembers;

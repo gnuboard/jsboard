@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.sir.domain.Group;
+import kr.sir.domain.BoardGroup;
 import kr.sir.service.admin.BoardService;
 
 @Controller
@@ -45,7 +45,7 @@ public class BoardController {
 	
 	//그룹추가폼	
 	@RequestMapping(value={"/form/addgroup"})
-	public String ShowaddGroupForm(Model model,Group group){
+	public String ShowaddGroupForm(Model model){
 		
 		model.addAttribute("type","add");
 		return "admin/board/groupform";
@@ -56,16 +56,16 @@ public class BoardController {
 	@RequestMapping(value={"/form/updategroup/{groupId}"})
 	public String showUpdateGroupForm(Model model,@PathVariable("groupId") String groupId){	
 		model.addAttribute("type","update");		
-		model.addAttribute("boardGroup",boardService.getOneBoardGroup(groupId));	
-		Group boardGroup=boardService.getOneBoardGroup(groupId);
-		model.addAttribute("countAccessMembers",boardService.getCountAccessMembers(boardGroup.getId()));
+		BoardGroup boardGroup=boardService.getOneBoardGroup(groupId);
+		model.addAttribute("boardGroup",boardGroup);	
+		model.addAttribute("countAccessibleMembers",boardService.getCountAccessibleMembers(boardGroup.getId()));
 		
 		return "admin/board/groupform";
 	}
 	
 	//그룹추가
 	@RequestMapping(value={"/addgroup"},method=RequestMethod.POST)
-	public String addGroup(Model model,Group group,HttpServletRequest request ){
+	public String addGroup(Model model,BoardGroup group,HttpServletRequest request ){
 		boardService.addBoardGroup(group);
 		System.out.println(request.getMethod());
 		System.out.println("그룹추가메서드");
@@ -75,22 +75,21 @@ public class BoardController {
 	
 	//그룹수정
 	@RequestMapping(value={"/updategroup"},method=RequestMethod.PUT)
-	public String updateGroup(Model model,Group group){
+	public String updateGroup(Model model,BoardGroup group){
 		boardService.addBoardGroup(group);
 		return "redirect:./list";
 	}
 	
 	
 	//그룹리스트에서 그룹삭제
-	@RequestMapping(value={"/deletegroup"},method=RequestMethod.DELETE)
-	public String deleteGroup(Model model, @RequestParam("chk[]") List<String> chk, @RequestParam("id[]") List<String> id){
-
-		for(String check:chk){
-			
-			System.out.println(id.get(Integer.parseInt(check)));			
-		}		
+	@RequestMapping(value={"/delete/group"},method=RequestMethod.DELETE)
+	public String deleteGroup(Model model, @RequestParam("chk[]") String chk){			
+					
 		
-		return "redirect:./list";
+		boardService.deleteGroups(chk);
+			
+		
+		return "redirect:../list";
 	}
 	
 	

@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 @MappedSuperclass
-public abstract class GroupBaseEntity {
+public abstract class BoardGroupBaseEntity {
 
 	@Id 
 	@Column(name="gr_id", columnDefinition = "varchar(10) NOT NULL default ''")

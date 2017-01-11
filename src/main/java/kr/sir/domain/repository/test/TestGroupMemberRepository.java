@@ -2,10 +2,10 @@ package kr.sir.domain.repository.test;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import kr.sir.domain.GroupMember;
+import kr.sir.domain.BoardGroupMember;
 
-public interface TestGroupMemberRepository extends JpaRepository<GroupMember, Integer>{
+public interface TestGroupMemberRepository extends JpaRepository<BoardGroupMember, Integer>{
 
-	GroupMember findById(int id);
+	BoardGroupMember findById(int id);
 
 }

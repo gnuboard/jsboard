@@ -109,7 +109,7 @@
             </tr>
             <tr>
                 <th scope="row">접근회원수</th>
-                <td><a href="/adm/board/boardgroupmemberlist/gr_id/${boardGroup.id}"> ${countAccessMembers} </a>
+                <td><a href="/adm/board/boardgroupmemberlist/gr_id/${boardGroup.id}"> ${countAccessibleMembers} </a>
                 </td>
             </tr>
           	

@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import lombok.Data;
 
 
-@Entity
-public class Group extends GroupBaseEntity{
+@Entity(name="group")
+public class BoardGroup extends BoardGroupBaseEntity{
 
 
 }

@@ -20,7 +20,8 @@
                 <a href="#" class="btn_ov02">전체목록</a>
                 <span class="btn_ov01"><span class="ov_txt">전체그룹</span><span class="ov_num"> ${countBoardGroupsList}개</span></span>
             </div>
-            <form id="fsearch" name="fsearch" action="" onsubmit="fboardgrouplist_submit(this);" class="local_sch" method="get">
+            <form id="fsearch" name="fsearch" action="" class="local_sch" method="get">
+            
             <label for="sfl" class="sound_only">검색대상</label>
             <select name="sfl" id="sfl">
                 <option value="subject">제목</option>
@@ -33,7 +34,8 @@
             </form>
         </div>
 
-        <form>
+        <form name="fgrouplistform" action="/adm/board/delete/group" onsubmit="return fboardgrouplist_submit(this);" method="POST">
+        <input type="hidden" name="_method" value=""/>
         <div class="table_basic table_01">
             <table>
                 <caption>게시판그룹설정</caption>
@@ -62,7 +64,7 @@
                     <td class="td_chk">
                     	<input type="hidden" name="id[${i.index}]" value="${boardGroup.id}">
                         <label class="sound_only" for="chk_${i.index}">그룹제목</label>
-                        <input type="checkbox" name="chk[]" value="${i.index}" id="chk_${i.index}">
+                        <input type="checkbox" name="chk[]" value="${boardGroup.id}" id="chk_${i.index}">
                     </td>
                     <td><a href="#">${boardGroup.id}</a></td>
                     <td class="td_input">
@@ -93,7 +95,7 @@
                     <td class="td_select">
                         <label class="sound_only" for="device_${i.index}">접속기기</label>
                         <select name="device_${i.index}">
-                            <option value="both"</option>
+                            <option value="both"></option>
                             <option value="pc">PC</option>
                             <option value="mobile">모바일</option>
                         </select>
