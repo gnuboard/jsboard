@@ -1,7 +1,5 @@
 package kr.sir.controller.admin;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,17 +65,17 @@ public class BoardController {
 	@RequestMapping(value={"/addgroup"},method=RequestMethod.POST)
 	public String addGroup(Model model,BoardGroup group,HttpServletRequest request ){
 		boardService.addBoardGroup(group);
-		System.out.println(request.getMethod());
-		System.out.println("그룹추가메서드");
+		System.out.println("여기는 보드그룹추가메서드:"+request.getMethod());
 		return "redirect:./boardgroupslist";
 	}
 	
 	
 	//그룹수정
 	@RequestMapping(value={"/updategroup"},method=RequestMethod.PUT)
-	public String updateGroup(Model model,BoardGroup group){
+	public String updateGroup(Model model,BoardGroup group,HttpServletRequest request){
 		boardService.addBoardGroup(group);
-		return "redirect:./list";
+		System.out.println("여기는 보드그룹수정메서드:"+request.getMethod());
+		return "redirect:./boardgroupslist";
 	}
 	
 	
@@ -85,11 +83,8 @@ public class BoardController {
 	@RequestMapping(value={"/delete/group"},method=RequestMethod.DELETE)
 	public String deleteGroup(Model model, @RequestParam("chk[]") String chk){			
 					
-		
-		boardService.deleteGroups(chk);
-			
-		
-		return "redirect:../list";
+		boardService.deleteGroups(chk);		
+		return "redirect:../boardgroupslist";
 	}
 	
 	

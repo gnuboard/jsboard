@@ -89,29 +89,8 @@ public class MemberController {
 	@RequestMapping(value={"/add"},method=RequestMethod.POST)
 	public String memberAdd(Member member,String zipCode,String isCertify){		
 		
-		if(zipCode.length()>0 && !zipCode.equals("")){			
-			/*System.out.println("우편번호1:"+zipCode.substring(0, 3));
-			System.out.println("우편번호2:"+zipCode.substring(3));			
-			member.setZipCode1(zipCode.substring(0, 3));
-			member.setZipCode2(zipCode.substring(3));*/
-		}
-	/*	if(member.getAddressJibeon().length()<0){
-			member.setAddressJibeon("");
-		}		
-		member.setBirth("0000-00-00");
-		member.setCertify("");
-		member.setDatetime(new Date());
-		member.setDupInfo("");
-		member.setEmailCertify(new Date());
-		member.setEmailCertify2("");
-		member.setIp("33");
-		member.setLoginIp("");
-		member.setLostCertify("");
-		member.setMemoCall("");
-		member.setNickDate(new Date());
-		member.setOpenDate(new Date());
-		System.out.println("지번:"+member.getAddressJibeon());*/
-				
+		System.out.println("member.id:="+member.getId()!=null?member.getId():"널이다");
+		
 		memberService.adminSavesMember(member,isCertify);
 		return "redirect:./list";
 	}
@@ -128,14 +107,14 @@ public class MemberController {
 	
 	//관리자 회원 리스트 페이지에서 회원 삭제
 	@RequestMapping(value={"/updateordelete"},method=RequestMethod.DELETE)
-	public String deleteMember(Model model,@RequestParam(value="chk[]") List<String> chk){
+	public String deleteMember(Model model,@RequestParam(value="chk[]") String chk){
 			
-			for (String id : chk) {
-				memberService.adminDeletesMember(Integer.parseInt(id));
-				System.out.println("삭제완료");
-				
-			}
+	/*	System.out.println("chk="+chk);
 			
+		memberService.adminDeletesMember(chk);
+		System.out.println("삭제완료");				
+			
+	 */
 		return "redirect:../list";
 	}
 	
@@ -157,7 +136,7 @@ public class MemberController {
 		model.addAttribute("countPointlist", memberService.getCountPointlist());
 		
 		//전체 포인트 합계 (sum)이안되서 대기중
-		/*model.addAttribute("totalPoint",memberService.getTotalPoint(CommonUtil.getTablePrefix()));*/
+		model.addAttribute("totalPoint",memberService.getTotalPoint());
 		
 		//전체포인트내용
 		model.addAttribute("allPointContent", memberService.getAllPointContent());	
@@ -190,6 +169,7 @@ public class MemberController {
 	@RequestMapping(value={"/deletepoint"}, method=RequestMethod.DELETE)
 	public String deletePoint(Model model,@RequestParam(value="chk[]") List<String> chk,HttpServletRequest request ){
 		
+		//chk를 string으로 받아서 쿼리한번보내게 바꿔야함 em사용
 		System.out.println("포인트내역삭제 method= " +request.getMethod());
 		for (String id : chk) {
 			memberService.deletePointlist(Integer.parseInt(id));

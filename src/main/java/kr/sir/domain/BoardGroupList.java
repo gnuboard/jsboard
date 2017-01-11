@@ -8,6 +8,6 @@ import lombok.Data;
 @Entity
 public class BoardGroupList extends BoardGroupBaseEntity{
 
-	private int countIncludeBoards;
+	private int countIncludedBoards;
 	private int countAccessibleMembers;
 }

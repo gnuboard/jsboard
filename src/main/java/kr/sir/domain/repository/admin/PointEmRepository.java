@@ -15,14 +15,7 @@ public class PointEmRepository{
 
 	@PersistenceContext
 	EntityManager em;
-	
-	
-	//모든 회원 포인트 합계
-	public Point getTotalPoint(String prefix) {
-		String query = "select sum(po_point) as totalPoint from "+prefix+"point";
-		System.out.println("query:"+query);
-		return  (Point) em.createNativeQuery(query, Point.class).getSingleResult();
-	}
+
 	
 	//포인트 처리 내용 전부 + 회원 정보중 일부
 	public List<PointJoinMember> getAllPointContent(String prefix){
@@ -35,7 +28,7 @@ public class PointEmRepository{
 	}
 	
 	
-	
+	//한 멤버의 현재 포인트만 가져옴. 
 	public Point getMemberpointByMemberId(String memberId,String prefix){
 		String query="select p.po_mb_point as memberPoint,p.mb_id as memberId"
 					 +" from "+prefix+"point p"

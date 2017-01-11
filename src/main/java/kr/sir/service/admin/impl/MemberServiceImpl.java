@@ -95,8 +95,8 @@ public class MemberServiceImpl implements MemberService{
 	
 	//괸리자 회원 리스트에서 회원 추방
 	@Override
-	public void adminDeletesMember(int id) {
-		memberRepository.delete(id);
+	public void adminDeletesMembers(String id) {
+		/*memberEmRepository.deleteMembers(id);*/
 		
 	}
 	
@@ -108,8 +108,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	//모든 회원  포인트 합계
-	public Point getTotalPoint(){
-		return pointEmRepository.getTotalPoint(CommonUtil.getTablePrefix());
+	public int getTotalPoint(){
+		return memberEmRepository.getTotalPoint(CommonUtil.getTablePrefix());
 	}
 	
 	//모든 포인트 내역

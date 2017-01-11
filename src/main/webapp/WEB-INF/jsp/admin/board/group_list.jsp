@@ -82,7 +82,7 @@
                         </c:otherwise>
                         </c:choose>
                     </td>
-                    <td><a href="/adm/board/board_list/${boardGroup.id}">${boardGroup.countIncludeBoards}개</a></td>
+                    <td><a href="/adm/board/board_list/${boardGroup.id}">${boardGroup.countIncludedBoards}개</a></td>
                     <td class="td_chk2">
                         <label class="sound_only" for="gr_use_access_${i.index}">접근회원 사용</label>
                         <input type="checkbox" value="1" name="useAccess" id="gr_use_acces_${i.index}" <c:if test="${boardGroup.useAccess==1}">checked</c:if> > 
@@ -95,7 +95,7 @@
                     <td class="td_select">
                         <label class="sound_only" for="device_${i.index}">접속기기</label>
                         <select name="device_${i.index}">
-                            <option value="both"></option>
+                            <option value="both">모두사용</option>
                             <option value="pc">PC</option>
                             <option value="mobile">모바일</option>
                         </select>

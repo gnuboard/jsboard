@@ -32,7 +32,7 @@ public interface MemberService {
 	public void adminSavesMember(Member member,String isCertify);
 	
 	//관리자가 회원 삭제
-	public void adminDeletesMember(int id);
+	public void adminDeletesMembers(String id);
 	
 	//관리자가 회원정보수정
 	public void adminUpdatesMember(Member member);
@@ -41,7 +41,7 @@ public interface MemberService {
 	public long getCountPointlist();
 	
 	//모든 회원 포인트 합계
-	public Point getTotalPoint();
+	public int getTotalPoint();
 	
 	//모든 회원 포인트 내역
 	public List<PointJoinMember> getAllPointContent();

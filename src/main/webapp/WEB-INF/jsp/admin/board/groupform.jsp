@@ -17,7 +17,7 @@
 	<c:set var="soundOnly" value="<strong class='sound_only'>필수</strong>"/>
 	<c:set var="htmlTitle" value="추가"/>
 	<c:set var="actionLink" value="/adm/board/addgroup"/>
-</c:when>
+	</c:when>
 
 <c:when test="${type eq 'update'}">
 	<c:set var="gr_id_attr" value="readonly"/>
@@ -43,7 +43,7 @@
     <h1 id="container_title">게시판그룹${htmlTitle}</h1>
 
     <div id="container_wr">
-        <form action="/adm/board/addgroup" method="post">
+        <form action="${actionLink}" method="post" onsubmit="return fboardgroup_submit(this);">
         <div class="table_basic table_form">
             <table>
             <caption>게시판그룹${htmlTitle}</caption>
@@ -214,7 +214,13 @@
         
         <div class="btn_fixed_top">
         	<input type="hidden" name="_method" value=""/>
-            <input type="submit" class="btn_submit btn"  value="확인">
+        	<c:if test="${type eq 'add'}">
+            <input type="submit" class="btn_submit btn"  value="추가" onclick="document.pressed='추가'">
+            </c:if>
+            
+            <c:if test="${type eq 'update'}">
+            <input type="submit" class="btn_submit btn"  value="수정" onclick="document.pressed='수정'">
+            </c:if>
             
         </div>
         </form>
@@ -223,13 +229,16 @@
 	
 	
 <script>
-function faddupdategroup_submit(f)
+function fboardgroup_submit(f)
 {
     
-	if(${htmlTitle=="수정"}){
-    	$("input:hidden[name=_method]").val("PUT");
-	}
-    return true;
+	 if(document.pressed == "추가") {
+		 
+		 
+	 }else if (document.pressed == "수정") {
+		 
+	    $("input:hidden[name=_method]").val("PUT");
+	 }
 }
 </script>	
 	
