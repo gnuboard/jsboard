@@ -16,7 +16,7 @@
 
 
 <div id="hd">
-    <h1>관리자메인</h1>
+    <h1>관리자</h1>
     <div id="hd_top">
         <button type="button" id="btn_gnb" class="btn_gnb_close">메뉴</button>
         <div id="logo">
@@ -145,151 +145,95 @@ $(function(){
 
 <div id="container">
     <!-- 중간 레이아웃 -->
-    <h1 id="container_title">관리자</h1>
+    <h1 id="container_title">부가서비스</h1>
 
     <div id="container_wr">
-        <section class="idx_wr">
-            <h2>신규가입회원</h2>
-            <div class="local_ov">
-                <a href="./member_list.html" class="btn_ov02">회원 전체목록</a>
-                <span class="btn_ov01"><span class="ov_txt">총회원수 </span><span class="ov_num"> 10건</span></span>
-                <span class="btn_ov01"><span class="ov_txt">차단 </span><span class="ov_num"> 10건</span></span>
-                <span class="btn_ov01"><span class="ov_txt">탈퇴 </span><span class="ov_num"> 10건</span></span>
+        <div class="local_desc">
+            <p>
+                아래의 서비스들은 그누보드에서 이미 지원하는 기능으로 별도의 개발이 필요 없으며 서비스 신청후 바로 사용 할수 있습니다.
+            </p>
+        </div>
+        
+        <div class="service_wrap">
+
+            <div class="sevice_1 sevice">
+                <div class="sevice_wr">
+                    <img src="./img/service_img3.jpg" alt="신용카드 전자결제 서비스" class="svc_img">
+                    <h3>신용카드 전자결제 서비스<br><span>(계좌이체, 가상계좌 결제 포함)</span></h3>
+                    <p>이곳을 통하여 가입하시면 신용카드 결제를 국내 최저 수수료인 3.2%에 이용 할 수 있습니다. 영카트를 사용하지 않아도 이 수수료를 적용 받을 수 있습니다. 아래 가입을 희망하시는 회사의 로고를 클릭하시면 가입페이지로 이동합니다.</p>
+
+                    <ul>
+                        <li><a href="http://sir.kr/main/service/p_pg.php" target="_blank"><img src="./img/service_6.png" alt="KCP 신용카드 전자결제 신청하기"></a></li>
+                        <li ><a href="http://sir.kr/main/service/lg_pg.php" target="_blank"><img src="./img/service_2.png" alt="LG유플러스 신용카드 전자결제 신청하기"></a></li>
+                        <li class="last"><a href="http://sir.kr/main/service/inicis_pg.php" target="_blank"><img src="./img/service_1.png" alt="KG 이니시스 전자결제 신청하기"></a></li>
+                    </ul>
+                </div>
             </div>
+            <div class="sevice sevice_1">
+                <div class="sevice_wr">
+                    <img src="./img/service_img1.jpg" alt="휴대폰 본인확인 서비스" class="svc_img">
+                    <h3>휴대폰 본인확인 서비스</h3>
+                    <p>정보통신망법 23조 2항(주민등록번호의 사용제한)에 따라 기존 주민등록번호 기반의 인증서비스 이용이 불가합니다. 주민등록번호 대체수단으로 최소한의 정보(생년월일, 휴대폰번호, 성별)를 입력받아 본인임을 확인하는 인증수단 입니다</p>
 
-            <div class="table_basic table_01">
-                <table>
-                <caption>신규가입회원</caption>
-                <thead>
-                <tr>
-                    <th scope="col">회원아이디</th>
-                    <th scope="col">이름</th>
-                    <th scope="col">닉네임</th>
-                    <th scope="col">권한</th>
-                    <th scope="col">포인트</th>
-                    <th scope="col">수신</th>
-                    <th scope="col">공개</th>
-                    <th scope="col">인증</th>
-                    <th scope="col">차단</th>
-                    <th scope="col">그룹</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="td_left">id123</td>
-                    <td class="td_left">홍길동</td>
-                    <td class="td_left">닉네임</td>
-                    <td class="td_num_c">2</td>
-                    <td class="td_num"><a href="./point_list.html">1,000</a></td>
-                    <td class="td_status">예</td>
-                    <td class="td_status">예</td>
-                    <td class="td_status">예</td>
-                    <td class="td_status">예</td>
-                    <td class="td_num_c"><a href="boardgroupmember_form.html">1</a></td>
-                </tr>
-                <tr class="td_bg1">
-                    <td class="td_left">id123</td>
-                    <td class="td_left">홍길동</td>
-                    <td class="td_left">닉네임</td>
-                    <td class="td_num_c">2</td>
-                    <td class="td_num"><a href="./point_list.html">1,000</a></td>
-                    <td class="td_status">예</td>
-                    <td class="td_status">예</td>
-                    <td class="td_status">예</td>
-                    <td class="td_status">예</td>
-                    <td class="td_num_c"><a href="boardgroupmember_form.html">1</a></td>
-                </tr>
-
-                </tbody>
-                </table>
+                    <ul>
+                        <li><a href="http://sir.kr/main/service/p_cert.php" target="_blank"><img src="./img/service_6.png" alt="KCP 휴대폰 본인확인 신청하기"></a></li>
+                        <li><a href="http://sir.kr/main/service/lg_cert.php" target="_blank"><img src="./img/service_2.png" alt="LG유플러스 휴대폰대체인증 신청하기"></a></li>
+                        <li class="last"><a href="http://sir.kr/main/service/b_cert.php" target="_blank"><img src="./img/service_4.png" alt="OKname 휴대폰 본인확인 신청하기"></a></li>
+                    </ul>
+                </div>
             </div>
-        </section>
+            <div class="sevice sevice_1">
+                <div class="sevice_wr">
+                    <img src="./img/service_img2.jpg" alt="아이핀 본인확인 서비스" class="svc_img">
+                    <h3>아이핀 본인확인 서비스</h3>
+                    <p>정부가 주관하는 주민등록번호 대체 수단으로 본인의 개인정보를 아이핀 사이트에 한번만 발급해 놓고, 이후부터는 아이디와 패스워드 만으로
+                    본인임을 확인하는 인증수단 입니다.</p>
 
-        <section class="idx_wr">
-            <h2>최근게시물</h2>
-            <div class="local_ov">
-                <a href="" class="btn_ov02">최근게시물 더보기</a>
+                   <div class="svc_btn"><a href="http://sir.kr/main/service/b_ipin.php" target="_blank"><img src="./img/service_3.png" alt="OKname 아이핀 본인확인 신청하기"></a></div>
+                </div>
             </div>
-
-            <div class="table_basic table_01">
-                <table>
-                <caption>최근게시물</caption>
-                <thead>
-                <tr>
-                    <th scope="col">그룹</th>
-                    <th scope="col">게시판</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">이름</th>
-                    <th scope="col">일시</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="td_id">게시판그룹</td>
-                    <td class="td_left">공지사항</td>
-                    <td class="td_left"><a href="">오픈관련 공지사항입니다.</a></td>
-                    <td class="td_id">홍길동</td>
-                    <td class="td_datetime2">2017-01-04</td>
-                </tr>
-                <tr class="td_bg1">
-                    <td class="td_id">게시판그룹</td>
-                    <td class="td_left">공지사항</td>
-                    <td class="td_left"><a href="">오픈관련 공지사항입니다.</a></td>
-                    <td class="td_id">홍길동</td>
-                    <td class="td_datetime2">2017-01-04</td>
-                </tr>
-                </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section class="idx_wr idx_wr_last">
-            <h2>최근 포인트 발생내역</h2>
-            <div class="local_ov">
-                <a href="./point_list.html" class="btn_ov02">포인트내역 전체보기</a>
-                <span class="btn_ov01"><span class="ov_txt">전체포인트</span><span class="ov_num"> 450건 </span></span>
+            <div class="sevice_2">
+                <div class="svc_sms sevice_wr">
+                    <div class="svc_a">
+                        <h3>SMS 문자 서비스</h3>
+                        <p>사이트 관리자 또는 회원이 다른 회원의 <br>휴대폰으로 단문메세지(최대 한글 40자, 영문 80자)를 발송할 수 있습니다.</p>
+                    </div>
+                    <div class="svc_btn"><a href="http://icodekorea.com/res/join_company_fix_a.php?sellid=sir2" target="_blank"><img src="./img/service_5.png" alt="아이코드 SMS 서비스 신청하기"></a></div>
+                </div>
 
             </div>
+        </div>
 
-            <div class="table_basic table_01">
-                <table>
-                <caption>포인트내역</caption>
-                <thead>
-                <tr>
-                    <th scope="col">회원아이디</th>
-                    <th scope="col">이름</th>
-                    <th scope="col">닉네임</th>
-                    <th scope="col">포인트 내용</th>
-                    <th scope="col">일시</th>
-                    <th scope="col">포인트</th>
-                    <th scope="col">포인트합</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="td_id">id</td>
-                    <td class="td_id">홍길동</td>
-                    <td class="td_id">닉네임</td>
-                    <td class="td_left">2017-01-11 첫로그인</td>
-                    <td class="td_datetime">2017-01-11 08:59:50</td>
-                    <td class="td_num">100</td>
-                    <td class="td_num">13,780</td>
-                </tr>
-                <tr class="td_bg1">
-                    <td class="td_id">id</td>
-                    <td class="td_id">홍길동</td>
-                    <td class="td_id">닉네임</td>
-                    <td class="td_left">2017-01-11 첫로그인</td>
-                    <td class="td_datetime">2017-01-11 08:59:50</td>
-                    <td class="td_num">100</td>
-                    <td class="td_num">13,780</td>
-                </tr>
-                </tbody>
-                </table>
-            </div>
-
-        </section>
     </div>
+
+    <script>
+    $(function(){ 
+        $(".contents li").hide();
+        $(".contents li:first").show();
+        $(".tab_01 li").click(function(){
+            var tabType = $(this).index();
+            $('.contents li').hide();
+            $('.contents li').eq(tabType).show();
+            $('.tab_01 li button').removeClass('selected');
+            $('.tab_01 li button').eq(tabType).addClass('selected'); 
+        })
+     
+     
+        $(".tooltip_btn").mouseover(function(){
+            $(this).next(".tooltip_area").fadeIn();
+        }).mouseout(function(){
+            $(".tooltip_area").fadeOut("fast");
+        }).mousemove(function(e){
+            $(".tooltip_area").css({
+                top:e.pageY+0+"px",
+                left:e.pageX+10+"px"
+            });
+        });
+    });
+
+    </script>
+
+
     <!-- 하단 레이아웃 -->
     <div id="ft">
         <p>

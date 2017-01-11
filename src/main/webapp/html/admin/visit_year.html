@@ -16,7 +16,7 @@
 
 
 <div id="hd">
-    <h1>관리자메인</h1>
+    <h1>관리자</h1>
     <div id="hd_top">
         <button type="button" id="btn_gnb" class="btn_gnb_close">메뉴</button>
         <div id="logo">
@@ -25,7 +25,7 @@
         <div id="tnb">
             <ul>
                 <li class="tnb_li"><a href="#" class="tnb_community" target="_blank">커뮤니티 바로가기</a></li>
-                <li class="tnb_li"><a href="./sevice.html" class="tnb_service">부가서비스</a></li>
+                <li class="tnb_li"><a href="#" class="tnb_service">부가서비스</a></li>
                 <li class="tnb_li"><button type="button" class="tnb_mb_btn">관리자<span class="./img/btn_gnb.png">메뉴열기</span></button>
                     <ul class="tnb_mb_area">
                         <li><a href="#">관리자정보</a></li>
@@ -46,7 +46,6 @@
                         <ul>
                             <li><a href="./config_form.html" class="on">기본환경설정</a></li>
                             <li><a href="./auth_list.html">관리권한설정</a></li>
-                            <li><a href="./theme.html">테마설정</a></li>
                             <li><a href="./menu_list.html">메뉴설정</a></li>
                             <li><a href="./sendmail_test.html">메일테스트</a></li>
                             <li><a href="./newwinlist.html">팝업레이어관리</a></li>
@@ -145,151 +144,112 @@ $(function(){
 
 <div id="container">
     <!-- 중간 레이아웃 -->
-    <h1 id="container_title">관리자</h1>
+    <h1 id="container_title">년별 접속자집계</h1>
 
     <div id="container_wr">
-        <section class="idx_wr">
-            <h2>신규가입회원</h2>
-            <div class="local_ov">
-                <a href="./member_list.html" class="btn_ov02">회원 전체목록</a>
-                <span class="btn_ov01"><span class="ov_txt">총회원수 </span><span class="ov_num"> 10건</span></span>
-                <span class="btn_ov01"><span class="ov_txt">차단 </span><span class="ov_num"> 10건</span></span>
-                <span class="btn_ov01"><span class="ov_txt">탈퇴 </span><span class="ov_num"> 10건</span></span>
+
+        <div class="local_wr local_visit">
+            <ul  id="visit_tab">
+                <li><a href="./visit_list.html">접속자</a></li>
+                <li><a href="./visit_domain.html">도메인</a></li>
+                <li><a href="./visit_browser.html">브라우저</a></li>
+                <li><a href="./visit_os.html">운영체제</a></li>
+                <li><a href="./visit_device.html">접속기기</a></li>
+                <li><a href="./visit_hour.html">시간</a></li>
+                <li><a href="./visit_week.html">요일</a></li>
+                <li><a href="./visit_date.html">일</a></li>
+                <li><a href="./visit_month.html">월</a></li>
+                <li class="selected"><a href="./visit_year.html">년</a></li>
+            </ul>
+            <form>
+            <div class="local_sch02">
+                <strong>기간별검색</strong>
+                <input type="text" name="fr_date" id="fr_date" class="sch_input" size="11" maxlength="10">
+                <label for="fr_date" class="sound_only">시작일</label>
+                ~
+                <input type="text" name="to_date" id="to_date" class="sch_input" size="11" maxlength="10">
+                <label for="to_date" class="sound_only">종료일</label>
+                <input type="submit" class="btn_sch" value="검색">
             </div>
+            </form>
+        </div>
+       
+        <div class="table_01 table_basic table_graph">
+            <table>
+            <caption>년별 접속자집계 목록</caption>
+            <thead>
+            <tr>
+                <th scope="col">년</th>
+                <th scope="col">그래프</th>
+                <th scope="col">접속자수</th>
+                <th scope="col">비율(%)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="td_date">2018</td>
+                <td class="td_graph">
+                    <div class="visit_bar visit_bar_1">
+                        <span style="width:54.0%"></span>
+                    </div>
+                </td>
+                <td class="td_num_c">537</td>
+                <td class="td_num_c">54.0</td>
+            </tr>
+            <tr>
+                <td class="td_date">2017</td>
+                <td class="td_graph">
+                    <div class="visit_bar">
+                        <span style="width:4.0%"></span>
+                    </div>
+                </td>
+                <td class="td_num_c">537</td>
+                <td class="td_num_c">4.0</td>
+            </tr>
+            <tr>
+                <td class="td_date">2016</td>
+                <td class="td_graph">
+                    <div class="visit_bar visit_bar_1">
+                        <span style="width:14.0%"></span>
+                    </div>
+                </td>
+                <td class="td_num_c">537</td>
+                <td class="td_num_c">14.0</td>
+            </tr>
+            <tr>
+                <td class="td_date">2015</td>
+                <td class="td_graph">
+                    <div class="visit_bar visit_bar_1">
+                        <span style="width:24.0%"></span>
+                    </div>
+                </td>
+                <td class="td_num_c">537</td>
+                <td class="td_num_c">24.0</td>
+            </tr>
+            <tr>
+                <td class="td_date">2014</td>
+                <td class="td_graph">
+                    <div class="visit_bar">
+                        <span style="width:1.0%"></span>
+                    </div>
+                </td>
+                <td class="td_num_c">537</td>
+                <td class="td_num_c">1.0</td>
+            </tr>
 
-            <div class="table_basic table_01">
-                <table>
-                <caption>신규가입회원</caption>
-                <thead>
-                <tr>
-                    <th scope="col">회원아이디</th>
-                    <th scope="col">이름</th>
-                    <th scope="col">닉네임</th>
-                    <th scope="col">권한</th>
-                    <th scope="col">포인트</th>
-                    <th scope="col">수신</th>
-                    <th scope="col">공개</th>
-                    <th scope="col">인증</th>
-                    <th scope="col">차단</th>
-                    <th scope="col">그룹</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="td_left">id123</td>
-                    <td class="td_left">홍길동</td>
-                    <td class="td_left">닉네임</td>
-                    <td class="td_num_c">2</td>
-                    <td class="td_num"><a href="./point_list.html">1,000</a></td>
-                    <td class="td_status">예</td>
-                    <td class="td_status">예</td>
-                    <td class="td_status">예</td>
-                    <td class="td_status">예</td>
-                    <td class="td_num_c"><a href="boardgroupmember_form.html">1</a></td>
-                </tr>
-                <tr class="td_bg1">
-                    <td class="td_left">id123</td>
-                    <td class="td_left">홍길동</td>
-                    <td class="td_left">닉네임</td>
-                    <td class="td_num_c">2</td>
-                    <td class="td_num"><a href="./point_list.html">1,000</a></td>
-                    <td class="td_status">예</td>
-                    <td class="td_status">예</td>
-                    <td class="td_status">예</td>
-                    <td class="td_status">예</td>
-                    <td class="td_num_c"><a href="boardgroupmember_form.html">1</a></td>
-                </tr>
-
-                </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section class="idx_wr">
-            <h2>최근게시물</h2>
-            <div class="local_ov">
-                <a href="" class="btn_ov02">최근게시물 더보기</a>
-            </div>
-
-            <div class="table_basic table_01">
-                <table>
-                <caption>최근게시물</caption>
-                <thead>
-                <tr>
-                    <th scope="col">그룹</th>
-                    <th scope="col">게시판</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">이름</th>
-                    <th scope="col">일시</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="td_id">게시판그룹</td>
-                    <td class="td_left">공지사항</td>
-                    <td class="td_left"><a href="">오픈관련 공지사항입니다.</a></td>
-                    <td class="td_id">홍길동</td>
-                    <td class="td_datetime2">2017-01-04</td>
-                </tr>
-                <tr class="td_bg1">
-                    <td class="td_id">게시판그룹</td>
-                    <td class="td_left">공지사항</td>
-                    <td class="td_left"><a href="">오픈관련 공지사항입니다.</a></td>
-                    <td class="td_id">홍길동</td>
-                    <td class="td_datetime2">2017-01-04</td>
-                </tr>
-                </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section class="idx_wr idx_wr_last">
-            <h2>최근 포인트 발생내역</h2>
-            <div class="local_ov">
-                <a href="./point_list.html" class="btn_ov02">포인트내역 전체보기</a>
-                <span class="btn_ov01"><span class="ov_txt">전체포인트</span><span class="ov_num"> 450건 </span></span>
-
-            </div>
-
-            <div class="table_basic table_01">
-                <table>
-                <caption>포인트내역</caption>
-                <thead>
-                <tr>
-                    <th scope="col">회원아이디</th>
-                    <th scope="col">이름</th>
-                    <th scope="col">닉네임</th>
-                    <th scope="col">포인트 내용</th>
-                    <th scope="col">일시</th>
-                    <th scope="col">포인트</th>
-                    <th scope="col">포인트합</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="td_id">id</td>
-                    <td class="td_id">홍길동</td>
-                    <td class="td_id">닉네임</td>
-                    <td class="td_left">2017-01-11 첫로그인</td>
-                    <td class="td_datetime">2017-01-11 08:59:50</td>
-                    <td class="td_num">100</td>
-                    <td class="td_num">13,780</td>
-                </tr>
-                <tr class="td_bg1">
-                    <td class="td_id">id</td>
-                    <td class="td_id">홍길동</td>
-                    <td class="td_id">닉네임</td>
-                    <td class="td_left">2017-01-11 첫로그인</td>
-                    <td class="td_datetime">2017-01-11 08:59:50</td>
-                    <td class="td_num">100</td>
-                    <td class="td_num">13,780</td>
-                </tr>
-                </tbody>
-                </table>
-            </div>
-
-        </section>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="2">합계</td>
+                <td class="td_num_c">537</td>
+                <td class="td_num_c">100.0</td>
+            </tr>
+            </tfoot>
+            </table>
+        </div>
     </div>
+
+    
     <!-- 하단 레이아웃 -->
     <div id="ft">
         <p>

@@ -40,7 +40,7 @@ a:link, a:visited {color:#000;text-decoration:none}
 
 #tnb{float:right;padding:10px}
 #tnb ul:after{display:block;visibility:hidden;clear:both;content:""}
-#tnb li{float:left;position:relative;margin-left:5px}
+#tnb li{float:left;position:relative;margin-left:3px}
 #tnb a{color:#fff;;padding:0 10px;display:block;line-height:30px;}
 #tnb .tnb_service{border-radius:3px;background:#4e5eb7;color:#fff;padding:0 10px;text-align:left;height:30px;line-height:30px;}
 #tnb .tnb_service:hover{background:#5969c3}
@@ -52,6 +52,8 @@ a:link, a:visited {color:#000;text-decoration:none}
 #tnb .tnb_mb_area li{float:none;}
 #tnb .tnb_community{background:url(../img/home_icon.png) no-repeat 50% 50%;width:30px;height:30px;overflow:hidden;text-indent:-999px;border-radius:5px}
 #tnb .tnb_community:hover{background-color:#2b3d9f}
+#tnb .tnb_shop{background:url(../img/shop_icon.png) no-repeat 50% 50%;width:30px;height:30px;overflow:hidden;text-indent:-999px;border-radius:5px}
+#tnb .tnb_shop:hover{background-color:#2b3d9f}
 
 /*gnb*/
 #gnb{position:fixed;top:0;left:0;max-width:220px;height:100%;padding-top:50px;z-index:999}
@@ -67,6 +69,10 @@ a:link, a:visited {color:#000;text-decoration:none}
 #gnb .on .menu-3{background:url(../img/menu-3.png) 50% 50% no-repeat #fff}
 #gnb .gnb_li .menu-4{background:url(../img/menu-4-1.png) 50% 50% no-repeat #ebebeb }
 #gnb .on .menu-4{background:url(../img/menu-4.png) 50% 50% no-repeat #fff}
+#gnb .gnb_li .menu-5{background:url(../img/menu-7-1.png) 50% 50% no-repeat #ebebeb }
+#gnb .on .menu-5{background:url(../img/menu-7.png) 50% 50% no-repeat #fff}
+#gnb .gnb_li .menu-6{background:url(../img/menu-6-1.png) 50% 50% no-repeat #ebebeb }
+#gnb .on .menu-6{background:url(../img/menu-6.png) 50% 50% no-repeat #fff}
 
 #gnb .gnb_li button:hover{background-color:#f3f3f3}
 #gnb .gnb_oparea{display:none;position:absolute;top:0;left:50px;background:#fff;height:100%;width:170px;padding:20px;border-right:1px solid #dbdbdb;
@@ -97,6 +103,12 @@ a:link, a:visited {color:#000;text-decoration:none}
 .scroll_top span.top_img{display:inline-block;width: 0; height: 0; border-left: 5px solid transparent;border-right: 5px solid transparent;
 border-bottom: 5px solid black;}
 .scroll_top span.top_txt{display:block}
+
+/*메인*/
+.idx_wr{padding: 0 0 20px;margin:0 0 20px; border-bottom:1px solid #ddd}
+.idx_wr h2{text-align: left;font-size: 1.09em;font-weight: bold;display:block}
+.idx_wr .local_ov{margin:10px 0}
+.idx_wr_last{border-bottom:0}
 
 /*tab*/
 .tab_01{border-bottom:1px solid #ddd}
@@ -348,7 +360,41 @@ background: linear-gradient(#fff, #eee);}
 /*휴대폰번호 그룹*/
 .numgr_sch .frm_input{height:30px}
 
+
 /*회원정보 업데이트*/
 #res_msg{line-height:1.7em;padding:10px 15px;margin:10px 0 ;background:#f7ecea;border:1px solid #ffb6c1}
 #sms_mbup dt{font-weight:bold}
 #sms_mbup dd{margin-bottom:10px}
+
+/*쇼핑몰 설정*/
+#scf_index thead th{text-align:center;border-bottom:0;font-weight:normal;color:#777}
+#scf_index td{text-align:center}
+#scf_index td select{width:100%}
+#mscf_index thead th{text-align:center;border-bottom:0;font-weight:normal;color:#777}
+#mscf_index td{text-align:center}
+#mscf_index td select{width:100%}
+
+#scf_cardtest_tip{display:none;padding:20px;background:#e9ebf9;margin:10px 0 0 }
+#scf_cardtest_tip strong{color:#435ffe}
+#scf_cardtest_tip dl {margin:0 0 15px;padding:0;zoom:1}
+#scf_cardtest_tip dl:after {display:block;visibility:hidden;clear:both;content:""}
+#scf_cardtest_tip dt {float:left;width:80px;font-weight:bold}
+#scf_cardtest_tip dd {padding:0;overflow:hidden}
+
+#config_form tbody th a{display:inline-block;padding:5px;font-size:0.92em;background:#333;color:#fff;margin:5px 0 0}
+#config_form .kcp_info_fld th{border-left:2px solid #1bb0ab}
+#config_form .lg_info_fld th{border-left:2px solid #ec068d;}
+#config_form .inicis_info_fld th {border-left:2px solid #6a31c9;}
+#config_form .kakao_info_fld th {border-left:2px solid #ffe010}
+#config_form .naver_info_fld th {border-left:2px solid #50df64}
+
+#config_form .pg_select button{background:#eee;border:0;padding:0 10px;height:35px;color:#666}
+#config_form .pg_select .select{background:#3f51b5;color:#fff}
+
+#scf_sms:after {display:block;visibility:hidden;clear:both;content:""}
+.scf_sms_box {float:left;width:20%;;text-align:center;}
+.scf_sms_box h4 {margin:0 0 5px}
+.scf_sms_img {margin:10px auto;width:159px;height:225px;background:url('../img/sms_bg.jpg') no-repeat 0 0;text-align:center;position:relative}
+.scf_sms_img textarea {margin:34px 0 0;width:130px;padding:0 15px;border:0;background:transparent;font-size:0.95em;overflow:hidden;color:#000;line-height:1.7em}
+.scf_sms_img span {display:block}
+.scf_sms_cnt {display:block;position:absolute;bottom:0;left:0;display:block;margin:10px; background:#c5cbd7;text-align:center;padding:8px;width:120px}
