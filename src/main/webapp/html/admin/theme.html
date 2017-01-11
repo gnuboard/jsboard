@@ -46,6 +46,7 @@
                         <ul>
                             <li><a href="./config_form.html" class="on">기본환경설정</a></li>
                             <li><a href="./auth_list.html">관리권한설정</a></li>
+                            <li><a href="./theme.html">테마설정</a></li>
                             <li><a href="./menu_list.html">메뉴설정</a></li>
                             <li><a href="./sendmail_test.html">메일테스트</a></li>
                             <li><a href="./newwinlist.html">팝업레이어관리</a></li>
@@ -144,69 +145,119 @@ $(function(){
 
 <div id="container">
     <!-- 중간 레이아웃 -->
-    <h1 id="container_title">회원정보 업데이트</h1>
+    <h1 id="container_title">테마설정</h1>
 
     <div id="container_wr">
 
-        <div id="sms5_mbup">
-            <form>
-            <div class="local_desc02 local_desc">
-                <p>
-                    새로운 회원정보로 업데이트 합니다.<br>
-                    실행 후 '완료' 메세지가 나오기 전에 프로그램의 실행을 중지하지 마십시오.
-                </p>
+        
+        <div class="local_wr">
+            <div class="local_ov">
+                <span class="btn_ov01"><span class="ov_txt">설치된 테마</span><span class="ov_num"> 10개</span></span>
             </div>
-            <div class="sms_date">
-                <strong>
-                    마지막 업데이트 일시 : <span id="datetime"> 0000-00-00 00:00:00 </span> <br>
-                </strong>
-            </div>
+        </div>
+        <div id="theme">
+            <ul>
+                <li class="theme_sl">
+                    <div class="theme_wr">
+                        <div class="theme_img"><a href="#"><img src="./img/screenshot.png" alt="basic 테마 이미지"></a><span class="theme_sl_icon">적용중</span></div>
+                        <div class="theme_tit">
+                            <a href="#">베이직</a>
+                        </div>
+                        <div class="theme_btn">
+                            <a href="#" class="btn_02 detail_op">상세보기</a>
+                            <button type="button" class="btn_cancle">취소</button>
+                        </div>
+                    </div>
 
-            <div id="res_msg">
-                <p>회원정보를 휴대폰번호 DB로 업데이트 하였습니다.</p>
-                <dl id="sms_mbup">
-                   <dt>총 회원 수</dt>
-                   <dd>28명</dd>
-                   <dt>삭제된 회원</dt>
-                   <dd>1명</dd>
-                   <dt>휴대폰번호 없음</dt>
-                   <dd>25 명</dd>
-                   <dt>휴대폰번호 정상</dt>
-                   <dd>0 명&nbsp;(수신0 명 / 거부0 명)</dd>
-                   <dt>휴대폰번호 오류</dt><dd>2 명</dd>
-                </dl>
-            </div>
-            <p>프로그램의 실행을 끝마치셔도 좋습니다.</p>
+                </li>
+                <li>
+                    <div class="theme_wr">
+                        <div class="theme_img"><a href="#"><img src="./img/screenshot.png" alt="basic 테마 이미지"></a></div>
+                        <div class="theme_tit">
+                            <a href="#">베이직</a>
+                        </div>
+                        <div class="theme_btn">
+                            <a href="#" class="btn_02 detail_op">상세보기</a>
+                            <button type="button" class="btn_03">적용</button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="theme_wr">
+                        <div class="theme_img"><a href="#"><img src="./img/screenshot.png" alt="basic 테마 이미지"></a></div>
+                        <div class="theme_tit">
+                            <a href="#">베이직</a>
+                        </div>
+                        <div class="theme_btn">
+                            <a href="#" class="btn_02 detail_op">상세보기</a>
+                            <button type="button" class="btn_03">적용</button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="theme_wr">
+                        <div class="theme_img"><a href="#"><img src="./img/screenshot.png" alt="basic 테마 이미지"></a></div>
+                        <div class="theme_tit">
+                            <a href="#">베이직</a>
+                        </div>
+                        <div class="theme_btn">
+                            <a href="#" class="btn_02 detail_op">상세보기</a>
+                            <button type="button" class="btn_03">적용</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="theme_clear">
+                    <div class="theme_wr">
+                        <div class="theme_img"><a href="#"><img src="./img/screenshot.png" alt="basic 테마 이미지"></a></div>
+                        <div class="theme_tit">
+                            <a href="#">베이직</a>
+                        </div>
+                        <div class="theme_btn">
+                            <a href="#" class="btn_02 detail_op">상세보기</a>
+                            <button type="button" class="btn_03">적용</button>
+                        </div>
+                    </div>
+                </li>
 
-            <div class="btn_fixed_top">
-                <input type="submit" value="실행" class="btn_submit btn">
+            </ul>
+            <div id="theme_detail">
+                <h2>베이직</h2>
+                <div class="theme_dt_img">
+                    <img src="./img/screenshot.png" alt="basic 테마 이미지">
+                </div>
+                <div class="theme_dt_if">
+                    <p>베이직 테마는  SIR에서 제공하는 그누보드5 테마입니다. 베이직 테마는 웹표준 및 접근성을 준수합니다.</p>
+                    <table>
+                        <tr>
+                            <th scope="row">Version</th>
+                            <td>1.0.0</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Maker</th>
+                            <td><a href="#" target="_blank">SIR</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">License</th>
+                            <td><a href="#" target="_blank">GNU LESSER GENERAL PUBLIC LICENSE Version 2.1</a></td>
+                        </tr>
+                    </table>
+                    <div class="theme_dt_btn">
+                        <a href="#" class="btn_02">미리보기</a>
+                        <button type="button" class="btn_03">적용</button>
+                        <button type="button" class="close_btn">닫기</button>
+                    </div>
+                </div>
             </div>
-            </form>
         </div>
     </div>
 
     <script>
     $(function(){ 
-        $(".contents li").hide();
-        $(".contents li:first").show();
-        $(".tab_01 li").click(function(){
-            var tabType = $(this).index();
-            $('.contents li').hide();
-            $('.contents li').eq(tabType).show();
-            $('.tab_01 li button').removeClass('selected');
-            $('.tab_01 li button').eq(tabType).addClass('selected'); 
-        })
-     
-     
-        $(".tooltip_btn").mouseover(function(){
-            $(this).next(".tooltip_area").fadeIn();
-        }).mouseout(function(){
-            $(".tooltip_area").fadeOut("fast");
-        }).mousemove(function(e){
-            $(".tooltip_area").css({
-                top:e.pageY+0+"px",
-                left:e.pageX+10+"px"
-            });
+        $(".detail_op").click(function(){
+            $('#theme_detail').show();
+        });
+        $(".close_btn").click(function(){
+            $('#theme_detail').hide();
         });
     });
 

@@ -25,7 +25,7 @@
         <div id="tnb">
             <ul>
                 <li class="tnb_li"><a href="#" class="tnb_community" target="_blank">커뮤니티 바로가기</a></li>
-                <li class="tnb_li"><a href="#" class="tnb_service">부가서비스</a></li>
+                <li class="tnb_li"><a href="./sevice.html" class="tnb_service">부가서비스</a></li>
                 <li class="tnb_li"><button type="button" class="tnb_mb_btn">관리자<span class="./img/btn_gnb.png">메뉴열기</span></button>
                     <ul class="tnb_mb_area">
                         <li><a href="#">관리자정보</a></li>
@@ -46,6 +46,7 @@
                         <ul>
                             <li><a href="./config_form.html" class="on">기본환경설정</a></li>
                             <li><a href="./auth_list.html">관리권한설정</a></li>
+                            <li><a href="./theme.html">테마설정</a></li>
                             <li><a href="./menu_list.html">메뉴설정</a></li>
                             <li><a href="./sendmail_test.html">메일테스트</a></li>
                             <li><a href="./newwinlist.html">팝업레이어관리</a></li>
@@ -144,44 +145,118 @@ $(function(){
 
 <div id="container">
     <!-- 중간 레이아웃 -->
-    <h1 id="container_title">회원정보 업데이트</h1>
+    <h1 id="container_title">휴대폰번호</h1>
 
     <div id="container_wr">
 
-        <div id="sms5_mbup">
-            <form>
-            <div class="local_desc02 local_desc">
-                <p>
-                    새로운 회원정보로 업데이트 합니다.<br>
-                    실행 후 '완료' 메세지가 나오기 전에 프로그램의 실행을 중지하지 마십시오.
-                </p>
+        <div class="local_desc">
+            <p>그룹명순으로 정렬됩니다.</p>
+        </div>
+        <div class="local_wr">
+            <div class="local_ov">
+                <span class="btn_ov01"><span class="ov_txt">건수 </span><span class="ov_num"> 22건</span></span>
             </div>
-            <div class="sms_date">
-                <strong>
-                    마지막 업데이트 일시 : <span id="datetime"> 0000-00-00 00:00:00 </span> <br>
-                </strong>
-            </div>
-
-            <div id="res_msg">
-                <p>회원정보를 휴대폰번호 DB로 업데이트 하였습니다.</p>
-                <dl id="sms_mbup">
-                   <dt>총 회원 수</dt>
-                   <dd>28명</dd>
-                   <dt>삭제된 회원</dt>
-                   <dd>1명</dd>
-                   <dt>휴대폰번호 없음</dt>
-                   <dd>25 명</dd>
-                   <dt>휴대폰번호 정상</dt>
-                   <dd>0 명&nbsp;(수신0 명 / 거부0 명)</dd>
-                   <dt>휴대폰번호 오류</dt><dd>2 명</dd>
-                </dl>
-            </div>
-            <p>프로그램의 실행을 끝마치셔도 좋습니다.</p>
-
-            <div class="btn_fixed_top">
-                <input type="submit" value="실행" class="btn_submit btn">
-            </div>
+            <form class="numgr_sch local_sch" >
+                <label for="bg_name" class="sound_only">그룹추가<strong class="sound_only"> 필수</strong></label>
+                <input type="text" id="bg_name" name="bg_name" required class="required frm_input">
+                <input type="submit" value="그룹추가" class="btn_submit btn">
             </form>
+            
+        </div>
+        <div class="table_01 table_basic">
+            <table>
+            <caption>휴대폰번호 목록</caption>
+            <thead>
+            <tr>
+                <th scope="col">
+                    <label for="chkall" class="sound_only">그룹 전체</label>
+                    <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
+                </th>
+                <th scope="col">그룹명</th>
+                <th scope="col">총</th>
+                <th scope="col">회원</th>
+                <th scope="col">비회원</th>
+                <th scope="col">수신</th>
+                <th scope="col">거부</th>
+                <th scope="col">이동</th>
+                <th scope="col">보기</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="td_chk"></td>
+                <td class="td_left">미분류</td>
+                <td class="td_num_c">11</td>
+                <td class="td_num_c">5</td>
+                <td class="td_num_c">6</td>
+                <td class="td_num_c">5</td>
+                <td class="td_num_c">5</td>
+                <td>
+                    <label class="sound_only">이동할 그룹</label>
+                    <select>
+                        <option value="">선택</option>
+                    </select>
+                </td>
+                <td class="td_mng td_mng_s">
+                    <a href="" class="btn_03">보기</a>
+                </td>
+            </tr>
+            <tr class="td_bg1">
+                <td class="td_chk">
+                    <input type="hidden" id="bg_no_1">
+                    <label for="chk_1" class="sound_only">그룹명</label>
+                    <input type="checkbox" name="chk[]" value="1" id="chk_1">
+                </td>
+                <td class="td_left">
+                    <label for="bg_name_1" class="sound_only">그룹명</label>
+                    <input type="text" value="그룹명" id="bg_name_1" class="tbl_input">
+                </td>
+                <td class="td_num_c">11</td>
+                <td class="td_num_c">5</td>
+                <td class="td_num_c">6</td>
+                <td class="td_num_c">5</td>
+                <td class="td_num_c">5</td>
+                <td>
+                    <label for="select_bg_no_1" class="sound_only">이동할 그룹</label>
+                    <select id="select_bg_no_1">
+                        <option>선택</option>
+                    </select>
+                </td>
+                <td class="td_mng td_mng_s">
+                    <a href="" class="btn_03">보기</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="td_chk">
+                    <label for="chk_2" class="sound_only">그룹명</label>
+                    <input type="checkbox" value="2" id="chk_2">
+                </td>
+                <td class="td_left">
+                    <label for="bg_name_2" class="sound_only">그룹명</label>
+                    <input type="text" value="그룹명" id="bg_name_2" class="tbl_input">
+                </td>
+                <td class="td_num_c">22</td>
+                <td class="td_num_c">5</td>
+                <td class="td_num_c">6</td>
+                <td class="td_num_c">5</td>
+                <td class="td_num_c">5</td>
+                <td class="td_mbstat">
+                    <label for="select_bg_no_2" class="sound_only">이동할 그룹</label>
+                    <select id="select_bg_no_2">
+                        <option>선택</option>
+                    </select>
+                </td>
+                <td class="td_mng td_mng_s">
+                    <a href="" class="btn_03">보기</a>
+                </td>
+            </tr>
+            </tbody>
+            </table>
+        </div>
+        <div class="btn_fixed_top">
+            <input type="submit" name="act_button" value="선택수정" class="btn_02 btn">
+            <input type="submit" name="act_button" value="선택삭제"  class="btn_02 btn">
+            <input type="submit" name="act_button" value="선택비우기" class="btn_02 btn">
         </div>
     </div>
 

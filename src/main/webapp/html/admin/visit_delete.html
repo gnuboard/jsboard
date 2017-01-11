@@ -25,7 +25,7 @@
         <div id="tnb">
             <ul>
                 <li class="tnb_li"><a href="#" class="tnb_community" target="_blank">커뮤니티 바로가기</a></li>
-                <li class="tnb_li"><a href="#" class="tnb_service">부가서비스</a></li>
+                <li class="tnb_li"><a href="./sevice.html" class="tnb_service">부가서비스</a></li>
                 <li class="tnb_li"><button type="button" class="tnb_mb_btn">관리자<span class="./img/btn_gnb.png">메뉴열기</span></button>
                     <ul class="tnb_mb_area">
                         <li><a href="#">관리자정보</a></li>
@@ -46,6 +46,7 @@
                         <ul>
                             <li><a href="./config_form.html" class="on">기본환경설정</a></li>
                             <li><a href="./auth_list.html">관리권한설정</a></li>
+                            <li><a href="./theme.html">테마설정</a></li>
                             <li><a href="./menu_list.html">메뉴설정</a></li>
                             <li><a href="./sendmail_test.html">메일테스트</a></li>
                             <li><a href="./newwinlist.html">팝업레이어관리</a></li>
@@ -144,45 +145,37 @@ $(function(){
 
 <div id="container">
     <!-- 중간 레이아웃 -->
-    <h1 id="container_title">회원정보 업데이트</h1>
+    <h1 id="container_title">접속자로그삭제</h1>
 
     <div id="container_wr">
-
-        <div id="sms5_mbup">
-            <form>
-            <div class="local_desc02 local_desc">
-                <p>
-                    새로운 회원정보로 업데이트 합니다.<br>
-                    실행 후 '완료' 메세지가 나오기 전에 프로그램의 실행을 중지하지 마십시오.
-                </p>
-            </div>
-            <div class="sms_date">
-                <strong>
-                    마지막 업데이트 일시 : <span id="datetime"> 0000-00-00 00:00:00 </span> <br>
-                </strong>
-            </div>
-
-            <div id="res_msg">
-                <p>회원정보를 휴대폰번호 DB로 업데이트 하였습니다.</p>
-                <dl id="sms_mbup">
-                   <dt>총 회원 수</dt>
-                   <dd>28명</dd>
-                   <dt>삭제된 회원</dt>
-                   <dd>1명</dd>
-                   <dt>휴대폰번호 없음</dt>
-                   <dd>25 명</dd>
-                   <dt>휴대폰번호 정상</dt>
-                   <dd>0 명&nbsp;(수신0 명 / 거부0 명)</dd>
-                   <dt>휴대폰번호 오류</dt><dd>2 명</dd>
-                </dl>
-            </div>
-            <p>프로그램의 실행을 끝마치셔도 좋습니다.</p>
-
-            <div class="btn_fixed_top">
-                <input type="submit" value="실행" class="btn_submit btn">
-            </div>
-            </form>
+        <div class="local_desc">
+            <p>
+                접속자 로그를 삭제할 년도와 방법을 선택해주십시오.
+            </p>
         </div>
+
+        <form>
+        <div class="visit_del">
+            <label for="year" class="sound_only">년도선택</label>
+            <select name="year" id="year">
+                <option value="">년도선택</option>
+            </select> 년
+            <label for="month" class="sound_only">월선택</label>
+            <select name="month" id="month">
+                <option value="">월선택</option>
+            </select> 월
+            <label for="method" class="sound_only">삭제방법선택</label>
+            <select name="method" id="method">
+                <option value="before">선택년월 이전 자료삭제</option>
+                <option value="specific">선택년월의 자료삭제</option>
+            </select>
+        </div>
+        <div  class="visit_del_bt">
+            <label for="pass">관리자 비밀번호<strong class="sound_only"> 필수</strong></label>
+            <input type="password" name="pass" id="pass" class="frm_input required">
+            <input type="submit" value="확인" class="btn_submit">
+        </div>
+    </form>
     </div>
 
     <script>

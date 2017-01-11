@@ -2,14 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="Generator" content="EditPlus®">
-<meta name="Author" content="">
-<meta name="Keywords" content="">
-<meta name="Description" content="">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>관리자</title>
 
-<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./../css/style.css">
 <script src="http://code.jquery.com/jquery-1.12.1.js"></script>
 </head>
 <body>
@@ -20,12 +16,13 @@
     <div id="hd_top">
         <button type="button" id="btn_gnb" class="btn_gnb_close">메뉴</button>
         <div id="logo">
-            <a href="./index.html"><img src="./img/logo.png" alt="관리자"></a>
+            <a href="./index.html"><img src="./../img/logo.png" alt="관리자"></a>
         </div>
         <div id="tnb">
             <ul>
+                <li class="tnb_li"><a href="#" class="tnb_shop" target="_blank">쇼핑몰 바로가기</a></li>
                 <li class="tnb_li"><a href="#" class="tnb_community" target="_blank">커뮤니티 바로가기</a></li>
-                <li class="tnb_li"><a href="#" class="tnb_service">부가서비스</a></li>
+                <li class="tnb_li"><a href="./../service.html" class="tnb_service">부가서비스</a></li>
                 <li class="tnb_li"><button type="button" class="tnb_mb_btn">관리자<span class="./img/btn_gnb.png">메뉴열기</span></button>
                     <ul class="tnb_mb_area">
                         <li><a href="#">관리자정보</a></li>
@@ -38,14 +35,15 @@
     <div id="gnb" class="gnb_large">
         <h2>카테고리</h2>
         <ul class="gnb_ul">
-            <li class="gnb_li on">
+            <li class="gnb_li">
                 <button type="button" class="btn_op menu-1">환경설정</button>
                 <div class="gnb_oparea_wr">
                     <div class="gnb_oparea">
                         <h3>환경설정</h3>
                         <ul>
-                            <li><a href="./config_form.html" class="on">기본환경설정</a></li>
+                            <li><a href="./config_form.html">기본환경설정</a></li>
                             <li><a href="./auth_list.html">관리권한설정</a></li>
+                            <li><a href="./theme.html">테마설정</a></li>
                             <li><a href="./menu_list.html">메뉴설정</a></li>
                             <li><a href="./sendmail_test.html">메일테스트</a></li>
                             <li><a href="./newwinlist.html">팝업레이어관리</a></li>
@@ -97,6 +95,51 @@
                 </div>
             </li>
 
+            <li class="gnb_li on">
+                <button type="button" class="btn_op menu-5">쇼핑몰관리</button>
+                <div class="gnb_oparea_wr">
+                    <div class="gnb_oparea">
+                        <h3>쇼핑몰관리</h3>
+                        <ul>
+                            <li><a href="./configform.html" class="on">쇼핑몰설정</a></li>
+                            <li><a href="./orderlist.html">주문내역</a></li>
+                            <li><a href="./personalpaylist.html">개인결제 관리</a></li>
+                            <li><a href="./categorylist.html">분류관리</a></li>
+                            <li><a href="./itemlist.html">상품관리</a></li>
+                            <li><a href="./itemqalist.html">상품문의</a></li>
+                            <li><a href="./itemuselist.html">상품후기</a></li>
+                            <li><a href="./itemstocklist.html">상품문의</a></li>
+                            <li><a href="./itemstocklist.html">상품재고관리</a></li>
+                            <li><a href="./itemtypelist.html">상품유형관리</a></li>
+                            <li><a href="./optionstocklist.html">상품옵션재고관리</a></li>
+                            <li><a href="./couponzonelist.html">쿠폰존관리</a></li>
+                            <li><a href="./sendcostlist.html">추가배송비관리</a></li>
+                            <li><a href="./inorderlist.html">미완료주문</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            
+             <li class="gnb_li">
+                <button type="button" class="btn_op menu-6">쇼핑몰현황/기타</button>
+                <div class="gnb_oparea_wr">
+                    <div class="gnb_oparea">
+                        <h3>쇼핑몰현황/기타</h3>
+                        <ul>
+                            <li><a href="./sale1.html">매출현황</a></li>
+                            <li><a href="./itemsellrank.html">상품판매순위</a></li>
+                            <li><a href="./orderprint.html">주문내역출력</a></li>
+                            <li><a href="./itemstocksms.html">재입고SMS 알림</a></li>
+                            <li><a href="./itemevent.html">이벤트관리</a></li>
+                            <li><a href="./itemeventlist.html">이벤트일괄처리</a></li>
+                            <li><a href="./bannerlist.html">배너관리</a></li>
+                            <li><a href="./wishlist.html">보관함현황</a></li>
+                            <li><a href="./price.html">가격비교사이트</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            
             <li class="gnb_li">
                 <button type="button" class="btn_op menu-4">SMS관리</button>
                 <div class="gnb_oparea_wr">
@@ -144,73 +187,13 @@ $(function(){
 
 <div id="container">
     <!-- 중간 레이아웃 -->
-    <h1 id="container_title">회원정보 업데이트</h1>
+    <h1 id="container_title">타이틀</h1>
 
     <div id="container_wr">
 
-        <div id="sms5_mbup">
-            <form>
-            <div class="local_desc02 local_desc">
-                <p>
-                    새로운 회원정보로 업데이트 합니다.<br>
-                    실행 후 '완료' 메세지가 나오기 전에 프로그램의 실행을 중지하지 마십시오.
-                </p>
-            </div>
-            <div class="sms_date">
-                <strong>
-                    마지막 업데이트 일시 : <span id="datetime"> 0000-00-00 00:00:00 </span> <br>
-                </strong>
-            </div>
-
-            <div id="res_msg">
-                <p>회원정보를 휴대폰번호 DB로 업데이트 하였습니다.</p>
-                <dl id="sms_mbup">
-                   <dt>총 회원 수</dt>
-                   <dd>28명</dd>
-                   <dt>삭제된 회원</dt>
-                   <dd>1명</dd>
-                   <dt>휴대폰번호 없음</dt>
-                   <dd>25 명</dd>
-                   <dt>휴대폰번호 정상</dt>
-                   <dd>0 명&nbsp;(수신0 명 / 거부0 명)</dd>
-                   <dt>휴대폰번호 오류</dt><dd>2 명</dd>
-                </dl>
-            </div>
-            <p>프로그램의 실행을 끝마치셔도 좋습니다.</p>
-
-            <div class="btn_fixed_top">
-                <input type="submit" value="실행" class="btn_submit btn">
-            </div>
-            </form>
-        </div>
+        index
     </div>
 
-    <script>
-    $(function(){ 
-        $(".contents li").hide();
-        $(".contents li:first").show();
-        $(".tab_01 li").click(function(){
-            var tabType = $(this).index();
-            $('.contents li').hide();
-            $('.contents li').eq(tabType).show();
-            $('.tab_01 li button').removeClass('selected');
-            $('.tab_01 li button').eq(tabType).addClass('selected'); 
-        })
-     
-     
-        $(".tooltip_btn").mouseover(function(){
-            $(this).next(".tooltip_area").fadeIn();
-        }).mouseout(function(){
-            $(".tooltip_area").fadeOut("fast");
-        }).mousemove(function(e){
-            $(".tooltip_area").css({
-                top:e.pageY+0+"px",
-                left:e.pageX+10+"px"
-            });
-        });
-    });
-
-    </script>
 
 
     <!-- 하단 레이아웃 -->

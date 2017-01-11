@@ -144,75 +144,132 @@ $(function(){
 
 <div id="container">
     <!-- 중간 레이아웃 -->
-    <h1 id="container_title">회원정보 업데이트</h1>
+    <h1 id="container_title">요일별 접속자집계</h1>
 
     <div id="container_wr">
 
-        <div id="sms5_mbup">
+        <div class="local_wr local_visit">
+            <ul  id="visit_tab">
+                <li><a href="./visit_list.html">접속자</a></li>
+                <li><a href="./visit_domain.html">도메인</a></li>
+                <li><a href="./visit_browser.html">브라우저</a></li>
+                <li><a href="./visit_os.html">운영체제</a></li>
+                <li><a href="./visit_device.html">접속기기</a></li>
+                <li><a href="./visit_hour.html">시간</a></li>
+                <li class="selected"><a href="./visit_week.html">요일</a></li>
+                <li><a href="./visit_date.html">일</a></li>
+                <li><a href="./visit_month.html">월</a></li>
+                <li><a href="./visit_year.html">년</a></li>
+            </ul>
             <form>
-            <div class="local_desc02 local_desc">
-                <p>
-                    새로운 회원정보로 업데이트 합니다.<br>
-                    실행 후 '완료' 메세지가 나오기 전에 프로그램의 실행을 중지하지 마십시오.
-                </p>
-            </div>
-            <div class="sms_date">
-                <strong>
-                    마지막 업데이트 일시 : <span id="datetime"> 0000-00-00 00:00:00 </span> <br>
-                </strong>
-            </div>
-
-            <div id="res_msg">
-                <p>회원정보를 휴대폰번호 DB로 업데이트 하였습니다.</p>
-                <dl id="sms_mbup">
-                   <dt>총 회원 수</dt>
-                   <dd>28명</dd>
-                   <dt>삭제된 회원</dt>
-                   <dd>1명</dd>
-                   <dt>휴대폰번호 없음</dt>
-                   <dd>25 명</dd>
-                   <dt>휴대폰번호 정상</dt>
-                   <dd>0 명&nbsp;(수신0 명 / 거부0 명)</dd>
-                   <dt>휴대폰번호 오류</dt><dd>2 명</dd>
-                </dl>
-            </div>
-            <p>프로그램의 실행을 끝마치셔도 좋습니다.</p>
-
-            <div class="btn_fixed_top">
-                <input type="submit" value="실행" class="btn_submit btn">
+            <div class="local_sch02">
+                <strong>기간별검색</strong>
+                <input type="text" name="fr_date" id="fr_date" class="sch_input" size="11" maxlength="10">
+                <label for="fr_date" class="sound_only">시작일</label>
+                ~
+                <input type="text" name="to_date" id="to_date" class="sch_input" size="11" maxlength="10">
+                <label for="to_date" class="sound_only">종료일</label>
+                <input type="submit" class="btn_sch" value="검색">
             </div>
             </form>
         </div>
+       
+        <div class="table_01 table_basic table_graph">
+            <table>
+            <caption>요일별 접속자집계 목록</caption>
+            <thead>
+            <tr>
+                <th scope="col">요일</th>
+                <th scope="col">그래프</th>
+                <th scope="col">접속자수</th>
+                <th scope="col">비율(%)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="td_num_c">월</td>
+                <td class="td_graph">
+                    <div class="visit_bar">
+                        <span style="width:4.0%"></span>
+                    </div>
+                </td>
+                <td class="td_num_c">537</td>
+                <td class="td_num_c">4.0</td>
+            </tr>
+            <tr class="td_bg_1">
+                <td class="td_num_c">화</td>
+                <td class="td_graph">
+                    <div class="visit_bar">
+                        <span style="width:4.0%"></span>
+                    </div>
+                </td>
+                <td class="td_num_c">537</td>
+                <td class="td_num_c">4.0</td>
+            </tr>
+            <tr>
+                <td class="td_num_c">수</td>
+                <td class="td_graph">
+                    <div class="visit_bar">
+                        <span style="width:4.0%"></span>
+                    </div>
+                </td>
+                <td class="td_num_c">537</td>
+                <td class="td_num_c">4.0</td>
+            </tr>
+            <tr>
+                <td class="td_num_c">목</td>
+                <td class="td_graph">
+                    <div class="visit_bar visit_bar_1">
+                        <span style="width:34.0%"></span>
+                    </div>
+                </td>
+                <td class="td_num_c">537</td>
+                <td class="td_num_c">34.0</td>
+            </tr>
+            <tr>
+                <td class="td_num_c">금</td>
+                <td class="td_graph">
+                    <div class="visit_bar visit_bar_1">
+                        <span style="width:24.0%"></span>
+                    </div>
+                </td>
+                <td class="td_num_c">537</td>
+                <td class="td_num_c">24.0</td>
+            </tr>
+            <tr>
+                <td class="td_num_c">토</td>
+                <td class="td_graph">
+                    <div class="visit_bar">
+                        <span style="width:4.0%"></span>
+                    </div>
+                </td>
+                <td class="td_num_c">537</td>
+                <td class="td_num_c">4.0</td>
+            </tr>
+            <tr>
+                <td class="td_num_c">일</td>
+                <td class="td_graph">
+                    <div class="visit_bar visit_bar_1">
+                        <span style="width:20.0%"></span>
+                    </div>
+                </td>
+                <td class="td_num_c">537</td>
+                <td class="td_num_c">20.0</td>
+            </tr>
+            
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="2">합계</td>
+                <td class="td_num_c">537</td>
+                <td class="td_num_c">100.0</td>
+            </tr>
+            </tfoot>
+            </table>
+        </div>
     </div>
 
-    <script>
-    $(function(){ 
-        $(".contents li").hide();
-        $(".contents li:first").show();
-        $(".tab_01 li").click(function(){
-            var tabType = $(this).index();
-            $('.contents li').hide();
-            $('.contents li').eq(tabType).show();
-            $('.tab_01 li button').removeClass('selected');
-            $('.tab_01 li button').eq(tabType).addClass('selected'); 
-        })
-     
-     
-        $(".tooltip_btn").mouseover(function(){
-            $(this).next(".tooltip_area").fadeIn();
-        }).mouseout(function(){
-            $(".tooltip_area").fadeOut("fast");
-        }).mousemove(function(e){
-            $(".tooltip_area").css({
-                top:e.pageY+0+"px",
-                left:e.pageX+10+"px"
-            });
-        });
-    });
-
-    </script>
-
-
+    
     <!-- 하단 레이아웃 -->
     <div id="ft">
         <p>

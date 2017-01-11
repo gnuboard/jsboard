@@ -25,7 +25,7 @@
         <div id="tnb">
             <ul>
                 <li class="tnb_li"><a href="#" class="tnb_community" target="_blank">커뮤니티 바로가기</a></li>
-                <li class="tnb_li"><a href="#" class="tnb_service">부가서비스</a></li>
+                <li class="tnb_li"><a href="./sevice.html" class="tnb_service">부가서비스</a></li>
                 <li class="tnb_li"><button type="button" class="tnb_mb_btn">관리자<span class="./img/btn_gnb.png">메뉴열기</span></button>
                     <ul class="tnb_mb_area">
                         <li><a href="#">관리자정보</a></li>
@@ -46,6 +46,7 @@
                         <ul>
                             <li><a href="./config_form.html" class="on">기본환경설정</a></li>
                             <li><a href="./auth_list.html">관리권한설정</a></li>
+                            <li><a href="./theme.html">테마설정</a></li>
                             <li><a href="./menu_list.html">메뉴설정</a></li>
                             <li><a href="./sendmail_test.html">메일테스트</a></li>
                             <li><a href="./newwinlist.html">팝업레이어관리</a></li>
@@ -144,45 +145,65 @@ $(function(){
 
 <div id="container">
     <!-- 중간 레이아웃 -->
-    <h1 id="container_title">회원정보 업데이트</h1>
+    <h1 id="container_title">부가서비스</h1>
 
     <div id="container_wr">
-
-        <div id="sms5_mbup">
-            <form>
-            <div class="local_desc02 local_desc">
-                <p>
-                    새로운 회원정보로 업데이트 합니다.<br>
-                    실행 후 '완료' 메세지가 나오기 전에 프로그램의 실행을 중지하지 마십시오.
-                </p>
-            </div>
-            <div class="sms_date">
-                <strong>
-                    마지막 업데이트 일시 : <span id="datetime"> 0000-00-00 00:00:00 </span> <br>
-                </strong>
-            </div>
-
-            <div id="res_msg">
-                <p>회원정보를 휴대폰번호 DB로 업데이트 하였습니다.</p>
-                <dl id="sms_mbup">
-                   <dt>총 회원 수</dt>
-                   <dd>28명</dd>
-                   <dt>삭제된 회원</dt>
-                   <dd>1명</dd>
-                   <dt>휴대폰번호 없음</dt>
-                   <dd>25 명</dd>
-                   <dt>휴대폰번호 정상</dt>
-                   <dd>0 명&nbsp;(수신0 명 / 거부0 명)</dd>
-                   <dt>휴대폰번호 오류</dt><dd>2 명</dd>
-                </dl>
-            </div>
-            <p>프로그램의 실행을 끝마치셔도 좋습니다.</p>
-
-            <div class="btn_fixed_top">
-                <input type="submit" value="실행" class="btn_submit btn">
-            </div>
-            </form>
+        <div class="local_desc">
+            <p>
+                아래의 서비스들은 그누보드에서 이미 지원하는 기능으로 별도의 개발이 필요 없으며 서비스 신청후 바로 사용 할수 있습니다.
+            </p>
         </div>
+        
+        <div class="service_wrap">
+
+            <div class="sevice_1 sevice">
+                <div class="sevice_wr">
+                    <img src="./img/service_img3.jpg" alt="신용카드 전자결제 서비스" class="svc_img">
+                    <h3>신용카드 전자결제 서비스<br><span>(계좌이체, 가상계좌 결제 포함)</span></h3>
+                    <p>이곳을 통하여 가입하시면 신용카드 결제를 국내 최저 수수료인 3.2%에 이용 할 수 있습니다. 영카트를 사용하지 않아도 이 수수료를 적용 받을 수 있습니다. 아래 가입을 희망하시는 회사의 로고를 클릭하시면 가입페이지로 이동합니다.</p>
+
+                    <ul>
+                        <li><a href="http://sir.kr/main/service/p_pg.php" target="_blank"><img src="./img/service_6.png" alt="KCP 신용카드 전자결제 신청하기"></a></li>
+                        <li ><a href="http://sir.kr/main/service/lg_pg.php" target="_blank"><img src="./img/service_2.png" alt="LG유플러스 신용카드 전자결제 신청하기"></a></li>
+                        <li class="last"><a href="http://sir.kr/main/service/inicis_pg.php" target="_blank"><img src="./img/service_1.png" alt="KG 이니시스 전자결제 신청하기"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sevice sevice_1">
+                <div class="sevice_wr">
+                    <img src="./img/service_img1.jpg" alt="휴대폰 본인확인 서비스" class="svc_img">
+                    <h3>휴대폰 본인확인 서비스</h3>
+                    <p>정보통신망법 23조 2항(주민등록번호의 사용제한)에 따라 기존 주민등록번호 기반의 인증서비스 이용이 불가합니다. 주민등록번호 대체수단으로 최소한의 정보(생년월일, 휴대폰번호, 성별)를 입력받아 본인임을 확인하는 인증수단 입니다</p>
+
+                    <ul>
+                        <li><a href="http://sir.kr/main/service/p_cert.php" target="_blank"><img src="./img/service_6.png" alt="KCP 휴대폰 본인확인 신청하기"></a></li>
+                        <li><a href="http://sir.kr/main/service/lg_cert.php" target="_blank"><img src="./img/service_2.png" alt="LG유플러스 휴대폰대체인증 신청하기"></a></li>
+                        <li class="last"><a href="http://sir.kr/main/service/b_cert.php" target="_blank"><img src="./img/service_4.png" alt="OKname 휴대폰 본인확인 신청하기"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sevice sevice_1">
+                <div class="sevice_wr">
+                    <img src="./img/service_img2.jpg" alt="아이핀 본인확인 서비스" class="svc_img">
+                    <h3>아이핀 본인확인 서비스</h3>
+                    <p>정부가 주관하는 주민등록번호 대체 수단으로 본인의 개인정보를 아이핀 사이트에 한번만 발급해 놓고, 이후부터는 아이디와 패스워드 만으로
+                    본인임을 확인하는 인증수단 입니다.</p>
+
+                   <div class="svc_btn"><a href="http://sir.kr/main/service/b_ipin.php" target="_blank"><img src="./img/service_3.png" alt="OKname 아이핀 본인확인 신청하기"></a></div>
+                </div>
+            </div>
+            <div class="sevice_2">
+                <div class="svc_sms sevice_wr">
+                    <div class="svc_a">
+                        <h3>SMS 문자 서비스</h3>
+                        <p>사이트 관리자 또는 회원이 다른 회원의 <br>휴대폰으로 단문메세지(최대 한글 40자, 영문 80자)를 발송할 수 있습니다.</p>
+                    </div>
+                    <div class="svc_btn"><a href="http://icodekorea.com/res/join_company_fix_a.php?sellid=sir2" target="_blank"><img src="./img/service_5.png" alt="아이코드 SMS 서비스 신청하기"></a></div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
     <script>
