@@ -1,6 +1,10 @@
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="kr.sir.domain.Write"%>
+<%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -118,126 +122,148 @@ function delArticle() {
         <div class="bo_fx">
             <div class="bo_v_nb">
             	<c:if test="${prevArticle != 0}">
-                	<a href="/board/view/${prevArticle}/page/${pageNumber}/category/${currentCategory}" class="btn_b01 btn">이전글</a>
+                	<a href="/board/view/${prevArticle}/page/${currentPage}/category/${currentCategory}" class="btn_b01 btn">이전글</a>
                 </c:if>
                 <c:if test="${nextArticle != 0}">	
-                <a href="/board/view/${nextArticle}/page/${pageNumber}/category/${currentCategory}" class="btn_b01 btn">다음글</a>
+                <a href="/board/view/${nextArticle}/page/${currentPage}/category/${currentCategory}" class="btn_b01 btn">다음글</a>
                 </c:if>        
             </div>
         
             <div class="bo_v_com">
             <form action="/board/view/${article.id}" name="boardForm" id="boardForm" method="post">
             	<input type="hidden" name="_method" />
-            	<input type="hidden" name="currentPage" value="${pageNumber}"/>
+            	<input type="hidden" name="currentPage" value="${currentPage}"/>
             	<input type="hidden" name="currentCategory" value="${currentCategory}"/>
             	
-                <a href="/board/save/${article.id}/page/${pageNumber}/category/${currentCategory}" class=" btn">수정</a>
+                <a href="/board/save/${article.id}/page/${currentPage}/category/${currentCategory}" class=" btn">수정</a>
                 <input type="submit" class="btn_b01 btn" value="삭제" onclick="delArticle();"/>
                 <a href="" class="btn_admin btn">복사</a>
                 <a href="" class="btn_admin btn">이동</a>
-                <a href="/board/list/${pageNumber}/category/${currentCategory}" class="btn_b01 btn">목록</a>
+                <a href="/board/list/${currentPage}/category/${currentCategory}" class="btn_b01 btn">목록</a>
                 <a href="" class="btn_b01 btn">답변</a>
                 <a href="/board/save" class="btn_b02 btn">글쓰기</a>
             </form> 
             </div>
         </div>
         
-        <!-- 댓글 시작 { -->
-        <section id="bo_vc">
-            <h2>댓글목록</h2>
-            <ul class="cmt_ul">
-                <li class="cmt_li">
-                    <div class="cmt_info">
-                        <span class="sound_only">작성자</span> <strong class="if_member">작성자</strong>
-                        <span class="sound_only">IP</span><span class="if_ip">(106.245.92.19)</span>
-                        <span class="sound_only">작성일</span> <span class="if_date">17-01-04 09:30</span>
+      	<form action="/board/view/comment" name="boardForm" id="boardForm" method="post">
+<!--        	<input type="hidden" name="_method" value="post"/> -->
+			<!-- 원글의 wr_id -->
+			<input type="hidden" name="id" value="${article.id}"/>
+			<input type="hidden" name="currentCategory" value="${currentCategory}"/>
+			<input type="hidden" name="currentPage" value="${currentPage}"/>
+			<!-- 답변글 : 1, 원글 : 0 -->
+			<input type="hidden" name="isReply" value="0"/>
+<%-- 			<input type="hidden" name="isReply" value="${isReply}"/> --%>
+			<!-- 새 댓글의 depth -->				
+			<input type="hidden" name="commentDepth" id="commentDepth" value="1"/>
+			<!-- 기준 댓글의 wr_id -->
+			<input type="hidden" name="baseCommentId" id="baseCommentId" value="225"/>
+			<input type="hidden" name="subject" value=""/>
+			<input type="hidden" name="reply" value=""/>
+			<input type="hidden" name="email" value=""/>
+			<input type="hidden" name="homepage" value=""/>
+			<input type="hidden" name="option" value=""/>
+			<input type="hidden" name="link11" value=""/>
+			<input type="hidden" name="link12" value=""/>
+			<input type="hidden" name="link1Hit" value="0"/>
+			<input type="hidden" name="link2Hit" value="0"/>
+			<input type="hidden" name="facebookUser" value=""/>
+			<input type="hidden" name="twitterUser" value=""/>
+			<input type="hidden" name="extra1" value=""/>
+			<input type="hidden" name="extra2" value=""/>
+			<input type="hidden" name="extra3" value=""/>
+			<input type="hidden" name="extra4" value=""/>
+			<input type="hidden" name="extra5" value=""/>
+			<input type="hidden" name="extra6" value=""/>
+			<input type="hidden" name="extra7" value=""/>
+			<input type="hidden" name="extra8" value=""/>
+			<input type="hidden" name="extra9" value=""/>
+			<input type="hidden" name="extra10" value=""/>
+			        
+        	<!-- 댓글 시작  -->
+   			<section id="bo_vc">
+			<h2>댓글목록</h2>
+            <%
+            	List<Write> commentList= (List<Write>)request.getAttribute("commentList");
+            	
+            	int[] depthArr = new int[commentList.size()];
+            	for(int i=0; i<commentList.size(); i++) {
+            		depthArr[i] = commentList.get(i).getCommentReply().length();
+					if(i==0) {
+			%>			
+			            <ul class="cmt_ul">
+			<%		
+					} 
+					if(depthArr[i] == 0) {
+						if(i > 0) {	
+							int depthDiffer = depthArr[i-1] - depthArr[i];
+							for(int j=0; j < depthDiffer; j++) {
+			%>
+						</li></ul>
+			<%		
+							}
+						}
+			%>			
+						<li class="cmt_li">
+			<%			
+					// depth가 전 댓글보다 작으면 닫기 시작
+					} else if(depthArr[i] > 0 && depthArr[i-1] > depthArr[i]){
+						for(int j=0; j<depthArr[i-1] - depthArr[i]; j++) {
+			%>
+							</li></ul>
+			<%
+						}
+			%>
+						</li><li class="cmt_li_2">
+			<%		
+					} else if(depthArr[i] > 0 && depthArr[i-1] == depthArr[i]) {
+			%>
+						</li>
+						<li class="cmt_li_2">
+			<%		
+					} else {
+			%>
+		           		<ul>
+		          		<li class="cmt_li_2">
+			<% 
+					}
+			%>
+					<div class="cmt_info">
+                        <span class="sound_only">작성자</span> <strong class="if_member"><%=commentList.get(i).getName() %></strong>
+                        <span class="sound_only">IP</span><span class="if_ip"><%=commentList.get(i).getIp() %></span>
+                        <span class="sound_only">작성일</span> <span class="if_date">
+                        	 <fmt:formatDate value="<%=commentList.get(i).getDatetime() %>" pattern="yy-MM-dd HH:mm"/>
+                        </span>
                     </div>
                     <div class="cmt_con">
-                        댓글내용1
+                       	<%=commentList.get(i).getContent() %>
                     </div>
                     <div class="cmt_btn">
                         <a href="#">답변</a>
                         <a href="#">수정</a>
                         <a href="#">삭제</a>
                     </div>
-                    <ul>
-                        <li class="cmt_li_2">
-                            <div class="cmt_info">
-                                <span class="sound_only">작성자</span> <strong class="if_member">작성자</strong>
-                                <span class="sound_only">IP</span><span class="if_ip">(106.245.92.19)</span>
-                                <span class="sound_only">작성일</span> <span class="if_date">17-01-04 09:30</span>
-                            </div>
-                            <div class="cmt_con">
-                                댓글내용11
-                            </div>
-                            <div class="cmt_btn">
-                                <a href="#">답변</a>
-                                <a href="#">수정</a>
-                                <a href="#">삭제</a>
-                            </div>
-                            <ul>
-                                <li class="cmt_li_2">
-                                    <div class="cmt_info">
-                                        <span class="sound_only">작성자</span> <strong class="if_member">작성자</strong>
-                                        <span class="sound_only">IP</span><span class="if_ip">(106.245.92.19)</span>
-                                        <span class="sound_only">작성일</span> <span class="if_date">17-01-04 09:30</span>
-                                    </div>
-                                    <div class="cmt_con">
-                                        댓글내용111
-                                    </div>
-                                    <div class="cmt_btn">
-                                        <a href="#">답변</a>
-                                        <a href="#">수정</a>
-                                        <a href="#">삭제</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="cmt_li_2">
-                            <div class="cmt_info">
-                                <span class="sound_only">작성자</span> <strong class="if_member">작성자</strong>
-                                <span class="sound_only">IP</span><span class="if_ip">(106.245.92.19)</span>
-                                <span class="sound_only">작성일</span> <span class="if_date">17-01-04 09:30</span>
-                            </div>
-                            <div class="cmt_con">
-                                댓글내용12
-                            </div>
-                            <div class="cmt_btn">
-                                <a href="#">답변</a>
-                                <a href="#">수정</a>
-                                <a href="#">삭제</a>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-                <li class="cmt_li">
-                    <div class="cmt_info">
-                        <span class="sound_only">작성자</span> <strong class="if_member">작성자</strong>
-                        <span class="sound_only">IP</span><span class="if_ip">(106.245.92.19)</span>
-                        <span class="sound_only">작성일</span> <span class="if_date">17-01-04 09:30</span>
-                    </div>
-                    <div class="cmt_con">
-                        댓글내용2
-                    </div>
-                    <div class="cmt_btn">
-                        <a href="#">답변</a>
-                        <a href="#">수정</a>
-                        <a href="#">삭제</a>
-                    </div>
-                </li>
-            </ul>
-        </section>
+			<%		
+					if(i == commentList.size()) {
+			%>
+						</ul>
+			<%			
+					}
+				} 
+			%>	
+		</section>
 
         <aside id="bo_vc_w">
         <h2>댓글쓰기</h2>
             <div class="cmt_wt_if">
                 <span>
                     <label>이름<strong class="sound_only"> 필수</strong></label>
-                    <input type="text" class="frm_input required">
+                    <input type="text" name="name" class="frm_input required" required>
                 </span>
                 <span>
                     <label>비밀번호<strong class="sound_only"> 필수</strong></label>
-                    <input type="text" class="frm_input required">
+                    <input type="password" name="password" class="frm_input required" required>
                 </span>
                 <span id="bo_vc_sns">
                     <input type="checkbox">
@@ -250,14 +276,15 @@ function delArticle() {
             <div class="cmt_wt_text">
                 <span class="sound_only">내용</span>
                 <div class="cmt_wt_wr">
-                    <textarea id="wr_content" name="wr_content" maxlength="10000" required="" class="required" title="내용"></textarea>
+                    <textarea id="content" name="content" maxlength="10000" required class="required" title="내용"></textarea>
                     <div class="btn_confirm">
                         <input type="submit" id="btn_submit" class="btn_submit" value="댓글등록">
                     </div>
                 </div>
-                <div class="cmt_scr"><input type="checkbox" name="wr_secret" value="secret" id="wr_secret"><label for="wr_secret">비밀글사용</label></div>
+                <div class="cmt_scr"><input type="checkbox" name="option"  id="option" value="secret"><label for="wr_secret">비밀글사용</label></div>
             </div>
         </aside>
+	    </form>
     </article>
 </div>
  </body>

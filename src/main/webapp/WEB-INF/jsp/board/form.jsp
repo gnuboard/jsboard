@@ -11,16 +11,16 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 function submitSaveForm() {
-	// 입력이 없을 시 기본값 셋팅
+	// form에 입력이 없을 시 기본값 셋팅
 	if( $("#email").val() == null ) $("#email").val("");
 	if( $("#homepage").val() == null ) $("#homepage").val("");
 	if( $("#link11").val() == null ) $("#link11").val("");
 	if( $("#link12").val() == null ) $("#link12").val("");
 	if(!$("#checkOption").is(":checked") ) $("#option").val("");
 	// http method 설정
-	if(${save == "update"}) {
+	if(${save == "update"}) {	// 글 수정
 		$("input:hidden[name=_method]").val("put");
-	} else {
+	} else {					// 글 쓰기
 		$("input:hidden[name=_method]").val("post");
 	}
 }
@@ -50,14 +50,7 @@ function submitSaveForm() {
     	</c:choose>
         </h2>
         <!-- 게시물 작성/수정 시작 { -->
-        <c:choose>
-	    	<c:when test='${save eq "insert"}'> 
-	    		<form action="/board/save" name="saveForm" id="saveForm" method="post">
-	    	</c:when>
-	    	<c:otherwise>
-	    		<form action="/board/save/${article.id}/page/${pageNumber}/category/${currentCategory}" name="saveForm" id="saveForm" method="post">
-	    	</c:otherwise>
-    	</c:choose>
+   		<form action="/board/save" name="boardForm" id="boardForm" method="post">
         
         	<!-- http method 값 셋팅 -->
 			<input type="hidden" name="_method"/>
@@ -83,6 +76,12 @@ function submitSaveForm() {
 				<input type="hidden" name="memberId" value="${article.memberId}"/>
 				<input type="hidden" name="boardId" value="${article.boardId}"/>
 				<input type="hidden" name="hit" value="${article.hit}"/>
+				<input type="hidden" name="currentCategory" value="${currentCategory}"/>
+				<input type="hidden" name="currentPage" value="${currentPage}"/>
+			</c:if>
+			<c:if test='${save eq "insert"}'>
+<%-- 				<input type="hidden" name="reply" value="${reply}"/> --%>
+				<input type="hidden" name="isReply" value="0"/>
 			</c:if>
 		
         <div class="table_basic table_form">

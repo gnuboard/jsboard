@@ -132,7 +132,7 @@ function selectCopy() {
                     <td class="td_num_c">${write.id}</td>
                     <td class="td_chk">
                         <label class="sound_only">${write.subject} 게시물</label>
-                       	<input type="checkbox" name="id" value="${write.id}">
+                       	<input type="checkbox" name="selectedId" value="${write.id}">
                     </td>
                     <td>
                     	<a href="/board/view/${write.id}/page/${currentPage}/category/${currentCategory}" class="bo_cate_link">

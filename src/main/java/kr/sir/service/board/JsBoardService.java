@@ -38,4 +38,15 @@ public interface JsBoardService {
 	// 글쓰기, 수정
 	public Write save(Write write);
 	
+	// 게시판에서 가장 작은 wr_num 가져오기
+	public int findMinNum();
+	
+	// 게시판에서 가장 큰 wr_id 가져오기
+	public int findMaxId();
+
+	// 해당 게시글에서 가장 큰 댓글 그룹 번호 가져오기
+	public int findMaxCommentById(int articleNumber);
+
+	// 게시글의 댓글 리스트 가져오기
+	public List<Write> findByParentAndIsComment(int articleNumber, int isComment);
 }

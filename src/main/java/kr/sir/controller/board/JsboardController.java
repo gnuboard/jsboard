@@ -22,15 +22,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.sir.common.CommonUtil;
 import kr.sir.domain.Write;
-import kr.sir.domain.module.BoardForm;
+import kr.sir.domain.form.BoardForm;
+import kr.sir.domain.module.CommentReply;
 import kr.sir.service.board.JsBoardService;
 
 @Controller
 @RequestMapping(value="/board")
 public class JsboardController {
 	
-	private final int BOARD_ID = 1;
-	private final int PAGE_PER_POSTS = 10;
+	private final int BOARD_ID = 1;											// 게시판 번호 (임시로 상수, board에서 가지고 와야 함)
+	private final int PAGE_PER_POSTS = 10;									// 게시판 페이지 당 게시물 수 (임시로 상수, board에서 가지고 와야 함)
 	
 	private JsBoardService jsBoardService;
 	
@@ -56,7 +57,7 @@ public class JsboardController {
 		int paramCurrentPage = pageNumber - 1;								// 현재 몇 페이지 인지	
 		
 		PageRequest pageRequest = new PageRequest(paramCurrentPage, PAGE_PER_POSTS, new Sort(Direction.DESC, "id"));
-		// 카테고리로 검색한 게시판 내용에 Paging, sorting 처리해서 가져오기
+		// 카테고리로 검색한 게시판 내용에 Paging, sorting 처리해서 가져오기 (댓글 제외)
 		Page<Write> result = jsBoardService.findByCategoryName(BOARD_ID, categoryName, pageRequest);	
 		
 		model = CommonUtil.pagingInfo(result, model);
@@ -77,7 +78,7 @@ public class JsboardController {
 	@RequestMapping(value="/list/{pageNumber}", method=RequestMethod.DELETE) 
 	public String delete(@PathVariable int pageNumber, BoardForm boardForm) {
 
-		int result = jsBoardService.deleteInIds(boardForm.getId());			// 삭제한 게시물 수만큼 return 됨
+		int result = jsBoardService.deleteInIds(boardForm.getSelectedId());	// 삭제한 게시물 수만큼 return 됨
 		
 		// 삭제 후 전체 게시물 수 변화에 따라 page를 재조정해서 redirect 
 		return "redirect:/board/list/" + boardForm.redirectPageNumber(result, pageNumber);
@@ -100,11 +101,15 @@ public class JsboardController {
 		
 		jsBoardService.increaseHit(article, request);						// 조회수 증가 기능
 		
+		// 댓글 list를 가져온다.
+		List<Write> commentList = jsBoardService.findByParentAndIsComment(articleNumber, 1);
+		
 		model.addAttribute("currentCategory", categoryName);
 		model.addAttribute("article", article);
 		model.addAttribute("prevArticle", prevArticle);
 		model.addAttribute("nextArticle", nextArticle);
-		model.addAttribute("pageNumber", pageNumber);
+		model.addAttribute("currentPage", pageNumber);
+		model.addAttribute("commentList", commentList);
 		
 		return "/board/view";
 	}
@@ -134,8 +139,17 @@ public class JsboardController {
 	
 	// 글 쓰기 수행
 	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public String writeArticle(Model model, Write write) throws UnknownHostException {
+	public String writeArticle(Model model, Write write, BoardForm boardForm) throws UnknownHostException {
 		
+		int wrNum = jsBoardService.findMinNum();		// 게시판에서 가장 작은 wr_num 가져오기
+		if(boardForm.getIsReply() == 1) {				// 답변 글 - 기존 wr_num 그대로
+			wrNum = write.getNum();
+		} else {										// 일반 글 - 기존 wr_num에 -1
+			wrNum += -1;
+		}
+		
+		write.setNum(wrNum);
+		write.setParent(jsBoardService.findMaxId() + 1);
 		write.setDatetime(new Date());
 		write.setLast(CommonUtil.getToday(new Date()));
 		write.setIp(CommonUtil.getIpAddress());
@@ -158,7 +172,7 @@ public class JsboardController {
 		List<String> categoryList = jsBoardService.findCategoryNames();		// 카테고리 가져오기
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("currentCategory", categoryName);
-		model.addAttribute("pageNumber", pageNumber);
+		model.addAttribute("currentPage", pageNumber);
 		model.addAttribute("save", "update");
 		model.addAttribute("article", article);
 		
@@ -167,16 +181,60 @@ public class JsboardController {
 	
 	// 글 수정 수행
 	@PutMapping
-	@RequestMapping(value="/save/{articleNumber}/page/{pageNumber}/category/{categoryName}", method=RequestMethod.PUT)
-	public String updateArticle(Write write, @PathVariable int articleNumber, @PathVariable int pageNumber ,@PathVariable String categoryName) throws UnknownHostException {
+	@RequestMapping(value="/save", method=RequestMethod.PUT)
+	public String updateArticle(Write write, BoardForm boardForm) throws UnknownHostException {
 		
-		Date datetime = jsBoardService.findOne(articleNumber).getDatetime();	// 원 글 쓸 당시의 시간
+		Date datetime = jsBoardService.findOne(write.getId()).getDatetime();// 원 글 쓸 당시의 시간
 		write.setDatetime(datetime);										// 원 글 쓸 당시의 시간을 그대로 넣는다.
 		write.setIp(CommonUtil.getIpAddress());								// 수정한 곳 IP
 		write.setLast(CommonUtil.getToday(new Date()));						// 수정한 시간
 		
 		Write article = jsBoardService.save(write);
 		
-		return "redirect:/board/view/" + article.getId() + "/page/" + pageNumber + "/category/" + categoryName;
+		return "redirect:/board/view/" + article.getId() + "/page/" + boardForm.getCurrentPage() + "/category/" + boardForm.getCurrentCategory();
 	}
+	
+	// 댓글 쓰기
+	@RequestMapping(value="/view/comment", method=RequestMethod.POST)
+	public String writeComment(Write comment, BoardForm boardForm) throws UnknownHostException {
+ 
+		// article : 원 글, comment : 댓글
+		Write article = jsBoardService.findOne(comment.getId());			// 원 글을 가져온다.
+		Write baseComment = jsBoardService.findOne(boardForm.getBaseCommentId());	// 기준 댓글을 가져온다.
+		
+		comment.setId(jsBoardService.findMaxId()+1);
+		comment.setNum(article.getNum());									// 원 글의 wr_num를 써줌으로 어떤 글의 댓글인지 표시한다.
+		comment.setParent(article.getId());									// 원 글의 wr_id를 써줌으로 어떤 글의 댓글인지 표시한다.
+		comment.setIsComment(1);											// 댓글 1, 원글 0
+		comment.setDatetime(new Date());
+		comment.setLast(CommonUtil.getToday(new Date()));
+		comment.setIp(CommonUtil.getIpAddress());
+		comment.setFile(0);
+		
+		comment.setMemberId(comment.getName());		// 임시
+		comment.setBoardId(BOARD_ID);				// 임시
+		
+		int depth = boardForm.getCommentDepth();							// 새로 쓴 댓글의 depth를 가져온다.
+		if(depth == 1) {													// 1레벨 댓글의 경우
+			// 해당 글의 comment 중 가장 큰 값 + 1(comment단락을 나누기 위해)
+			comment.setComment(jsBoardService.findMaxCommentById(article.getId()) + 1);	
+		} else {
+			// 기준 댓글의 comment값을 따라간다.
+			comment.setComment(baseComment.getComment());
+		}
+		
+		// 기준댓글(원글)의 comment_reply와 새로 쓴 댓글의 depth로 댓글의 commentReply를 만들어서 가져온다.
+		String commentReply = CommentReply.setCommentReplyInfo(baseComment.getCommentReply(), depth);
+		comment.setCommentReply(commentReply);
+		
+		comment.setCategoryName(article.getCategoryName());					// 원 글의 카테고리 이름을 넣는다.
+		
+		article = jsBoardService.save(comment);
+		
+		// 원 글의 댓글 수(isComment) 수정
+		
+		
+		return "redirect:/board/view/" + article.getId() + "/page/" + boardForm.getCurrentPage() + "/category/" + boardForm.getCurrentCategory();
+	}
+	
 }
