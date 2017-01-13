@@ -1,0 +1,30 @@
+<aside id="bo_vc_w" class="commentForm">
+    <h2>댓글쓰기</h2>
+    <div class="cmt_wt_if">
+        <span>
+            <label>이름<strong class="sound_only"> 필수</strong></label>
+            <input type="text" name="name" id="name" class="frm_input required" required>
+        </span>
+        <span>
+            <label>비밀번호<strong class="sound_only"> 필수</strong></label>
+            <input type="password" name="password" class="frm_input required" required>
+        </span>
+        <span id="bo_vc_sns">
+            <input type="checkbox">
+            <label class="sns_f">페이스북과 SNS 동시등록</label>
+            <input type="checkbox">
+            <label  class="sns_t">트위터와 SNS 동시등록</label>
+
+        </span>
+    </div>
+    <div class="cmt_wt_text">
+        <span class="sound_only">내용</span>
+        <div class="cmt_wt_wr">
+            <textarea id="content" name="content" maxlength="10000" required class="required" title="내용"></textarea>
+            <div class="btn_confirm">
+                <input type="submit" id="btn_submit" class="btn_submit" value="댓글등록">
+            </div>
+        </div>
+        <div class="cmt_scr"><input type="checkbox" name="option"  id="option" value="secret"><label for="wr_secret">비밀글사용</label></div>
+    </div>
+</aside>

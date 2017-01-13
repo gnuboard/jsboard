@@ -44,9 +44,13 @@ public interface JsBoardService {
 	// 게시판에서 가장 큰 wr_id 가져오기
 	public int findMaxId();
 
-	// 해당 게시글에서 가장 큰 댓글 그룹 번호 가져오기
-	public int findMaxCommentById(int articleNumber);
-
 	// 게시글의 댓글 리스트 가져오기
 	public List<Write> findByParentAndIsComment(int articleNumber, int isComment);
+	
+	// 작성할 댓글의 commentReply를 생성
+	public String createCommentReply(int articleNumber, int comment, Write baseComment);
+
+	// 댓글에 들어갈 comment를 지정
+	public int appointComment(Write baseComment, int articleId);
+	
 }

@@ -122,6 +122,8 @@ function submitSaveForm() {
 	                       		<c:when test="${category eq article.categoryName }">
 	                       			<option selected="selected" value="${category}">${category}</option>
 	                       		</c:when>
+	                       		<c:when test="${category eq '' }">
+	                       		</c:when>
 	                       		<c:otherwise>
 	                       			<option value="${category}">${category}</option>
 	                       		</c:otherwise>

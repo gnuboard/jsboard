@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -78,11 +79,39 @@ public class JsBoardEmRepository {
 
 	// 해당 게시글에서 가장 큰 댓글 그룹 번호 가져오기
 	public int findMaxCommentById(int articleNumber) {
-		String query = "SELECT MAX(w.comment) FROM Write w WHERE w.id=:articleNumber";
+		String query = "SELECT MAX(w.comment) FROM Write w WHERE w.parent=:articleNumber and w.isComment = 1";
 		Object obj = em.createQuery(query)
 				.setParameter("articleNumber", articleNumber)
 				.getSingleResult();
 		return CommonUtil.convertObjectToInteger(obj);
+	}
+	
+	// 댓글이 들어갈 장소(commentReply)를 구한다.
+	public String findMaxCommentReplyByBaseComment(int articleNumber, int comment, String commentReply, int isComment) {
+		String query = "SELECT MAX(w.commentReply) FROM Write w"
+				+ " WHERE w.parent=:articleNumber"
+				+ " and w.isComment=:isComment"
+				+ " and w.comment=:comment";
+		if( !("").equals(commentReply) ) {
+			query += " and w.commentReply LIKE CONCAT(:commentReply,'%')";
+		}
+		
+		Query q;
+		if( !("").equals(commentReply) ) {
+			q = em.createQuery(query)
+					.setParameter("articleNumber", articleNumber)
+					.setParameter("comment", comment)
+					.setParameter("isComment", isComment)
+					.setParameter("commentReply", commentReply);
+		} else {
+			q = em.createQuery(query)
+					.setParameter("articleNumber", articleNumber)
+					.setParameter("comment", comment)
+					.setParameter("isComment", isComment);
+		}
+		Object obj = q.getSingleResult();
+		
+		return CommonUtil.convertObjectToString(obj);
 	}
 	
 }

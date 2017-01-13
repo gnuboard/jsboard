@@ -17,6 +17,7 @@ import kr.sir.domain.Write;
 
 public class CommonUtil {
 
+	// 현재 table의 prefix 가져오기
 	public static String getTablePrefix(){
 		YamlMapFactoryBean yaml = new YamlMapFactoryBean();
 		yaml.setResources(new ClassPathResource("config.yml"));
@@ -30,17 +31,19 @@ public class CommonUtil {
 		return "";
 	}
 	
+	// 오늘 날짜 형식(yyyy-MM-dd HH:mm:ss)에 맞춰 구하기
 	public static String getToday(Date date) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return formatter.format(date);
 	}
 	
+	// 접속한 곳 IP 가져오기
 	public static String getIpAddress() throws UnknownHostException {
 		InetAddress local = InetAddress.getLocalHost();
 		return local.getHostAddress();
 	}
 	
-	// Paging 처리를 위한 정보 가공.
+	// Paging 처리를 위한 정보 가공
 	public static Model pagingInfo(Page<Write> result, Model model) {
 		
 		int currentPage = result.getNumber();					// 현재 페이지
@@ -115,6 +118,14 @@ public class CommonUtil {
 		} else {
 			return 0;
 		}
+	}
+	
+	// Object 형태로 나온 결과를 String형으로 반환
+	public static String convertObjectToString(Object obj) {
+		if(obj != null) {
+			return obj.toString(); 
+		}
+		return null;
 	}
 	
 }
