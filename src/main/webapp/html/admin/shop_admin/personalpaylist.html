@@ -187,11 +187,83 @@ $(function(){
 
 <div id="container">
     <!-- 중간 레이아웃 -->
-    <h1 id="container_title">타이틀</h1>
+    <h1 id="container_title">개인결제 관리</h1>
 
     <div id="container_wr">
-
-        index
+         <div class="local_wr">
+            <div class="local_ov">
+                <span class="btn_ov01"><span class="ov_txt">전체 </span><span class="ov_num"> 63건</span></span>
+            </div>
+            <form id="fsearch" name="fsearch" class="local_sch" method="get">
+            <label for="sfl" class="sound_only">검색대상</label>
+            <select name="sfl" id="sfl">
+                <option>개인결제번호</option>
+                <option>이름</option>
+                <option>주문번호</option>
+            </select>
+            <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+            <input type="text" name="stx" id="stx" required class="sch_input">
+            <input type="submit" class="btn_sch" value="검색">
+            </form>
+        </div>
+        <div class="table_basic table_01">
+            <table>
+                <caption>개인결제 목록</caption>
+                <thead>
+                <tr>
+                    <th scope="col">
+                        <label for="chkall" class="sound_only">개인결제 전체</label>
+                        <input type="checkbox" name="chkall" value="1" id="chkall" onclick="check_all(this.form)">
+                    </th>
+                    <th scope="col">제목</th>
+                    <th scope="col">주문번호</th>
+                    <th scope="col">주문금액</th>
+                    <th scope="col">입금금액</th>
+                    <th scope="col">미수금액</th>
+                    <th scope="col">입금방법</th>
+                    <th scope="col">입금일</th>
+                    <th scope="col">사용</th>
+                    <th scope="col">관리</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="td_chk">
+                        <input type="hidden" id="pp_id_1">
+                        <input type="checkbox" id="chk_1" value="1" title="내역선택">
+                    </td>
+                    <td class="td_left">제목</td>
+                    <td>2016121917323018</td>
+                    <td class="td_num">41,900</td>
+                    <td class="td_num">40,000</td>
+                    <td class="td_num">900</td>
+                    <td class="td_status">가상계좌</td>
+                    <td class="td_date">15-07-07</td>
+                    <td class="td_status">예</td>
+                    <td class="td_mng td_mng_m"><a href="" class="btn_03">수정</a><a href="" class="btn_02">복사</a></td>
+                </tr>
+                <tr class="td_bg1">
+                    <td class="td_chk">
+                        <input type="hidden" id="pp_id_2">
+                        <input type="checkbox" id="chk_2" value="2" title="내역선택">
+                    </td>
+                    <td class="td_left">제목</td>
+                    <td>2016121917323018</td>
+                    <td class="td_num">41,900</td>
+                    <td class="td_num">40,000</td>
+                    <td class="td_num">900</td>
+                    <td class="td_status">가상계좌</td>
+                    <td class="td_date">15-07-07</td>
+                    <td class="td_status">예</td>
+                    <td class="td_mng td_mng_m"><a href="" class="btn_03">수정</a><a href="" class="btn_02">복사</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="btn_fixed_top">
+            <input type="submit" value="선택삭제" class="btn btn_02">
+            <a href="./personalpayform.html" class="btn_01 btn">개인결제 추가</a>
+        </div>
     </div>
 
 

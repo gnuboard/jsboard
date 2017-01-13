@@ -872,14 +872,13 @@ $(function(){
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row"><label for="de_pg_service">결제대행사</label>
+                                <th scope="row">결제대행사
                                     <span class="tooltip">
                                         <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
                                         <span class="tooltip_area">쇼핑몰에서 사용할 결제대행사를 선택합니다.</span>
                                     </span>
                                 </th>
                                 <td>
-                                    <input type="hidden" name="de_pg_service" id="de_pg_service">
                                     <div class="pg_select">
                                         <button type="button" class="select">NHN KCP</button>
                                         <button type="button">LG유플러스</button>
@@ -1327,7 +1326,7 @@ $(function(){
                                     <label for="de_rel_list_mod">1줄당 이미지 수</label>
                                     <input type="text" name="de_rel_list_mod" id="de_rel_list_mod" class="frm_input" size="3">
                                     <label for="de_rel_list_use">출력</label>
-                                    <input type="checkbox" name="de_rel_list_use" value="1" id="de_rel_list_use" <?php echo $default['de_rel_list_use']?"checked":""; ?>>
+                                    <input type="checkbox" name="de_rel_list_use" value="1" id="de_rel_list_use">
                                 </td>
                             </tr>
                             <tr>
@@ -1696,9 +1695,9 @@ $(function(){
                             </tr>
                             <tr>
                                 <th scope="row">충전 잔액</th>
-                                <td colspan="3">
+                                <td>
                                     100,000 원
-                                    <a href="http://www.icodekorea.com/smsbiz/credit_card_amt.php?icode_id=<?php echo $config['cf_icode_id']; ?>&amp;icode_passwd=<?php echo $config['cf_icode_pw']; ?>" target="_blank" class="btn_frmline" onclick="window.open(this.href,'icode_payment', 'scrollbars=1,resizable=1'); return false;">충전하기</a>
+                                    <a href="#" target="_blank" class="btn_frmline">충전하기</a>
                                 </td>
                             </tr>
                              </tbody>
@@ -1728,19 +1727,79 @@ $(function(){
 
                             <div id="scf_sms">
                                 <section class="scf_sms_box">
-                                    <h4><?php echo $scf_sms_title[$i]; ?></h4>
-                                    <input type="checkbox" value="1" id="de_sms_use<?php echo $i; ?>">
-                                    <label for="de_sms_use<?php echo $i; ?>"><span class="sound_only"><?php echo $scf_sms_title[$i]; ?></span>사용</label>
+                                    <h4>회원가입시 고객님께 발송</h4>
+                                    <input type="checkbox" value="1" id="de_sms_use1">
+                                    <label for="de_sms_use1"><span class="sound_only">회원가입시 고객님께 발송</span>사용</label>
                                     <div class="scf_sms_img">
-                                        <textarea id="de_sms_cont<?php echo $i; ?>" name="de_sms_cont<?php echo $i; ?>"></textarea>
+                                        <textarea id="de_sms_cont1" name="de_sms_cont1">{이름}님의 회원가입을 축하드립니다.
+ID:{회원아이디}
+{회사명}
+                                        </textarea>
                                     </div>
-                                    <span id="byte<?php echo $i; ?>" class="scf_sms_cnt">0 / 80 바이트</span>
+                                    <span id="byte1" class="scf_sms_cnt">0 / 80 바이트</span>
+                                </section>
+                                <section class="scf_sms_box">
+                                    <h4>주문시  고객님께 발송</h4>
+                                    <input type="checkbox" value="2" id="de_sms_use2">
+                                    <label for="de_sms_use2"><span class="sound_only">주문시  고객님께 발송</span>사용</label>
+                                    <div class="scf_sms_img">
+                                        <textarea id="de_sms_cont2" name="de_sms_cont2">{이름}님 주문해주셔서 고맙습니다.
+{주문번호}
+{주문금액}원
+{회사명}
+                                        </textarea>
+                                    </div>
+                                    <span id="byte2" class="scf_sms_cnt">0 / 80 바이트</span>
+                                </section>
+                                <section class="scf_sms_box">
+                                    <h4>주문시 관리자에게 발송</h4>
+                                    <input type="checkbox" value="3" id="de_sms_use3">
+                                    <label for="de_sms_use3"><span class="sound_only">주문시 관리자에게 발송</span>사용</label>
+                                    <div class="scf_sms_img">
+                                        <textarea id="de_sms_cont3" name="de_sms_cont3">{이름}님께서 주문하셨습니다.
+{주문번호}
+{주문금액}원
+{회사명}
+                                        </textarea>
+                                    </div>
+                                    <span id="byte3" class="scf_sms_cnt">0 / 80 바이트</span>
+                                </section>
+                                <section class="scf_sms_box">
+                                    <h4>입금확인시 고객님께 발송</h4>
+                                    <input type="checkbox" value="4" id="de_sms_use4">
+                                    <label for="de_sms_use4"><span class="sound_only">입금확인시 고객님께 발송</span>사용</label>
+                                    <div class="scf_sms_img">
+                                        <textarea id="de_sms_cont4" name="de_sms_cont4">{이름}님 입금 감사합니다.
+{입금액}원
+주문번호:
+{주문번호}
+{회사명}
+                                        </textarea>
+                                    </div>
+                                    <span id="byte4" class="scf_sms_cnt">0 / 80 바이트</span>
+                                </section>
+                                <section class="scf_sms_box">
+                                    <h4>상품배송시 고객님께 발송</h4>
+                                    <input type="checkbox" value="5" id="de_sms_use5">
+                                    <label for="de_sms_use5"><span class="sound_only">상품배송시 고객님께 발송</span>사용</label>
+                                    <div class="scf_sms_img">
+                                        <textarea id="de_sms_cont5" name="de_sms_cont5">{이름}님 배송합니다.
+택배:{택배회사}
+운송장번호:
+{운송장번호}
+{회사명}
+                                        </textarea>
+                                    </div>
+                                    <span id="byte5" class="scf_sms_cnt">0 / 80 바이트</span>
                                 </section>
                             </div>
                         </div>
                     </div>
                 </li>
             </ul>
+            <div class="btn_fixed_top">
+                <input type="submit" value="확인" class="btn_submit btn">
+            </div>
         </form>
         </div>
     </div>
@@ -1760,7 +1819,7 @@ $(function(){
             $('.contents li').eq(tabType).show();
             $('.tab_01 li button').removeClass('selected');
             $('.tab_01 li button').eq(tabType).addClass('selected'); 
-        })
+        });
      
      
         $(".tooltip_btn").mouseover(function(){
