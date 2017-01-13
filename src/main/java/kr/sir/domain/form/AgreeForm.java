@@ -1,4 +1,4 @@
-package kr.sir.domain.module;
+package kr.sir.domain.form;
 
 import lombok.Data;
 

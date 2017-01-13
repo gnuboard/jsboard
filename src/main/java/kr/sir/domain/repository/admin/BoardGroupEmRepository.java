@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import kr.sir.domain.BoardGroup;
 import kr.sir.domain.BoardGroupList;
 
 @Repository
@@ -17,7 +18,7 @@ public class BoardGroupEmRepository {
 	EntityManager em;
 	
 	public List<BoardGroupList> getAllBoardGroupsList(String prefix){
-		String query="SELECT g.*,COUNT(gm.gm_id)as countAccessibleMembers ,COUNT(b.bo_table) as countIncludeBoards "+ //bo_table을 bo_id로 바꿔야함 
+		String query="SELECT g.*,COUNT(gm.gm_id)as countAccessibleMembers ,COUNT(b.bo_table) as countIncludedBoards "+ //bo_table을 bo_id로 바꿔야함 
 					 "FROM "+prefix+"group g LEFT JOIN "+ prefix+"group_member gm "+
 				     "ON g.gr_id=gm.gr_id "+
 					 "LEFT JOIN "+prefix+"board b "+

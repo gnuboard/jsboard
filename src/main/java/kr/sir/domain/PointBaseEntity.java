@@ -66,7 +66,7 @@ public abstract class PointBaseEntity {
 	
 	private Date defaultTimestamp() {
 		Calendar c = Calendar.getInstance();
-		c.set(9998, 11, 31, 23, 59, 59);
+		c.set(9999, 12-1, 31, 23, 59, 59);//달부분은 가독성 때문에 -1 을 적어둠
 		/*c.set(Calendar.YEAR, 9999);
 		c.set(Calendar.MONTH, 12-1);
 		c.set(Calendar.);*/

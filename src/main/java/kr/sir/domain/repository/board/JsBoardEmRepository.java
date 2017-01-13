@@ -1,5 +1,7 @@
 package kr.sir.domain.repository.board;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -24,13 +26,13 @@ public class JsBoardEmRepository {
 		return em.createNativeQuery(query, Write.class).executeUpdate();
 	}
 
-	// 이전 글 찾기
+	// 이전 or 다음 글 찾기
 	public int findPrevOrNextArticle(int articleNumber, String prevOrNext) {
 		String query = querySelect(prevOrNext);
 		return findArticleNumber(query, articleNumber);
 	}
 
-
+	// 이전 or 다음 글 찾기 : 쿼리 선택
 	private String querySelect(String prevOrNext) {
 		String query = "";
 		switch (prevOrNext) {
@@ -44,16 +46,43 @@ public class JsBoardEmRepository {
 		return query;
 	}
 
+	// 이전 or 다음 글 찾기 : 쿼리 수행
 	private int findArticleNumber(String query, int articleNumber) {
 		Object obj = em.createQuery(query)
 				.setParameter("articleNumber", articleNumber)
 				.getSingleResult();
 		
-		if(obj != null) {
-			return Integer.parseInt(obj.toString()); 
-		} else {
-			return 0;
-		}
+		return CommonUtil.convertObjectToInteger(obj);
+	}
+	
+	// 카테고리 리스트 가져오기
+	@SuppressWarnings("unchecked")
+	public List<String> findCategoryNames() {
+		String query = "SELECT DISTINCT(w.categoryName) as categoryName FROM Write w";
+		return em.createQuery(query).getResultList();
+	}
+	
+	// 게시판에서 가장 작은 wr_num 가져오기
+	public int findMinNum() {
+		String query = "SELECT MIN(w.num) FROM Write w";
+		Object obj = em.createQuery(query).getSingleResult();
+		return CommonUtil.convertObjectToInteger(obj);
+	}
+	
+	// 게시판에서 가장 큰 wr_id 가져오기
+	public int findMaxId() {
+		String query = "SELECT MAX(w.id) FROM Write w";
+		Object obj = em.createQuery(query).getSingleResult();
+		return CommonUtil.convertObjectToInteger(obj);
+	}
+
+	// 해당 게시글에서 가장 큰 댓글 그룹 번호 가져오기
+	public int findMaxCommentById(int articleNumber) {
+		String query = "SELECT MAX(w.comment) FROM Write w WHERE w.id=:articleNumber";
+		Object obj = em.createQuery(query)
+				.setParameter("articleNumber", articleNumber)
+				.getSingleResult();
+		return CommonUtil.convertObjectToInteger(obj);
 	}
 	
 }

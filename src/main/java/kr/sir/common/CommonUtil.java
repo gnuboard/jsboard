@@ -31,7 +31,7 @@ public class CommonUtil {
 	}
 	
 	public static String getToday(Date date) {
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return formatter.format(date);
 	}
 	
@@ -106,6 +106,15 @@ public class CommonUtil {
 			return currentPageGroupLastPage - pageGroupPerSize;
 		}
 
+	}
+
+	// Object 형태로 나온 결과를 int형으로 반환
+	public static int convertObjectToInteger(Object obj) {
+		if(obj != null) {
+			return Integer.parseInt(obj.toString()); 
+		} else {
+			return 0;
+		}
 	}
 	
 }

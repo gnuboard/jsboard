@@ -68,7 +68,7 @@ auth_check($auth[$sub_menu], 'w');
                 <th scope="row"><label for="mb_id">아이디 ${soundOnly} </label></th>
                 <td>
                     <input type="text" name="memberId" id="mb_id" class="frm_input" size="15" value="${member.memberId}">
-                     <input type="hidden" name="id" value="${member.id}" />
+                    <input type="hidden" name="id" value="${member.id}" />
                 </td>
                 <th scope="row"><label for="mb_password">비밀번호 ${soundOnly}</label></th>
                 <td><input type="password" name="password" id="mb_password" class="frm_input" size="15"></td>
@@ -297,9 +297,10 @@ auth_check($auth[$sub_menu], 'w');
             </table>
         </div>
                 
-        <div class="btn_fixed_top">
-            <input type="submit" class="btn_submit btn"  value="확인">
+        <div class="btn_fixed_top">        	
+            <input type="submit" class="btn_submit btn"  value="${htmlTItle}" onclick="document.pressed='${htmlTItle}'">  
         </div>
+        
         </form>
     </div>
     
@@ -307,9 +308,9 @@ auth_check($auth[$sub_menu], 'w');
  <script>
 function fmember_submit(f) {
 
-		if(${type} == 'add') {
+		if(document.pressed == '추가') {
 			
-		}else if (${type} == 'update') {
+		}else if (document.pressed == '수정') {
 			$("input:hidden[name=_method]").val("PUT");
 			
 		}

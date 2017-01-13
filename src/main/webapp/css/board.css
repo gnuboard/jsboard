@@ -132,7 +132,7 @@ a.btn_admin:hover,.btn_admin:hover{background:#d20000}
 #bo_vc .cmt_ul li{position:relative}
 #bo_vc .cmt_li{border-top:1px solid #ddd;border-bottom:0;padding:20px 20px 0}
 #bo_vc .cmt_ul ul{}
-#bo_vc .cmt_li_2{border-top:1px dotted #ddd;padding:10px 0 0 20px;background:url(./img/reply.gif) no-repeat 5px 12px  }
+#bo_vc .cmt_li_2{border-top:1px dotted #ddd;padding:10px 0 0 20px;background:url(../img/reply.gif) no-repeat 5px 12px  }
 #bo_vc .if_member{font-size:1.083em}
 #bo_vc .if_date{color:#888}
 #bo_vc .if_ip{color:#888}

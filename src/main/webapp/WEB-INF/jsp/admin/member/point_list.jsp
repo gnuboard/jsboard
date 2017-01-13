@@ -19,7 +19,7 @@
             <div class="local_ov">
                 <a href="/adm/member/pointlist" class="btn_ov02">전체목록</a>
                 <span class="btn_ov01"><span class="ov_txt">전체 </span><span class="ov_num"> ${countPointlist} 건 </span></span>
-                <span class="btn_ov01"><span class="ov_txt">전체포인트 합계 </span><span class="ov_num"> <fmt:formatNumber value="${totalPoint.totalPoint}" pattern="#,###.##"/>포인트 </span></span>
+                <span class="btn_ov01"><span class="ov_txt">전체포인트 합계 </span><span class="ov_num"> <fmt:formatNumber value="${totalPoint}" pattern="#,###.##"/>포인트 </span></span>
             </div>                                                                                  
             <form id="fsearch" name="fsearch" class="local_sch" method="post">
 
@@ -79,8 +79,8 @@
 	                <td class="td_left">${pointContent.nick}</td>
 	                <td class="td_left">${pointContent.content}</td>
 	                <td class="td_num"><fmt:formatNumber value="${pointContent.point}" pattern="#,###.##"/></td>
-	                <td class="td_datetime">${fn:substring(pointContent.datetime,0,18)}</td>
-	                <td class="td_datetime2">${fn:substring(pointContent.datetime,0,18)}</td>
+	                <td class="td_datetime"><fmt:formatDate value="${pointContent.datetime}" pattern="yy-MM-dd hh:mm:ss"/></td>           
+	                <td class="td_datetime2"><fmt:formatDate value="${pointContent.expireDate}" pattern="yyyy-MM-dd"/></td>
 	                <td class="td_num"><fmt:formatNumber value="${pointContent.memberPoint}" pattern="#,###.##"/> </td>
 	            </tr> 
 	          	</c:forEach>

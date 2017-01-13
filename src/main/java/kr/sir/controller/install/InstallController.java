@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.sir.domain.InstallAdmin;
 import kr.sir.domain.Member;
-import kr.sir.domain.module.AgreeForm;
+import kr.sir.domain.form.AgreeForm;
 import kr.sir.service.install.InstallService;
 
 @Controller

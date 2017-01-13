@@ -143,7 +143,7 @@ public abstract class WriteBaseEntity implements Serializable{
 	private String extra8;
 	
 	@Column(name="wr_9")
-	private String extra19;
+	private String extra9;
 	
 	@Column(name="wr_10")
 	private String extra10;

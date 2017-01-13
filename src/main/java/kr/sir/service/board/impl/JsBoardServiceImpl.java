@@ -1,5 +1,7 @@
 package kr.sir.service.board.impl;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -32,7 +34,17 @@ public class JsBoardServiceImpl implements JsBoardService {
 	// 게시판 가져오기
 	@Override
 	public Page<Write> findByBoardId(int boardId, PageRequest pageRequest) {
-		return jsBoardRepository.findByBoardId(boardId, pageRequest);
+		return jsBoardRepository.findByBoardIdAndIsComment(boardId, pageRequest, 0);
+	}
+	
+	// 게시판 가져오기 ( 카테고리로 검색 )
+	@Override
+	public Page<Write> findByCategoryName(int boardId, String categoryName, PageRequest pageRequest) {
+		if(categoryName.equals("all")) {
+			return jsBoardRepository.findByBoardIdAndIsComment(boardId, pageRequest, 0);
+		} else {
+			return jsBoardRepository.findByBoardIdAndCategoryNameAndIsComment(boardId, categoryName, pageRequest, 0);
+		}
 	}
 
 	// 게시글 선택 삭제
@@ -89,5 +101,42 @@ public class JsBoardServiceImpl implements JsBoardService {
 	public void delArticle(int articleId) {
 		jsBoardRepository.delete(articleId);
 	}
-	
+
+	// 카테고리 이름 리스트 가져오기
+	@Override
+	public List<String> findCategoryNames() {
+		List<String> categoryList = jsBoardEmRepository.findCategoryNames();
+		return categoryList;
+	}
+
+	// 글쓰기, 수정 기능
+	@Override
+	public Write save(Write write) {
+		return jsBoardRepository.save(write);
+	}
+
+	// 게시판에서 가장 작은 wr_num 가져오기
+	@Override
+	public int findMinNum() {
+		return jsBoardEmRepository.findMinNum();
+	}
+
+	// 게시판에서 가장 큰 wr_id 가져오기
+	@Override
+	public int findMaxId() {
+		return jsBoardEmRepository.findMaxId();
+	}
+
+	// 해당 게시글에서 가장 큰 댓글 그룹 번호 가져오기
+	@Override
+	public int findMaxCommentById(int articleNumber) {
+		return jsBoardEmRepository.findMaxCommentById(articleNumber);
+	}
+
+	// 게시글의 댓글 리스트 가져오기
+	@Override
+	public List<Write> findByParentAndIsComment(int articleNumber, int isComment) {
+		return jsBoardRepository.findByParentAndIsCommentOrderByCommentAscCommentReplyAsc(articleNumber, isComment);
+	}
+
 }
