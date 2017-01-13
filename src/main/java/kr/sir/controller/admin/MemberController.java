@@ -87,7 +87,7 @@ public class MemberController {
 	
 	//괸리자가 회원 추가
 	@RequestMapping(value={"/add"},method=RequestMethod.POST)
-	public String memberAdd(Member member,String zipCode,String isCertify){		
+	public String addMember(Member member,String zipCode,String isCertify){		
 		
 		System.out.println("member.id:="+member.getId()!=null?member.getId():"널이다");
 		
@@ -98,7 +98,7 @@ public class MemberController {
 	
 	//관리자가 회원 수정(회원 추가와 같은 메서드 사용)
 	@RequestMapping(value={"/update"},method=RequestMethod.PUT) 
-	public String memberUpdate(Member member,String isCertify){
+	public String updateMember(Member member,String isCertify){
 		
 		memberService.adminSavesMember(member,isCertify);
 		return "redirect:./list";
@@ -135,7 +135,7 @@ public class MemberController {
 		//포인트 건 수
 		model.addAttribute("countPointlist", memberService.getCountPointlist());
 		
-		//전체 포인트 합계 (sum)이안되서 대기중
+		//전체 포인트 합계 
 		model.addAttribute("totalPoint",memberService.getTotalPoint());
 		
 		//전체포인트내용

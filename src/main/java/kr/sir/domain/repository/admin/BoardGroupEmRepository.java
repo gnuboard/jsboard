@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import kr.sir.common.CommonUtil;
 import kr.sir.domain.BoardGroup;
 import kr.sir.domain.BoardGroupList;
 
@@ -33,6 +34,21 @@ public class BoardGroupEmRepository {
 		String query="delete from "+prefix+"group where gr_id in ("+ids+")";
 		
 		return em.createNativeQuery(query).executeUpdate();
+	}
+	
+	public List<BoardGroup> getBoardGroupListByAdmin(){
+		String is_admin="super";
+		
+		String query="SELECT g.gr_id AS id,g.gr_subject AS subject FROM "+CommonUtil.getTablePrefix()+"group g ";
+		if(is_admin.equals("group")){
+			query+=" LEFT JOIN "+CommonUtil.getTablePrefix()+"member m"
+				  +" ON (m.mb_id=g.gr_admin) WHERE m.mb_id='"+"로긴한아이디"+"'";	
+		}		
+		query+=" ORDER BY g.gr_id";
+		
+		System.out.println("query : " +query);
+		
+		return em.createNativeQuery(query,BoardGroup.class).getResultList();
 	}
 	
 	

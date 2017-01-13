@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.sir.common.AdminUtil;
 import kr.sir.domain.BoardGroup;
+import kr.sir.domain.repository.admin.BoardGroupRepository;
 import kr.sir.service.admin.BoardService;
 
 @Controller
@@ -19,21 +21,34 @@ public class BoardController {
 	
 	
 	private BoardService boardService;
+	private AdminUtil adminUtil;
 	
 	@Autowired
 	public void setBoardService(BoardService boardService){
 		this.boardService=boardService;
 	}
+	
+	@Autowired
+	public void setAdminUtil(AdminUtil adminUtil){
+		this.adminUtil=adminUtil;
+	}
 
-	@RequestMapping(value={"/list"})
-	public String boardList(Model model){
-		model.addAttribute("", "보드리스트");
+	
+	//게시판 목록
+	@RequestMapping(value={"/list","/"})
+	public String boardsList(Model model){
+		
+		
+		model.addAttribute("allBoardsList", boardService.getAllBoardsList());
 		return "admin/board/list";
 	}
 	
+	
+	
+	
 	//보드 그룹 목록 출력
 	@RequestMapping(value={"/boardgroupslist"})
-	public String boardgroupList(Model model){
+	public String boardgroupsList(Model model){
 	
 		model.addAttribute("countBoardGroupsList",boardService.getCountBoardGroups());
 		model.addAttribute("allBoardGroupsList", boardService.getAllBoardGroupsList());
@@ -88,12 +103,45 @@ public class BoardController {
 	}
 	
 	
+	//게시판 추가
+	@RequestMapping(value={"/form/add"})
+	public String showAddBoardForm(Model model){
+		
+		
+	    boardService.getCountBoardGroups();
+		
+		model.addAttribute("type","add");
+		model.addAttribute("countBoardGroups",boardService.getCountBoardGroups());
+	/*	model.addAttribute("selectedGroupTag",boardService.getSelectedGroup("groupId", "", "required"));*/
+		
+		model.addAttribute("listLevelSelectTag", adminUtil.getMemberLevelSelectBoxTag("listLevel", 1, 10, 1,null));
+		model.addAttribute("leadLevelSelectTag", adminUtil.getMemberLevelSelectBoxTag("leadLevel", 1, 10, 1,null));
+		model.addAttribute("writeLevelSelectTag", adminUtil.getMemberLevelSelectBoxTag("writeLevel", 1, 10, 1,null));
+		model.addAttribute("replyLevelSelectTag", adminUtil.getMemberLevelSelectBoxTag("replyLevel", 1, 10, 1,null));
+		model.addAttribute("commentLevelSelectTag", adminUtil.getMemberLevelSelectBoxTag("commentLevel", 1, 10, 1,null));
+		model.addAttribute("linkLevelSelectTag", adminUtil.getMemberLevelSelectBoxTag("linkLevel", 1, 10, 1,null));
+		model.addAttribute("uploadLevelSelectTag", adminUtil.getMemberLevelSelectBoxTag("uploadLevel", 1, 10, 1,null));
+		model.addAttribute("downloadLevelSelectTag", adminUtil.getMemberLevelSelectBoxTag("downloadLevel", 1, 10, 1,null));
+		model.addAttribute("htmlLevelSelectTag", adminUtil.getMemberLevelSelectBoxTag("htmlLevel", 1, 10, 1,null));
+		
+		model.addAttribute("editorContentHead",adminUtil.editorHtml("contentHead",""));
+		model.addAttribute("editorContentTail",adminUtil.editorHtml("contentTail",""));
+		model.addAttribute("editormobileContentHead",adminUtil.editorHtml("mobileContentHead", ""));
+		model.addAttribute("editorMobileContentTail",adminUtil.editorHtml("mobileContentTail", ""));
+		
+		
+		return "admin/board/form";
+	}
 	
-	
-	
-	
-	
-	
+	//게시판 수정
+	@RequestMapping(value={"/form/update"})
+	public String showUpdateBoardForm(Model model){
+				
+		model.addAttribute("type","update");
+		
+			
+		return "admin/board/form";
+	}
 	
 }
 
