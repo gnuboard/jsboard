@@ -190,321 +190,373 @@ $(function(){
     <h1 id="container_title">분류추가</h1>
 
     <div id="container_wr">
-        <ul class="tab_01">
-           <li><button type="button"  class="selected">필수입력</button></li>
-           <li><button type="button">선택입력</button></li>
-           <li><button type="button">여분필드</button></li>
-        </ul>
+        <form>
+            <ul class="tab_01">
+               <li><button type="button"  class="selected">필수입력</button></li>
+               <li><button type="button">선택입력</button></li>
+               <li><button type="button">여분필드</button></li>
+            </ul>
 
-        <ul class="contents table_basic table_form">
-            <li class="tab_content">
-                <div class="tab_wr">
-                    <h2>필수입력</h2>
-                    <div class="table_form table_basic">
+            <ul class="contents table_basic table_form">
+                <li class="tab_content">
+                    <div class="tab_wr">
+                        <h2>필수입력</h2>
                         <table>
-                        <caption>분류 추가 필수입력</caption>
-                        <colgroup>
-                            <col class="grid_4">
-                            <col>
-                        </colgroup>
-                        <tbody>
-                        <tr>
-                            <th scope="row"><label for="ca_id">분류코드</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">자동으로 보여지는 분류코드를 사용하시길 권해드리지만 직접 입력한 값으로도 사용할 수 있습니다.<br>분류코드는 나중에 수정이 되지 않으므로 신중하게 결정하여 사용하십시오.<br><br>분류코드는 2자리씩 10자리를 사용하여 5단계를 표현할 수 있습니다.<br>0~z까지 입력이 가능하며 한 분류당 최대 1296가지를 표현할 수 있습니다.<br>그러므로 총 3656158440062976가지의 분류를 사용할 수 있습니다.</span>
-                                </span>
-                            </th>
-                            <td>
-                                <input type="text" name="ca_id" id="ca_id" required class="required frm_input">
-                                <input type="hidden" name="ca_id">
-                                <span class="frm_ca_id"></span>
-                                <a href="" class="btn_frmline">미리보기</a>
-                                <a href="" class="btn_frmline">하위분류 추가</a>
-                                <a href="" class="btn_frmline">상품리스트</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_name">분류명</label></th>
-                            <td><input type="text" name="ca_name" id="ca_name" size="38" required class="required frm_input"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_order">출력순서</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">숫자가 작을 수록 상위에 출력됩니다. 음수 입력도 가능하며 입력 가능 범위는 -2147483648 부터 2147483647 까지입니다.<Br>입력하지 않으면 자동으로 출력됩니다.</span>
-                                </span>
-                            </th>
-                            <td>
-                                <input type="text" name="ca_order" id="ca_order" class="frm_input" size="12">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_mb_id">관리 회원아이디</label></th>
-                            <td>
-                                <input type="text" name="ca_mb_id" id="ca_mb_id" class="frm_input" maxlength="20">
-                                <input type="hidden" name="ca_mb_id">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_skin_dir">PC용 스킨명</label></th>
-                            <td colspan="3">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_mobile_skin_dir">모바일용 스킨명</label></th>
-                            <td colspan="3">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">본인확인 체크</th>
-                            <td>
-                                <input type="radio" name="ca_cert_use" value="1" id="ca_cert_use_yes">
-                                <label for="ca_cert_use_yes">사용함</label>
-                                <input type="radio" name="ca_cert_use" value="0" id="ca_cert_use_no">
-                                <label for="ca_cert_use_no">사용안함</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">성인인증 체크</th>
-                            <td>
-                                <input type="radio" name="ca_adult_use" value="1" id="ca_adult_use_yes">
-                                <label for="ca_adult_use_yes">사용함</label>
-                                <input type="radio" name="ca_adult_use" value="0" id="ca_adult_use_no">
-                                <label for="ca_adult_use_no">사용안함</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_skin">출력스킨</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">기본으로 제공하는 스킨은 /list.*.skin.php 입니다.</span>
-                                </span>
-                            </th>
-                            <td>
-                                <select id="ca_skin" name="ca_skin">
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_img_width">출력이미지 폭</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">쇼핑몰환경설정 &gt; 이미지(소) 넓이가 기본값으로 설정됩니다.<br> /list.php에서 출력되는 이미지의 폭입니다.</span>
-                                </span>
-                            </th>
-                            <td>
-                                <input type="text" name="ca_img_width" value="<?php echo $ca['ca_img_width']; ?>" id="ca_img_width" required class="required frm_input" size="5" > 픽셀
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_img_height">출력이미지 높이</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">쇼핑몰환경설정 &gt; 이미지(소) 높이가 기본값으로 설정됩니다.<br>/list.php에서 출력되는 이미지의 높이입니다.</span>
-                                </span>
-                            </th>
-                            <td>
-                                <input type="text" name="ca_img_height" id="ca_img_height" required class="required frm_input" size="5" > 픽셀
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_list_mod">1줄당 이미지 수</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">한 줄에 설정한 값만큼의 상품을 출력하지만 스킨에 따라 한 줄에 하나의 상품만 출력할 수도 있습니다.</span>
-                                </span>
-                            </th>
-                            <td>
-                                <input type="text" name="ca_list_mod" size="3" id="ca_list_mod" required class="required frm_input"> 개
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_list_row">이미지 줄 수</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">한 페이지에 출력할 이미지 줄 수를 설정합니다.<br>한 페이지에서 표시하는 상품수는 (1줄당 이미지 수 x 줄 수) 입니다.</span>
-                                </span>
-                            </th>
-                            <td>
-                                <input type="text" name="ca_list_row" id="ca_list_row" required class="required frm_input" size="3"> 줄
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_mobile_skin">모바일 출력스킨</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">기본으로 제공하는 스킨은 /list.*.skin.php 입니다.</span>
-                                </span>
-                            </th>
-                            <td>
-                                <select id="ca_mobile_skin" name="ca_mobile_skin" required class="required">
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_mobile_img_width">모바일 출력이미지 폭</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">쇼핑몰환경설정 &gt; 이미지(소) 넓이가 기본값으로 설정됩니다.<br>/list.php에서 출력되는 이미지의 폭입니다.</span>
-                                </span>
-                            </th>
-                            <td>
-                                <input type="text" name="ca_mobile_img_width" id="ca_mobile_img_width" required class="required frm_input" size="5" > 픽셀
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_mobile_img_height">모바일 출력이미지 높이</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">쇼핑몰환경설정 &gt; 이미지(소) 높이가 기본값으로 설정됩니다.<br>/list.php에서 출력되는 이미지의 높이입니다.</span>
-                                </span>
-                            </th>
-                            <td>
-                                <input type="text" name="ca_mobile_img_height" id="ca_mobile_img_height" required class="required frm_input" size="5" > 픽셀
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_mobile_list_mod">모바일 1줄당 이미지 수</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">한 줄에 설정한 값만큼의 상품을 출력하지만 스킨에 따라 한 줄에 하나의 상품만 출력할 수도 있습니다.</span>
-                                </span>
-                            </th>
-                            <td>
-                                <input type="text" name="ca_mobile_list_mod" id="ca_mobile_list_mod" required class="required frm_input" size="3"> 개
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_mobile_list_row">모바일 이미지 줄 수</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">한 페이지에 출력할 이미지 줄 수를 설정합니다.<br>한 페이지에서 표시하는 상품수는 (1줄당 이미지 수 x 줄 수) 입니다.</span>
-                                </span>
-                            </th>
-                            <td>
-                                <input type="text" name="ca_mobile_list_row" id="ca_mobile_list_row" required class="required frm_input" size="3"> 줄
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_stock_qty">재고수량</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">상품의 기본재고 수량을 설정합니다.<br>재고를 사용하지 않는다면 숫자를 크게 입력하여 주십시오. 예) 999999</span>
-                                </span>
-                            </th>
-                            <td>
-                                <input type="text" name="ca_stock_qty" size="10" id="ca_stock_qty" class="frm_input"> 개
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_sell_email">판매자 E-mail</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">운영자와 판매자가 다른 경우에 사용합니다.<br>이 분류에 속한 상품을 등록할 경우에 기본값으로 입력됩니다.</span>
-                                </span>
-                            </th>
-                            <td>
-                                <input type="text" name="ca_sell_email" size="40" id="ca_sell_email" class="frm_input">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_use">판매가능</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">재고가 없거나 일시적으로 판매를 중단하시려면 체크 해제하십시오.<br>체크 해제하시면 상품 출력을 하지 않으며, 주문도 받지 않습니다.</span>
-                                </span>
-                            </th>
-                            <td>
-                                <input type="checkbox" name="ca_use" id="ca_use">
-                                예
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_nocoupon">쿠폰적용안함</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">설정에 체크하시면 쿠폰생성 때 분류 검색 결과에 노출되지 않습니다.</span>
-                                </span>
-                            </th>
-                            <td>
-                                <input type="checkbox" name="ca_nocoupon"  value="1" id="ca_nocoupon">
-                                예
-                            </td>
-                        </tr>
-                        </tbody>
+                            <caption>분류 추가 필수입력</caption>
+                            <colgroup>
+                                <col class="grid_4">
+                                <col>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th scope="row"><label for="ca_id">분류코드</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">자동으로 보여지는 분류코드를 사용하시길 권해드리지만 직접 입력한 값으로도 사용할 수 있습니다.<br>분류코드는 나중에 수정이 되지 않으므로 신중하게 결정하여 사용하십시오.<br><br>분류코드는 2자리씩 10자리를 사용하여 5단계를 표현할 수 있습니다.<br>0~z까지 입력이 가능하며 한 분류당 최대 1296가지를 표현할 수 있습니다.<br>그러므로 총 3656158440062976가지의 분류를 사용할 수 있습니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <input type="text" name="ca_id" id="ca_id" required class="required frm_input">
+                                    <input type="hidden" name="ca_id">
+                                    <span class="frm_ca_id"></span>
+                                    <a href="" class="btn_frmline">미리보기</a>
+                                    <a href="" class="btn_frmline">하위분류 추가</a>
+                                    <a href="" class="btn_frmline">상품리스트</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_name">분류명</label></th>
+                                <td><input type="text" name="ca_name" id="ca_name" size="38" required class="required frm_input"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_order">출력순서</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">숫자가 작을 수록 상위에 출력됩니다. 음수 입력도 가능하며 입력 가능 범위는 -2147483648 부터 2147483647 까지입니다.<br>입력하지 않으면 자동으로 출력됩니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <input type="text" name="ca_order" id="ca_order" class="frm_input" size="12">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_mb_id">관리 회원아이디</label></th>
+                                <td>
+                                    <input type="text" name="ca_mb_id" id="ca_mb_id" class="frm_input" maxlength="20">
+                                    <input type="hidden" name="ca_mb_id">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_skin_dir">PC용 스킨명</label></th>
+                                <td>
+                                    <select id="ca_skin_dir" name="ca_skin_dir">
+                                        <option>선택</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_mobile_skin_dir">모바일용 스킨명</label></th>
+                                <td>
+                                    <select id="ca_mobile_skin_dir" name="ca_mobile_skin_dir">
+                                        <option>선택</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">본인확인 체크</th>
+                                <td>
+                                    <input type="radio" name="ca_cert_use" value="1" id="ca_cert_use_yes">
+                                    <label for="ca_cert_use_yes">사용함</label>
+                                    <input type="radio" name="ca_cert_use" value="0" id="ca_cert_use_no">
+                                    <label for="ca_cert_use_no">사용안함</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">성인인증 체크</th>
+                                <td>
+                                    <input type="radio" name="ca_adult_use" value="1" id="ca_adult_use_yes">
+                                    <label for="ca_adult_use_yes">사용함</label>
+                                    <input type="radio" name="ca_adult_use" value="0" id="ca_adult_use_no">
+                                    <label for="ca_adult_use_no">사용안함</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_skin">출력스킨</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">기본으로 제공하는 스킨은 /list.*.skin.php 입니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <select id="ca_skin" name="ca_skin">
+                                        <option>선택</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_img_width">출력이미지 폭</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">쇼핑몰환경설정 &gt; 이미지(소) 넓이가 기본값으로 설정됩니다.<br> /list.php에서 출력되는 이미지의 폭입니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <input type="text" name="ca_img_width" value="<?php echo $ca['ca_img_width']; ?>" id="ca_img_width" required class="required frm_input" size="5" > 픽셀
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_img_height">출력이미지 높이</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">쇼핑몰환경설정 &gt; 이미지(소) 높이가 기본값으로 설정됩니다.<br>/list.php에서 출력되는 이미지의 높이입니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <input type="text" name="ca_img_height" id="ca_img_height" required class="required frm_input" size="5" > 픽셀
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_list_mod">1줄당 이미지 수</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">한 줄에 설정한 값만큼의 상품을 출력하지만 스킨에 따라 한 줄에 하나의 상품만 출력할 수도 있습니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <input type="text" name="ca_list_mod" size="3" id="ca_list_mod" required class="required frm_input"> 개
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_list_row">이미지 줄 수</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">한 페이지에 출력할 이미지 줄 수를 설정합니다.<br>한 페이지에서 표시하는 상품수는 (1줄당 이미지 수 x 줄 수) 입니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <input type="text" name="ca_list_row" id="ca_list_row" required class="required frm_input" size="3"> 줄
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_mobile_skin">모바일 출력스킨</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">기본으로 제공하는 스킨은 /list.*.skin.php 입니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <select id="ca_mobile_skin" name="ca_mobile_skin">
+                                        <option>선택</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_mobile_img_width">모바일 출력이미지 폭</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">쇼핑몰환경설정 &gt; 이미지(소) 넓이가 기본값으로 설정됩니다.<br>/list.php에서 출력되는 이미지의 폭입니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <input type="text" name="ca_mobile_img_width" id="ca_mobile_img_width" required class="required frm_input" size="5" > 픽셀
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_mobile_img_height">모바일 출력이미지 높이</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">쇼핑몰환경설정 &gt; 이미지(소) 높이가 기본값으로 설정됩니다.<br>/list.php에서 출력되는 이미지의 높이입니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <input type="text" name="ca_mobile_img_height" id="ca_mobile_img_height" required class="required frm_input" size="5" > 픽셀
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_mobile_list_mod">모바일 1줄당 이미지 수</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">한 줄에 설정한 값만큼의 상품을 출력하지만 스킨에 따라 한 줄에 하나의 상품만 출력할 수도 있습니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <input type="text" name="ca_mobile_list_mod" id="ca_mobile_list_mod" required class="required frm_input" size="3"> 개
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_mobile_list_row">모바일 이미지 줄 수</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">한 페이지에 출력할 이미지 줄 수를 설정합니다.<br>한 페이지에서 표시하는 상품수는 (1줄당 이미지 수 x 줄 수) 입니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <input type="text" name="ca_mobile_list_row" id="ca_mobile_list_row" required class="required frm_input" size="3"> 줄
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_stock_qty">재고수량</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">상품의 기본재고 수량을 설정합니다.<br>재고를 사용하지 않는다면 숫자를 크게 입력하여 주십시오. 예) 999999</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <input type="text" name="ca_stock_qty" size="10" id="ca_stock_qty" class="frm_input"> 개
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_sell_email">판매자 E-mail</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">운영자와 판매자가 다른 경우에 사용합니다.<br>이 분류에 속한 상품을 등록할 경우에 기본값으로 입력됩니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <input type="text" name="ca_sell_email" size="40" id="ca_sell_email" class="frm_input">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_use">판매가능</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">재고가 없거나 일시적으로 판매를 중단하시려면 체크 해제하십시오.<br>체크 해제하시면 상품 출력을 하지 않으며, 주문도 받지 않습니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <input type="checkbox" name="ca_use" id="ca_use">
+                                    예
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_nocoupon">쿠폰적용안함</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">설정에 체크하시면 쿠폰생성 때 분류 검색 결과에 노출되지 않습니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <input type="checkbox" name="ca_nocoupon"  value="1" id="ca_nocoupon">
+                                    예
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="btn_confirm">
+                            <button type="button" class="btn_02 btn">테마 스킨설정 가져오기</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="tab_content">
+                    <div class="tab_wr">
+                        <h2>선택입력</h2>
+                        <table>
+                            <caption>분류 추가 선택입력</caption>
+                            <tbody>
+                            <tr>
+                                <th scope="row"><label for="ca_include_head">상단파일경로</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">입력하지 않으면 기본 상단 파일을 사용합니다.<br>상단 내용과 달리 PHP 코드를 사용할 수 있습니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <input type="text" name="ca_include_head" id="ca_include_head" class="frm_input" size="60">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><label for="ca_include_tail">하단 파일 경로</label>
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">입력하지 않으면 기본 하단 파일을 사용합니다.<br>하단 내용과 달리 PHP 코드를 사용할 수 있습니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <input type="text" name="ca_include_tail" id="ca_include_tail" class="frm_input" size="60">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">상단내용
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">상품리스트 페이지 상단에 출력하는 HTML 내용입니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <textarea>에디터</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">하단내용
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">상품리스트 페이지 하단에 출력하는 HTML 내용입니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <textarea>에디터</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">모바일 상단내용
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">상품리스트 페이지 상단에 출력하는 HTML 내용입니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <textarea>에디터</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">모바일 하단내용
+                                    <span class="tooltip">
+                                        <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                        <span class="tooltip_area">상품리스트 페이지 하단에 출력하는 HTML 내용입니다.</span>
+                                    </span>
+                                </th>
+                                <td>
+                                    <textarea>에디터</textarea>
+                                </td>
+                            </tr>
+                            </tbody>
                         </table>
                     </div>
-                </div>
-            </li>
-            <li class="tab_content">
-                <div class="tab_wr">
-                    <h2>선택입력</h2>
-                    <div class="tbl_frm01 tbl_wrap">
-                    <table>
-                        <caption>분류 추가 선택입력</caption>
-                        <colgroup>
-                            <col class="grid_4">
-                            <col>
-                        </colgroup>
-                        <tbody>
-                        <tr>
-                            <th scope="row"><label for="ca_include_head">상단파일경로</label>
-                                <span class="tooltip">
-                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
-                                    <span class="tooltip_area">입력하지 않으면 기본 상단 파일을 사용합니다.<br>상단 내용과 달리 PHP 코드를 사용할 수 있습니다.</span>
-                                </span>
-                            </th>
-                            <td>
-                                <input type="text" name="ca_include_head" id="ca_include_head" class="frm_input" size="60">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="ca_include_tail">하단 파일 경로</label></th>
-                            <td>
-                                <?php echo help("입력하지 않으면 기본 하단 파일을 사용합니다.<br>하단 내용과 달리 PHP 코드를 사용할 수 있습니다."); ?>
-                                <input type="text" name="ca_include_tail" value="<?php echo $ca['ca_include_tail']; ?>" id="ca_include_tail" class="frm_input" size="60">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">상단내용</th>
-                            <td>
-                                <?php echo help("상품리스트 페이지 상단에 출력하는 HTML 내용입니다."); ?>
-                                <?php echo editor_html('ca_head_html', get_text($ca['ca_head_html'], 0)); ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">하단내용</th>
-                            <td>
-                                <?php echo help("상품리스트 페이지 하단에 출력하는 HTML 내용입니다."); ?>
-                                <?php echo editor_html('ca_tail_html', get_text($ca['ca_tail_html'], 0)); ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">모바일 상단내용</th>
-                            <td>
-                                <?php echo help("상품리스트 페이지 상단에 출력하는 HTML 내용입니다."); ?>
-                                <?php echo editor_html('ca_mobile_head_html', get_text($ca['ca_mobile_head_html'], 0)); ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">모바일 하단내용</th>
-                            <td>
-                                <?php echo help("상품리스트 페이지 하단에 출력하는 HTML 내용입니다."); ?>
-                                <?php echo editor_html('ca_mobile_tail_html', get_text($ca['ca_mobile_tail_html'], 0)); ?>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                </li>
+                <li class="tab_content">
+                    <div class="tab_wr">
+                        <h2>여분필드</h2>
+                        <table>
+                            <caption>여분필드</caption>
+                            <tbody>
+                            <tr>
+                                <th scope="row">여분필드1</th>
+                                <td class="td_extra">
+                                    <label for="ca_1_subj">여분필드 1 제목</label>
+                                    <input type="text" name="ca_1_subj" id="ca_1_subj" class="frm_input">
+                                    <label for="ca_1">여분필드 1 값</label>
+                                    <input type="text" name="ca_1"  id="ca_1" class="frm_input">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">여분필드2</th>
+                                <td class="td_extra">
+                                    <label for="ca_2_subj">여분필드 2 제목</label>
+                                    <input type="text" name="ca_2_subj" id="ca_2_subj" class="frm_input">
+                                    <label for="ca_2">여분필드 2 값</label>
+                                    <input type="text" name="ca_2"  id="ca_2" class="frm_input">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-            </li>
-            <li class="tab_content">
-                <div class="tab_wr">
-                    <h2>여분필드</h2>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
+            <div class="btn_fixed_top">
+                <input type="submit" value="확인" class="btn_submit btn">
+            </div>
+        </form>
     </div>
 
     <script>
