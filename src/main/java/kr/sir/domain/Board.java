@@ -26,7 +26,7 @@ public class Board {
 	private String subject;
 	
 	@Column(name="bo_mobile_subject", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String mobileSubject;
+	private String mobileSubject="";
 	
 	@Column(name="bo_device", columnDefinition = "enum('both','pc','mobile') NOT NULL DEFAULT 'both'")
 	private String device;
@@ -221,7 +221,7 @@ public class Board {
 	private int commentMax;
 	
 	@Column(name="bo_notice", columnDefinition = "text NOT NULL")
-	private String notice;
+	private String notice="";
 	
 	@Column(name="bo_upload_count", columnDefinition = "tinyint(4) NOT NULL DEFAULT '0'")
 	private int uploadCount;
@@ -239,64 +239,64 @@ public class Board {
 	private String sortField;
 	
 	@Column(name="bo_1_subj", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra1Key;
+	private String extra1Key="";
 
 	@Column(name="bo_2_subj", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra2Key;
+	private String extra2Key="";
 	
 	@Column(name="bo_3_subj", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra3Key;
+	private String extra3Key="";
 	
 	@Column(name="bo_4_subj", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra4Key;
+	private String extra4Key="";
 	
 	@Column(name="bo_5_subj", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra5Key;
+	private String extra5Key="";
 	
 	@Column(name="bo_6_subj", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra6Key;
+	private String extra6Key="";
 	
 	@Column(name="bo_7_subj", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra7Key;
+	private String extra7Key="";
 	
 	@Column(name="bo_8_subj", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra8Key;
+	private String extra8Key="";
 	
 	@Column(name="bo_9_subj", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra9Key;
+	private String extra9Key="";
 	
 	@Column(name="bo_10_subj", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra10Key;
+	private String extra10Key="";
 	
 	@Column(name="bo_1", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra1Value;
+	private String extra1Value="";
 	
 	@Column(name="bo_2", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra2Value;
+	private String extra2Value="";
 	
 	@Column(name="bo_3", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra3Value;
+	private String extra3Value="";
 	
 	@Column(name="bo_4", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra4Value;
+	private String extra4Value="";
 	
 	@Column(name="bo_5", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra5Value;
+	private String extra5Value="";
 	
 	@Column(name="bo_6", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra6Value;
+	private String extra6Value="";
 	
 	@Column(name="bo_7", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra7Value;
+	private String extra7Value="";
 	
 	@Column(name="bo_8", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra8Value;
+	private String extra8Value="";
 	
 	@Column(name="bo_9", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra9Value;
+	private String extra9Value="";
 	
 	@Column(name="bo_10", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
-	private String extra10Value;
+	private String extra10Value="";
 }
 
 

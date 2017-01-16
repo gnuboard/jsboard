@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
 <jsp:include page="../main/head.jsp"></jsp:include>
 
 
@@ -14,11 +15,11 @@
 
         <div class="local_wr">
             <div class="local_ov">
-                <a href="#" class="btn_ov02">전체목록</a>
-                <span class="btn_ov01"><span class="ov_txt">생성된 게시판수</span><span class="ov_num"> 개</span></span>
+                <a href="/adm/board/list" class="btn_ov02">전체목록</a>
+                <span class="btn_ov01"><span class="ov_txt">생성된 게시판수</span><span class="ov_num"><fmt:formatNumber value="${countBoards}" pattern="#,###.##"/>개</span></span>
             </div>
+            
             <form id="fsearch" name="fsearch" class="local_sch" method="get">
-
             <label for="sfl" class="sound_only">검색대상</label>
             <select name="sfl" id="sfl">
                 <option value="id">TABLE</option>
@@ -61,14 +62,14 @@
                 <tbody>
                 
                 <c:choose>
-                <c:when test="${! empty allBoardsList}">
-                <c:forEach var="board" items="${allBoardsList}" varStatus="i">
+                <c:when test="${! empty allBoardGroupsList}">
+                <c:forEach var="board" items="${allBoardGroupsList}" varStatus="i">
                 
                 
                 <tr>
                     <td  class="td_chk">
                         <label class="sound_only" for="chk_${i.index}">${board.subject}</label>
-                        <input type="checkbox" name="chk[]" value="" id="chk_${i.index}">
+                        <input type="checkbox" name="chk[]" value="${board.table} " id="chk_${i.index}"> 
                     </td>
          
                     <td>
@@ -141,7 +142,7 @@
                         </select>
                     </td>
                     <td class="td_mng td_mng_m">
-                   		 <a href="#" class="btn_01">수정</a>
+                   		 <a href="/adm/board/form/update" class="btn_01">수정</a>
                    		 <a href="/adm/board/form/copy" class="btn_02 board_copy" target="win_board_copy">복사</a>
                    	</td>
                 </tr>
@@ -149,7 +150,7 @@
                 
                 </c:forEach>
                 </c:when>
-                <c:when test="${empty allBoardsList }">         
+                <c:when test="${empty allBoardGroupsList }">         
                 
                 <tr><td colspan="15" class="empty_table">자료가 없습니다.</td></tr>
                 </c:when>
@@ -159,7 +160,9 @@
         </div>
         <div class="btn_fixed_top">
             <input type="submit" value="선택수정" class="btn_02 btn" onclick="document.pressed=this.value">
+            <c:if test="${is_admin eq 'super'}">
             <input type="submit" value="선택삭제" class="btn_02 btn" onclick="document.pressed=this.value">
+            </c:if>
             <a href="/adm/board/form/add" class="btn_submit btn">게시판 추가</a>
         </div>
         </form>

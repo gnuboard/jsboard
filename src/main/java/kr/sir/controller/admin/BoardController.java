@@ -5,15 +5,19 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.sir.common.AdminUtil;
+import kr.sir.domain.Board;
 import kr.sir.domain.BoardGroup;
+import kr.sir.domain.Config;
 import kr.sir.domain.repository.admin.BoardGroupRepository;
 import kr.sir.service.admin.BoardService;
+import kr.sir.service.admin.ConfigService;
 
 @Controller
 @RequestMapping("/adm/board")
@@ -22,6 +26,7 @@ public class BoardController {
 	
 	private BoardService boardService;
 	private AdminUtil adminUtil;
+	private ConfigService configService;
 	
 	@Autowired
 	public void setBoardService(BoardService boardService){
@@ -32,14 +37,21 @@ public class BoardController {
 	public void setAdminUtil(AdminUtil adminUtil){
 		this.adminUtil=adminUtil;
 	}
-
+	
+	@Autowired
+	public void setConfigService(ConfigService configService){
+		this.configService=configService;
+	}
+	
 	
 	//게시판 목록
 	@RequestMapping(value={"/list","/"})
 	public String boardsList(Model model){
 		
+		//보드 갯수
+		model.addAttribute("countBoards",boardService.getCountBoards());
 		
-		model.addAttribute("allBoardsList", boardService.getAllBoardsList());
+		model.addAttribute("allBoardGroupsList", boardService.getAllBoardsList());
 		return "admin/board/list";
 	}
 	
@@ -103,16 +115,19 @@ public class BoardController {
 	}
 	
 	
-	//게시판 추가
+	//게시판 추가폼
 	@RequestMapping(value={"/form/add"})
 	public String showAddBoardForm(Model model){
 		
-		
-	    boardService.getCountBoardGroups();
+		Config config = configService.getConfig();
+	    
+		model.addAttribute("config",config);
+	    model.addAttribute("board",boardService.getInitializedBoard(config)); 
 		
 		model.addAttribute("type","add");
+		
 		model.addAttribute("countBoardGroups",boardService.getCountBoardGroups());
-	/*	model.addAttribute("selectedGroupTag",boardService.getSelectedGroup("groupId", "", "required"));*/
+		model.addAttribute("selectedGroupTag",boardService.getSelectedGroup("groupId", "", "required"));
 		
 		model.addAttribute("listLevelSelectTag", adminUtil.getMemberLevelSelectBoxTag("listLevel", 1, 10, 1,null));
 		model.addAttribute("leadLevelSelectTag", adminUtil.getMemberLevelSelectBoxTag("leadLevel", 1, 10, 1,null));
@@ -133,15 +148,48 @@ public class BoardController {
 		return "admin/board/form";
 	}
 	
-	//게시판 수정
+	//게시판 수정폼
 	@RequestMapping(value={"/form/update"})
 	public String showUpdateBoardForm(Model model){
-				
-		model.addAttribute("type","update");
 		
-			
+		model.addAttribute("selectedGroupTag",boardService.getSelectedGroup("groupId", "", "required"));		
+		model.addAttribute("type","update");			
 		return "admin/board/form";
 	}
+	
+	// 게시판 추가
+	@RequestMapping(value={"/add"},method=RequestMethod.POST)
+	public String addBoard(Board board){
+		
+		System.out.println("모바일스킨값은? : " + board.getMobileSkin());
+		
+		
+		boardService.addBoard(board);
+		return "admin/board/list";
+	}
+	
+	
+	//폼에서 게시판 수정
+	@RequestMapping(value={"/update"}, method=RequestMethod.PUT)
+	public String updateBoard(Board board){
+		boardService.addBoard(board);
+		return "admin/board/list";
+	}
+	
+	
+	//리스트에서 게시판 수정
+	@RequestMapping(value={"/updateonlist"},method=RequestMethod.PUT)
+	public String updateBoards(String chk,Board board){
+		
+		return "admin/board/list";
+	}
+	
+	@RequestMapping(value={"delete"},method=RequestMethod.DELETE)
+	public String deleteBoards(String chk){
+		boardService.deleteBoards(chk);
+		return "admin/board/list";
+	}
+	
 	
 }
 

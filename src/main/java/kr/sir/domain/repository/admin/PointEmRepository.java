@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import kr.sir.domain.Point;
+import kr.sir.domain.Member;
 import kr.sir.domain.PointJoinMember;
 
 @Repository
@@ -27,20 +27,6 @@ public class PointEmRepository{
 		return em.createNativeQuery(query,PointJoinMember.class).getResultList();
 	}
 	
-	
-	//한 멤버의 현재 포인트만 가져옴. 
-	public Point getMemberpointByMemberId(String memberId,String prefix){
-		String query="select p.po_mb_point as memberPoint,p.mb_id as memberId"
-					 +" from "+prefix+"point p"
-				     +" join "+prefix+"member m"
-				     +" on m.mb_id=p.mb_id"
-				     +" and m.mb_id="+"\'"+memberId+"\'"
-				     +" order by po_datetime desc"
-				     +" limit 1";
-		  
-		return  (Point) em.createNativeQuery(query,Point.class).getSingleResult();
-		
-	}
-	
+
 	
 }
