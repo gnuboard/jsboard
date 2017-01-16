@@ -1,15 +1,15 @@
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%-- <%@include file="../main/head.jsp" %> --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
 
-
 <body>
-<jsp:include page="../main/head.jsp"></jsp:include>
+ <jsp:include page="../main/head.jsp"></jsp:include> 
 
 <div id="container">
     <!-- 중간 레이아웃 -->
@@ -142,18 +142,26 @@
                 		
                 		
                 		<c:choose>
-                			<c:when test="${ member.leaveDate != '' }">
-                				<c:set var="leaveMsg" value="<span class='td_txt_color1'>탈퇴</span>"></c:set>
+                			<c:when test="${ member.leaveDate ne '' }">
+                				<c:set var="leaveMsg" value="<span class='td_txt_color1'>탈퇴</span>"/>
                 			</c:when>
                 			
-                			<c:when test="${ member.interceptDate != ''}">
-                				<c:set var="interceptMsg" value="<span class='td_txt_color1'>차단됨</span>"></c:set>
-                				<c:set var="interceptTitle" value="차단해제"></c:set>
+                			<c:when test="${ member.interceptDate ne ''}">
+                				<c:set var="interceptMsg" value="<span class='td_txt_color1'>차단됨</span>"/>
+                				<c:set var="interceptTitle" value="차단해제"/>
                 			</c:when>
                 		</c:choose>
                 		
+                		<c:if test="${empty member.leaveDate || member.leaveDate eq ''}">
+                			<c:set var="leaveMsg" value=""/>
+                		</c:if>
+                		
+                		<c:if test="${empty member.interceptDate || member.interceptDate eq ''}">
+                			<c:set var="interceptMsg" value=""/>
+                		</c:if>
+                		
                 		<c:if test="${ empty interceptTitle }">
-                			<c:set var="interceptTitle" value="차단하기"></c:set>
+                			<c:set var="interceptTitle" value="차단하기"/>
                 		</c:if>        		
                 		
                 		
@@ -189,7 +197,7 @@
            			  	</c:choose> 
             		</td>
                     <td class="td_date">${fn:substring(member.todayLogin,2,10)}</td>
-                    <td class="td_num"><a href="adm/member/pointlist?sfl=memberId&amp;stx=${member.memberId}"><fmt:formatNumber value="${member.point}" pattern="#,###.##" /></a></td>
+                    <td class="td_num"><a href="adm/member/pointlist/sfl/memberId/stx/${member.memberId}"><fmt:formatNumber value="${member.point}" pattern="#,###.##" /></a></td>
                     <td rowspan="2" class="td_mng td_mng_s">                       
                     
                     	${s_mod}<!--수정버튼  -->
@@ -218,7 +226,10 @@
                         <!--<?php echo get_member_level_select("mb_level[$i]", 1, $member['mb_level'], $row['mb_level']) ?>  --> 
                     </td>
                    
-                    <td class="td_date">${fn:substring(member.datetime,2,10)}</td>
+                    <td class="td_date"><fmt:formatDate value="${member.datetime}" pattern="yy-MM-dd"/></td>
+                    
+                    
+                    
                     <td>${member.countGroupMember}</td>
                 </tr>
                

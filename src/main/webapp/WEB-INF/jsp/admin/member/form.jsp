@@ -68,7 +68,9 @@ auth_check($auth[$sub_menu], 'w');
                 <th scope="row"><label for="mb_id">아이디 ${soundOnly} </label></th>
                 <td>
                     <input type="text" name="memberId" id="mb_id" class="frm_input" size="15" value="${member.memberId}">
+                    <c:if test="${type eq 'update' }">
                     <input type="hidden" name="id" value="${member.id}" />
+                    </c:if>
                 </td>
                 <th scope="row"><label for="mb_password">비밀번호 ${soundOnly}</label></th>
                 <td><input type="password" name="password" id="mb_password" class="frm_input" size="15"></td>
@@ -131,7 +133,7 @@ auth_check($auth[$sub_menu], 'w');
                 <th scope="row">주소</th>
                 <td colspan="3" class="td_addr_line">
                     <label for="mb_zip" class="sound_only">우편번호 ${soundOnly}</label>
-                    <input type="text" name="zipCode" id="mb_zip" class="frm_input readonly" size="5" maxlength="6" value="${member.zipCode1} ${member.zipCode2}">
+                    <input type="text" name="zipCode" id="mb_zip" class="frm_input readonly" size="5" maxlength="6" value="${member.zipCode1}${member.zipCode2}">
                     <button type="button" class="btn_frmline" onclick="win_zip('fmember', 'mb_zip', 'mb_addr1', 'mb_addr2', 'mb_addr3', 'mb_addr_jibeon')">주소 검색</button><br>
                     <input type="text" name="address1" id="mb_addr1" class="frm_input readonly" size="60" value="${member.address1}">
                     <label for="mb_addr1">기본주소</label><br>
@@ -309,7 +311,7 @@ auth_check($auth[$sub_menu], 'w');
 function fmember_submit(f) {
 
 		if(document.pressed == '추가') {
-			
+	
 		}else if (document.pressed == '수정') {
 			$("input:hidden[name=_method]").val("PUT");
 			

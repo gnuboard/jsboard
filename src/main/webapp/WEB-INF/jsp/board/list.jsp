@@ -40,9 +40,9 @@ function submitDelete() {
 
 function checkAllClicked(){
 	if($("#check_all").is(":checked")) {
-		$("input:checkbox[name='id']").prop("checked", true);
+		$("input:checkbox[name='selectedId']").prop("checked", true);
 	} else {
-		$("input:checkbox[name='id']").prop("checked", false);
+		$("input:checkbox[name='selectedId']").prop("checked", false);
 	}
 }
 
@@ -146,7 +146,7 @@ function selectCopy() {
                     		</c:choose>
                    		</a>
                     	<a href="/board/view/${write.id}/page/${currentPage}/category/${currentCategory}">
-                    		${write.subject}
+                    		${write.subject} <span class="cnt_cmt"><span class="sound_only">댓글</span>${write.comment}</span>
                    		</a>
                    	</td>
                     <td class="td_name">${write.name}</td>

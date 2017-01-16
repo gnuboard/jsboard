@@ -2,6 +2,7 @@ package kr.sir.service.admin;
 
 import java.util.List;
 
+import kr.sir.domain.Board;
 import kr.sir.domain.BoardGroup;
 import kr.sir.domain.BoardGroupList;
 
@@ -28,4 +29,12 @@ public interface BoardService {
 	//그룹삭제
 	public int deleteGroups(String ids);
 	
+	//게시판 목록
+	public List<Board> getAllBoardsList();
+
+	//회원가입폼에서 사용할 변수 생성
+	public List<String> makeValue(String type);
+	
+	//게시판 생성,수정시 그룹목록 출력과 생성시에는 해당하는 그룹 선택까지 한 selectBOX 태그
+	public String getSelectedGroup(String name,String groupId,String event);
 }

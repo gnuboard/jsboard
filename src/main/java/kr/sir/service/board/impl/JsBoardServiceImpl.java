@@ -127,16 +127,46 @@ public class JsBoardServiceImpl implements JsBoardService {
 		return jsBoardEmRepository.findMaxId();
 	}
 
-	// 해당 게시글에서 가장 큰 댓글 그룹 번호 가져오기
-	@Override
-	public int findMaxCommentById(int articleNumber) {
-		return jsBoardEmRepository.findMaxCommentById(articleNumber);
-	}
-
 	// 게시글의 댓글 리스트 가져오기
 	@Override
 	public List<Write> findByParentAndIsComment(int articleNumber, int isComment) {
 		return jsBoardRepository.findByParentAndIsCommentOrderByCommentAscCommentReplyAsc(articleNumber, isComment);
+	}
+
+	// 댓글에 들어갈 comment를 지정
+	@Override
+	public int appointComment(Write baseComment, int articleId) {
+		int depth = baseComment.getCommentReply().length();					// 기준 댓글의 depth를 가져온다.
+		if(depth == 0 && baseComment.getIsComment() == 0) {					// 기준이 원글인경우
+			// 해당 글의 comment 중 가장 큰 값 + 1(comment단락을 나누기 위해)
+			return jsBoardEmRepository.findMaxCommentById(articleId) + 1;	
+		} else {
+			// 기준 댓글의 comment그룹에 속하므로 값을 그대로 따라간다.
+			return baseComment.getComment();
+		}
+	}
+	
+	// 작성할 댓글의 commentReply를 생성
+	@Override
+	public String createCommentReply(int articleNumber, int comment, Write baseComment) {
+		// ex) 	기준 댓글의 comment_reply : AA, AAA에 댓글이 존재함. 결과 : AAB 
+		String baseCommentReply = baseComment.getCommentReply();			// 기준 댓글의 commentReply
+		int length = baseCommentReply.length();								// 기준 댓글의 commentReply의 길이
+		if(length == 0 && baseComment.getIsComment() == 0) {				// 기준이 원글일 경우				
+			return "";
+		} else {
+			String maxCommentReply = jsBoardEmRepository.findMaxCommentReplyByBaseComment(articleNumber, comment, baseCommentReply, 1);
+			if(baseCommentReply.equals(maxCommentReply)) {
+				return baseCommentReply + "A";
+			}
+			char lastChar = maxCommentReply.charAt(maxCommentReply.length() - 1);
+			if(lastChar == 'G') {
+				return "ERROR";
+			}
+			lastChar++;														// 마지막 문자 한자리 더함.
+			return baseCommentReply + lastChar;
+		}
+		
 	}
 
 }

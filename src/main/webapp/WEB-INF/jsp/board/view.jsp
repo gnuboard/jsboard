@@ -14,13 +14,50 @@
 </head>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-function delArticle() {
-	if(confirm("한번 삭제한 자료는 복구할 방법이 없습니다.\n\n"
-			+"정말 삭제하시겠습니까?") == true) {
-		$("input:hidden[name=_method]").val("DELETE");
-	} else {
-		return;
-	}
+$(document).ready(function(){
+
+	$('#delButton').click(function() {
+		if(confirm("한번 삭제한 자료는 복구할 방법이 없습니다.\n\n"
+				+"정말 삭제하시겠습니까?")) {
+			$("input:hidden[name=_method]").val("DELETE");
+			$("#viewForm").submit();
+			return true;
+		} else {
+			return false;
+		}
+	});
+		
+});
+
+function getCommentForm(baseId) {
+	$("#baseCommentId").val(baseId);
+	$(".commentForm").remove();
+	$("div[id=commentForm"+baseId+"]").load("/html/board/commentForm.html");
+	
+}
+function setDefaultBaseId() {
+	// 댓글에서 기준이 원글인 경우 기준댓글에 원글번호를 넣는다.
+	if($("#baseCommentId").val() == "") {
+		var originId = $("#originId").val();
+		$("#baseCommentId").val(originId);
+	} 
+}
+function getCommentUpdateForm(commentId, name, content) {
+	$("#baseCommentId").val(commentId);
+	$(".commentForm").remove();
+	$("div[id=commentForm"+commentId+"]").load("/html/board/commentForm.html");
+	$("input:hidden[name=_method]").val("PUT");
+	
+	$.ajax({
+		success : function(data) {
+			$("#name").val(name);
+			$("#content").val(content);
+		}
+	});
+}
+
+function delComment(commentId) {
+	
 }
 </script>
 <body>
@@ -92,7 +129,7 @@ function delArticle() {
         
         <c:if test="${article.link11 != ''}">
         <section id="bo_v_link">
-            <h2>관련링크</h2>
+            <h2>관련링크1</h2>
             <ul>
                 <li>
                     <img src="/img/icon_link.gif" alt="관련링크">
@@ -106,7 +143,7 @@ function delArticle() {
         </c:if>
         <c:if test="${article.link12 != ''}">
         <section id="bo_v_link">
-            <h2>관련링크</h2>
+            <h2>관련링크2</h2>
             <ul>
                 <li>
                     <img src="/img/icon_link.gif" alt="관련링크">
@@ -130,13 +167,15 @@ function delArticle() {
             </div>
         
             <div class="bo_v_com">
-            <form action="/board/view/${article.id}" name="boardForm" id="boardForm" method="post">
+            <form action="/board/view/${article.id}" name="viewForm" id="viewForm" method="post">
             	<input type="hidden" name="_method" />
             	<input type="hidden" name="currentPage" value="${currentPage}"/>
             	<input type="hidden" name="currentCategory" value="${currentCategory}"/>
             	
-                <a href="/board/save/${article.id}/page/${currentPage}/category/${currentCategory}" class=" btn">수정</a>
-                <input type="submit" class="btn_b01 btn" value="삭제" onclick="delArticle();"/>
+                <a href="/board/save/${article.id}/page/${currentPage}/category/${currentCategory}" class="btn">수정</a>
+<!--                 <a id="delButton" class="btn_b01 btn">삭제</a> -->
+                <input type="submit" id="delButton" class="btn_b01 btn" value="삭제"/>
+<!--                 <input type="submit" class="btn_b01 btn" value="삭제" onclick="delArticle();"/> -->
                 <a href="" class="btn_admin btn">복사</a>
                 <a href="" class="btn_admin btn">이동</a>
                 <a href="/board/list/${currentPage}/category/${currentCategory}" class="btn_b01 btn">목록</a>
@@ -146,19 +185,17 @@ function delArticle() {
             </div>
         </div>
         
-      	<form action="/board/view/comment" name="boardForm" id="boardForm" method="post">
-<!--        	<input type="hidden" name="_method" value="post"/> -->
+      	<form action="/board/view/comment" name="commentForm" id="commentForm" method="post">
+       		<input type="hidden" name="_method" value="post"/>
 			<!-- 원글의 wr_id -->
-			<input type="hidden" name="id" value="${article.id}"/>
+			<input type="hidden" name="id" id="originId" value="${article.id}"/>
 			<input type="hidden" name="currentCategory" value="${currentCategory}"/>
 			<input type="hidden" name="currentPage" value="${currentPage}"/>
 			<!-- 답변글 : 1, 원글 : 0 -->
 			<input type="hidden" name="isReply" value="0"/>
 <%-- 			<input type="hidden" name="isReply" value="${isReply}"/> --%>
-			<!-- 새 댓글의 depth -->				
-			<input type="hidden" name="commentDepth" id="commentDepth" value="1"/>
 			<!-- 기준 댓글의 wr_id -->
-			<input type="hidden" name="baseCommentId" id="baseCommentId" value="225"/>
+			<input type="hidden" name="baseCommentId" id="baseCommentId" value=""/>
 			<input type="hidden" name="subject" value=""/>
 			<input type="hidden" name="reply" value=""/>
 			<input type="hidden" name="email" value=""/>
@@ -184,51 +221,33 @@ function delArticle() {
         	<!-- 댓글 시작  -->
    			<section id="bo_vc">
 			<h2>댓글목록</h2>
-            <%
-            	List<Write> commentList= (List<Write>)request.getAttribute("commentList");
+             <% List<Write> commentList= (List<Write>)request.getAttribute("commentList");
             	
             	int[] depthArr = new int[commentList.size()];
             	for(int i=0; i<commentList.size(); i++) {
             		depthArr[i] = commentList.get(i).getCommentReply().length();
-					if(i==0) {
-			%>			
+					if(i==0) { %>			
 			            <ul class="cmt_ul">
-			<%		
-					} 
+				<%	} 
 					if(depthArr[i] == 0) {
 						if(i > 0) {	
 							int depthDiffer = depthArr[i-1] - depthArr[i];
-							for(int j=0; j < depthDiffer; j++) {
-			%>
+							for(int j=0; j < depthDiffer; j++) { %>
 						</li></ul>
-			<%		
-							}
-						}
-			%>			
+					<%		}
+						} %>			
 						<li class="cmt_li">
-			<%			
-					// depth가 전 댓글보다 작으면 닫기 시작
+					<% // depth가 전 댓글보다 작으면 닫기 시작
 					} else if(depthArr[i] > 0 && depthArr[i-1] > depthArr[i]){
-						for(int j=0; j<depthArr[i-1] - depthArr[i]; j++) {
-			%>
-							</li></ul>
-			<%
-						}
-			%>
+						for(int j=0; j<depthArr[i-1] - depthArr[i]; j++) { %>
+						</li></ul>
+			 		 <% } %>
 						</li><li class="cmt_li_2">
-			<%		
-					} else if(depthArr[i] > 0 && depthArr[i-1] == depthArr[i]) {
-			%>
-						</li>
-						<li class="cmt_li_2">
-			<%		
-					} else {
-			%>
-		           		<ul>
-		          		<li class="cmt_li_2">
-			<% 
-					}
-			%>
+				 <% } else if(depthArr[i] > 0 && depthArr[i-1] == depthArr[i]) { %>
+						</li><li class="cmt_li_2">
+				 <% } else { %>
+		           		<ul><li class="cmt_li_2">
+				 <% } %>
 					<div class="cmt_info">
                         <span class="sound_only">작성자</span> <strong class="if_member"><%=commentList.get(i).getName() %></strong>
                         <span class="sound_only">IP</span><span class="if_ip"><%=commentList.get(i).getIp() %></span>
@@ -240,26 +259,30 @@ function delArticle() {
                        	<%=commentList.get(i).getContent() %>
                     </div>
                     <div class="cmt_btn">
-                        <a href="#">답변</a>
-                        <a href="#">수정</a>
-                        <a href="#">삭제</a>
+                    	<% if(commentList.get(i).getCommentReply().length() < 5) { %>
+                        	<a onclick="getCommentForm('<%=commentList.get(i).getId() %>');">답변</a>
+                        <% } %>	
+                        <!-- 본인이거나 권한이 있어야 수정 가능 -->
+                        <a onclick="getCommentUpdateForm('<%=commentList.get(i).getId() %>','<%=commentList.get(i).getName() %>','<%=commentList.get(i).getContent() %>');">
+                       		수정
+                    	</a>
+                        <!-- 답변이 달려있으면 삭제 버튼 안보이도록, 관리자면 삭제 가능 extra10 사용?-->
+						<a onclick="delComment('<%=commentList.get(i).getId() %>');">삭제</a>
                     </div>
-			<%		
-					if(i == commentList.size()) {
-			%>
+                    <div id="commentForm<%=commentList.get(i).getId() %>">
+                    </div>
+					<%	if(i == commentList.size()) { %>
 						</ul>
-			<%			
-					}
-				} 
-			%>	
+					<%	}
+					} %>	
 		</section>
 
-        <aside id="bo_vc_w">
+        <aside id="bo_vc_w" class="commentForm">
         <h2>댓글쓰기</h2>
             <div class="cmt_wt_if">
                 <span>
                     <label>이름<strong class="sound_only"> 필수</strong></label>
-                    <input type="text" name="name" class="frm_input required" required>
+                    <input type="text" name="name" id="name" class="frm_input required" required>
                 </span>
                 <span>
                     <label>비밀번호<strong class="sound_only"> 필수</strong></label>
@@ -278,7 +301,7 @@ function delArticle() {
                 <div class="cmt_wt_wr">
                     <textarea id="content" name="content" maxlength="10000" required class="required" title="내용"></textarea>
                     <div class="btn_confirm">
-                        <input type="submit" id="btn_submit" class="btn_submit" value="댓글등록">
+                        <input type="submit" id="btn_submit" class="btn_submit" onclick="setDefaultBaseId();" value="댓글등록">
                     </div>
                 </div>
                 <div class="cmt_scr"><input type="checkbox" name="option"  id="option" value="secret"><label for="wr_secret">비밀글사용</label></div>

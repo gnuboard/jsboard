@@ -43,7 +43,7 @@ public abstract class MemberBaseEntity{
 	
 	@Column(name = "mb_nick_date",columnDefinition="date NOT NULL DEFAULT '0000-00-00'")
 	@Temporal(TemporalType.DATE)
-	private Date nickDate = new Date(); 
+	private Date nickDate = defaultTimestamp(); 
 	
 	@Column(name = "mb_email",columnDefinition="varchar(255) NOT NULL DEFAULT ''")
 	private String email= "";
@@ -146,7 +146,7 @@ public abstract class MemberBaseEntity{
 	
 	@Column(name = "mb_open_date",columnDefinition="date NOT NULL DEFAULT '0000-00-00'")
 	@Temporal(TemporalType.DATE)
-	private Date openDate = new Date();
+	private Date openDate = defaultTimestamp();
 	
 	@Column(name = "mb_profile", columnDefinition="TEXT NOT NULL")
 	private String profile= "";

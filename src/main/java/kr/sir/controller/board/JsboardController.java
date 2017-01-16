@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kr.sir.common.CommonUtil;
 import kr.sir.domain.Write;
 import kr.sir.domain.form.BoardForm;
-import kr.sir.domain.module.CommentReply;
 import kr.sir.service.board.JsBoardService;
 
 @Controller
@@ -103,7 +102,7 @@ public class JsboardController {
 		
 		// 댓글 list를 가져온다.
 		List<Write> commentList = jsBoardService.findByParentAndIsComment(articleNumber, 1);
-		
+
 		model.addAttribute("currentCategory", categoryName);
 		model.addAttribute("article", article);
 		model.addAttribute("prevArticle", prevArticle);
@@ -196,45 +195,66 @@ public class JsboardController {
 	
 	// 댓글 쓰기
 	@RequestMapping(value="/view/comment", method=RequestMethod.POST)
-	public String writeComment(Write comment, BoardForm boardForm) throws UnknownHostException {
+	public String writeComment(Write comment, BoardForm boardForm, Model model) throws UnknownHostException {
  
 		// article : 원 글, comment : 댓글
-		Write article = jsBoardService.findOne(comment.getId());			// 원 글을 가져온다.
+		int originId = comment.getId();
+		Write article = jsBoardService.findOne(originId);					// 원 글을 가져온다.
 		Write baseComment = jsBoardService.findOne(boardForm.getBaseCommentId());	// 기준 댓글을 가져온다.
 		
 		comment.setId(jsBoardService.findMaxId()+1);
 		comment.setNum(article.getNum());									// 원 글의 wr_num를 써줌으로 어떤 글의 댓글인지 표시한다.
 		comment.setParent(article.getId());									// 원 글의 wr_id를 써줌으로 어떤 글의 댓글인지 표시한다.
+		comment.setCategoryName(article.getCategoryName());					// 원 글의 카테고리 이름을 넣는다.
 		comment.setIsComment(1);											// 댓글 1, 원글 0
 		comment.setDatetime(new Date());
 		comment.setLast(CommonUtil.getToday(new Date()));
 		comment.setIp(CommonUtil.getIpAddress());
 		comment.setFile(0);
+		// 임시
+		comment.setMemberId(comment.getName());					// (회원일 땐 세션에서 로그인한 ID 가져오기)
+		comment.setBoardId(BOARD_ID);							
 		
-		comment.setMemberId(comment.getName());		// 임시
-		comment.setBoardId(BOARD_ID);				// 임시
+		int commentGroup = jsBoardService.appointComment(baseComment, article.getId());
+		// 기준댓글(원글)의 comment_reply로 댓글의 commentReply를 만들어서 가져온다.
+		String commentReply = jsBoardService.createCommentReply(originId, commentGroup, baseComment);
 		
-		int depth = boardForm.getCommentDepth();							// 새로 쓴 댓글의 depth를 가져온다.
-		if(depth == 1) {													// 1레벨 댓글의 경우
-			// 해당 글의 comment 중 가장 큰 값 + 1(comment단락을 나누기 위해)
-			comment.setComment(jsBoardService.findMaxCommentById(article.getId()) + 1);	
-		} else {
-			// 기준 댓글의 comment값을 따라간다.
-			comment.setComment(baseComment.getComment());
+		if( ("ERROR").equals(commentReply) ) {
+			String message1 = "더 이상 답변하실 수 없습니다.";
+			String message2 = "답변은 26개 까지만 가능합니다.";
+			model.addAttribute("errorType", "tooManyComment");
+			model.addAttribute("msg1", message1);
+			model.addAttribute("msg2", message2);
+			return "/board/error";
 		}
 		
-		// 기준댓글(원글)의 comment_reply와 새로 쓴 댓글의 depth로 댓글의 commentReply를 만들어서 가져온다.
-		String commentReply = CommentReply.setCommentReplyInfo(baseComment.getCommentReply(), depth);
+		comment.setComment(commentGroup);
 		comment.setCommentReply(commentReply);
 		
-		comment.setCategoryName(article.getCategoryName());					// 원 글의 카테고리 이름을 넣는다.
+		comment = jsBoardService.save(comment);								// 댓글 저장
+
+		article.setComment(article.getComment()+1);							// 원 글의 댓글 수(isComment) 수정
+		jsBoardService.save(article);
 		
-		article = jsBoardService.save(comment);
+		return "redirect:/board/view/" + originId + "/page/" + boardForm.getCurrentPage() + "/category/" + boardForm.getCurrentCategory();
+	}
+	
+	// 댓글 수정
+	@PutMapping
+	@RequestMapping(value="/view/comment", method=RequestMethod.PUT)
+	public String updateComment(Write comment, BoardForm boardForm, Model model) throws UnknownHostException {
 		
-		// 원 글의 댓글 수(isComment) 수정
+		System.out.println("코멘트 수정!");
 		
+		Write article = jsBoardService.findOne(boardForm.getBaseCommentId());
+		article.setName(comment.getName());
+		article.setContent(comment.getContent());
+		article.setLast(CommonUtil.getToday(new Date()));
+		article.setIp(CommonUtil.getIpAddress());
 		
-		return "redirect:/board/view/" + article.getId() + "/page/" + boardForm.getCurrentPage() + "/category/" + boardForm.getCurrentCategory();
+		jsBoardService.save(article);
+		
+		return "redirect:/board/view/" + comment.getId() + "/page/" + boardForm.getCurrentPage() + "/category/" + boardForm.getCurrentCategory();
 	}
 	
 }

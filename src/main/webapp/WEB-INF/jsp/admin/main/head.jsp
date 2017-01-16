@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
+  
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,7 +26,7 @@
     <div id="hd_top">
         <button type="button" id="btn_gnb" class="btn_gnb_close">메뉴</button>
         <div id="logo">
-            <a href="./adm"><img src="/img/logo.png" alt="관리자"></a>
+            <a href="../adm"><img src="/img/logo.png" alt="관리자"></a>
         </div>
         <div id="tnb">
             <ul>
@@ -46,7 +44,7 @@
     <div id="gnb" class="gnb_large">
         <h2>카테고리</h2>
         <ul class="gnb_ul">
-            <li class="gnb_li on">
+            <li class="gnb_li">
                 <button type="button" class="btn_op menu-1">환경설정</button>
                 <div class="gnb_oparea_wr">
                     <div class="gnb_oparea">
@@ -142,17 +140,10 @@ $(function(){
     });
 
     $(".gnb_ul li .btn_op" ).click(function() {
+    
         $(this).parent().addClass("on").siblings().removeClass("on");
     });
 
 });
 </script>
 
-<!-- <nav>
-<ul>
-<li><a href="/adm/member/list">회원관리</a></li>
-<li><a href="/adm/board/list">게시판관리관리</a></li>
-<li><a href="/adm/member/pointlist">포인트관리</a></li>
-<li><a href="/adm/board/boardgrouplist">게시판그룹관리</a></li>
-</ul>
-</nav> -->
