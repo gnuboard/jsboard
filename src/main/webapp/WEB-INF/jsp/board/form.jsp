@@ -16,11 +16,16 @@ function submitSaveForm() {
 	if( $("#homepage").val() == null ) $("#homepage").val("");
 	if( $("#link11").val() == null ) $("#link11").val("");
 	if( $("#link12").val() == null ) $("#link12").val("");
-	if(!$("#checkOption").is(":checked") ) $("#option").val("");
+	if( $("#checkOption").is(":checked") ) {
+		var optionValue = $("#checkOption").val();
+		$("#option").val(optionValue);
+	} else {
+		$("#option").val("");
+	}
 	// http method 설정
-	if(${save == "update"}) {	// 글 수정
+	if(${saveType == "update"}) {	// 글 수정
 		$("input:hidden[name=_method]").val("put");
-	} else {					// 글 쓰기
+	} else {						// 글 쓰기, 답변 글 쓰기
 		$("input:hidden[name=_method]").val("post");
 	}
 }
@@ -29,7 +34,10 @@ function submitSaveForm() {
 <div id="container">
     <h1 class="container_tit">게시판01
     	<c:choose>
-	    	<c:when test='${save eq "insert"}'> 
+	    	<c:when test='${saveType eq "insert"}'> 
+	    		글쓰기
+	    	</c:when>
+	    	<c:when test='${saveType eq "answer"}'> 
 	    		글쓰기
 	    	</c:when>
 	    	<c:otherwise>
@@ -41,7 +49,10 @@ function submitSaveForm() {
     <section id="bo_w">
         <h2>게시판01 
         <c:choose>
-	    	<c:when test='${save eq "insert"}'> 
+	    	<c:when test='${saveType eq "insert"}'> 
+	    		글쓰기
+	    	</c:when>
+	    	<c:when test='${saveType eq "answer"}'> 
 	    		글쓰기
 	    	</c:when>
 	    	<c:otherwise>
@@ -55,9 +66,9 @@ function submitSaveForm() {
         	<!-- http method 값 셋팅 -->
 			<input type="hidden" name="_method"/>
 	        <!-- 기본 입력 값 셋팅 -->
-			<input type="hidden" name="option" id="option" />
+			<input type="hidden" name="option" id="option" />					<!-- V -->
 			<input type="hidden" name="commentReply" value=""/>
-			<input type="hidden" name="reply" value=""/>
+			<input type="hidden" name="reply" value=""/>						<!-- V -->
 			<input type="hidden" name="facebookUser" value=""/>
 			<input type="hidden" name="twitterUser" value=""/>
 			<input type="hidden" name="extra1" value=""/>
@@ -71,18 +82,21 @@ function submitSaveForm() {
 			<input type="hidden" name="extra9" value=""/>
 			<input type="hidden" name="extra10" value=""/>
 
-			<c:if test='${save eq "update"}'>
+			<input type="hidden" name="boardName" value="${boardName}"/>
+			<c:if test='${saveType eq "update"}'>
 				<input type="hidden" name="id" value="${article.id}"/>
-				<input type="hidden" name="memberId" value="${article.memberId}"/>
-				<input type="hidden" name="boardId" value="${article.boardId}"/>
-				<input type="hidden" name="hit" value="${article.hit}"/>
 				<input type="hidden" name="currentCategory" value="${currentCategory}"/>
 				<input type="hidden" name="currentPage" value="${currentPage}"/>
 			</c:if>
-			<c:if test='${save eq "insert"}'>
-<%-- 				<input type="hidden" name="reply" value="${reply}"/> --%>
-				<input type="hidden" name="isReply" value="0"/>
-			</c:if>
+			<c:choose>
+				<c:when test='${saveType eq "answer"}'>
+					<input type="hidden" name="isReply" value="1"/>
+					<input type="hidden" name="num" value="${article.num}"/>
+				</c:when>
+				<c:otherwise>
+					<input type="hidden" name="isReply" value="0"/>
+				</c:otherwise>
+			</c:choose>
 		
         <div class="table_basic table_form">
             <table>
@@ -109,7 +123,7 @@ function submitSaveForm() {
             
             <tr>
                 <th scope="row">옵션</th>
-                <td><input type="checkbox" name="checkOption" id="checkOption" value="html"><label>html</label></td>
+                <td><input type="checkbox" name="checkOption" id="checkOption" value="html1"><label>html</label></td>
             </tr>
             
             <tr>
@@ -123,6 +137,7 @@ function submitSaveForm() {
 	                       			<option selected="selected" value="${category}">${category}</option>
 	                       		</c:when>
 	                       		<c:when test="${category eq '' }">
+	                       			<option value="">분류 없음</option>
 	                       		</c:when>
 	                       		<c:otherwise>
 	                       			<option value="${category}">${category}</option>

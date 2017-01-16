@@ -13,12 +13,20 @@ import kr.sir.common.CommonUtil;
 import kr.sir.domain.Write;
 
 @Repository
-public class JsBoardEmRepository {
+public class BbsEmRepository {
 
 	@PersistenceContext
 	EntityManager em;
 
-	
+	// 글 삭제할 때 글에 포함된 댓글까지 함께 지우기 위해 댓글 id들까지 함께 가져온다.
+	@SuppressWarnings("unchecked")
+	public List<Write> findIdsWithCommentIds(String selectedIds) {
+		String query = "select * from " + CommonUtil.getTablePrefix()
+					+ "write where wr_parent in (" + selectedIds + ")";
+		List<Write> idList = em.createNativeQuery(query, Write.class).getResultList();
+		return idList;
+	}
+
 	// 선택 삭제
 	@Transactional
 	public int delete(String ids) {
@@ -38,10 +46,10 @@ public class JsBoardEmRepository {
 		String query = "";
 		switch (prevOrNext) {
 		case "prev":
-			query = "SELECT MIN(w.id) FROM Write w WHERE w.id > :articleNumber";
+			query = "SELECT MIN(w.id) FROM Write w WHERE w.id > :articleNumber and w.isComment = 0";
 			break;
 		case "next":
-			query = "SELECT MAX(w.id) FROM Write w WHERE w.id < :articleNumber";
+			query = "SELECT MAX(w.id) FROM Write w WHERE w.id < :articleNumber and w.isComment = 0";
 			break;
 		}
 		return query;
@@ -113,5 +121,5 @@ public class JsBoardEmRepository {
 		
 		return CommonUtil.convertObjectToString(obj);
 	}
-	
+
 }

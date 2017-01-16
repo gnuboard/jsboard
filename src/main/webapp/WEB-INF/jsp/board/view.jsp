@@ -26,6 +26,10 @@ $(document).ready(function(){
 			return false;
 		}
 	});
+	
+	$('#answerButton').click(function() {
+		$("input:hidden[name=_method]").val("GET");
+	});
 		
 });
 
@@ -58,6 +62,13 @@ function getCommentUpdateForm(commentId, name, content) {
 
 function delComment(commentId) {
 	
+	if(confirm("이 댓글을 삭제하시겠습니까?")) {
+		$("input:hidden[name=_method]").val("DELETE");
+		$("#baseCommentId").val(commentId);
+		$("#commentForm").submit();
+	} else {
+		return false;
+	}	
 }
 </script>
 <body>
@@ -159,28 +170,29 @@ function delComment(commentId) {
         <div class="bo_fx">
             <div class="bo_v_nb">
             	<c:if test="${prevArticle != 0}">
-                	<a href="/board/view/${prevArticle}/page/${currentPage}/category/${currentCategory}" class="btn_b01 btn">이전글</a>
+                	<a href="/board/${boardName}/view/${prevArticle}/page/${currentPage}/category/${currentCategory}" class="btn_b01 btn">이전글</a>
                 </c:if>
                 <c:if test="${nextArticle != 0}">	
-                <a href="/board/view/${nextArticle}/page/${currentPage}/category/${currentCategory}" class="btn_b01 btn">다음글</a>
+                <a href="/board/${boardName}/view/${nextArticle}/page/${currentPage}/category/${currentCategory}" class="btn_b01 btn">다음글</a>
                 </c:if>        
             </div>
         
             <div class="bo_v_com">
-            <form action="/board/view/${article.id}" name="viewForm" id="viewForm" method="post">
+            <form action="/board/view" name="viewForm" id="viewForm" method="post">
             	<input type="hidden" name="_method" />
+            	<input type="hidden" name="id" value="${article.id}"/>
+            	<input type="hidden" name="boardName" value="${boardName}"/>
             	<input type="hidden" name="currentPage" value="${currentPage}"/>
             	<input type="hidden" name="currentCategory" value="${currentCategory}"/>
             	
-                <a href="/board/save/${article.id}/page/${currentPage}/category/${currentCategory}" class="btn">수정</a>
-<!--                 <a id="delButton" class="btn_b01 btn">삭제</a> -->
+                <a href="/board/${boardName}/save/${article.id}/page/${currentPage}/category/${currentCategory}" class="btn">수정</a>
                 <input type="submit" id="delButton" class="btn_b01 btn" value="삭제"/>
-<!--                 <input type="submit" class="btn_b01 btn" value="삭제" onclick="delArticle();"/> -->
                 <a href="" class="btn_admin btn">복사</a>
                 <a href="" class="btn_admin btn">이동</a>
-                <a href="/board/list/${currentPage}/category/${currentCategory}" class="btn_b01 btn">목록</a>
-                <a href="" class="btn_b01 btn">답변</a>
-                <a href="/board/save" class="btn_b02 btn">글쓰기</a>
+                <a href="/board/${boardName}/list/${currentPage}/category/${currentCategory}" class="btn_b01 btn">목록</a>
+                <input type="submit" id="answerButton" class="btn_b01 btn" value="답변"/>
+<%--                 <a href="/board/${boardName}/answer/${article.id}/page/${currentPage}/category/${currentCategory}" class="btn_b01 btn">답변</a> --%>
+                <a href="/board/${boardName}/save" class="btn_b02 btn">글쓰기</a>
             </form> 
             </div>
         </div>
@@ -189,11 +201,12 @@ function delComment(commentId) {
        		<input type="hidden" name="_method" value="post"/>
 			<!-- 원글의 wr_id -->
 			<input type="hidden" name="id" id="originId" value="${article.id}"/>
+			<input type="hidden" name="boardName" value="${boardName}"/>
 			<input type="hidden" name="currentCategory" value="${currentCategory}"/>
 			<input type="hidden" name="currentPage" value="${currentPage}"/>
 			<!-- 답변글 : 1, 원글 : 0 -->
-			<input type="hidden" name="isReply" value="0"/>
-<%-- 			<input type="hidden" name="isReply" value="${isReply}"/> --%>
+<!-- 			<input type="hidden" name="isReply" value="0"/> -->
+			<input type="hidden" name="isReply" value="${article.reply}"/>
 			<!-- 기준 댓글의 wr_id -->
 			<input type="hidden" name="baseCommentId" id="baseCommentId" value=""/>
 			<input type="hidden" name="subject" value=""/>
@@ -262,11 +275,11 @@ function delComment(commentId) {
                     	<% if(commentList.get(i).getCommentReply().length() < 5) { %>
                         	<a onclick="getCommentForm('<%=commentList.get(i).getId() %>');">답변</a>
                         <% } %>	
-                        <!-- 본인이거나 권한이 있어야 수정 가능 -->
+                        <!-- 본인이거나 권한이 있어야 댓글 수정 가능 -->
                         <a onclick="getCommentUpdateForm('<%=commentList.get(i).getId() %>','<%=commentList.get(i).getName() %>','<%=commentList.get(i).getContent() %>');">
                        		수정
                     	</a>
-                        <!-- 답변이 달려있으면 삭제 버튼 안보이도록, 관리자면 삭제 가능 extra10 사용?-->
+                        <!-- 댓글이 달려있으면 삭제 버튼 안보이도록, 관리자면 삭제 가능 extra10 사용?-->
 						<a onclick="delComment('<%=commentList.get(i).getId() %>');">삭제</a>
                     </div>
                     <div id="commentForm<%=commentList.get(i).getId() %>">

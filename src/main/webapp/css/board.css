@@ -85,6 +85,7 @@ a.btn_admin:hover,.btn_admin:hover{background:#d20000}
 #bo_list .bo_cate_link{font-weight:bold;color:#3f51b5}
 #bo_list .bo_notice{background:#e7effb;font-weight:bold}
 #bo_list .bo_notice .notice_icon{display:inline-block;padding:2px 3px;background:#ff40a8;font-size:0.92em;color:#fff}
+#bo_list .reply_icon{background:url(../img/reply.gif) no-repeat 5px 12px;padding-left:20px}
 
 .cnt_cmt{font-weight:bold;color:#3a88ff}
 
@@ -141,7 +142,7 @@ a.btn_admin:hover,.btn_admin:hover{background:#d20000}
 #bo_vc .cmt_con{margin:10px 0 20px;line-height:1.7em}
 #bo_vc .cmt_btn{position:absolute;top:20px;right:20px}
 #bo_vc .cmt_li_2 .cmt_btn{position:absolute;top:20px;right:0px}
-#bo_vc .cmt_btn a{display:inline-block;background:#fff;padding:5px;line-height:0.92em;border:1px solid #ddd;color:#777;cursor:pointer}
+#bo_vc .cmt_btn a{display:inline-block;background:#fff;padding:5px;line-height:0.92em;border:1px solid #ddd;color:#777}
 
 /*댓글입력*/
 #bo_vc_w{background:#f3f3f3;border:1px solid #ddd;padding:20px;}

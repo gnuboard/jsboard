@@ -6,15 +6,15 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class JsboardApplication extends SpringBootServletInitializer{
+public class BbsApplication extends SpringBootServletInitializer{
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(JsboardApplication.class);
+		return builder.sources(BbsApplication.class);
 	}
 	
 	public static void main(String[] args) {
 		
-		SpringApplication.run(JsboardApplication.class, args);
+		SpringApplication.run(BbsApplication.class, args);
 	}
 }

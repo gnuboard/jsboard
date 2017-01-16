@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!doctype html>
 <html lang="en">
 <head>
@@ -53,9 +54,9 @@ function selectCopy() {
 </script>
  <body>
  <div id="container">
-    <h1 class="container_tit">board.bo_table</h1>
+    <h1 class="container_tit">${boardName} 게시판</h1>
     <div class="bo_cate">
-        <h2>게시판01 카테고리</h2>
+        <h2>게시판 ${boardName} 카테고리</h2>
         <ul>
             <c:forEach var="category" items="${categoryList}">
             	<c:choose>
@@ -65,7 +66,7 @@ function selectCopy() {
 							class="on" 			
             			</c:if> 
             					id="${category}">
-            				<a href="/board/list/1/category/${category}">전체</a>
+            				<a href="/board/${boardName}/list/1/category/${category}">전체</a>
             			</li>
             		</c:when>
             		<c:when test = "${ category eq '' }" >
@@ -76,7 +77,7 @@ function selectCopy() {
 							class="on" 			
             			</c:if> 
             					id="${category}">
-           					<a href="/board/list/1/category/${category}">${category}</a>
+           					<a href="/board/${boardName}/list/1/category/${category}">${category}</a>
         				</li>
 	                </c:otherwise>
             	</c:choose>
@@ -91,16 +92,18 @@ function selectCopy() {
         <div class="bo_fx">
             <div class="btn_bo_user">
                 <a href="" class="btn_admin btn">관리자</a>
-                <a href="/board/save" class="btn_b02 btn">글쓰기</a>
+                <a href="/board/${boardName}/save" class="btn_b02 btn">글쓰기</a>
             </div>
         </div>
        	<form action="/board/list/${currentPage}" name="boardForm" id="boardForm" method="post">
        	<input type="hidden" name="totalCount" value="${totalCount}" />
        	<input type="hidden" name="pagePerPosts" value="${pagePerPosts}" />
+       	<input type="hidden" name="currentCategory" value="${currentCategory}" />
+       	<input type="hidden" name="boardName" value="${boardName}" />
        	<input type="hidden" name="_method" value=""/>
         <div class="table_basic">
             <table>
-                <caption>게시판01(bo_id로 board테이블에서 가져오기) 목록</caption>
+                <caption>게시판 ${boardName} 목록</caption>
                 <thead>
                 <tr>
                     <th scope="col">번호</th>
@@ -129,13 +132,19 @@ function selectCopy() {
 <!--                     <td class="td_num_c">195</td> -->
 <!--                 </tr> -->
                 <tr>
-                    <td class="td_num_c">${write.id}</td>
+                    <td class="td_num_c">
+                    	<!-- 로딩된 게시물 번호를 매기는 로직 -->
+                    	${totalCount - (pagePerPosts * (currentPage -1 )) - i.index}
+                   	</td>
                     <td class="td_chk">
                         <label class="sound_only">${write.subject} 게시물</label>
                        	<input type="checkbox" name="selectedId" value="${write.id}">
                     </td>
                     <td>
-                    	<a href="/board/view/${write.id}/page/${currentPage}/category/${currentCategory}" class="bo_cate_link">
+                    	<c:if test="${fn:length(write.reply) > 0}">
+                   			<img src="/img/reply.gif" alt="답변글" style="margin-left:${fn:length(write.reply) * 15}px;">
+                   		</c:if>
+                    	<a href="/board/${boardName}/view/${write.id}/page/${currentPage}/category/${currentCategory}" class="bo_cate_link">
                     		<c:choose>
                     			<c:when test='${write.categoryName eq "" }'>
                     				${write.categoryName}
@@ -145,8 +154,9 @@ function selectCopy() {
                    				</c:otherwise>
                     		</c:choose>
                    		</a>
-                    	<a href="/board/view/${write.id}/page/${currentPage}/category/${currentCategory}">
-                    		${write.subject} <span class="cnt_cmt"><span class="sound_only">댓글</span>${write.comment}</span>
+                    	<a href="/board/${boardName}/view/${write.id}/page/${currentPage}/category/${currentCategory}">
+                    		${write.subject}
+                    		<span class="cnt_cmt"><span class="sound_only">댓글</span>${write.comment}</span>
                    		</a>
                    	</td>
                     <td class="td_name">${write.name}</td>
@@ -165,7 +175,7 @@ function selectCopy() {
             </div>
         
             <div class="btn_bo_user">
-                <a href="/board/save" class="btn_b02 btn">글쓰기</a>    
+                <a href="/board/${boardName}/save" class="btn_b02 btn">글쓰기</a>    
             </div>
         </div>
         </form>
@@ -175,16 +185,16 @@ function selectCopy() {
 			            
             <div class="pg_wr">
             	<c:if test = "${ currentPage > pageGroupPerSize}" >
-	                <a href="/board/list/1/category/${currentCategory}" class="first">맨 처음으로</a>
-                	<a href="/board/list/${prevPageGroupLastPage}/category/${currentCategory}" class="prev">이전</a>
+	                <a href="/board/${boardName}/list/1/category/${currentCategory}" class="first">맨 처음으로</a>
+                	<a href="/board/${boardName}/list/${prevPageGroupLastPage}/category/${currentCategory}" class="prev">이전</a>
                 </c:if>
                 <c:forEach var="i" begin="${currentPageGroupFirstPage}" end="${currentPageGroupLastPage}">
                 	<c:choose>
 	                	<c:when test = "${ currentPage eq i}" >
-			                <a href="/board/list/${i}/category/${currentCategory}" class="active">${i}</a>
+			                <a href="/board/${boardName}/list/${i}/category/${currentCategory}" class="active">${i}</a>
 		                </c:when>
 		                <c:otherwise>
-		                	<a href="/board/list/${i}/category/${currentCategory}">${i}</a>
+		                	<a href="/board/${boardName}/list/${i}/category/${currentCategory}">${i}</a>
 		                </c:otherwise>
 	                </c:choose>
                 </c:forEach>
@@ -192,8 +202,8 @@ function selectCopy() {
                 	<c:when test = "${ totalPages eq pageGroupPerSize }" >
                 	</c:when>
 	                <c:when test = "${ currentPage <= totalPages - (totalPages % pageGroupPerSize) }" >
-		                <a href="/board/list/${nextPageGroupFirstPage}/category/${currentCategory}" class="next">다음</a>
-		                <a href="/board/list/${totalPages}/category/${currentCategory}" class="last">맨 마지막으로</a>
+		                <a href="/board/${boardName}/list/${nextPageGroupFirstPage}/category/${currentCategory}" class="next">다음</a>
+		                <a href="/board/${boardName}/list/${totalPages}/category/${currentCategory}" class="last">맨 마지막으로</a>
 		            </c:when>
 		            
 	            </c:choose>

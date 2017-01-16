@@ -6,19 +6,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.sir.domain.Write;
-import kr.sir.service.board.JsBoardService;
+import kr.sir.service.board.BbsService;
 
 @Controller
 @RequestMapping("/board/test")
 public class TestBoardController {
 	
-	private JsBoardService jsBoardService;
+	private BbsService jsBoardService;
 	
 	private final int COMMENT_GROUP = 1;
 	private final int ORIGIN_ARTICLE = 225;
 	
 	@Autowired
-	public void setJsBoardService(JsBoardService jsBoardService) {
+	public void setJsBoardService(BbsService jsBoardService) {
 		this.jsBoardService = jsBoardService;
 	}
 
