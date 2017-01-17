@@ -21,6 +21,7 @@
 		<c:set var="soundOnly" value="<strong class='sound_only'>필수</strong>"/>
 		<c:set var="required_valid" value="alnum_"/>
 		
+		
 	</c:when>
 	
 	<c:when test="${type eq 'update'}">
@@ -45,7 +46,8 @@
     <div id="container_wr">
 
         <div id="board_form"> 
-        <form>
+        <form name="fboardform" id="fboardform" action="/adm/board/${type}" onsubmit="return fboardform_submit(this)" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="_method" value=""/>
             <ul class="tab_01">
                <li><button type="button"  class="selected">기본설정</button></li>
                <li><button type="button">권한 설정</button></li>
@@ -80,7 +82,7 @@
                                 <th scope="row"><label for="gr_id">그룹<strong class="sound_only">필수</strong></label></th>
                                 <td colspan="2">
                                      ${selectedGroupTag} 
-                                    
+
                                     <c:if test="${type eq 'update' }">
                                     <a href="javascript:document.location.href='/adm/board/list/sfl/gr_id/stx/${board.id}'" class="btn_frmline">동일그룹 게시판목록</a>
                                     </c:if>
@@ -89,7 +91,7 @@
                             <tr>
                                 <th scope="row"><label for="bo_subject">게시판 제목<strong class="sound_only">필수</strong></label></th>
                                 <td colspan="2">
-                                    <input type="text" name="bo_subject" value="${board.subject }" id="bo_subject" required class="required frm_input" size="80" maxlength="120">
+                                    <input type="text" name="subject" value="${board.subject}" id="bo_subject" required class="required frm_input" size="80" maxlength="120">
                                 </td>
                             </tr>
                             <tr>
@@ -100,7 +102,7 @@
                                     </span>
                                 </th>
                                 <td colspan="2">
-                                    <input type="text" name="bo_mobile_subject" value="${board.mobileSubject }" id="bo_mobile_subject" class="frm_input" size="80" maxlength="120">
+                                    <input type="text" name="mobileSubject" value="${board.mobileSubject}" id="bo_mobile_subject" class="frm_input" size="80" maxlength="120">
                                 </td>
                             </tr>
                             <tr>
@@ -381,7 +383,7 @@
                                 </span>
                             </th>
                             <td>
-                                <input type="checkbox" name="useDhtmlEditor"  value="1" <c:if test="${board.useDhtmlEditor}">checked</c:if> id="bo_use_dhtml_editor">
+                                <input type="checkbox" name="useDhtmlEditor"  value="1" <c:if test="${board.useDhtmlEditor eq 1}">checked</c:if> id="bo_use_dhtml_editor">
                                 사용
                             </td>
                             <td class="td_grpset">
@@ -412,7 +414,7 @@
                         <tr>
                             <th scope="row"><label for="bo_use_good">추천 사용</label></th>
                             <td>
-                                <input type="checkbox" name="useGood" value="1" <c:if test="${board.useGood}">checked</c:if> id="bo_use_good">
+                                <input type="checkbox" name="useGood" value="1" <c:if test="${board.useGood eq 1}">checked</c:if> id="bo_use_good">
                                 사용
                             </td>
                             <td class="td_grpset">
@@ -425,7 +427,7 @@
                         <tr>
                             <th scope="row"><label for="bo_use_nogood">비추천 사용</label></th>
                             <td>
-                                <input type="checkbox" name="useNogood" value="1" <c:if test="${board.useNogood}">checked</c:if> id="bo_use_nogood">
+                                <input type="checkbox" name="useNogood" value="1" <c:if test="${board.useNogood eq 1}">checked</c:if> id="bo_use_nogood">
                                 사용
                             </td>
                             <td class="td_grpset">
@@ -438,7 +440,7 @@
                         <tr>
                             <th scope="row"><label for="bo_use_name">이름(실명) 사용</label></th>
                             <td>
-                                <input type="checkbox" name="bo_use_name" value="1" <c:if test="${board.useName}">checked</c:if> id="bo_use_name">
+                                <input type="checkbox" name="bo_use_name" value="1" <c:if test="${board.useName eq 1}">checked</c:if> id="bo_use_name">
                                 사용
                             </td>
                             <td class="td_grpset">
@@ -452,7 +454,7 @@
                         <tr>
                             <th scope="row"><label for="bo_use_signature">서명보이기 사용</label></th>
                             <td>
-                                <input type="checkbox" name="useSignature" value="1" <c:if test="${board.useSignature}">checked</c:if> id="bo_use_signature">
+                                <input type="checkbox" name="useSignature" value="1" <c:if test="${board.useSignature eq 1}">checked</c:if> id="bo_use_signature">
                                 사용
                             </td>
                             <td class="td_grpset">
@@ -465,7 +467,7 @@
                         <tr>
                             <th scope="row"><label for="bo_use_ip_view">IP 보이기 사용</label></th>
                             <td>
-                                <input type="checkbox" name="useIpView" <c:if test="${board.useIpView}">checked</c:if> value="1" id="bo_use_ip_view">
+                                <input type="checkbox" name="useIpView" <c:if test="${board.useIpView eq 1}">checked</c:if> value="1" id="bo_use_ip_view">
                                 사용
                             </td>
                             <td class="td_grpset">
@@ -483,7 +485,7 @@
                                 </span>
                             </th>
                             <td>
-                                <input type="checkbox" name="useListContent" <c:if test="${board.useListContent}">checked</c:if> value="1" id="bo_use_list_content">
+                                <input type="checkbox" name="useListContent" <c:if test="${board.useListContent eq 1}">checked</c:if> value="1" id="bo_use_list_content">
                                 사용 (사용시 속도가 느려질 수 있습니다.)
                             </td>
                             <td class="td_grpset">
@@ -501,7 +503,7 @@
                                 </span>
                             </th>
                             <td>
-                                <input type="checkbox" name="useListFile" <c:if test="${board.useListFile}">checked</c:if> value="1" id="bo_use_list_file">
+                                <input type="checkbox" name="useListFile" <c:if test="${board.useListFile eq 1}">checked</c:if> value="1" id="bo_use_list_file">
                                 사용 (사용시 속도가 느려질 수 있습니다.)
                             </td>
                             <td class="td_grpset">
@@ -514,7 +516,7 @@
                         <tr>
                             <th scope="row"><label for="bo_use_list_view">전체목록보이기 사용</label></th>
                             <td>
-                                <input type="checkbox" name="useListView" <c:if test="${board.useListView}">checked</c:if> value="1" id="bo_use_list_view">
+                                <input type="checkbox" name="useListView" <c:if test="${board.useListView eq 1 }">checked</c:if> value="1" id="bo_use_list_view">
                                 사용
                             </td>
                             <td class="td_grpset">
@@ -527,7 +529,7 @@
                         <tr>
                             <th scope="row"><label for="bo_use_email">메일발송 사용</label></th>
                             <td>
-                                <input type="checkbox" name="useEmail" value="1"  <c:if test="${board.useEmail}">checked</c:if>id="bo_use_email">
+                                <input type="checkbox" name="useEmail" value="1"  <c:if test="${board.useEmail eq 1 }">checked</c:if>id="bo_use_email">
                                 사용
                             </td>
                             <td class="td_grpset">
@@ -599,7 +601,7 @@
                         <tr>
                             <th scope="row"><label for="bo_use_file_content">파일 설명 사용</label></th>
                             <td>
-                                <input type="checkbox" name="useFileContent" value="1" <c:if test="${board.useFileContent }">checked</c:if> id="bo_use_file_content">사용
+                                <input type="checkbox" name="useFileContent" value="1" <c:if test="${board.useFileContent eq 1}">checked</c:if> id="bo_use_file_content">사용
                             </td>
                             <td class="td_grpset">
                                 <input type="checkbox" name="chk_group_use_file_content" value="1" id="chk_grp_use_file_content">
@@ -739,8 +741,8 @@
                             <tr>
                             <th scope="row"><label for="bo_skin">스킨 디렉토리<strong class="sound_only">필수</strong></label></th>
                             <td>
-                                <select id="bo_skin">
-                                    <option>선택</option>
+                                <select id="skin" name="skin">
+                                    <option value="basic" selected="selected">basic</option>
                                 </select>
                             </td>
                             <td class="td_grpset">
@@ -753,8 +755,8 @@
                         <tr>
                             <th scope="row"><label for="bo_mobile_skin">모바일 스킨 디렉토리<strong class="sound_only">필수</strong></label></th>
                             <td>
-                                <select id="bo_mobile_skin">
-                                    <option>선택</option>
+                                <select id="mobileSkin" name="mobileSkin">
+                                    <option value="basic" selected="selected">basic</option>
                                 </select>
                             </td>
                             <td class="td_grpset">
@@ -948,7 +950,7 @@
                                 </span>
                             </th>
                             <td>
-                                <input type="text" name="galleryHeight" id="bo_gallery_height" value="${board.halleryHeight}" required class="required numeric frm_input" size="4">
+                                <input type="text" name="galleryHeight" id="bo_gallery_height" value="${board.galleryHeight}" required class="required numeric frm_input" size="4">
                             </td>
                             <td class="td_grpset">
                                 <input type="checkbox" name="chk_grp_gallery_height" value="1" id="chk_grp_gallery_height">
@@ -999,7 +1001,7 @@
                                 </span>
                             </th>
                             <td>
-                                <input type="text" name="bo_table_width" id="bo_table_width" value="${board.tableWidt}" required class="required numeric frm_input" size="4">
+                                <input type="text" name="bo_table_width" id="bo_table_width" value="${board.tableWidth}" required class="required numeric frm_input" size="4">
                             </td>
                             <td class="td_grpset">
                                 <input type="checkbox" name="chk_grp_table_width" value="1" id="chk_grp_table_width">
@@ -1133,7 +1135,7 @@
                                 </span>
                             </th>
                             <td colspan="2">
-                                <input type="checkbox" name="chk_grp_point" id="chk_grp_point" onclick="set_point(this.form)">
+                                <input type="checkbox" name="chk_group_point" id="chk_grp_point" onclick="set_point(this.form)">
                             </td>
                         </tr>
                         <tr>
@@ -1355,7 +1357,12 @@
                 <a href="#" class="btn_02 btn">게시판복사</a>
                 <a href="#" class="btn_02 btn">게시판바로가기</a>
                 <a href="#" class="btn_02 btn">게시판썸네일삭제</a>
-                <input type="submit" value="확인" id="btn_submit" class="btn_submit btn">
+				<c:if test="${type eq 'add' }">
+                <input type="submit" value="추가" id="btn_submit" class="btn_submit btn" onclick="document.pressed=this.value">
+                </c:if>
+                <c:if test="${type eq 'update'}">
+                <input type="submit" value="수정" id="btn_submit" class="btn_submit btn" onclick="document.pressed=this.value">
+                </c:if>
             </div>
         </form>
         </div>
@@ -1385,7 +1392,8 @@ $(function(){
                     return false;
                 }
 
-                var field = Array('bo_gallery_cols', 'bo_gallery_width', 'bo_gallery_height', 'bo_mobile_gallery_width', 'bo_mobile_gallery_height', 'bo_image_width');
+                var field = Array('galleryCols', 'galleryWidth', 'galleryHeight', 'mobileGalleryWidth', 'mobileGalleryHeight', 'imageWidth');
+                //var field = Array('bo_gallery_cols', 'bo_gallery_width', 'bo_gallery_height', 'bo_mobile_gallery_width', 'bo_mobile_gallery_height', 'bo_image_width');
                 var count = field.length;
                 var key;
 
@@ -1406,24 +1414,24 @@ function board_copy(bo_table) {
 
 function set_point(f) {
     if (f.chk_group_point.checked) {
-        f.bo_read_point.value = "${config.readPoint}";
-        f.bo_write_point.value = "${config.writePoint}";
-        f.bo_comment_point.value = "${config.commentPoint}";
-        f.bo_download_point.value = "${config.downloadPoint}";
+        f.readPoint.value = ${config.readPoint};
+        f.writePoint.value = ${config.writePoint};
+        f.commentPoint.value = ${config.commentPoint};
+        f.downloadPoint.value = ${config.downloadPoint};
     } else {
-        f.bo_read_point.value     = f.bo_read_point.defaultValue;
-        f.bo_write_point.value    = f.bo_write_point.defaultValue;
-        f.bo_comment_point.value  = f.bo_comment_point.defaultValue;
-        f.bo_download_point.value = f.bo_download_point.defaultValue;
+        f.readPoint.value     = f.bo_read_point.defaultValue;
+        f.writePoint.value    = f.bo_write_point.defaultValue;
+        f.commentPoint.value  = f.bo_comment_point.defaultValue;
+        f.downloadPoint.value = f.bo_download_point.defaultValue;
     }
 }
 
 function fboardform_submit(f)
 {
-    <?php echo get_editor_js("bo_content_head"); ?>
+/*     <?php echo get_editor_js("bo_content_head"); ?>
     <?php echo get_editor_js("bo_content_tail"); ?>
     <?php echo get_editor_js("bo_mobile_content_head"); ?>
-    <?php echo get_editor_js("bo_mobile_content_tail"); ?>
+    <?php echo get_editor_js("bo_mobile_content_tail"); ?> */
 
     if (parseInt(f.bo_count_modify.value) < 0) {
         alert("원글 수정 불가 댓글수는 0 이상 입력하셔야 합니다.");
@@ -1436,6 +1444,16 @@ function fboardform_submit(f)
         f.bo_count_delete.focus();
         return false;
     }
+        
+    if(document.pressed == '추가') {
+    	alert("추가");
+	}else if (document.pressed == '수정') {
+		alert("수정");
+		$("input:hidden[name=_method]").val("PUT");
+		
+	}
+    
+    
 
     return true;
 }

@@ -107,12 +107,13 @@ public class MemberController {
 	
 	//관리자 회원 리스트 페이지에서 회원 삭제
 	@RequestMapping(value={"/updateordelete"},method=RequestMethod.DELETE)
-	public String deleteMember(Model model,@RequestParam(value="chk[]") String chk){
+	public String deleteMember(Model model,@RequestParam(value="chk[]") String chk,String act_button){
 			
-	/*	System.out.println("chk="+chk);
-			
-		memberService.adminDeletesMember(chk);
-		System.out.println("삭제완료");				
+	/*	
+		if(act_button.equals("선택삭제"){
+			memberService.adminDeletesMember(chk);
+			System.out.println("삭제완료");				
+		}
 			
 	 */
 		return "redirect:../list";
@@ -120,9 +121,11 @@ public class MemberController {
 	
 	//관리자 회원 리스트에서 회원 수정(미구현)
 	@RequestMapping(value={"/updateordelete"},method=RequestMethod.PUT)
-	public String updateMember(@RequestParam(value="chk[]") List<String> chk){
-		
-		System.out.println("수정완료");
+	public String updateMember(@RequestParam(value="chk[]") List<String> chk ,String act_button){
+		if(act_button.equals("선택수정")){
+			
+			
+		}
 		return "redirect:../list";
 	}
 	

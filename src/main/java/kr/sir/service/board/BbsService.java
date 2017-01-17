@@ -9,13 +9,16 @@ import org.springframework.data.domain.PageRequest;
 
 import kr.sir.domain.Write;
 
-public interface JsBoardService {
+public interface BbsService {
 	
 	// 게시판 가져오기
-	public Page<Write> findByBoardId(int boardId, PageRequest pageRequest);
+//	public Page<Write> findByBoardId(int boardId, PageRequest pageRequest);
 	
 	// 게시판 가져오기 ( 카테고리로 검색 )
 	public Page<Write> findByCategoryName(int boardId, String categoryName, PageRequest pageRequest);
+	
+	// 글 삭제할 때 글에 포함된 댓글까지 함께 지우기 위해 댓글 id들까지 함께 가져온다.
+	public String findIdsWithCommentIds(String selectedId);
 	
 	// 게시글 선택 삭제
 	public int deleteInIds(String ids);
@@ -30,7 +33,7 @@ public interface JsBoardService {
 	public void increaseHit(Write article, HttpServletRequest request);
 
 	// 뷰에서 게시글 삭제
-	public void delArticle(int articleId);
+	public void delArticle(int articleNumber);
 
 	// 카테고리 이름 리스트 가져오기 
 	public List<String> findCategoryNames();
@@ -52,5 +55,5 @@ public interface JsBoardService {
 
 	// 댓글에 들어갈 comment를 지정
 	public int appointComment(Write baseComment, int articleId);
-	
+
 }

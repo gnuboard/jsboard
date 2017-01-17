@@ -10,6 +10,7 @@ import kr.sir.common.CommonUtil;
 import kr.sir.domain.Board;
 import kr.sir.domain.BoardGroup;
 import kr.sir.domain.BoardGroupList;
+import kr.sir.domain.Config;
 import kr.sir.domain.repository.admin.BoardEmRepository;
 import kr.sir.domain.repository.admin.BoardGroupEmRepository;
 import kr.sir.domain.repository.admin.BoardGroupRepository;
@@ -95,64 +96,29 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 	
-	@Override
-	public List<Board> getAllBoardsList() {
-		//is_admin이 super면 모든테이블. 아니면 자기가 관리자인 그룹의 게시판 목록만.
-		String is_admin="super";
-		String prefix=CommonUtil.getTablePrefix();
-		
-		String sqlCommon="from "+prefix+"board b ";
-		String sqlSearch=" where (1) ";
-		
-		
-		if(!is_admin.equals("super")){
-			sqlCommon+=","+prefix+"group g ";
-			sqlSearch="and (b.gr_id=g.gr_id and g.gr_admin='"+"로그인한 아이디"+"'";
-			
-		}
-		String query="select * "+sqlCommon+sqlSearch;
-		
-		
-		
-		return boardEmRepository.getAllBoardsList(query);
-	}
 	
-	//게시판생성에서 시용할 변수들 생성
+	//게시판 목록 
 	@Override
-	public List<String> makeValue(String type){
-		List<String> values = new ArrayList<String>();
-		String submitForm="<div class='btn_confirm01 btn_confirm'>"
-				         +"<input type='submit' value='확인' class='btn_submit' accesskey='s'>"
-				         +"<a href='./board_list.php?'>목록</a>";
-		
-		if(type.equals("update")){
-			submitForm+="<a href='./board_copy.php?bo_table='.$bo_table.' id='board_copy' target='win_board_copy'>게시판복사</a>"
-		               +"<a href='/board.php?bo_table='.$board['bo_table']. class='btn_frmline'>게시판 바로가기</a>"
-		               +"<a href='./board_thumbnail_delete.php?bo_table='.$board['bo_table'].'&amp;'.$qstr.' onclick='return delete_confirm2(\'게시판 썸네일 파일을 삭제하시겠습니까?\');'>게시판 썸네일 삭제</a>";
-		    
-		    submitForm+="</div>";
-		}
-		
-		
-		
-		return values;
-		
+	public List<Board> getAllBoardsList() {		
+		return boardEmRepository.getAllBoardsList(CommonUtil.getTablePrefix());
 	}
 	
 	
 	//게시판 생성,수정시 그룹목록 출력과 생성시에는 해당하는 그룹 선택까지 한 selectBOX 태그
 	public String getSelectedGroup(String id,String groupId,String event){
-		String selectBoxTag="";
+		String selectBoxTag="<select id='"+groupId+"' name='"+groupId+"' "+event+">";
 		
 		
 		List<BoardGroup> groupList=boardGroupEmRepository.getBoardGroupListByAdmin();
 		
 		for(int i=0; i<groupList.size();i++){
 			if(i==0){
-				selectBoxTag="<option id='"+id+"' value=''"+event+">선택</option>";
+				selectBoxTag+="<option id='"+id+"' value=''"+event+">선택</option>";
 			}
 			selectBoxTag+=selectOption(groupList.get(i).getId(),groupId,groupList.get(i).getSubject());
-		}		
+		}
+		
+		selectBoxTag+="</select>";
 		return selectBoxTag;
 	}
 	
@@ -166,9 +132,76 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 	
+	//생성된 게시판 갯수
+	@Override
+	public long getCountBoards() {		
+		return boardRepository.count();
+	}
 	
 	
+	// 게시판 수정,추가
+	@Override
+	public void addBoard(Board board){
+		boardRepository.save(board);
+	}
+	
+	//게시판 삭제
+	public void deleteBoards(String ids){
+		//게시판에서 먼저 삭제
+		boardEmRepository.deleteBoards(ids,CommonUtil.getTablePrefix());
+		
+		
+		//최신글삭제 (boardNew)
+		
+		//스크랩삭제 (아직없음)
+		
+		//파일삭제(boardFile)
+		
+		//delete_cache_latest(테이블Id) 뭔지모름
+		
+		//게시판 폴더 전체 삭제 rm_rf(G5_DATA_PATH/file/테이블Id)
+	}
 
+	//게시판 생성시 기본 값을 가진 board
+	@Override
+	public Board getInitializedBoard(Config config) {
+		Board board =new Board();
+		board.setCountDelete(1);
+		board.setCountModify(1);
+		board.setReadPoint(config.getReadPoint());
+		board.setWritePoint(config.getCommentPoint());
+		board.setCommentPoint(config.getCommentPoint());
+		board.setDownloadPoint(config.getDownloadPoint());
+		board.setGalleryCols(4);
+		board.setGalleryWidth(174);
+		board.setGalleryHeight(124);
+		board.setMobileGalleryWidth(125);
+		board.setMobileGalleryHeight(100);
+		board.setTableWidth(100);
+		board.setPageRows(config.getPageRows());
+		board.setMobilePageRows(config.getPageRows());
+		board.setSubjectLen(60);
+		board.setMobileSubjectLen(30);
+		board.setNewIcon(24);
+		board.setHotIcon(100);
+		board.setImageWidth(600);
+		board.setUploadCount(2); 
+		board.setUploadSize(1048576);
+		board.setReplyOrder(1);
+		board.setUseSearch(1);
+		board.setSkin("basic");
+		board.setMobileSkin("basic");
+		board.setUseSecret(0);
+		board.setIncludeHead("head.jsp");
+		board.setIncludeTail("tail.jsp");
+		//여기부턴 널이 안되서 강제로 값 넣은거
+		board.setMobileSubject("자유게시판");
+		board.setNotice("");
+		board.setSubject("");
+		return board;
+	}
+	
+	
 }
 
 

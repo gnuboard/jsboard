@@ -5,6 +5,7 @@ import java.util.List;
 import kr.sir.domain.Board;
 import kr.sir.domain.BoardGroup;
 import kr.sir.domain.BoardGroupList;
+import kr.sir.domain.Config;
 
 public interface BoardService {
 
@@ -31,10 +32,19 @@ public interface BoardService {
 	
 	//게시판 목록
 	public List<Board> getAllBoardsList();
-
-	//회원가입폼에서 사용할 변수 생성
-	public List<String> makeValue(String type);
 	
 	//게시판 생성,수정시 그룹목록 출력과 생성시에는 해당하는 그룹 선택까지 한 selectBOX 태그
 	public String getSelectedGroup(String name,String groupId,String event);
+	
+	//생성된 게시판 갯 수
+	public long getCountBoards();
+	
+	//보드 추가 or 수정
+	public void addBoard(Board board);
+	
+	//보드 삭제
+	public void deleteBoards(String ids);
+
+
+	public Board getInitializedBoard(Config config);
 }
