@@ -1446,9 +1446,9 @@ function fboardform_submit(f)
     }
         
     if(document.pressed == '추가') {
-    	alert("추가");
+    	
 	}else if (document.pressed == '수정') {
-		alert("수정");
+		
 		$("input:hidden[name=_method]").val("PUT");
 		
 	}

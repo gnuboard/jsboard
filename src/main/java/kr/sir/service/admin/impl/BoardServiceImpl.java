@@ -234,7 +234,7 @@ public class BoardServiceImpl implements BoardService {
 		board.setIncludeHead("head.jsp");
 		board.setIncludeTail("tail.jsp");
 		//여기부턴 널이 안되서 강제로 값 넣은거
-		board.setMobileSubject("자유게시판");
+		board.setMobileSubject(" ");
 		board.setNotice("");
 		board.setSubject("");
 		return board;

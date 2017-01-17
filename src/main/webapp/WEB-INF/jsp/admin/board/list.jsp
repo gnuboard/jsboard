@@ -213,7 +213,7 @@
             if(!confirm("선택한 자료를 정말 삭제하시겠습니까?")) {
                 return false;
             }
-            alert("게시판삭제");
+            
             $("input:hidden[name=_method]").val("DELETE");
         }else if(document.pressed == "선택수정"){
         	$("input:hidden[name=_method]").val("PUT");
