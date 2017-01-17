@@ -32,7 +32,7 @@
 
             </form>
         </div>
-        <form name="fboardlist" action="" method="post" onsubmit="return fboardlist_submit(this);">
+        <form name="fboardlist" action="/adm/board/updateordelete" method="post" onsubmit="return fboardlist_submit(this);">
         <input type="hidden" name="_method" value="">
         <div id="board_list" class="table_basic table_01">
             <table>
@@ -52,7 +52,7 @@
                     <th scope="col">쓰기P</th>
                     <th scope="col">댓글P</th>
                     <th scope="col">다운P</th>
-                    <th scope="col">SMS<br>사용</th>
+                    <th scope="col">SNS<br>사용</th>
                     <th scope="col">검색<br>사용</th>
                     <th scope="col">출력순서</th>
                     <th scope="col">접속기기</th>
@@ -68,8 +68,9 @@
                 
                 <tr>
                     <td  class="td_chk">
+                    	<input type="hidden" name="list[${i.index}].id" value="${board.id}">
+                        <input type="checkbox" name="chk" value="${i.index}" id="chk_${i.index}"> 
                         <label class="sound_only" for="chk_${i.index}">${board.subject}</label>
-                        <input type="checkbox" name="chk[]" value="${board.table} " id="chk_${i.index}"> 
                     </td>
          
                     <td>
@@ -80,62 +81,62 @@
                         </select>
                         </c:when>
                         <c:otherwise>
-                        <input type="hidden" name="groupId[${i.index}]" value="${board.groupId}">${board.subject}	
+                        <input type="hidden" name="list[${i.index}].groupId" value="${board.groupId}">${board.groupId}	
                         </c:otherwise>
                         </c:choose>
                         
                     </td>
                     
                     <td class="td_left">
-                    	<input type="hidden" name="board_table[${i.index}]" value="${board.id }">
-                    	<a href="">${board.id}</a>
+                    	<input type="hidden" name="list[${i.index}].table" value="${board.table}">
+                    	<a href="#">${board.table}</a>
                     </td>
                     
                     <td>
-                        <select>
-                            <option>${board.skin}</option>
+                        <select name="list[${i.index}].skin">
+                            <option value="${board.skin}" selected="selected">${board.skin}</option>
                         </select>
                     </td>
                     <td>
-                        <select>
-                            <option>${board.mobileSkin}</option>
+                        <select name="list[${i.index}].mobileSkin">
+                            <option value="${board.mobileSkin}" selected="selected">${board.mobileSkin}</option>
                         </select>
                     </td>
                     <td>
                         <label class="sound_only">게시판 제목<strong class="sound_only"> 필수</strong></label>
-                        <input type="text"  name="subject[${i.index}]" value="${board.subject}" id="bo_subject_${i.index}" required class="required tbl_input bo_subject " size="10">
+                        <input type="text"  name="list[${i.index}].subject" value="${board.subject}" id="bo_subject_${i.index}" required class="required tbl_input bo_subject " size="10">
                     </td>
                     <td class="td_numsmall">
                         <label class="sound_only">읽기 포인트</label>
-                        <input type="text" name="readPoint[${i.index}]" value="${board.readPoint}" id="subject_${i.index}"  required class="tbl_input" size="3">
+                        <input type="text" name="list[${i.index}].readPoint" value="${board.readPoint}" id="subject_${i.index}"  required class="tbl_input" size="3">
                     </td>
                     <td class="td_numsmall">
                         <label class="sound_only">쓰기 포인트</label>
-                        <input type="text" name="writePoint[${i.index}]" value="${board.writePoint}" id="bo_write_point_${i.index}"  class="tbl_input" size="3">
+                        <input type="text" name="list[${i.index}].writePoint" value="${board.writePoint}" id="bo_write_point_${i.index}"  class="tbl_input" size="3">
                     </td>
                     <td class="td_numsmall">
                         <label class="sound_only">댓글 포인트</label>
-                        <input type="text" name="commentPoint[${i.index}]" value="${board.commentPoint}" id="bo_comment_point_${i.index}" class="tbl_input" size="3">
+                        <input type="text" name="list[${i.index}].commentPoint" value="${board.commentPoint}" id="bo_comment_point_${i.index}" class="tbl_input" size="3">
                     </td>
                     <td class="td_numsmall">
                         <label class="sound_only">다운 포인트</label>
-                        <input type="text" name="downloadPoint[${i.index}]" value="${board.downloadPoint}" id="bo_download_point_${i.index}" class="tbl_input" size="3">
+                        <input type="text" name="list[${i.index}].downloadPoint" value="${board.downloadPoint}" id="bo_download_point_${i.index}" class="tbl_input" size="3">
                     </td>
                     <td class="td_chk">
                         <label class="sound_only">SNS 사용</label>
-                        <input type="checkbox" name="useSns[${i.index}]" value="1" id="bo_use_sns_${i.index}" <c:if test="${board.useSns eq 1 }">checked</c:if> >
+                        <input type="checkbox" name="list[${i.index}].useSns" value="1" id="bo_use_sns_${i.index}" <c:if test="${board.useSns eq 1 }">checked</c:if> >
                     </td>
                     <td class="td_chk">
                         <label class="sound_only">검색 사용</label>
-                        <input type="checkbox" name="useSearch[${i.index}]" value="1" id="bo_use_search_${i.index}" <c:if test="${board.useSearch eq 1}">checked</c:if>  >
+                        <input type="checkbox" name="list[${i.index}].useSearch" value="1" id="bo_use_search_${i.index}" <c:if test="${board.useSearch eq 1}">checked</c:if>  >
                     </td>
                     <td class="td_numsmall">
                         <label class="sound_only">출력 순서</label>
-                        <input type="text" name="order[${i.index}]" value="${board.order}" id="bo_order_${i.index}" class="tbl_input" size="3">
+                        <input type="text" name="list[${i.index}].order" value="${board.order}" id="bo_order_${i.index}" class="tbl_input" size="3">
                     </td>
                     <td class="td_select">
                         <label class="sound_only">접속기기</label>
-                        <select name="device[${i.index}]" id="bo_device_${i.index}">
+                        <select name="list[${i.index}].device" id="bo_device_${i.index}">
                             <option value="both">모두</option>
                             <option value="pc">PC</option>
                             <option value="mobile">모바일</option>
@@ -146,6 +147,15 @@
                    		 <a href="/adm/board/form/copy" class="btn_02 board_copy" target="win_board_copy">복사</a>
                    	</td>
                 </tr>
+                
+                
+                <input type="hidden" name="list[${i.index}].admin" value="${board.admin}">
+                <input type="hidden" name="list[${i.index}].listLevel" value="${board.listLevel}">
+                <input type="hidden" name="list[${i.index}].readLevel" value="${board.readLevel}">
+                <input type="hidden" name="list[${i.index}].categoryList" value="${board.categoryList}">
+                
+                
+            
             
                 
                 </c:forEach>
@@ -160,9 +170,9 @@
         </div>
         <div class="btn_fixed_top">
             <input type="submit" value="선택수정" class="btn_02 btn" onclick="document.pressed=this.value">
-            <c:if test="${is_admin eq 'super'}">
+           <%--  <c:if test="${is_admin eq 'super'}"> --%>
             <input type="submit" value="선택삭제" class="btn_02 btn" onclick="document.pressed=this.value">
-            </c:if>
+            <%-- </c:if> --%>
             <a href="/adm/board/form/add" class="btn_submit btn">게시판 추가</a>
         </div>
         </form>
@@ -194,7 +204,7 @@
     
     function fboardlist_submit(f)
     {
-        if (!is_checked("chk[]")) {
+        if (!is_checked("chk")) {
             alert(document.pressed+" 하실 항목을 하나 이상 선택하세요.");
             return false;
         }
@@ -204,7 +214,7 @@
                 return false;
             }
             $("input:hidden[name=_method]").val("DELETE");
-        }else if(document.pressed=="선택수정"){
+        }else if(document.pressed == "선택수정"){
         	$("input:hidden[name=_method]").val("PUT");
         }
 

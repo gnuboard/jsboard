@@ -1,5 +1,7 @@
 package kr.sir.domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -297,6 +299,10 @@ public class Board {
 	
 	@Column(name="bo_10", columnDefinition = "varchar(255) NOT NULL DEFAULT ''")
 	private String extra10Value="";
+	
+	
+	
+	
 }
 
 

@@ -49,7 +49,7 @@ public class BoardGroupEmRepository {
 			query+=" LEFT JOIN "+CommonUtil.getTablePrefix()+"member m"
 				  +" ON (m.mb_id=g.gr_admin) WHERE m.mb_id='"+"로긴한아이디"+"'";	
 		}		
-		query+=" ORDER BY g.gr_id";
+	/*	query+=" ORDER BY g.gr_id";*/
 		
 		System.out.println("query : " +query);
 		

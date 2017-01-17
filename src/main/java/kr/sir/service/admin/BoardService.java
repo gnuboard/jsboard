@@ -5,6 +5,7 @@ import java.util.List;
 import kr.sir.domain.Board;
 import kr.sir.domain.BoardGroup;
 import kr.sir.domain.BoardGroupList;
+import kr.sir.domain.BoardVO;
 import kr.sir.domain.Config;
 
 public interface BoardService {
@@ -39,8 +40,11 @@ public interface BoardService {
 	//생성된 게시판 갯 수
 	public long getCountBoards();
 	
-	//보드 추가 or 수정
+	//보드 추가 
 	public void addBoard(Board board);
+
+	//보드 수정
+	public void updateBoards(String[] chk,BoardVO boardVO);
 	
 	//보드 삭제
 	public void deleteBoards(String ids);

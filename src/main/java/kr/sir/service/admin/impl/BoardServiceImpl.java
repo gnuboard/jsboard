@@ -10,6 +10,7 @@ import kr.sir.common.CommonUtil;
 import kr.sir.domain.Board;
 import kr.sir.domain.BoardGroup;
 import kr.sir.domain.BoardGroupList;
+import kr.sir.domain.BoardVO;
 import kr.sir.domain.Config;
 import kr.sir.domain.repository.admin.BoardEmRepository;
 import kr.sir.domain.repository.admin.BoardGroupEmRepository;
@@ -105,20 +106,22 @@ public class BoardServiceImpl implements BoardService {
 	
 	
 	//게시판 생성,수정시 그룹목록 출력과 생성시에는 해당하는 그룹 선택까지 한 selectBOX 태그
-	public String getSelectedGroup(String id,String groupId,String event){
-		String selectBoxTag="<select id='"+groupId+"' name='"+groupId+"' "+event+">";
+	public String getSelectedGroup(String selectId,String groupId,String event){
+		String selectBoxTag="<select id='"+selectId+"' name='"+selectId+"' "+event+">\n";
 		
 		
 		List<BoardGroup> groupList=boardGroupEmRepository.getBoardGroupListByAdmin();
 		
 		for(int i=0; i<groupList.size();i++){
 			if(i==0){
-				selectBoxTag+="<option id='"+id+"' value=''"+event+">선택</option>";
+				selectBoxTag+="<option id='"+selectId+"' value='"+event+"'>선택</option>\n";
 			}
 			selectBoxTag+=selectOption(groupList.get(i).getId(),groupId,groupList.get(i).getSubject());
 		}
 		
 		selectBoxTag+="</select>";
+		
+		System.out.println("selectTag : " + selectBoxTag);
 		return selectBoxTag;
 	}
 	
@@ -138,11 +141,38 @@ public class BoardServiceImpl implements BoardService {
 		return boardRepository.count();
 	}
 	
-	
-	// 게시판 수정,추가
+	//게시판 추기
 	@Override
-	public void addBoard(Board board){
-		boardRepository.save(board);
+	public void addBoard(Board board) {	
+		boardRepository.save(board);	
+	}
+	
+	// 리스트에서 게시판 수정
+	@Override
+	public void updateBoards(String[] chk,BoardVO boardVO){
+		List<BoardVO> board= boardVO.getList();		
+		for(String k:chk){
+			Board tempBoard = board.get(Integer.parseInt(k));
+			Board boardToUpdate = new Board();
+			boardToUpdate.setId(tempBoard.getId());
+			boardToUpdate.setSkin(tempBoard.getSkin());
+			boardToUpdate.setMobileSkin(tempBoard.getMobileSkin());
+			boardToUpdate.setSubject(tempBoard.getSubject());
+			boardToUpdate.setReadPoint(tempBoard.getReadPoint());
+			boardToUpdate.setWritePoint(tempBoard.getWritePoint());
+			boardToUpdate.setCommentPoint(tempBoard.getCommentPoint());
+			boardToUpdate.setDownloadPoint(tempBoard.getDownloadPoint());
+			boardToUpdate.setUseSns(tempBoard.getUseSns());
+			boardToUpdate.setUseSearch(tempBoard.getUseSearch());
+			boardToUpdate.setOrder(tempBoard.getOrder());
+			boardToUpdate.setDevice(tempBoard.getDevice());
+			//여기부턴 cannot be null 에러 떄문에 억지로 매핑중
+			boardToUpdate.setAdmin(tempBoard.getAdmin());
+			boardToUpdate.setCategoryList(tempBoard.getCategoryList());
+		
+			boardEmRepository.updateBoard(boardToUpdate);			
+			/*boardRepository.save(boardToSave);*/
+		}
 	}
 	
 	//게시판 삭제
