@@ -47,7 +47,7 @@ public interface BoardService {
 	public void updateBoards(String[] chk,BoardVO boardVO);
 	
 	//보드 삭제
-	public void deleteBoards(String ids);
+	public void deleteBoards(String[] chk,BoardVO boardVO);
 
 
 	public Board getInitializedBoard(Config config);

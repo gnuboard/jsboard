@@ -188,11 +188,11 @@ public class BoardController {
 		return "admin/board/list";
 	}
 	
-	//게시판 삭제
+	//리스트에서 게시판 삭제
 	@RequestMapping(value={"/updateordelete"},method=RequestMethod.DELETE)
-	public String deleteBoards(String chk){
+	public String deleteBoards(String[] chk,@ModelAttribute BoardVO boardVO){
 		System.out.println("여긴 딜리트 : " + chk);
-		/*boardService.deleteBoards(chk);*/
+		boardService.deleteBoards(chk,boardVO);
 		return "admin/board/list";
 	}
 	

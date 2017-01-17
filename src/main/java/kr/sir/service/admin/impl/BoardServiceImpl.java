@@ -153,7 +153,7 @@ public class BoardServiceImpl implements BoardService {
 		List<BoardVO> board= boardVO.getList();		
 		for(String k:chk){
 			Board tempBoard = board.get(Integer.parseInt(k));
-			Board boardToUpdate = new Board();
+			/*Board boardToUpdate = new Board();
 			boardToUpdate.setId(tempBoard.getId());
 			boardToUpdate.setSkin(tempBoard.getSkin());
 			boardToUpdate.setMobileSkin(tempBoard.getMobileSkin());
@@ -168,18 +168,27 @@ public class BoardServiceImpl implements BoardService {
 			boardToUpdate.setDevice(tempBoard.getDevice());
 			//여기부턴 cannot be null 에러 떄문에 억지로 매핑중
 			boardToUpdate.setAdmin(tempBoard.getAdmin());
-			boardToUpdate.setCategoryList(tempBoard.getCategoryList());
+			boardToUpdate.setCategoryList(tempBoard.getCategoryList());*/
 		
-			boardEmRepository.updateBoard(boardToUpdate);			
+			boardEmRepository.updateBoard(tempBoard);			
 			/*boardRepository.save(boardToSave);*/
 		}
 	}
 	
 	//게시판 삭제
-	public void deleteBoards(String ids){
-		//게시판에서 먼저 삭제
-		boardEmRepository.deleteBoards(ids,CommonUtil.getTablePrefix());
+	public void deleteBoards(String[] chk,BoardVO boardVO){
 		
+		String ids="";
+		//게시판에서 먼저 삭제
+		
+		List<BoardVO> board= boardVO.getList();		
+		for(int k=0; k<chk.length;k++){
+			ids+=board.get(Integer.parseInt(chk[k])).getId();		
+			if(k!=chk.length-1){
+				ids+=",";		
+			}			
+		}		
+		boardEmRepository.deleteBoards(ids, CommonUtil.getTablePrefix());
 		
 		//최신글삭제 (boardNew)
 		
