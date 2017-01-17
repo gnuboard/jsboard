@@ -10,6 +10,22 @@
 </head>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+
+$(document).ready(function(){
+	
+	var saveType = '<%= request.getAttribute("saveType") %>';
+	if(saveType == "answer") {
+		// 원 글 내용에 줄마다 댓글 무늬 표시
+		var text1 = "\n > \n > \n > ";
+		var text2 = "\n > \n >"; 
+		var originText = $('#content').text().replace(/\n/g, "\n > ");
+		$('#content').html(text1);
+		$('#content').append(originText);
+		$('#content').append(text2);
+	}
+	
+});
+
 function submitSaveForm() {
 	// form에 입력이 없을 시 기본값 셋팅
 	if( $("#email").val() == null ) $("#email").val("");
@@ -61,7 +77,7 @@ function submitSaveForm() {
     	</c:choose>
         </h2>
         <!-- 게시물 작성/수정 시작 { -->
-   		<form action="/board/save" name="boardForm" id="boardForm" method="post">
+   		<form action="/board/save" name="boardForm" id="boardForm" method="post" enctype="multipart/form-data">
         
         	<!-- http method 값 셋팅 -->
 			<input type="hidden" name="_method"/>
@@ -83,15 +99,21 @@ function submitSaveForm() {
 			<input type="hidden" name="extra10" value=""/>
 
 			<input type="hidden" name="boardName" value="${boardName}"/>
-			<c:if test='${saveType eq "update"}'>
-				<input type="hidden" name="id" value="${article.id}"/>
+			<input type="hidden" name="saveType" value="${saveType}"/>
+			<c:if test='${saveType ne "insert"}'>
 				<input type="hidden" name="currentCategory" value="${currentCategory}"/>
 				<input type="hidden" name="currentPage" value="${currentPage}"/>
+			</c:if>
+			<c:if test='${saveType eq "update"}'>
+				<input type="hidden" name="id" value="${article.id}"/>
+
 			</c:if>
 			<c:choose>
 				<c:when test='${saveType eq "answer"}'>
 					<input type="hidden" name="isReply" value="1"/>
 					<input type="hidden" name="num" value="${article.num}"/>
+					<!-- 기준 원글 id, 댓글에서 매핑하던  baseCommentId 사용 -->
+					<input type="hidden" name="baseCommentId" value="${baseArticleId}"/>
 				</c:when>
 				<c:otherwise>
 					<input type="hidden" name="isReply" value="0"/>
@@ -171,12 +193,19 @@ function submitSaveForm() {
                 <td><input type="text" name="link12" id="link12" class="frm_input" size="50" value="${article.link12}"></td>
             </tr>
 
-<!--             <tr> -->
-<!--                 <th scope="row">파일 #1</th> -->
-<!--                 <td> -->
-<!--                     <input type="file" name="file" class="frm_file frm_input"> -->
-<!--                 </td> -->
-<!--             </tr> -->
+            <tr>
+                <th scope="row">파일 #1</th>
+                <td>
+                    <input type="file" name="uploadFile" id="file1" class="frm_file frm_input">
+                </td>
+            </tr>
+            
+            <tr>
+                <th scope="row">파일 #2</th>
+                <td>
+                    <input type="file" name="uploadFile" id="file2" class="frm_file frm_input">
+                </td>
+            </tr>
 
             </tbody>
             </table>

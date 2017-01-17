@@ -125,7 +125,15 @@ public class CommonUtil {
 		if(obj != null) {
 			return obj.toString(); 
 		}
-		return null;
+		return "";
+	}
+
+	public static String isNull(String str) {
+		if(str == null) {
+			return "";
+		} else {
+			return str;
+		}
 	}
 	
 }

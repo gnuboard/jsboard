@@ -66,6 +66,13 @@ a.btn_admin:hover,.btn_admin:hover{background:#d20000}
 .pg_wr .next{background:url(../img/page_3.png) 50% 50% no-repeat;width:30px;padding:0;text-indent:-999px;overflow:hidden}
 .pg_wr .last{background:url(../img/page_4.png) 50% 50% no-repeat;width:30px;padding:0;text-indent:-999px;overflow:hidden}
 
+/*최신글*/
+.lt_wr:after{display:block;visibility:hidden;clear:both;content:""}
+.lt {float:left;width:490px;height:150px;position:relative;border-bottom:1px solid #ddd;margin:10px 0}
+.lt_right{margin-left:20px;}
+.lt .lt_title{display:block;margin:0 0 10px;}
+.lt .lt_more{position:absolute;top:0;right:0;}
+.lt li{line-height:1.7em;}
 
 /*게시판*/
 .bo_cate{margin:10px 0}

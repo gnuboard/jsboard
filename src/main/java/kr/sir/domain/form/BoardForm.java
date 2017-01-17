@@ -14,6 +14,7 @@ public class BoardForm{
 	private int commentDepth;
 	private int baseCommentId;
 	private String boardName;
+	private String saveType;
 	
 	public int redirectPageNumber(int deletedArticleCount, int pageNumber) {
 		totalCount = totalCount - deletedArticleCount;

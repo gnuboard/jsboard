@@ -14,7 +14,6 @@ public class BbsApplication extends SpringBootServletInitializer{
 	}
 	
 	public static void main(String[] args) {
-		
 		SpringApplication.run(BbsApplication.class, args);
 	}
 }

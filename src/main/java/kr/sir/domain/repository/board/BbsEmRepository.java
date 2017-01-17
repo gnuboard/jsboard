@@ -96,14 +96,16 @@ public class BbsEmRepository {
 	
 	// 댓글이 들어갈 장소(commentReply)를 구한다.
 	public String findMaxCommentReplyByBaseComment(int articleNumber, int comment, String commentReply, int isComment) {
+
+		// query 조합
 		String query = "SELECT MAX(w.commentReply) FROM Write w"
 				+ " WHERE w.parent=:articleNumber"
-				+ " and w.isComment=:isComment"
-				+ " and w.comment=:comment";
+				+ " AND w.isComment=:isComment"
+				+ " AND w.comment=:comment";
 		if( !("").equals(commentReply) ) {
-			query += " and w.commentReply LIKE CONCAT(:commentReply,'%')";
+			query += " AND w.commentReply LIKE CONCAT(:commentReply, '%')";
 		}
-		
+		// parameter 넣기
 		Query q;
 		if( !("").equals(commentReply) ) {
 			q = em.createQuery(query)
@@ -117,9 +119,31 @@ public class BbsEmRepository {
 					.setParameter("comment", comment)
 					.setParameter("isComment", isComment);
 		}
+		// query 실행
 		Object obj = q.getSingleResult();
 		
 		return CommonUtil.convertObjectToString(obj);
 	}
 
+	// 답변글이 들어갈 장소(reply)를 구한다.
+	public String findMaxReplyForAnswer(int num, String baseReply) {
+		
+		String query = "SELECT MAX(w.reply) FROM Write w"
+				+ " WHERE w.num=:num"
+				+ " AND w.reply LIKE CONCAT(:reply, '_')";
+		
+		Object obj = em.createQuery(query)
+				.setParameter("num", num)
+				.setParameter("reply", baseReply)
+				.getSingleResult();
+		
+		return CommonUtil.convertObjectToString(obj);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Integer> findBoardId() {
+		String query = "SELECT DISTINCT w.boardId FROM Write w";
+		return em.createQuery(query).getResultList();
+	}
+	
 }

@@ -1,5 +1,8 @@
 package kr.sir.service.board.impl;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,17 +11,29 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
+import kr.sir.common.CommonUtil;
+import kr.sir.domain.BoardFile;
 import kr.sir.domain.Write;
+import kr.sir.domain.form.BoardForm;
 import kr.sir.domain.repository.board.BbsEmRepository;
 import kr.sir.domain.repository.board.BbsRepository;
+import kr.sir.domain.repository.board.FileRepository;
 import kr.sir.service.board.BbsService;
 
 @Service
 public class BbsServiceImpl implements BbsService {
 
+	private int BOARD_ID = 1;											// 게시판 번호 (임시로 상수, board에서 가지고 와야 함, boardName을 boardId로 변경해서 세션에 박기)
+	private final int PAGE_PER_POSTS = 10;								// 게시판 페이지 당 게시물 수 (임시로 상수, board에서 가지고 와야 함)
+	
 	private BbsRepository bbsRepository;
+	private FileRepository fileRepository;
 	private BbsEmRepository bbsEmRepository;
 
 	@Autowired
@@ -27,46 +42,13 @@ public class BbsServiceImpl implements BbsService {
 	}
 	
 	@Autowired
+	public void setFileRepository(FileRepository fileRepository) {
+		this.fileRepository = fileRepository;
+	}
+
+	@Autowired
 	public void setbbsEmRepository(BbsEmRepository bbsEmRepository) {
 		this.bbsEmRepository = bbsEmRepository;
-	}
-
-	// 게시판 가져오기
-//	@Override
-//	public Page<Write> findByBoardId(int boardId, PageRequest pageRequest) {
-//		return bbsRepository.findByBoardIdAndIsComment(boardId, pageRequest, 0);
-//	}
-	
-	// 게시판 가져오기 ( 카테고리로 검색 )
-	@Override
-	public Page<Write> findByCategoryName(int boardId, String categoryName, PageRequest pageRequest) {
-		if(categoryName.equals("all")) {
-			return bbsRepository.findByBoardIdAndIsCommentOrderByNumAscReplyAsc(boardId, pageRequest, 0);
-		} else {
-			return bbsRepository.findByBoardIdAndCategoryNameAndIsCommentOrderByNumAscReplyAsc(boardId, categoryName, pageRequest, 0);
-		}
-	}
-	
-	// 글 삭제할 때 글에 포함된 댓글까지 함께 지우기 위해 댓글 id들까지 함께 가져온다.
-	@Override
-	public String findIdsWithCommentIds(String selectedId) {
-		
-		List<Write> idList = bbsEmRepository.findIdsWithCommentIds(selectedId);
-		String result = "";
-		for (int i=0; i< idList.size(); i++) {
-			if(i != idList.size()-1) {
-				result += (idList.get(i).getId() +",");
-			} else {
-				result += idList.get(i).getId();
-			}
-		}
-		return result;
-	}
-
-	// 게시글 선택 삭제
-	@Override
-	public int deleteInIds(String ids) {
-		return bbsEmRepository.delete(ids);
 	}
 
 	// 게시글 보기
@@ -75,14 +57,157 @@ public class BbsServiceImpl implements BbsService {
 		return bbsRepository.findOne(articleNumber);
 	}
 
-	// 이전 글 or 다음 글 번호 가져오기	
+	// 글쓰기, 수정
 	@Override
-	public int findPrevOrNextArticle(int articleNumber, String prevOrNext) {
-		return bbsEmRepository.findPrevOrNextArticle(articleNumber, prevOrNext);
+	public Write insertArticle(Write write, BoardForm boardForm, int files) throws Exception {
+
+		String reply = "";
+		int wrNum = 0;									
+		if(boardForm.getIsReply() == 1) {				// 답변 글 - 기존 wr_num 그대로
+			wrNum = write.getNum();
+			reply = createReply(boardForm.getBaseCommentId(), write);		// reply값을 생성
+//			if( ("ERROR").equals(reply) ) {
+//				String message1 = "더 이상 답변하실 수 없습니다.";
+//				String message2 = "답변은 26개 까지만 가능합니다.";
+//				model.addAttribute("errorType", "tooManyComment");
+//				model.addAttribute("msg1", message1);
+//				model.addAttribute("msg2", message2);
+//				return "/board/error";
+//			}
+		} else {										// 일반 글 - 기존 wr_num에 -1
+			wrNum += bbsEmRepository.findMinNum() -1;	// 게시판에서 가장 작은 wr_num 가져와서 -1
+		}
+		
+		write.setNum(wrNum);
+		write.setReply(reply);
+		write.setParent(0);
+		write.setDatetime(new Date());
+		write.setLast(CommonUtil.getToday(new Date()));
+		write.setIp(CommonUtil.getIpAddress());
+		// bbsEmRepository.findBoardId(boardName);
+		write.setBoardId(1);	// 임시
+		write.setFile(files);							// 업로드한 파일 갯수
+		write.setMemberId(write.getName());	// 임시		// 세션의 로그인한 정보에서 이름을 찾아서 넣기
+
+		Write article = bbsRepository.save(write);
+		
+		// 원글일 때 parent 값을 id값과 동일하게 저장
+		article.setParent(article.getId());
+		bbsRepository.save(article);
+		
+		return article;
+	}
+	
+	// 답변글에 들어갈 reply 생성
+	public String createReply(int baseArticleId, Write write) {
+		Write article = bbsRepository.findOne(baseArticleId);
+		String baseReply = CommonUtil.isNull(article.getReply());
+		String maxReply = bbsEmRepository.findMaxReplyForAnswer(article.getNum(), baseReply);
+		if(maxReply.equals("")) {
+			return baseReply + "A";
+		} 
+		
+		char lastChar = maxReply.charAt(maxReply.length() - 1);
+		if(lastChar == 'Z') {
+			return "ERROR";
+		}
+		lastChar++;
+		return baseReply + lastChar;
+	}
+	
+	// 파일업로드 정보 서버와 DB에 저장
+	@Override
+	public void saveFile(Write article, MultipartFile[] files, HttpServletRequest request) throws Exception {
+
+		int fileIndex = 0;
+		for(MultipartFile file : files) {
+			if( !file.isEmpty() ) {
+				fileIndex++;
+				// 서버에 파일 저장
+				String rootPath = request.getSession().getServletContext().getRealPath("/");
+				String attachPath = "upload/";
+				String fileName = file.getOriginalFilename();
+				File f = new File(rootPath + attachPath + fileName);
+				file.transferTo(f);
+				// DB에 파일 정보 저장 - board_file 테이블, write 테이블
+				BoardFile boardFile = new BoardFile();
+				boardFile.setBoardId(article.getBoardId());
+				boardFile.setWriteId(article.getId());
+				boardFile.setNo(fileIndex);
+				boardFile.setSource(fileName);
+				boardFile.setFile(fileName);				// bf_file - 규칙성을 가지고 생성. 암호화?
+				boardFile.setDownload(0);
+				boardFile.setContent("");
+				boardFile.setFilesize((int)file.getSize());
+				boardFile.setFileWidth(0);
+				boardFile.setFileHeight(0);
+				boardFile.setFileType(0);
+				boardFile.setFileDatetime(new Date());
+	
+				fileRepository.save(boardFile);
+			}
+		}
 	}
 
-	// 조회수 증가(경우에 따라 증가시키지 않음)
+	// 글수정
 	@Override
+	public Write updateArticle(Write write) throws Exception {
+		
+		Write article = bbsRepository.findOne(write.getId());				// 수정할 글을 가져온다.
+		
+		article.setIp(CommonUtil.getIpAddress());							// 수정한 곳 IP
+		article.setLast(CommonUtil.getToday(new Date()));					// 수정한 시간
+		article.setName(write.getName());
+		article.setEmail(write.getEmail());
+		article.setHomepage(write.getHomepage());
+		article.setOption(write.getOption());
+		article.setCategoryName(write.getCategoryName());
+		article.setSubject(write.getSubject());
+		article.setContent(write.getContent());
+		article.setLink11(write.getLink11());
+		article.setLink12(write.getLink12());
+		
+		return bbsRepository.save(article);
+	}
+
+	// 원글 정보를 가지고 답변글 객체 생성
+	@Override
+	public Write createAnswerArticle(Write newAnswerArticle, Write baseArticle) {
+		baseArticle = bbsRepository.findOne(baseArticle.getId());		// 원글 가져오기
+		 
+		newAnswerArticle.setNum(baseArticle.getNum());					// num을 원글과 동일하게 
+		newAnswerArticle.setSubject("Re: " + baseArticle.getSubject());
+		newAnswerArticle.setContent(baseArticle.getContent());
+		newAnswerArticle.setCategoryName(baseArticle.getCategoryName());
+		newAnswerArticle.setOption(baseArticle.getOption());
+		
+		return newAnswerArticle;
+	}
+
+	// 글보기 정보 가져오기(이전글, 다음글, 글정보, 댓글 목록, 조회수 증가)
+	@Override
+	public Model getArticleView(Model model, int articleNumber, HttpServletRequest request) {
+		
+		Write article = bbsRepository.findOne(articleNumber);
+		int prevArticle = bbsEmRepository.findPrevOrNextArticle(articleNumber, "prev");
+		int nextArticle = bbsEmRepository.findPrevOrNextArticle(articleNumber, "next");
+		List<BoardFile> fileList = fileRepository.findByWriteIdAndBoardId(article.getId(), article.getBoardId());
+		
+		increaseHit(article, request);									// 조회수 증가 기능
+		
+		// 댓글 list를 가져온다.
+		List<Write> commentList = bbsRepository.findByParentAndIsCommentOrderByCommentAscCommentReplyAsc(articleNumber, 1);
+		
+		model.addAttribute("article", article);
+		model.addAttribute("fileList", fileList);
+		model.addAttribute("prevArticle", prevArticle);
+		model.addAttribute("nextArticle", nextArticle);
+		model.addAttribute("commentList", commentList);
+		
+		return model;
+	}
+	
+	// 조회수 증가(경우에 따라 증가시키지 않음)
 	public void increaseHit(Write article, HttpServletRequest request) {
 		
 		String sessionName = "ARTICLE_VIEW_" + article.getBoardId() + "_" + article.getId();
@@ -112,45 +237,71 @@ public class BbsServiceImpl implements BbsService {
 		request.getSession().setAttribute(sessionName, true);
 	}
 
-	// 뷰에서 게시글 삭제
+	// 글 목록에서 선택 삭제(댓글까지 삭제)
 	@Override
-	public void delArticle(int articleNumber) {
-		bbsRepository.delete(articleNumber);
+	public int deleteArticleWithComment(String deleteIdString) {
+		String deleteIds = findIdsWithCommentIds(deleteIdString);
+		return bbsEmRepository.delete(deleteIds);						// 삭제한 게시물 수만큼 return
+	}
+	
+	// 글 삭제할 때 글에 포함된 댓글까지 함께 지우기 위해 댓글 id들까지 함께 가져온다.
+	public String findIdsWithCommentIds(String selectedId) {
+		
+		List<Write> idList = bbsEmRepository.findIdsWithCommentIds(selectedId);
+		
+		String result = "";
+		int index = 0;
+		int idListSize = idList.size();
+		for(Write article : idList) {
+			if(index != idListSize -1) {
+				result += (article.getId() +",");
+			} else {
+				result += article.getId();
+			}
+			index++;
+		}
+		
+		return result;
 	}
 
-	// 카테고리 이름 리스트 가져오기
+	// 댓글 쓰기
 	@Override
-	public List<String> findCategoryNames() {
-		List<String> categoryList = bbsEmRepository.findCategoryNames();
-		return categoryList;
-	}
+	public String insertComment(Write comment, BoardForm boardForm) throws Exception {
 
-	// 글쓰기, 수정 기능
-	@Override
-	public Write save(Write write) {
-		return bbsRepository.save(write);
-	}
-
-	// 게시판에서 가장 작은 wr_num 가져오기
-	@Override
-	public int findMinNum() {
-		return bbsEmRepository.findMinNum();
-	}
-
-	// 게시판에서 가장 큰 wr_id 가져오기
-	@Override
-	public int findMaxId() {
-		return bbsEmRepository.findMaxId();
-	}
-
-	// 게시글의 댓글 리스트 가져오기
-	@Override
-	public List<Write> findByParentAndIsComment(int articleNumber, int isComment) {
-		return bbsRepository.findByParentAndIsCommentOrderByCommentAscCommentReplyAsc(articleNumber, isComment);
+		// article : 원 글, comment : 댓글
+		int originId = comment.getId();
+		Write article = bbsRepository.findOne(originId);					// 원 글을 가져온다.
+		Write baseComment = bbsRepository.findOne(boardForm.getBaseCommentId());	// 기준 댓글을 가져온다.
+		
+		comment.setId(bbsEmRepository.findMaxId()+1);						// 게시판에서 가장 큰 wr_id 가져오기
+		comment.setNum(article.getNum());									// 원 글의 wr_num를 써줌으로 어떤 글의 댓글인지 표시한다.
+		comment.setParent(article.getId());									// 원 글의 wr_id를 써줌으로 어떤 글의 댓글인지 표시한다.
+		comment.setCategoryName(article.getCategoryName());					// 원 글의 카테고리 이름을 넣는다.
+		comment.setIsComment(1);											// 댓글 1, 원글 0
+		comment.setDatetime(new Date());
+		comment.setLast(CommonUtil.getToday(new Date()));
+		comment.setIp(CommonUtil.getIpAddress());
+		comment.setFile(0);
+		// 임시
+		comment.setMemberId(comment.getName());					// (회원일 땐 세션에서 로그인한 ID 가져오기)
+		comment.setBoardId(BOARD_ID);
+		
+		int commentGroup = appointComment(baseComment, article.getId());
+		// 기준댓글(원글)의 comment_reply로 댓글의 commentReply를 만들어서 가져온다.
+		String commentReply = createCommentReply(originId, commentGroup, baseComment);
+		
+		comment.setComment(commentGroup);
+		comment.setCommentReply(commentReply);
+		
+		comment = bbsRepository.save(comment);								// 댓글 저장
+	
+		article.setComment(article.getComment() + 1);						// 원 글의 댓글 수(isComment) 수정
+		bbsRepository.save(article);
+		
+		return commentReply;
 	}
 
 	// 댓글에 들어갈 comment를 지정
-	@Override
 	public int appointComment(Write baseComment, int articleId) {
 		int depth = baseComment.getCommentReply().length();					// 기준 댓글의 depth를 가져온다.
 		if(depth == 0 && baseComment.getIsComment() == 0) {					// 기준이 원글인경우
@@ -163,7 +314,6 @@ public class BbsServiceImpl implements BbsService {
 	}
 	
 	// 작성할 댓글의 commentReply를 생성
-	@Override
 	public String createCommentReply(int articleNumber, int comment, Write baseComment) {
 		// ex) 	기준 댓글의 comment_reply : AA, AAA에 댓글이 존재함. 결과 : AAB 
 		String baseCommentReply = baseComment.getCommentReply();			// 기준 댓글의 commentReply
@@ -179,10 +329,89 @@ public class BbsServiceImpl implements BbsService {
 			if(lastChar == 'Z') {
 				return "ERROR";
 			}
+			
 			lastChar++;														// 마지막 문자 한자리 더함.
 			return baseCommentReply + lastChar;
 		}
-		
 	}
 
+	// 댓글 수정
+	@Override
+	public void updateComment(Write comment, BoardForm boardForm) throws Exception {
+		Write toUpdateComment = bbsRepository.findOne(boardForm.getBaseCommentId());
+		toUpdateComment.setName(comment.getName());
+		toUpdateComment.setContent(comment.getContent());
+		toUpdateComment.setLast(CommonUtil.getToday(new Date()));
+		toUpdateComment.setIp(CommonUtil.getIpAddress());
+		
+		bbsRepository.save(toUpdateComment);
+	}
+
+	// 댓글 삭제
+	@Override
+	public void deleteComment(Write comment, BoardForm boardForm) {
+		bbsRepository.delete(boardForm.getBaseCommentId());					// 댓글 삭제
+		Write article = bbsRepository.findOne(comment.getId());				// 원글을 가져온다.
+		article.setComment(article.getComment() - 1);						// 원글의 댓글 수(isComment) 수정
+		bbsRepository.save(article);										// 원글 다시 저장
+	}
+
+	// 글목록
+	@Override
+	public Model getListWithPaging(Model model, int pageNumber, String categoryName) {
+		// boardName을 boardId로 변경해서 세션에 박기
+		int paramCurrentPage = pageNumber - 1;								// 현재 몇 페이지 인지	
+		
+		PageRequest pageRequest = new PageRequest(paramCurrentPage, PAGE_PER_POSTS, new Sort(Direction.DESC, "id"));
+		// 카테고리로 검색한 게시판 내용에 Paging, sorting 처리해서 가져오기 (댓글 제외)
+		Page<Write> result = findByCategoryName(BOARD_ID, categoryName, pageRequest);
+		
+		model = CommonUtil.pagingInfo(result, model);
+		model.addAttribute("pagePerPosts", PAGE_PER_POSTS);					// 한 페이지 당 게시물 수 
+		model.addAttribute("currentCategory", categoryName);				// 현재 선택한 카테고리 이름
+		
+		List<String> categoryList = new ArrayList<String>(); 
+		categoryList.add("all");
+		categoryList.addAll(getCategoryList());			// 카테고리 가져오기
+		model.addAttribute("categoryList", categoryList);
+		
+		return model;
+	}
+	
+	// 게시판 가져오기 ( 카테고리로 검색 )
+	public Page<Write> findByCategoryName(int boardId, String categoryName, PageRequest pageRequest) {
+		if(categoryName.equals("all")) {
+			return bbsRepository.findByBoardIdAndIsCommentOrderByNumAscReplyAsc(boardId, pageRequest, 0);
+		} else {
+			return bbsRepository.findByBoardIdAndCategoryNameAndIsCommentOrderByNumAscReplyAsc(boardId, categoryName, pageRequest, 0);
+		}
+	}
+
+	// 카테고리 목록 가져오기
+	@Override
+	public List<String> getCategoryList() {
+		return bbsEmRepository.findCategoryNames();
+	}
+
+	// 게시판 마다 새글 게시물 5개씩 가져온다.
+	// 필요한 정보 : 제목, 쓰여진지 하루? 이내면 new 표시, file 첨부 여부, link 여부
+	@Override
+	public Model getNewArticleList(Model model) {
+		// bo_id 목록을 가져온다.
+		List<Integer> boardIdLIst = bbsEmRepository.findBoardId();
+		List<List<Write>> newArticleList = new ArrayList<List<Write>>();
+		for (Integer id : boardIdLIst) {
+			//////////////////////////////////////////
+			// board name도 가져오자
+			
+			//////////////////////////////////////////
+			List<Write> articleList = bbsRepository.findTop5ByBoardIdOrderByNumAsc(id.intValue());
+			newArticleList.add(articleList);
+		}
+		model.addAttribute("newArticleList", newArticleList);
+
+		
+		return model;
+	}
+	
 }

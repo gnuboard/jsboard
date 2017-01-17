@@ -4,56 +4,51 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.sir.domain.Write;
+import kr.sir.domain.form.BoardForm;
 
 public interface BbsService {
 	
-	// 게시판 가져오기
-//	public Page<Write> findByBoardId(int boardId, PageRequest pageRequest);
-	
-	// 게시판 가져오기 ( 카테고리로 검색 )
-	public Page<Write> findByCategoryName(int boardId, String categoryName, PageRequest pageRequest);
-	
-	// 글 삭제할 때 글에 포함된 댓글까지 함께 지우기 위해 댓글 id들까지 함께 가져온다.
-	public String findIdsWithCommentIds(String selectedId);
-	
-	// 게시글 선택 삭제
-	public int deleteInIds(String ids);
+	// 카테고리 목록 가져오기
+	public List<String> getCategoryList();
 
+	// 글목록
+	public Model getListWithPaging(Model model, int pageNumber, String categoryName);
+	
+	// 글 목록에서 선택 삭제(댓글까지 삭제)
+	public int deleteArticleWithComment(String deleteIdString);
+	
+	// 글쓰기
+	public Write insertArticle(Write write, BoardForm boardForm, int files) throws Exception;
+	
+	// 파일업로드 정보 서버와 DB에 저장
+	public void saveFile(Write article, MultipartFile[] files, HttpServletRequest request) throws Exception;
+	
+	// 원글 정보를 가지고 답변글 객체 생성
+	public Write createAnswerArticle(Write newAnswerArticle, Write baseArticle);
+
+	// 글수정
+	public Write updateArticle(Write write) throws Exception;
+	
 	// 게시글 보기
 	public Write findOne(int articleNumber);
 
-	// 이전 글 or 다음 글 번호 가져오기
-	public int findPrevOrNextArticle(int articleNumber, String prevOrNext);
+	// 글보기 정보 가져오기(이전글, 다음글, 글정보, 댓글 목록, 조회수 증가)
+	public Model getArticleView(Model model, int articleNumber, HttpServletRequest request);
 
-	// 조회수 증가(경우에 따라 증가시키지 않음)
-	public void increaseHit(Write article, HttpServletRequest request);
-
-	// 뷰에서 게시글 삭제
-	public void delArticle(int articleNumber);
-
-	// 카테고리 이름 리스트 가져오기 
-	public List<String> findCategoryNames();
+	// 댓글 쓰기
+	public String insertComment(Write comment, BoardForm boardForm) throws Exception;
 	
-	// 글쓰기, 수정
-	public Write save(Write write);
+	// 댓글 수정
+	public void updateComment(Write comment, BoardForm boardForm) throws Exception;
 	
-	// 게시판에서 가장 작은 wr_num 가져오기
-	public int findMinNum();
-	
-	// 게시판에서 가장 큰 wr_id 가져오기
-	public int findMaxId();
+	// 댓글 삭제
+	public void deleteComment(Write comment, BoardForm boardForm);
 
-	// 게시글의 댓글 리스트 가져오기
-	public List<Write> findByParentAndIsComment(int articleNumber, int isComment);
-	
-	// 작성할 댓글의 commentReply를 생성
-	public String createCommentReply(int articleNumber, int comment, Write baseComment);
-
-	// 댓글에 들어갈 comment를 지정
-	public int appointComment(Write baseComment, int articleId);
+	// 게시판 마다 새글 게시물 5개씩 가져온다. index page
+	public Model getNewArticleList(Model model);
 
 }

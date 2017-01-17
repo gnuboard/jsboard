@@ -1,14 +1,57 @@
+<%@page import="kr.sir.domain.Write"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<!doctype html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>js보드 메인</title>
-</head>
-<body>
-
-<h3>메인 페이지</h3>
-<a href="/board/list">게시판 가기</a>
-</body>
-</html> 
+    <meta charset="UTF-8">
+    <title>커뮤니티 메인</title>
+    <link rel="stylesheet" href="/css/board.css">
+ </head>
+ <body>
+ <div id="container">
+    <div id="lt_wr">
+    	<%
+    		List<List<Write>> newArticleList = (List<List<Write>>) request.getAttribute("newArticleList");
+    	
+    		int index = 0;
+    		for(List<Write> articleList : newArticleList) {
+    	%>
+    			  
+    	<%		if(index % 2 == 1) { %>
+   					<div class="lt lt_right">
+    	<%		} else { %>
+    				<div class="lt">
+    	<%		} %>						
+    			<strong class="lt_title"><a href="">게시판</a></strong>
+    	<%
+    			for(Write article : articleList) {
+    	%>			
+	            <ul>
+	                <li>
+	                    <a href="/board/자유/view/<%=article.getId() %>"><%=article.getSubject() %> <span class="cnt_cmt"><%=article.getComment() %></span> </a> 
+	                    <img src="/img/icon_new.gif" alt="새글">
+	                    <% if(article.getFile() > 0) { %>
+	                    	<img src="/img/icon_file.gif" alt="첨부파일">
+	                    <% } 
+	                       if(article.getLink11() != "") { %>	
+	                    	<img src="/img/icon_link.gif" alt="관련링크">
+	                    <% } %>	
+	                </li>
+	            </ul>
+	            	
+    	<%
+    			}
+    			index++;
+    	%>
+    			<div class="lt_more"><a href="/board/자유/list"><span class="sound_only">게시판</span>더보기</a></div>
+    			</div>		
+    	<%		
+    		}
+    	%>
+    </div>
+</div>
+ </body>
+</html>

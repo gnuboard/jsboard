@@ -15,6 +15,10 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	
+	// 글 내용 줄바꿈 처리
+	var text = $('#bo_v_con').text().replace(/\n/g, "<br>");
+	$('#bo_v_con').html(text);
 
 	$('#delButton').click(function() {
 		if(confirm("한번 삭제한 자료는 복구할 방법이 없습니다.\n\n"
@@ -28,7 +32,20 @@ $(document).ready(function(){
 	});
 	
 	$('#answerButton').click(function() {
-		$("input:hidden[name=_method]").val("GET");
+		// 답변 depth 제한(DB의 wr_reply의 size에 맞게 셋팅)
+		var depth = $("#reply").val().length;
+		if(depth < 10) {
+			$("input:hidden[name=_method]").val("GET");
+			$("#viewForm").submit();
+			return true;
+		} else {
+			alert("더 이상 답변하실 수 없습니다.\n\n답변은 10단계 까지만 가능합니다.")
+			return false;
+		}
+	});
+	
+	$("a[name='file']").click(function(e) {
+		e.preventDefault();
 	});
 		
 });
@@ -37,6 +54,7 @@ function getCommentForm(baseId) {
 	$("#baseCommentId").val(baseId);
 	$(".commentForm").remove();
 	$("div[id=commentForm"+baseId+"]").load("/html/board/commentForm.html");
+	$("input:hidden[name=_method]").val("POST");
 	
 }
 function setDefaultBaseId() {
@@ -73,7 +91,7 @@ function delComment(commentId) {
 </script>
 <body>
 <div id="container">
-    <h1 class="container_tit">board.bo_table</h1>
+    <h1 class="container_tit">${boardName} 게시판</h1>
 
     <article id="bo_v">
         <header>
@@ -113,30 +131,25 @@ function delComment(commentId) {
 
         </section>
            
+        <c:if test="${fn:length(fileList) > 0}">
         <!-- 첨부파일  -->
-<!--         <section id="bo_v_file"> -->
-<!--             <h2>첨부파일</h2> -->
-<!--             <ul> -->
-<!--                 <li> -->
-<!--                     <img src="/img/icon_file.gif" alt="첨부" title=""> -->
-<!--                     <a href="" class="view_file_download"> -->
-<!--                         <strong>iexplore.exe</strong> -->
-<!--                     </a> -->
-<!--                     (740.2K) -->
-<!--                     <span class="bo_v_file_cnt">1회 다운로드 -->
-<!--                     DATE : 2017-01-04 10:01:21</span> -->
-<!--                 </li> -->
-<!--                  <li> -->
-<!--                     <img src="/img/icon_file.gif" alt="첨부" title=""> -->
-<!--                     <a href="" class="view_file_download"> -->
-<!--                         <strong>iexplore.exe</strong> -->
-<!--                     </a> -->
-<!--                     (740.2K) -->
-<!--                     <span class="bo_v_file_cnt">1회 다운로드 -->
-<!--                     DATE : 2017-01-04 10:01:21</span> -->
-<!--                 </li> -->
-<!--             </ul> -->
-<!--         </section> -->
+        <section id="bo_v_file">
+            <h2>첨부파일</h2>
+            <ul>
+            	<c:forEach var="file" items="${fileList}">
+                <li>
+                    <img src="/img/icon_file.gif" alt="첨부" title="">
+                    <a href="#this" name="file" class="view_file_download">
+                        <strong>${file.source}</strong>
+                    </a>
+                    (${file.filesize}B)
+                    <span class="bo_v_file_cnt">${file.download}회 다운로드
+                    DATE : <fmt:formatDate value="${file.fileDatetime}" pattern="yy-MM-dd HH:mm"/></span>
+                </li>
+                </c:forEach>
+            </ul>
+        </section>
+        </c:if>
         
         <c:if test="${article.link11 != ''}">
         <section id="bo_v_link">
@@ -184,14 +197,14 @@ function delComment(commentId) {
             	<input type="hidden" name="boardName" value="${boardName}"/>
             	<input type="hidden" name="currentPage" value="${currentPage}"/>
             	<input type="hidden" name="currentCategory" value="${currentCategory}"/>
+            	<input type="hidden" name="reply" id="reply" value="${article.reply}"/>
             	
                 <a href="/board/${boardName}/save/${article.id}/page/${currentPage}/category/${currentCategory}" class="btn">수정</a>
-                <input type="submit" id="delButton" class="btn_b01 btn" value="삭제"/>
+                <input type="submit" id="delButton" class="btn_b01 btn" value="삭제">
                 <a href="" class="btn_admin btn">복사</a>
                 <a href="" class="btn_admin btn">이동</a>
                 <a href="/board/${boardName}/list/${currentPage}/category/${currentCategory}" class="btn_b01 btn">목록</a>
-                <input type="submit" id="answerButton" class="btn_b01 btn" value="답변"/>
-<%--                 <a href="/board/${boardName}/answer/${article.id}/page/${currentPage}/category/${currentCategory}" class="btn_b01 btn">답변</a> --%>
+                <input type="submit" id="answerButton" class="btn_b01 btn" value="답변">
                 <a href="/board/${boardName}/save" class="btn_b02 btn">글쓰기</a>
             </form> 
             </div>
@@ -206,7 +219,6 @@ function delComment(commentId) {
 			<input type="hidden" name="currentPage" value="${currentPage}"/>
 			<!-- 답변글 : 1, 원글 : 0 -->
 <!-- 			<input type="hidden" name="isReply" value="0"/> -->
-			<input type="hidden" name="isReply" value="${article.reply}"/>
 			<!-- 기준 댓글의 wr_id -->
 			<input type="hidden" name="baseCommentId" id="baseCommentId" value=""/>
 			<input type="hidden" name="subject" value=""/>
