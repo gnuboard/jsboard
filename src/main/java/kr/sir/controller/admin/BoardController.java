@@ -1,5 +1,7 @@
 package kr.sir.controller.admin;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.sir.common.AdminUtil;
 import kr.sir.domain.Board;
 import kr.sir.domain.BoardGroup;
+import kr.sir.domain.BoardVO;
 import kr.sir.domain.Config;
 import kr.sir.domain.repository.admin.BoardGroupRepository;
 import kr.sir.service.admin.BoardService;
@@ -127,6 +131,7 @@ public class BoardController {
 		model.addAttribute("type","add");
 		
 		model.addAttribute("countBoardGroups",boardService.getCountBoardGroups());
+																	  //selectBox의 id, 현재그룹 id, 필수여부
 		model.addAttribute("selectedGroupTag",boardService.getSelectedGroup("groupId", "", "required"));
 		
 		model.addAttribute("listLevelSelectTag", adminUtil.getMemberLevelSelectBoxTag("listLevel", 1, 10, 1,null));
@@ -161,11 +166,10 @@ public class BoardController {
 	@RequestMapping(value={"/add"},method=RequestMethod.POST)
 	public String addBoard(Board board){
 		
-		System.out.println("모바일스킨값은? : " + board.getMobileSkin());
 		
 		
 		boardService.addBoard(board);
-		return "admin/board/list";
+		return "redirect:./list";
 	}
 	
 	
@@ -178,15 +182,17 @@ public class BoardController {
 	
 	
 	//리스트에서 게시판 수정
-	@RequestMapping(value={"/updateonlist"},method=RequestMethod.PUT)
-	public String updateBoards(String chk,Board board){
-		
+	@RequestMapping(value={"/updateordelete"},method=RequestMethod.PUT)
+	public String updateBoards(String[] chk,@ModelAttribute BoardVO boardVO){		
+		boardService.updateBoards(chk,boardVO);
 		return "admin/board/list";
 	}
 	
-	@RequestMapping(value={"delete"},method=RequestMethod.DELETE)
-	public String deleteBoards(String chk){
-		boardService.deleteBoards(chk);
+	//리스트에서 게시판 삭제
+	@RequestMapping(value={"/updateordelete"},method=RequestMethod.DELETE)
+	public String deleteBoards(String[] chk,@ModelAttribute BoardVO boardVO){
+		System.out.println("여긴 딜리트 : " + chk);
+		boardService.deleteBoards(chk,boardVO);
 		return "admin/board/list";
 	}
 	
