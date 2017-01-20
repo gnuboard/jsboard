@@ -1,7 +1,5 @@
 package kr.sir.common;
 
-import java.io.FileNotFoundException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,7 +34,7 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 		}
 		
 	}
-
+	
 	private boolean existConfigTable() {
 		String table_prefix = CommonUtil.getTablePrefix();
 		if(table_prefix != "")

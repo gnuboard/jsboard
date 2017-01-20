@@ -36,9 +36,9 @@ public class BbsEmRepository {
 	}
 
 	// 이전 or 다음 글 찾기
-	public int findPrevOrNextArticle(int articleNumber, String prevOrNext) {
+	public int findPrevOrNextArticle(int articleNumber, String prevOrNext, int boardId) {
 		String query = querySelect(prevOrNext);
-		return findArticleNumber(query, articleNumber);
+		return findArticleNumber(query, articleNumber, boardId);
 	}
 
 	// 이전 or 다음 글 찾기 : 쿼리 선택
@@ -46,19 +46,20 @@ public class BbsEmRepository {
 		String query = "";
 		switch (prevOrNext) {
 		case "prev":
-			query = "SELECT MIN(w.id) FROM Write w WHERE w.id > :articleNumber and w.isComment = 0";
+			query = "SELECT MIN(w.id) FROM Write w WHERE w.id > :articleNumber AND w.isComment = 0 AND w.boardId = :boardId";
 			break;
 		case "next":
-			query = "SELECT MAX(w.id) FROM Write w WHERE w.id < :articleNumber and w.isComment = 0";
+			query = "SELECT MAX(w.id) FROM Write w WHERE w.id < :articleNumber AND w.isComment = 0 AND w.boardId = :boardId";
 			break;
 		}
 		return query;
 	}
 
 	// 이전 or 다음 글 찾기 : 쿼리 수행
-	private int findArticleNumber(String query, int articleNumber) {
+	private int findArticleNumber(String query, int articleNumber, int boardId) {
 		Object obj = em.createQuery(query)
 				.setParameter("articleNumber", articleNumber)
+				.setParameter("boardId", boardId)
 				.getSingleResult();
 		
 		return CommonUtil.convertObjectToInteger(obj);
@@ -66,9 +67,11 @@ public class BbsEmRepository {
 	
 	// 카테고리 리스트 가져오기
 	@SuppressWarnings("unchecked")
-	public List<String> findCategoryNames() {
-		String query = "SELECT DISTINCT(w.categoryName) as categoryName FROM Write w";
-		return em.createQuery(query).getResultList();
+	public List<String> findCategoryNames(int boardId) {
+		String query = "SELECT DISTINCT(w.categoryName) as categoryName FROM Write w WHERE w.boardId = :boardId";
+		return em.createQuery(query)
+				.setParameter("boardId", boardId)
+				.getResultList();
 	}
 	
 	// 게시판에서 가장 작은 wr_num 가져오기
@@ -138,12 +141,6 @@ public class BbsEmRepository {
 				.getSingleResult();
 		
 		return CommonUtil.convertObjectToString(obj);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Integer> findBoardId() {
-		String query = "SELECT DISTINCT w.boardId FROM Write w";
-		return em.createQuery(query).getResultList();
 	}
 	
 }

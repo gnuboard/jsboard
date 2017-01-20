@@ -83,30 +83,16 @@ function submitSaveForm() {
 			<input type="hidden" name="_method"/>
 	        <!-- 기본 입력 값 셋팅 -->
 			<input type="hidden" name="option" id="option" />					<!-- V -->
-			<input type="hidden" name="commentReply" value=""/>
 			<input type="hidden" name="reply" value=""/>						<!-- V -->
-			<input type="hidden" name="facebookUser" value=""/>
-			<input type="hidden" name="twitterUser" value=""/>
-			<input type="hidden" name="extra1" value=""/>
-			<input type="hidden" name="extra2" value=""/>
-			<input type="hidden" name="extra3" value=""/>
-			<input type="hidden" name="extra4" value=""/>
-			<input type="hidden" name="extra5" value=""/>
-			<input type="hidden" name="extra6" value=""/>
-			<input type="hidden" name="extra7" value=""/>
-			<input type="hidden" name="extra8" value=""/>
-			<input type="hidden" name="extra9" value=""/>
-			<input type="hidden" name="extra10" value=""/>
-
 			<input type="hidden" name="boardName" value="${boardName}"/>
 			<input type="hidden" name="saveType" value="${saveType}"/>
+			
 			<c:if test='${saveType ne "insert"}'>
 				<input type="hidden" name="currentCategory" value="${currentCategory}"/>
 				<input type="hidden" name="currentPage" value="${currentPage}"/>
 			</c:if>
 			<c:if test='${saveType eq "update"}'>
 				<input type="hidden" name="id" value="${article.id}"/>
-
 			</c:if>
 			<c:choose>
 				<c:when test='${saveType eq "answer"}'>

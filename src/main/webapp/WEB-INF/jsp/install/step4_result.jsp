@@ -12,7 +12,7 @@
 <body>
 
 <div id="top">
-    <h1>JSBOARD</h1>
+    <h1>BOARD</h1>
     <p>INSTALLATION</p>
 </div>
 <div id="contents">
@@ -31,7 +31,7 @@
             <h3>설치가 완료되었습니다.</h3>
             <ol>
             	<li>전체 테이블 생성 완료</li>
-            	<li>application.yml에 prefix 정보 저장</li>
+            	<li>config.yml에 prefix 정보 저장</li>
             	<li>관리자 회원 등록 완료</li>
             	<li>config table에 설정 정보 저장</li>
             </ol>
@@ -45,7 +45,8 @@
             </ol>
         </div>
         <div class="ins_btn">
-            <a href="/index" class="btn btn_01">새로운 JS보드로 이동</a>
+<!--             <a href="/install/restart" class="btn btn_01">서버 재시작하고 새로운 게시판으로 이동</a> -->
+            <a class="btn btn_01">TABLE 접두어 적용을 위해 Tomcat container를 재시작해 주십시오.</a>
         </div>
     </div>
 

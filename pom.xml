@@ -92,8 +92,6 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-		
-		
 	</dependencies>
 	
 	<build>
@@ -101,23 +99,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+		            <mainClass>BbsApplication</mainClass>
+          		</configuration>
 			</plugin>
 		</plugins>
 	</build>
 	
-	<profiles>
-		<profile> 
-			<id>cafe24test</id>
-			<activation> 
-				<activeByDefault>true</activeByDefault> 
-			</activation> 
-			<properties> 
-				<!-- Default spring profile to use --> 
-				<spring.profiles.active>cafe24-test</spring.profiles.active> 
-<!-- 				Default environment  -->
-<!-- 				<environment>test</environment>  -->
-			</properties>
-	 	</profile>
-	</profiles>
-
 </project>

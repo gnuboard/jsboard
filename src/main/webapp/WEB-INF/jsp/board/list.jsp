@@ -54,7 +54,8 @@ function selectCopy() {
 </script>
  <body>
  <div id="container">
-    <h1 class="container_tit">${boardName} 게시판</h1>
+    <h1 class="container_tit">${boardName} 게시판</h1> | <a href="/index">커뮤니티 메인</a>
+   
     <div class="bo_cate">
         <h2>게시판 ${boardName} 카테고리</h2>
         <ul>
@@ -182,7 +183,6 @@ function selectCopy() {
         
         <div class="pagination">
             <h2>페이징</h2>
-			            
             <div class="pg_wr">
             	<c:if test = "${ currentPage > pageGroupPerSize}" >
 	                <a href="/board/${boardName}/list/1/category/${currentCategory}" class="first">맨 처음으로</a>
@@ -205,10 +205,8 @@ function selectCopy() {
 		                <a href="/board/${boardName}/list/${nextPageGroupFirstPage}/category/${currentCategory}" class="next">다음</a>
 		                <a href="/board/${boardName}/list/${totalPages}/category/${currentCategory}" class="last">맨 마지막으로</a>
 		            </c:when>
-		            
 	            </c:choose>
             </div>
-            
         </div>
 
         <fieldset id="bo_sch">

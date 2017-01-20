@@ -46,7 +46,7 @@ function frm_install_submit(f)
 }
 </script>
 <div id="top">
-    <h1>JSBOARD</h1>
+    <h1>BOARD</h1>
     <p>INSTALLATION</p>
 </div>
 <div id="contents">
@@ -108,8 +108,8 @@ function frm_install_submit(f)
 	        </table>
 	
 	        <p>
-	            <strong class="st_strong">주의! 이미 그누보드5가 존재한다면 DB 자료가 망실되므로 주의하십시오.</strong><br>
-           		주의사항을 이해했으며, 그누보드 설치를 계속 진행하시려면 다음을 누르십시오.
+	            <strong class="st_strong">주의! 이미 게시판이 존재한다면 DB 자료가 망실되므로 주의하십시오.</strong><br>
+           		주의사항을 이해했으며, 게시판 설치를 계속 진행하시려면 다음을 누르십시오.
 	        </p>
 	
 	        <div class="ins_btn">

@@ -21,7 +21,7 @@ public interface BbsRepository extends JpaRepository<Write, Integer>{
 	// 게시글의 댓글 리스트 가져오기
 	public List<Write> findByParentAndIsCommentOrderByCommentAscCommentReplyAsc(int articleNumber, int isComment);
 	
-	// 최근 게시물 5개 가져오기
-	public List<Write> findTop5ByBoardIdOrderByNumAsc(int boardId);
+	// 최근 게시물 5개 가져오기 (댓글 제외) 
+	public List<Write> findTop5ByBoardIdAndIsCommentOrderByNumAsc(int id, int isComment);
 	
 }

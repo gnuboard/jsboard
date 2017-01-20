@@ -18,9 +18,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.sir.common.CommonUtil;
+import kr.sir.domain.Board;
 import kr.sir.domain.BoardFile;
 import kr.sir.domain.Write;
 import kr.sir.domain.form.BoardForm;
+import kr.sir.domain.repository.admin.BoardRepository;
 import kr.sir.domain.repository.board.BbsEmRepository;
 import kr.sir.domain.repository.board.BbsRepository;
 import kr.sir.domain.repository.board.FileRepository;
@@ -29,26 +31,38 @@ import kr.sir.service.board.BbsService;
 @Service
 public class BbsServiceImpl implements BbsService {
 
-	private int BOARD_ID = 1;											// 게시판 번호 (임시로 상수, board에서 가지고 와야 함, boardName을 boardId로 변경해서 세션에 박기)
+	private int boardId = 0;											// 게시판 번호 (임시로 상수, board에서 가지고 와야 함, boardName을 boardId로 변경해서 세션에 박기)
 	private final int PAGE_PER_POSTS = 10;								// 게시판 페이지 당 게시물 수 (임시로 상수, board에서 가지고 와야 함)
 	
 	private BbsRepository bbsRepository;
-	private FileRepository fileRepository;
 	private BbsEmRepository bbsEmRepository;
+	private FileRepository fileRepository;
+	private BoardRepository boardRepository;
 
 	@Autowired
 	public void setBoardRepository(BbsRepository bbsRepository) {
 		this.bbsRepository = bbsRepository;
+	}
+
+	@Autowired
+	public void setbbsEmRepository(BbsEmRepository bbsEmRepository) {
+		this.bbsEmRepository = bbsEmRepository;
 	}
 	
 	@Autowired
 	public void setFileRepository(FileRepository fileRepository) {
 		this.fileRepository = fileRepository;
 	}
-
+	
 	@Autowired
-	public void setbbsEmRepository(BbsEmRepository bbsEmRepository) {
-		this.bbsEmRepository = bbsEmRepository;
+	public void setBoardRepository(BoardRepository boardRepository) {
+		this.boardRepository = boardRepository;
+	}
+	
+	// Board Id 셋팅
+	public void setBoardId(String boardName) {
+		int boardId = boardRepository.findByTable(boardName).getId();
+		if(boardId != this.boardId)	this.boardId = boardId;
 	}
 
 	// 게시글 보기
@@ -56,10 +70,10 @@ public class BbsServiceImpl implements BbsService {
 	public Write findOne(int articleNumber) {
 		return bbsRepository.findOne(articleNumber);
 	}
-
+	
 	// 글쓰기, 수정
 	@Override
-	public Write insertArticle(Write write, BoardForm boardForm, int files) throws Exception {
+	public Write insertArticle(Write write, BoardForm boardForm, MultipartFile[] files) throws Exception {
 
 		String reply = "";
 		int wrNum = 0;									
@@ -80,13 +94,32 @@ public class BbsServiceImpl implements BbsService {
 		
 		write.setNum(wrNum);
 		write.setReply(reply);
-		write.setParent(0);
+		write.setParent(0);								// 일단 0 저장
 		write.setDatetime(new Date());
 		write.setLast(CommonUtil.getToday(new Date()));
 		write.setIp(CommonUtil.getIpAddress());
-		// bbsEmRepository.findBoardId(boardName);
-		write.setBoardId(1);	// 임시
-		write.setFile(files);							// 업로드한 파일 갯수
+		write.setBoardId(this.boardId);
+		write.setCommentReply("");
+		write.setFacebookUser("");
+		write.setTwitterUser("");
+		write.setExtra1("");
+		write.setExtra2("");
+		write.setExtra3("");
+		write.setExtra4("");
+		write.setExtra5("");
+		write.setExtra6("");
+		write.setExtra7("");
+		write.setExtra8("");
+		write.setExtra9("");
+		write.setExtra10("");
+		
+		int fileCount = 0;
+		for(MultipartFile file : files) {
+			if( !file.isEmpty() ) {
+				fileCount++;
+			}
+		}
+		write.setFile(fileCount);							// 업로드한 파일 갯수
 		write.setMemberId(write.getName());	// 임시		// 세션의 로그인한 정보에서 이름을 찾아서 넣기
 
 		Write article = bbsRepository.save(write);
@@ -173,9 +206,9 @@ public class BbsServiceImpl implements BbsService {
 	// 원글 정보를 가지고 답변글 객체 생성
 	@Override
 	public Write createAnswerArticle(Write newAnswerArticle, Write baseArticle) {
-		baseArticle = bbsRepository.findOne(baseArticle.getId());		// 원글 가져오기
+		baseArticle = bbsRepository.findOne(baseArticle.getId());			// 원글 가져오기
 		 
-		newAnswerArticle.setNum(baseArticle.getNum());					// num을 원글과 동일하게 
+		newAnswerArticle.setNum(baseArticle.getNum());						// num을 원글과 동일하게 
 		newAnswerArticle.setSubject("Re: " + baseArticle.getSubject());
 		newAnswerArticle.setContent(baseArticle.getContent());
 		newAnswerArticle.setCategoryName(baseArticle.getCategoryName());
@@ -186,14 +219,16 @@ public class BbsServiceImpl implements BbsService {
 
 	// 글보기 정보 가져오기(이전글, 다음글, 글정보, 댓글 목록, 조회수 증가)
 	@Override
-	public Model getArticleView(Model model, int articleNumber, HttpServletRequest request) {
+	public Model getArticleView(Model model, int articleNumber, HttpServletRequest request, String boardName) {
+		
+		setBoardId(boardName);												// boardId 세팅
 		
 		Write article = bbsRepository.findOne(articleNumber);
-		int prevArticle = bbsEmRepository.findPrevOrNextArticle(articleNumber, "prev");
-		int nextArticle = bbsEmRepository.findPrevOrNextArticle(articleNumber, "next");
+		int prevArticle = bbsEmRepository.findPrevOrNextArticle(articleNumber, "prev", this.boardId);
+		int nextArticle = bbsEmRepository.findPrevOrNextArticle(articleNumber, "next", this.boardId);
 		List<BoardFile> fileList = fileRepository.findByWriteIdAndBoardId(article.getId(), article.getBoardId());
 		
-		increaseHit(article, request);									// 조회수 증가 기능
+		increaseHit(article, request);										// 조회수 증가 기능
 		
 		// 댓글 list를 가져온다.
 		List<Write> commentList = bbsRepository.findByParentAndIsCommentOrderByCommentAscCommentReplyAsc(articleNumber, 1);
@@ -284,7 +319,7 @@ public class BbsServiceImpl implements BbsService {
 		comment.setFile(0);
 		// 임시
 		comment.setMemberId(comment.getName());					// (회원일 땐 세션에서 로그인한 ID 가져오기)
-		comment.setBoardId(BOARD_ID);
+		comment.setBoardId(this.boardId);
 		
 		int commentGroup = appointComment(baseComment, article.getId());
 		// 기준댓글(원글)의 comment_reply로 댓글의 commentReply를 만들어서 가져온다.
@@ -352,19 +387,21 @@ public class BbsServiceImpl implements BbsService {
 	public void deleteComment(Write comment, BoardForm boardForm) {
 		bbsRepository.delete(boardForm.getBaseCommentId());					// 댓글 삭제
 		Write article = bbsRepository.findOne(comment.getId());				// 원글을 가져온다.
-		article.setComment(article.getComment() - 1);						// 원글의 댓글 수(isComment) 수정
+		article.setComment(article.getComment() - 1);						// 원글의 댓글 수(Comment) 수정
 		bbsRepository.save(article);										// 원글 다시 저장
 	}
 
-	// 글목록
+	// 글 목록
 	@Override
-	public Model getListWithPaging(Model model, int pageNumber, String categoryName) {
-		// boardName을 boardId로 변경해서 세션에 박기
+	public Model getListWithPaging(Model model, int pageNumber, String categoryName, String boardName) {
+		
+		setBoardId(boardName);												// boardId 세팅
+		
 		int paramCurrentPage = pageNumber - 1;								// 현재 몇 페이지 인지	
 		
 		PageRequest pageRequest = new PageRequest(paramCurrentPage, PAGE_PER_POSTS, new Sort(Direction.DESC, "id"));
 		// 카테고리로 검색한 게시판 내용에 Paging, sorting 처리해서 가져오기 (댓글 제외)
-		Page<Write> result = findByCategoryName(BOARD_ID, categoryName, pageRequest);
+		Page<Write> result = findByCategoryName(boardId, categoryName, pageRequest);
 		
 		model = CommonUtil.pagingInfo(result, model);
 		model.addAttribute("pagePerPosts", PAGE_PER_POSTS);					// 한 페이지 당 게시물 수 
@@ -390,24 +427,21 @@ public class BbsServiceImpl implements BbsService {
 	// 카테고리 목록 가져오기
 	@Override
 	public List<String> getCategoryList() {
-		return bbsEmRepository.findCategoryNames();
+		return bbsEmRepository.findCategoryNames(this.boardId);
 	}
 
 	// 게시판 마다 새글 게시물 5개씩 가져온다.
 	// 필요한 정보 : 제목, 쓰여진지 하루? 이내면 new 표시, file 첨부 여부, link 여부
 	@Override
 	public Model getNewArticleList(Model model) {
-		// bo_id 목록을 가져온다.
-		List<Integer> boardIdLIst = bbsEmRepository.findBoardId();
+		// 전체 게시판 목록을 가져온다.
+		List<Board> boardList = boardRepository.findAll();
 		List<List<Write>> newArticleList = new ArrayList<List<Write>>();
-		for (Integer id : boardIdLIst) {
-			//////////////////////////////////////////
-			// board name도 가져오자
-			
-			//////////////////////////////////////////
-			List<Write> articleList = bbsRepository.findTop5ByBoardIdOrderByNumAsc(id.intValue());
+		for (Board board : boardList) {
+			List<Write> articleList = bbsRepository.findTop5ByBoardIdAndIsCommentOrderByNumAsc(board.getId(), 0);
 			newArticleList.add(articleList);
 		}
+		model.addAttribute("boardList", boardList);
 		model.addAttribute("newArticleList", newArticleList);
 
 		

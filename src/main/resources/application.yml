@@ -1,4 +1,11 @@
+spring:  
+  profiles.active: local-a     # test 서버에 올리려고 packaging할 때  test 로 변경해야 한다.
+                            # 그리고 Run Configurations에서 Goal에 package 를 넣고 Run 클릭.  
+
+---
+
 spring:
+  profiles: local-g
   mvc:
     view:
       prefix: /WEB-INF/jsp/
@@ -17,11 +24,6 @@ spring:
       ddl-auto: none
       naming:
         physical-strategy: kr.sir.common.PrefixNamingStrategy
-
----
-
-spring:
-  profiles: local-g
   datasource:
      initialize: true
      url: "jdbc:mysql://localhost:3306/sirgjw?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull"
@@ -36,11 +38,32 @@ logging:
     org.springframework.boot: INFO
     org.springframework.web: INFO
     org.springframework.data: DEBUG
+
+path: 
+  fileName: src/main/resources/config.yml
   
 ---
 
 spring:
   profiles: local-a
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 10Mb
+      max-request-size: 10Mb
+  thymeleaf:
+    cache: false
+  jpa:
+    show-sql: true
+    database: mysql
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: kr.sir.common.PrefixNamingStrategy
   datasource:
      initialize: true
      url: "jdbc:mysql://localhost:3306/ahn?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull"
@@ -56,14 +79,34 @@ logging:
     org.springframework.web: INFO
     org.springframework.data: DEBUG
 
+path: 
+  fileName: src/main/resources/config.yml
+
 ---
 
 spring:
-  profiles: cafe24-test
+  profiles: test
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 10Mb
+      max-request-size: 10Mb
+  thymeleaf:
+    cache: false
+  jpa:
+    show-sql: true
+    database: mysql
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: kr.sir.common.PrefixNamingStrategy
   datasource:
      initialize: true
      url: "jdbc:mysql://localhost:3306/sirjsp?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull"
-#     url: "jdbc:mysql://sirjsp.cafe24.com:3306/sirjsp?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull"
      username: sirjsp
      password: sirjsp12
      driver-class-name: com.mysql.jdbc.Driver
@@ -74,6 +117,9 @@ logging:
     org.springframework.boot: INFO
     org.springframework.web: INFO
     org.springframework.data: DEBUG
+    
+path: 
+  fileName: ../webapps/ROOT/WEB-INF/classes/config.yml
     
 ---
 

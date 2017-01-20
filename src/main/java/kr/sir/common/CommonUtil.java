@@ -21,14 +21,11 @@ public class CommonUtil {
 	public static String getTablePrefix(){
 		YamlMapFactoryBean yaml = new YamlMapFactoryBean();
 		yaml.setResources(new ClassPathResource("config.yml"));
-		
 		Map<String, Object> map = yaml.getObject();
 
 		Object prefixObj = map.get("prefix");
-		if(prefixObj != null)
-			return prefixObj.toString();
 		
-		return "";
+		return convertObjectToString(prefixObj);
 	}
 	
 	// 오늘 날짜 형식(yyyy-MM-dd HH:mm:ss)에 맞춰 구하기

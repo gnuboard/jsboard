@@ -47,7 +47,7 @@ public class BbsController {
 	public String listWithPageNumber(Model model, @PathVariable String boardName
 			, @PathVariable int pageNumber, @PathVariable String categoryName) {
 		
-		model = bbsService.getListWithPaging(model, pageNumber, categoryName);
+		model = bbsService.getListWithPaging(model, pageNumber, categoryName, boardName);
 		model.addAttribute("boardName", boardName);
 		
 		return "/board/list";
@@ -79,7 +79,7 @@ public class BbsController {
 			, @PathVariable int articleNumber, @PathVariable String boardName
 			, @PathVariable int pageNumber, @PathVariable String categoryName) {
 		
-		model = bbsService.getArticleView(model, articleNumber, request);
+		model = bbsService.getArticleView(model, articleNumber, request, boardName);
 
 		model.addAttribute("boardName", boardName);
 		model.addAttribute("currentCategory", categoryName);
@@ -118,7 +118,7 @@ public class BbsController {
 	public String writeArticle(Model model, Write write, BoardForm boardForm, 
 			@RequestParam("uploadFile") MultipartFile[] files, HttpServletRequest request) throws Exception {
 		
-		Write article = bbsService.insertArticle(write, boardForm, files.length);	// 글 저장
+		Write article = bbsService.insertArticle(write, boardForm, files);	// 글 저장
 		bbsService.saveFile(article, files, request);					// 업로드한 파일 정보 서버와 DB에 저장
 
 		// 새 글쓰기와 답변글쓰기를 구분 - 답변글이면 페이지와 카테고리 기억해서 추후 목록이나 수정으로 갈때 값을 전해준다.

@@ -6,17 +6,17 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="stylesheet" href="/css/install.css">
-<title>JS보드 설치하기</title>
+<title>게시판 설치하기</title>
 </head>
 <body>
 <div id="top">
-    <h1>JS보드를 먼저 설치해주십시오.</h1>
+    <h1>게시판을 먼저 설치해주십시오.</h1>
     <p>INSTALLATION</p>
 </div>
 <div id="contents">
     <div class="ins_inner">
         <p>
-			JS보드 설치 후 다시 실행하시기 바랍니다.
+			게시판 설치 후 다시 실행하시기 바랍니다.
         </p>
 
         <div class="ins_btn">

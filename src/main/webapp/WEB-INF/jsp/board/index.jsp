@@ -1,3 +1,4 @@
+<%@page import="kr.sir.domain.Board"%>
 <%@page import="kr.sir.domain.Write"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -15,23 +16,21 @@
     <div id="lt_wr">
     	<%
     		List<List<Write>> newArticleList = (List<List<Write>>) request.getAttribute("newArticleList");
+    		List<Board> boardList = (List<Board>) request.getAttribute("boardList");
     	
     		int index = 0;
-    		for(List<Write> articleList : newArticleList) {
-    	%>
+    		for(List<Write> articleList : newArticleList) {	%>
     			  
     	<%		if(index % 2 == 1) { %>
    					<div class="lt lt_right">
     	<%		} else { %>
     				<div class="lt">
     	<%		} %>						
-    			<strong class="lt_title"><a href="">게시판</a></strong>
-    	<%
-    			for(Write article : articleList) {
-    	%>			
+    			<strong class="lt_title"><a href="/board/<%=boardList.get(index).getTable() %>/list"><%=boardList.get(index).getTable() %>게시판</a></strong>
+    	<%		for(Write article : articleList) {	%>			
 	            <ul>
 	                <li>
-	                    <a href="/board/자유/view/<%=article.getId() %>"><%=article.getSubject() %> <span class="cnt_cmt"><%=article.getComment() %></span> </a> 
+	                    <a href="/board/<%=boardList.get(index).getTable() %>/view/<%=article.getId() %>"><%=article.getSubject() %> <span class="cnt_cmt"><%=article.getComment() %></span> </a> 
 	                    <img src="/img/icon_new.gif" alt="새글">
 	                    <% if(article.getFile() > 0) { %>
 	                    	<img src="/img/icon_file.gif" alt="첨부파일">
@@ -42,16 +41,12 @@
 	                </li>
 	            </ul>
 	            	
-    	<%
-    			}
-    			index++;
-    	%>
-    			<div class="lt_more"><a href="/board/자유/list"><span class="sound_only">게시판</span>더보기</a></div>
+    	<%		} 	%>
+    			<div class="lt_more"><a href="/board/<%=boardList.get(index).getTable() %>/list"><span class="sound_only">게시판</span>더보기</a></div>
     			</div>		
-    	<%		
-    		}
-    	%>
+    	<%		index++;
+    		}	%>
     </div>
 </div>
- </body>
+</body>
 </html>
