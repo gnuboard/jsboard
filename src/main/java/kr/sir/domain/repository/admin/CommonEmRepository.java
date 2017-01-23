@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import kr.sir.common.CommonUtil;
+import kr.sir.common.util.CommonUtil;
 
 
 @Repository

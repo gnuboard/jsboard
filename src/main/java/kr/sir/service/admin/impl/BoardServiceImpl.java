@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.sir.common.CommonUtil;
+import kr.sir.common.util.CommonUtil;
 import kr.sir.domain.Board;
 import kr.sir.domain.BoardGroup;
 import kr.sir.domain.BoardGroupList;

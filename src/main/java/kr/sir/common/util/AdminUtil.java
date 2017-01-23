@@ -1,4 +1,4 @@
-package kr.sir.common;
+package kr.sir.common.util;
 
 import org.springframework.stereotype.Service;
 

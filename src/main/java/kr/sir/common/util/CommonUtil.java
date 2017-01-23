@@ -1,4 +1,4 @@
-package kr.sir.common;
+package kr.sir.common.util;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

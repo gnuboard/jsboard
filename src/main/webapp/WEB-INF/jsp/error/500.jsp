@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>오류 정보 안내 페이지</title>
 </head>
 <body>
-hello!!
+	<h4>서버에 오류가 발생하여 요청을 수행할 수 없습니다. 관리자에 문의하여 주십시오.</h4>
+	<p>
+		이용에 불편을 드려 죄송합니다.
+	</p>
+	<a href="/index">메인으로 가기</a>
 </body>
 </html>

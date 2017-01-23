@@ -21,7 +21,9 @@ public class DataConfig {
 	public static PropertySourcesPlaceholderConfigurer properties() throws IOException {
 		PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer = new PropertySourcesPlaceholderConfigurer();
 		YamlPropertiesFactoryBean yaml = new YamlPropertiesFactoryBean();
-		yaml.setResources(new ClassPathResource("config.yml"));
+		// 경로를 application.yml의 profile에 따라 가져오도록 변경 (1/24에 작업 예정)
+		String path = "config.yml";
+		yaml.setResources(new ClassPathResource(path));
 		propertySourcesPlaceholderConfigurer.setProperties(yaml.getObject());
 		return propertySourcesPlaceholderConfigurer;
 	}

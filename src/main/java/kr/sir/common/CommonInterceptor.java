@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import kr.sir.common.util.CommonUtil;
+
 // 공통 인터셉터
 public class CommonInterceptor extends HandlerInterceptorAdapter {
 	

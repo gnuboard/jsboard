@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import kr.sir.common.CommonUtil;
+import kr.sir.common.util.CommonUtil;
 import kr.sir.config.DataConfig;
 import kr.sir.service.admin.MemberService;
 import kr.sir.service.install.InstallService;

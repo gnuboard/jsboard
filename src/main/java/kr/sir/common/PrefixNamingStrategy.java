@@ -5,6 +5,8 @@ import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
 import org.hibernate.cfg.ImprovedNamingStrategy;
 import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
 
+import kr.sir.common.util.CommonUtil;
+
 public class PrefixNamingStrategy extends PhysicalNamingStrategyStandardImpl{
 
 	private static final long serialVersionUID = 1L;

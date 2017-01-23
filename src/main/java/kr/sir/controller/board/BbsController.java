@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.sir.common.exception.FindException;
 import kr.sir.domain.Write;
 import kr.sir.domain.form.BoardForm;
 import kr.sir.service.board.BbsService;
@@ -45,7 +46,7 @@ public class BbsController {
 	// 글 목록
 	@RequestMapping(value="/{boardName}/list/{pageNumber}/category/{categoryName}", method=RequestMethod.GET)
 	public String listWithPageNumber(Model model, @PathVariable String boardName
-			, @PathVariable int pageNumber, @PathVariable String categoryName) {
+			, @PathVariable int pageNumber, @PathVariable String categoryName) throws FindException {
 		
 		model = bbsService.getListWithPaging(model, pageNumber, categoryName, boardName);
 		model.addAttribute("boardName", boardName);
@@ -77,7 +78,7 @@ public class BbsController {
 	@RequestMapping(value="/{boardName}/view/{articleNumber}/page/{pageNumber}/category/{categoryName}", method=RequestMethod.GET)
 	public String view(Model model, HttpServletRequest request 
 			, @PathVariable int articleNumber, @PathVariable String boardName
-			, @PathVariable int pageNumber, @PathVariable String categoryName) {
+			, @PathVariable int pageNumber, @PathVariable String categoryName) throws FindException {
 		
 		model = bbsService.getArticleView(model, articleNumber, request, boardName);
 
@@ -134,7 +135,7 @@ public class BbsController {
 	@RequestMapping(value="/{boardName}/save/{articleNumber}/page/{pageNumber}/category/{categoryName}", method=RequestMethod.GET)
 	public String goUpdateForm(Model model, @PathVariable String boardName
 			, @PathVariable int articleNumber, @PathVariable int pageNumber
-			, @PathVariable String categoryName) {
+			, @PathVariable String categoryName) throws FindException {
 		
 		Write article = bbsService.findOne(articleNumber);
 		
@@ -167,7 +168,7 @@ public class BbsController {
 	
 	// 답변 글 쓰기 양식으로 이동
 	@RequestMapping(value="/view", method=RequestMethod.GET)
-	public String goAnswerForm(Write write, Model model, BoardForm boardForm) {
+	public String goAnswerForm(Write write, Model model, BoardForm boardForm) throws FindException {
 		
 		List<String> categoryList = bbsService.getCategoryList();		// 카테고리 가져오기
 		Write answerArticle = bbsService.createAnswerArticle(new Write(), write);	// 원글 정보를 바탕으로 답변 글 양식 생성

@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import kr.sir.common.CommonUtil;
+import kr.sir.common.util.CommonUtil;
 import kr.sir.domain.Board;
 
 @Repository

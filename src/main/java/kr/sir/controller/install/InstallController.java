@@ -1,8 +1,5 @@
 package kr.sir.controller.install;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
@@ -45,9 +42,9 @@ public class InstallController {
 	
 	// 설정 결과 페이지로 이동
 	@RequestMapping(value = "/step/4")
-	public String result(Model model, InstallAdmin adminForm) throws FileNotFoundException, IOException {
+	public String result(Model model, InstallAdmin adminForm) throws Exception {
 		// 1. schema로 db 생성
-		installService.createTable(new ClassPathResource("database.sql"), adminForm.getTable_prefix());
+		int createTableResult = installService.createTable(new ClassPathResource("database.sql"), adminForm.getTable_prefix());
 		
 		// 2. config.yml에 table_prefix 등록
 		installService.writeConfigToYaml(adminForm.getTable_prefix());

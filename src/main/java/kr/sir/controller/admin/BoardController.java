@@ -1,7 +1,5 @@
 package kr.sir.controller.admin;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,17 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.sir.common.AdminUtil;
+import kr.sir.common.util.AdminUtil;
 import kr.sir.domain.Board;
 import kr.sir.domain.BoardGroup;
 import kr.sir.domain.BoardVO;
 import kr.sir.domain.Config;
-import kr.sir.domain.repository.admin.BoardGroupRepository;
 import kr.sir.service.admin.BoardService;
 import kr.sir.service.admin.ConfigService;
 
