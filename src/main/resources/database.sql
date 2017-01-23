@@ -699,6 +699,7 @@ CREATE TABLE IF NOT EXISTS `js1_write` (
   `wr_comment_reply` varchar(5) NOT NULL,
   `ca_name` varchar(255) NOT NULL,
   `wr_option` set('html1','html2','secret','mail') NOT NULL,
+  `wr_notice` tinyint(4) NOT NULL DEFAULT '0',
   `wr_subject` varchar(255) NOT NULL,
   `wr_content` text NOT NULL,
   `wr_link1` text NOT NULL,

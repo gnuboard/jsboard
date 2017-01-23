@@ -23,7 +23,7 @@ public interface MemberService {
 	public long getCountAllMembers();	
 	
 	//모든 회원정보
-	public List<MemberGroupCount>getAllMembersList(String prefix);
+	public List<MemberGroupCount>getAllMembersList();
 	
 	//회원한명검색
 	public Member getOneMemer(String memberId);
@@ -32,7 +32,7 @@ public interface MemberService {
 	public void adminSavesMember(Member member,String isCertify);
 	
 	//관리자가 회원 삭제
-	public void adminDeletesMember(int id);
+	public void adminDeletesMembers(String id);
 	
 	//관리자가 회원정보수정
 	public void adminUpdatesMember(Member member);
@@ -41,13 +41,16 @@ public interface MemberService {
 	public long getCountPointlist();
 	
 	//모든 회원 포인트 합계
-	public Point getTotalPoint(String prefix);
+	public int getTotalPoint();
 	
 	//모든 회원 포인트 내역
-	public List<PointJoinMember> getAllPointContent(String prefix);
+	public List<PointJoinMember> getAllPointContent();
 	
 	//관리자가 회원에게 포인트 추기
-	public String addPoint(Point point,String prefix);
+	public String addPoint(Point point);
+	
+	//관리자가 포인트 리스트를 삭제
+	public void deletePointlist(int id);
 	
 
 }

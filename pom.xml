@@ -61,6 +61,22 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+		<dependency>
+		    <groupId>org.yaml</groupId>
+		    <artifactId>snakeyaml</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
+		<dependency>
+		    <groupId>org.codehaus.jackson</groupId>
+		    <artifactId>jackson-mapper-asl</artifactId>
+		    <version>1.9.13</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.3.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -76,11 +92,6 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
-		<dependency>
-		    <groupId>org.yaml</groupId>
-		    <artifactId>snakeyaml</artifactId>
-		</dependency>
 	</dependencies>
 	
 	<build>
@@ -88,23 +99,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+		            <mainClass>BbsApplication</mainClass>
+          		</configuration>
 			</plugin>
 		</plugins>
 	</build>
 	
-	<profiles>
-		<profile> 
-			<id>cafe24test</id>
-			<activation> 
-				<activeByDefault>true</activeByDefault> 
-			</activation> 
-			<properties> 
-				<!-- Default spring profile to use --> 
-				<spring.profiles.active>cafe24-test</spring.profiles.active> 
-<!-- 				Default environment  -->
-<!-- 				<environment>test</environment>  -->
-			</properties>
-	 	</profile>
-	</profiles>
-
 </project>

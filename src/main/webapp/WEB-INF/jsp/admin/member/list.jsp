@@ -1,15 +1,15 @@
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%-- <%@include file="../main/head.jsp" %> --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
 
-
 <body>
-<jsp:include page="../main/head.jsp"></jsp:include>
+ <jsp:include page="../main/head.jsp"></jsp:include> 
 
 <div id="container">
     <!-- 중간 레이아웃 -->
@@ -57,9 +57,10 @@
 
 <form name="fmemberlist" id="fmemberlist" action="/adm/member/updateordelete/" onsubmit="return fmemberlist_submit(this);" method="post">
 <div class="btn_fixed_top">
+	<input type="hidden" name="_method" value=""/>
 	<input type="submit" name="act_button" value="선택수정" class="btn_02 btn" onclick="document.pressed=this.value">
     <input type="submit" name="act_button" value="선택삭제" class="btn_02 btn" onclick="document.pressed=this.value">
-    <a href="/adm/member/form/add" id="member_add" class="btn_submit btn">회원추가</a>
+    <a href="/adm/member/form" id="member_add" class="btn_submit btn">회원추가</a>
 </div>
 	<input type="hidden" name="sst" value="${sst}">
 	<input type="hidden" name="sod" value="${sod}">
@@ -119,7 +120,7 @@
 								<c:set var="s_mod" value="" />
 							</c:when>
 							<c:otherwise>								
-								<c:set var="s_mod" value="<a href='/adm/member/form/update/memberId/${member.memberId}' class='btn_03'>수 정</a>"/>
+								<c:set var="s_mod" value="<a href='/adm/member/form/${member.memberId}' class='btn_03'>수 정</a>"/>
 							</c:otherwise>
 						</c:choose>
 						
@@ -141,18 +142,26 @@
                 		
                 		
                 		<c:choose>
-                			<c:when test="${ member.leaveDate != '' }">
-                				<c:set var="leaveMsg" value="<span class='td_txt_color1'>탈퇴</span>"></c:set>
+                			<c:when test="${ member.leaveDate ne '' }">
+                				<c:set var="leaveMsg" value="<span class='td_txt_color1'>탈퇴</span>"/>
                 			</c:when>
                 			
-                			<c:when test="${ member.interceptDate != ''}">
-                				<c:set var="interceptMsg" value="<span class='td_txt_color1'>차단됨</span>"></c:set>
-                				<c:set var="interceptTitle" value="차단해제"></c:set>
+                			<c:when test="${ member.interceptDate ne ''}">
+                				<c:set var="interceptMsg" value="<span class='td_txt_color1'>차단됨</span>"/>
+                				<c:set var="interceptTitle" value="차단해제"/>
                 			</c:when>
                 		</c:choose>
                 		
+                		<c:if test="${empty member.leaveDate || member.leaveDate eq ''}">
+                			<c:set var="leaveMsg" value=""/>
+                		</c:if>
+                		
+                		<c:if test="${empty member.interceptDate || member.interceptDate eq ''}">
+                			<c:set var="interceptMsg" value=""/>
+                		</c:if>
+                		
                 		<c:if test="${ empty interceptTitle }">
-                			<c:set var="interceptTitle" value="차단하기"></c:set>
+                			<c:set var="interceptTitle" value="차단하기"/>
                 		</c:if>        		
                 		
                 		
@@ -188,7 +197,7 @@
            			  	</c:choose> 
             		</td>
                     <td class="td_date">${fn:substring(member.todayLogin,2,10)}</td>
-                    <td class="td_num"><a href="adm/member/pointlist?sfl=memberId&amp;stx=${member.memberId}"><fmt:formatNumber value="${member.point}" pattern="#,###.##" /></a></td>
+                    <td class="td_num"><a href="adm/member/pointlist/sfl/memberId/stx/${member.memberId}"><fmt:formatNumber value="${member.point}" pattern="#,###.##" /></a></td>
                     <td rowspan="2" class="td_mng td_mng_s">                       
                     
                     	${s_mod}<!--수정버튼  -->
@@ -217,7 +226,10 @@
                         <!--<?php echo get_member_level_select("mb_level[$i]", 1, $member['mb_level'], $row['mb_level']) ?>  --> 
                     </td>
                    
-                    <td class="td_date">${fn:substring(member.datetime,2,10)}</td>
+                    <td class="td_date"><fmt:formatDate value="${member.datetime}" pattern="yy-MM-dd"/></td>
+                    
+                    
+                    
                     <td>${member.countGroupMember}</td>
                 </tr>
                
@@ -267,7 +279,12 @@
 			if (!confirm("선택한 자료를 정말 삭제하시겠습니까?")) {
 				return false;
 			}
+			$("input:hidden[name=_method]").val("DELETE");
+		}else if (document.pressed == "선택수정") {
+			$("input:hidden[name=_method]").val("PUT");
+			
 		}
+		
 
 		return true;
 	}

@@ -1,0 +1,1501 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>관리자</title>
+
+<link rel="stylesheet" href="./../css/style.css">
+<script src="http://code.jquery.com/jquery-1.12.1.js"></script>
+</head>
+<body>
+
+
+<div id="hd">
+    <h1>관리자</h1>
+    <div id="hd_top">
+        <button type="button" id="btn_gnb" class="btn_gnb_close">메뉴</button>
+        <div id="logo">
+            <a href="./../index.html"><img src="./../img/logo.png" alt="관리자"></a>
+        </div>
+        <div id="tnb">
+            <ul>
+                <li class="tnb_li"><a href="#" class="tnb_shop" target="_blank">쇼핑몰 바로가기</a></li>
+                <li class="tnb_li"><a href="#" class="tnb_community" target="_blank">커뮤니티 바로가기</a></li>
+                <li class="tnb_li"><a href="./../service.html" class="tnb_service">부가서비스</a></li>
+                <li class="tnb_li"><button type="button" class="tnb_mb_btn">관리자<span class="./img/btn_gnb.png">메뉴열기</span></button>
+                    <ul class="tnb_mb_area">
+                        <li><a href="#">관리자정보</a></li>
+                        <li id="tnb_logout"><a href="#">로그아웃</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="gnb" class="gnb_large">
+        <h2>카테고리</h2>
+        <ul class="gnb_ul">
+            <li class="gnb_li">
+                <button type="button" class="btn_op menu-1">환경설정</button>
+                <div class="gnb_oparea_wr">
+                    <div class="gnb_oparea">
+                        <h3>환경설정</h3>
+                        <ul>
+                            <li><a href="./config_form.html">기본환경설정</a></li>
+                            <li><a href="./auth_list.html">관리권한설정</a></li>
+                            <li><a href="./theme.html">테마설정</a></li>
+                            <li><a href="./menu_list.html">메뉴설정</a></li>
+                            <li><a href="./sendmail_test.html">메일테스트</a></li>
+                            <li><a href="./newwinlist.html">팝업레이어관리</a></li>
+                            <li><a href="./session_file_delete.html">세션파일 일괄삭제</a></li>
+                            <li><a href="./cache_file_delete.html">캐시파일 일괄삭제</a></li>
+                            <li><a href="./captcha_file_delete.html">캡챠파일 일괄삭제</a></li>
+                            <li><a href="./thumbnail_file_delete.html">썸네일파일 일괄삭제</a></li>
+                            <li><a href="./browscap.html">Browscap 업데이트</a></li>
+                            <li><a href="./browscap_convert.html">접속로그 변환</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <li class="gnb_li">
+                <button type="button" class="btn_op menu-2">회원관리</button>
+                <div class="gnb_oparea_wr">
+                    <div class="gnb_oparea">
+                        <h3>회원관리</h3>
+                        <ul>
+                            <li><a href="./member_list.html">회원관리</a></li>
+                            <li><a href="./mail_list.html">회원메일발송</a></li>
+                            <li><a href="./visit_list.html">접속자집계</a></li>
+                            <li><a href="./visit_search.html">접속자검색</a></li>
+                            <li><a href="./visit_delete.html">접속자로그삭제</a></li>
+                            <li><a href="./point_list.html">포인트관리 </a></li>
+                            <li><a href="./poll_list.html">투표관리 </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <li class="gnb_li">
+                <button type="button" class="btn_op menu-3">게시판관리</button>
+                <div class="gnb_oparea_wr">
+                    <div class="gnb_oparea">
+                        <h3>게시판관리</h3>
+                        <ul>
+                            <li><a href="./board_list.html">게시판관리</a></li>
+                            <li><a href="./boardgroup_list.html">게시판그룹관리</a></li>
+                            <li><a href="./popular_list.html">인기검색어관리</a></li>
+                            <li><a href="./popular_rank.html">인기검색어순위</a></li>
+                            <li><a href="./qa_config.html">1:1문의설정</a></li>
+                            <li><a href="./contentlist.html">내용관리</a></li>
+                            <li><a href="./faqmasterlist.html">FAQ관리</a></li>
+                            <li><a href="./write_count.html">글,댓글 현황</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <li class="gnb_li on">
+                <button type="button" class="btn_op menu-5">쇼핑몰관리</button>
+                <div class="gnb_oparea_wr">
+                    <div class="gnb_oparea">
+                        <h3><a href="./index.html">쇼핑몰관리</a></h3>
+                        <ul>
+                            <li><a href="./configform.html" class="on">쇼핑몰설정</a></li>
+                            <li><a href="./orderlist.html">주문내역</a></li>
+                            <li><a href="./personalpaylist.html">개인결제 관리</a></li>
+                            <li><a href="./categorylist.html">분류관리</a></li>
+                            <li><a href="./itemlist.html">상품관리</a></li>
+                            <li><a href="./itemqalist.html">상품문의</a></li>
+                            <li><a href="./itemuselist.html">상품후기</a></li>
+                            <li><a href="./itemstocklist.html">상품문의</a></li>
+                            <li><a href="./itemstocklist.html">상품재고관리</a></li>
+                            <li><a href="./itemtypelist.html">상품유형관리</a></li>
+                            <li><a href="./optionstocklist.html">상품옵션재고관리</a></li>
+                            <li><a href="./couponzonelist.html">쿠폰존관리</a></li>
+                            <li><a href="./sendcostlist.html">추가배송비관리</a></li>
+                            <li><a href="./inorderlist.html">미완료주문</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            
+             <li class="gnb_li">
+                <button type="button" class="btn_op menu-6">쇼핑몰현황/기타</button>
+                <div class="gnb_oparea_wr">
+                    <div class="gnb_oparea">
+                        <h3>쇼핑몰현황/기타</h3>
+                        <ul>
+                            <li><a href="./sale1.html">매출현황</a></li>
+                            <li><a href="./itemsellrank.html">상품판매순위</a></li>
+                            <li><a href="./orderprint.html">주문내역출력</a></li>
+                            <li><a href="./itemstocksms.html">재입고SMS 알림</a></li>
+                            <li><a href="./itemevent.html">이벤트관리</a></li>
+                            <li><a href="./itemeventlist.html">이벤트일괄처리</a></li>
+                            <li><a href="./bannerlist.html">배너관리</a></li>
+                            <li><a href="./wishlist.html">보관함현황</a></li>
+                            <li><a href="./price.html">가격비교사이트</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="gnb_li">
+                <button type="button" class="btn_op menu-4">SMS관리</button>
+                <div class="gnb_oparea_wr">
+                    <div class="gnb_oparea">
+                        <h3>SMS관리</h3>
+                        <ul>
+                            <li><a href="./sms_config.html">SMS 기본설정</a></li>
+                            <li><a href="./member_update.html">회원정보업데이트</a></li>
+                            <li><a href="./sms_write.html">문자 보내기</a></li>
+                            <li><a href="./history_list.html">전송내역-건별</a></li>
+                            <li><a href="./history_num.html">전송내역-번호별</a></li>
+                            <li><a href="./form_group.html">이모티콘 그룹</a></li>
+                            <li><a href="./form_list.html">이모티콘 관리</a></li>
+                            <li><a href="./num_group.html">휴대폰번호 그룹</a></li>
+                            <li><a href="./num_book.html">휴대폰번호 관리</a></li>
+                            <li><a href="./num_book_file.html">휴대폰번호 파일</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<script>
+$(function(){ 
+    $(".tnb_mb_btn").click(function(){
+        $(".tnb_mb_area").toggle();
+    });
+
+    $("#btn_gnb").click(function(){
+        $("#container").toggleClass("container-small");
+        $("#gnb").toggleClass("gnb_small");
+        $("#btn_gnb").toggleClass("btn_gnb_open");
+    });
+
+    $(".gnb_ul li .btn_op" ).click(function() {
+        $(this).parent().addClass("on").siblings().removeClass("on");
+    });
+
+});
+</script>
+<!-- 상단 레이아웃 -->
+
+<div id="container">
+    <!-- 중간 레이아웃 -->
+    <h1 id="container_title">상품입력</h1>
+
+    <div id="container_wr">
+        
+        <form>
+        <div id="itemform">
+            <section id="anc_sitfrm_cate">
+                <h2><button type="button" class="btn_op">상품분류<span class="btn_op_bg">열기</span></button></h2>
+                <div class="table_basic table_form op_area">
+                    <div class="local_desc02 local_desc">
+                        <p>기본분류는 반드시 선택하셔야 합니다. 하나의 상품에 최대 3개의 다른 분류를 지정할 수 있습니다.</p>
+                    </div>
+                    <table>
+                    <caption>상품분류 입력</caption>
+                    <colgroup>
+                        <col class="grid_4">
+                        <col>
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th scope="row"><label for="ca_id">기본분류</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">기본분류를 선택하면, 판매/재고/HTML사용/판매자 E-mail 등을, 선택한 분류의 기본값으로 설정합니다.</span>
+                            </span>
+                        </th>
+                        <td>
+                            <select name="ca_id" id="ca_id">
+                                <option value="">선택하세요</option>
+                            </select>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="ca_id2">2차 분류</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">2차 분류는 기본 분류의 하위 분류 개념이 아니므로 기본 분류 선택시 해당 상품이 포함될 최하위 분류만 선택하시면 됩니다.</span>
+                            </span>
+
+                        </th>
+                        <td>
+                            <select name="ca_id2" id="ca_id2">
+                                <option value="">선택하세요</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="ca_id3">3차 분류</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">3차 분류는 기본 분류의 하위 분류 개념이 아니므로 기본 분류 선택시 해당 상품이 포함될 최하위 분류만 선택하시면 됩니다.</span>
+                            </span>
+
+                        </th>
+                        <td>
+                            <select name="ca_id3" id="ca_id3">
+                                <option value="">선택하세요</option>
+                            </select>
+                        </td>
+                    </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <section id="anc_sitfrm_skin">
+                <h2><button type="button" class="btn_op">스킨설정<span class="btn_op_bg">열기</span></button></h2>
+                <div class="table_basic table_form op_area">
+                    <div class="local_desc02 local_desc">
+                        <p>상품상세보기에서 사용할 스킨을 설정합니다.</p>
+                    </div>
+                    <table>
+                    <caption>스킨설정</caption>
+                    <tbody>
+                    <tr>
+                        <th scope="row"><label for="it_skin">PC용 스킨</label></th>
+                        <td>
+                            <select id="it_skin">
+                                <option>선택</option>
+                            </select>
+                        </td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_skin" value="1" id="chk_ca_it_skin">
+                            <label for="chk_ca_it_skin">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_skin" value="1" id="chk_all_it_skin">
+                            <label for="chk_all_it_skin">전체적용</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="it_mobile_skin">모바일용 스킨</label></th>
+                        <td>
+                            <select id="it_mobile_skin">
+                                <option>선택</option>
+                            </select>
+                        </td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_mobile_skin" value="1" id="chk_ca_it_mobile_skin">
+                            <label for="chk_ca_it_mobile_skin">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_mobile_skin" value="1" id="chk_all_it_mobile_skin">
+                            <label for="chk_all_it_mobile_skin">전체적용</label>
+                        </td>
+                    </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="anc_sitfrm_ini">
+                <h2><button type="button" class="btn_op">기본정보<span class="btn_op_bg">열기</span></button></h2>
+                <div class="table_basic table_form op_area">
+                   <table>
+                    <caption>기본정보 입력</caption>
+                    <colgroup>
+                        <col class="grid_4">
+                        <col>
+                        <col class="grid_3">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th scope="row">상품코드
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">상품의 코드는 10자리 숫자로 자동생성합니다. <strong>직접 상품코드를 입력할 수도 있습니다.</strong><br>상품코드는 영문자, 숫자, - 만 입력 가능합니다.</span>
+                            </span>
+                        </th>
+                        <td colspan="2">
+                            <input type="text" name="it_id" id="it_id" required class="frm_input required" size="20" maxlength="20">
+                            <!--
+                            <span class="frm_ca_id">1476757925</span>
+                            <a href="" class="btn_frmline">상품확인</a>
+                            <a href="" class="btn_frmline">사용후기</a>
+                            <a href="" class="btn_frmline">상품문의</a>
+                            -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="it_name">상품명</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">HTML 입력이 불가합니다.</span>
+                            </span>
+                        </th>
+                        <td colspan="2">
+                            <input type="text" name="it_name" id="it_name" required class="frm_input required" size="95">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="it_basic">기본설명</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">상품명 하단에 상품에 대한 추가적인 설명이 필요한 경우에 입력합니다. HTML 입력도 가능합니다.</span>
+                            </span>
+                        </th>
+                        <td>
+                            <input type="text" name="it_basic" id="it_basic" class="frm_input" size="95">
+                        </td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_basic" value="1" id="chk_ca_it_basic">
+                            <label for="chk_ca_it_basic">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_basic" value="1" id="chk_all_it_basic">
+                            <label for="chk_all_it_basic">전체적용</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="it_order">출력순서</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">숫자가 작을 수록 상위에 출력됩니다. 음수 입력도 가능하며 입력 가능 범위는 -2147483648 부터 2147483647 까지입니다.<br><strong>입력하지 않으면 자동으로 출력됩니다.</strong></span>
+                            </span>
+                        </th>
+                        <td>
+                            <input type="text" name="it_order" id="it_order" class="frm_input" size="12">
+                        </td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_order" value="1" id="chk_ca_it_order">
+                            <label for="chk_ca_it_order">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_order" value="1" id="chk_all_it_order">
+                            <label for="chk_all_it_order">전체적용</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">상품유형
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">메인화면에 유형별로 출력할때 사용합니다.<br>이곳에 체크하게되면 상품리스트에서 유형별로 정렬할때 체크된 상품이 가장 먼저 출력됩니다.</span>
+                            </span>
+                        </th>
+                        <td>
+                            <input type="checkbox" name="it_type1" id="it_type1">
+                            <label for="it_type1">히트 <img src="./../img/icon_hit.gif" alt="히트 아이콘"></label>
+                            <input type="checkbox" name="it_type2" value="1" id="it_type2">
+                            <label for="it_type2">추천 <img src="./../img/icon_rec.gif" alt="추천 아이콘"></label>
+                            <input type="checkbox" name="it_type3" value="1" id="it_type3">
+                            <label for="it_type3">신상품 <img src="./../img/icon_new.gif" alt="신상품 아이콘"></label>
+                            <input type="checkbox" name="it_type4" value="1" id="it_type4">
+                            <label for="it_type4">인기 <img src="./../img/icon_best.gif" alt="인기 아이콘"></label>
+                            <input type="checkbox" name="it_type5" value="1" id="it_type5">
+                            <label for="it_type5">할인 <img src="./../img/icon_discount.gif" alt="할인 아이콘"></label>
+                        </td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_type" value="1" id="chk_ca_it_type">
+                            <label for="chk_ca_it_type">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_type" value="1" id="chk_all_it_type">
+                            <label for="chk_all_it_type">전체적용</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="it_maker">제조사</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">입력하지 않으면 상품상세페이지에 출력하지 않습니다.</span>
+                            </span>
+                        </th>
+                        <td>
+                            <input type="text" name="it_maker" id="it_maker" class="frm_input" size="40">
+                        </td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_maker" value="1" id="chk_ca_it_maker">
+                            <label for="chk_ca_it_maker">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_maker" value="1" id="chk_all_it_maker">
+                            <label for="chk_all_it_maker">전체적용</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="it_origin">원산지</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">입력하지 않으면 상품상세페이지에 출력하지 않습니다.</span>
+                            </span>
+                        </th>
+                        <td>
+                            <input type="text" name="it_origin" id="it_origin" class="frm_input" size="40">
+                        </td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_origin" value="1" id="chk_ca_it_origin">
+                            <label for="chk_ca_it_origin">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_origin" value="1" id="chk_all_it_origin">
+                            <label for="chk_all_it_origin">전체적용</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="it_brand">브랜드</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">입력하지 않으면 상품상세페이지에 출력하지 않습니다.</span>
+                            </span>
+                        </th>
+                        <td>
+                            <input type="text" name="it_brand" id="it_brand" class="frm_input" size="40">
+                        </td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_brand" value="1" id="chk_ca_it_brand">
+                            <label for="chk_ca_it_brand">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_brand" value="1" id="chk_all_it_brand">
+                            <label for="chk_all_it_brand">전체적용</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="it_model">모델</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">입력하지 않으면 상품상세페이지에 출력하지 않습니다.</span>
+                            </span>
+                        </th>
+                        <td>
+                            <input type="text" name="it_model" id="it_model" class="frm_input" size="40">
+                        </td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_model" value="1" id="chk_ca_it_model">
+                            <label for="chk_ca_it_model">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_model" value="1" id="chk_all_it_model">
+                            <label for="chk_all_it_model">전체적용</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="it_tel_inq">전화문의</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">상품 금액 대신 전화문의로 표시됩니다.</span>
+                            </span>
+                        </th>
+                        <td>
+                            <input type="checkbox" name="it_tel_inq" value="1" id="it_tel_inq"> 예
+                        </td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_tel_inq" value="1" id="chk_ca_it_tel_inq">
+                            <label for="chk_ca_it_tel_inq">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_tel_inq" value="1" id="chk_all_it_tel_inq">
+                            <label for="chk_all_it_tel_inq">전체적용</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="it_use">판매가능</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">잠시 판매를 중단하거나 재고가 없을 경우에 체크를 해제해 놓으면 출력되지 않으며, 주문도 받지 않습니다.</span>
+                            </span>
+                        </th>
+                        <td>
+                            <input type="checkbox" name="it_use" value="1" id="it_use"> 예
+                        </td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_use" value="1" id="chk_ca_it_use">
+                            <label for="chk_ca_it_use">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_use" value="1" id="chk_all_it_use">
+                            <label for="chk_all_it_use">전체적용</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="it_nocoupon">쿠폰적용안함</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">설정에 체크하시면 쿠폰 생성 때 상품 검색 결과에 노출되지 않습니다.</span>
+                            </span>
+                        </th>
+                        <td>
+                            <input type="checkbox" name="it_nocoupon" value="1" id="it_nocoupon"> 예
+                        </td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_nocoupon" value="1" id="chk_ca_it_nocoupon">
+                            <label for="chk_ca_it_nocoupon">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_nocoupon" value="1" id="chk_all_it_nocoupon">
+                            <label for="chk_all_it_nocoupon">전체적용</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="ec_mall_pid">네이버쇼핑 상품ID</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">네이버쇼핑에 입점한 경우 네이버쇼핑 상품ID를 입력하시면 네이버페이와 연동됩니다.<br>일부 쇼핑몰의 경우 네이버쇼핑 상품ID 대신 쇼핑몰 상품ID를 입력해야 하는 경우가 있습니다.<br>네이버페이 연동과정에서 이 부분에 대한 안내가 이뤄지니 안내받은 대로 값을 입력하시면 됩니다.</span>
+                            </span>
+                        </th>
+                        <td colspan="2">
+                            <input type="text" name="ec_mall_pid" id="ec_mall_pid" class="frm_input" size="20">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">상품설명</th>
+                        <td colspan="2"><textarea>에디터</textarea></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">모바일 상품설명</th>
+                        <td colspan="2"><textarea>에디터</textarea></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="it_sell_email">판매자 e-mail</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">운영자와 실제 판매자가 다른 경우 실제 판매자의 e-mail을 입력하면, 상품 주문 시점을 기준으로 실제 판매자에게도 주문서를 발송합니다.</span>
+                            </span>
+                        </th>
+                        <td>
+                            <input type="text" name="it_sell_email" id="it_sell_email" class="frm_input" size="40">
+                        </td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_sell_email" value="1" id="chk_ca_it_sell_email">
+                            <label for="chk_ca_it_sell_email">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_sell_email" value="1" id="chk_all_it_sell_email">
+                            <label for="chk_all_it_sell_email">전체적용</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="it_shop_memo">상점메모</label></th>
+                        <td><textarea name="it_shop_memo" id="it_shop_memo"></textarea></td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_shop_memo" value="1" id="chk_ca_it_shop_memo">
+                            <label for="chk_ca_it_shop_memo">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_shop_memo" value="1" id="chk_all_it_shop_memo">
+                            <label for="chk_all_it_shop_memo">전체적용</label>
+                        </td>
+                    </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2><button type="button" class="btn_op">상품요약정보<span class="btn_op_bg">열기</span></button></h2>
+                <div class="table_basic table_form op_area">
+                    <div class="local_desc02 local_desc">
+                        <p><strong>전자상거래 등에서의 상품 등의 정보제공에 관한 고시</strong>에 따라 총 35개 상품군에 대해 상품 특성 등을 양식에 따라 입력할 수 있습니다.</p>
+                        <div id="sit_compact">
+                            <select id="it_info_gubun" name="it_info_gubun">
+                                <option value="">상품군을 선택하세요.</option>
+                                <option value="" selected>의류</option>
+                            </select>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">상품군을 선택하면 자동으로 항목이 변환됩니다.</span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <table>
+                    <caption>상품요약정보 입력</caption>
+                    <tbody>
+                    <tr>
+                        <th scope="row"><label for="ii_article_material">제품소재</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">섬유의 조성 또는 혼용률을 백분율로 표시, 기능성인 경우 성적서 또는 허가서</span>
+                            </span>
+                        </th>
+                        <td>
+                            <input type="hidden" name="ii_article[]" value="material">
+                            <input type="text" name="ii_value[]" value="상품페이지 참고" id="ii_article_material" required="" class="frm_input required">
+                        </td>
+                        <td rowspan="8" class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_info" value="1" id="chk_ca_it_info">
+                            <label for="chk_ca_it_info">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_info" value="1" id="chk_all_it_info">
+                            <label for="chk_all_it_info">전체적용</label>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row"><label for="ii_article_color">색상</label></th>
+                        <td>
+                            <input type="hidden" name="ii_article[]" value="color">
+                            <input type="text" name="ii_value[]" value="상품페이지 참고" id="ii_article_color" required="" class="frm_input required">
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row"><label for="ii_article_size">치수</label></th>
+                        <td>
+                            <input type="hidden" name="ii_article[]" value="size">
+                            <input type="text" name="ii_value[]" value="상품페이지 참고" id="ii_article_size" required="" class="frm_input required">
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row"><label for="ii_article_maker">제조자</label>
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">수입품의 경우 수입자를 함께 표기 (병행수입의 경우 병행수입 여부로 대체 가능)</span>
+                            </span>
+                        </th>
+                        <td>
+                            <input type="hidden" name="ii_article[]" value="maker">
+                            <input type="text" name="ii_value[]" value="상품페이지 참고" id="ii_article_maker" required="" class="frm_input required">
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row"><label for="ii_article_caution">세탁방법 및 취급시 주의사항</label></th>
+                        <td>
+                            <input type="hidden" name="ii_article[]" value="caution">
+                            <input type="text" name="ii_value[]" value="상품페이지 참고" id="ii_article_caution" required="" class="frm_input required">
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row"><label for="ii_article_manufacturing_ym">제조연월</label></th>
+                        <td>
+                            <input type="hidden" name="ii_article[]" value="manufacturing_ym">
+                            <input type="text" name="ii_value[]" value="상품페이지 참고" id="ii_article_manufacturing_ym" required="" class="frm_input required">
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row"><label for="ii_article_warranty">품질보증기준</label></th>
+                        <td>
+                            <input type="hidden" name="ii_article[]" value="warranty">
+                            <input type="text" name="ii_value[]" value="상품페이지 참고" id="ii_article_warranty" required="" class="frm_input required">
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row"><label for="ii_article_as">A/S 책임자와 전화번호</label></th>
+                        <td>
+                            <input type="hidden" name="ii_article[]" value="as">
+                            <input type="text" name="ii_value[]" value="상품페이지 참고" id="ii_article_as" required="" class="frm_input required">
+                        </td>
+                    </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h2><button type="button" class="btn_op">가격 및 재고<span class="btn_op_bg">열기</span></button></h2>
+                <div class="table_basic table_form op_area">
+                    <table>
+                        <caption>가격 및 재고 입력</caption>
+                        <tbody>
+                        <tr>
+                            <th scope="row"><label for="it_price">판매가격</label></th>
+                            <td>
+                                <input type="text" name="it_price" id="it_price" class="frm_input" size="8"> 원
+                            </td>
+                            <td class="td_grpset">
+                                <input type="checkbox" name="chk_ca_it_price" value="1" id="chk_ca_it_price">
+                                <label for="chk_ca_it_price">분류적용</label>
+                                <input type="checkbox" name="chk_all_it_price" value="1" id="chk_all_it_price">
+                                <label for="chk_all_it_price">전체적용</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="it_cust_price">시중가격</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">입력하지 않으면 상품상세페이지에 출력하지 않습니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="text" name="it_cust_price" id="it_cust_price" class="frm_input" size="8"> 원
+                            </td>
+                            <td class="td_grpset">
+                                <input type="checkbox" name="chk_ca_it_cust_price" value="1" id="chk_ca_it_cust_price">
+                                <label for="chk_ca_it_cust_price">분류적용</label>
+                                <input type="checkbox" name="chk_all_it_cust_price" value="1" id="chk_all_it_cust_price">
+                                <label for="chk_all_it_cust_price">전체적용</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="it_point_type">포인트 유형</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">포인트 유형을 설정할 수 있습니다. 비율로 설정했을 경우 설정 기준금액의 %비율로 포인트가 지급됩니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <select name="it_point_type" id="it_point_type">
+                                    <option>설정금액</option>
+                                    <option>판매가기준 설정비율</option>
+                                    <option>구매가기준 설정비율</option>
+                                </select>
+                            </td>
+                            <td class="td_grpset">
+                                <input type="checkbox" name="chk_ca_it_point_type" value="1" id="chk_ca_it_point_type">
+                                <label for="chk_ca_it_point_type">분류적용</label>
+                                <input type="checkbox" name="chk_all_it_point_type" value="1" id="chk_all_it_point_type">
+                                <label for="chk_all_it_point_type">전체적용</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="it_point">포인트</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">주문완료후 환경설정에서 설정한 주문완료 설정일 후 회원에게 부여하는 포인트입니다.\n또, 포인트부여를 '아니오'로 설정한 경우 신용카드, 계좌이체로 주문하는 회원께는 부여하지 않습니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="text" name="it_point" id="it_point" class="frm_input" size="8"> <span id="it_point_unit">점</span>
+                            </td>
+                            <td class="td_grpset">
+                                <input type="checkbox" name="chk_ca_it_point" value="1" id="chk_ca_it_point">
+                                <label for="chk_ca_it_point">분류적용</label>
+                                <input type="checkbox" name="chk_all_it_point" value="1" id="chk_all_it_point">
+                                <label for="chk_all_it_point">전체적용</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="it_supply_point">추가옵션상품 포인트</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">상품의 추가옵션상품 구매에 일괄적으로 지급하는 포인트입니다. 0으로 설정하시면 구매포인트를 지급하지 않습니다.\n주문완료후 환경설정에서 설정한 주문완료 설정일 후 회원에게 부여하는 포인트입니다.\n또, 포인트부여를 '아니오'로 설정한 경우 신용카드, 계좌이체로 주문하는 회원께는 부여하지 않습니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="text" name="it_supply_point" id="it_supply_point" class="frm_input" size="8"> 점
+                            </td>
+                            <td class="td_grpset">
+                                <input type="checkbox" name="chk_ca_it_supply_point" value="1" id="chk_ca_it_supply_point">
+                                <label for="chk_ca_it_supply_point">분류적용</label>
+                                <input type="checkbox" name="chk_all_it_supply_point" value="1" id="chk_all_it_supply_point">
+                                <label for="chk_all_it_supply_point">전체적용</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="it_soldout">상품품절</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">잠시 판매를 중단하거나 재고가 없을 경우에 체크해 놓으면 품절상품으로 표시됩니다..</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="checkbox" name="it_soldout" value="1" id="it_soldout"> 예
+                            </td>
+                            <td class="td_grpset">
+                                <input type="checkbox" name="chk_ca_it_soldout" value="1" id="chk_ca_it_soldout">
+                                <label for="chk_ca_it_soldout">분류적용</label>
+                                <input type="checkbox" name="chk_all_it_soldout" value="1" id="chk_all_it_soldout">
+                                <label for="chk_all_it_soldout">전체적용</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="it_stock_sms">재입고SMS 알림</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">상품이 품절인 경우에 체크해 놓으면 상품상세보기에서 고객이 재입고SMS 알림을 신청할 수 있게 됩니다.</span>
+                                </span>
+                            </th>
+                            <td colspan="2">
+                                <input type="checkbox" name="it_stock_sms" value="1" id="it_stock_sms"> 예
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="it_stock_qty">재고수량</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area"><b>주문관리에서 상품별 상태 변경에 따라 자동으로 재고를 가감합니다.</b> 재고는 규격/색상별이 아닌, 상품별로만 관리됩니다.<br>재고수량을 0으로 설정하시면 품절상품으로 표시됩니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="text" name="it_stock_qty" id="it_stock_qty" class="frm_input" size="8"> 개
+                            </td>
+                            <td class="td_grpset">
+                                <input type="checkbox" name="chk_ca_it_stock_qty" value="1" id="chk_ca_it_stock_qty">
+                                <label for="chk_ca_it_stock_qty">분류적용</label>
+                                <input type="checkbox" name="chk_all_it_stock_qty" value="1" id="chk_all_it_stock_qty">
+                                <label for="chk_all_it_stock_qty">전체적용</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="it_noti_qty">재고 통보수량</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">상품의 재고가 통보수량보다 작을 때 쇼핑몰관리 메인화면의 재고현황에 재고부족 상품으로 표시됩니다.<br>옵션이 있는 상품은 개별 옵션의 통보수량이 적용됩니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="text" name="it_noti_qty" id="it_noti_qty" class="frm_input" size="8"> 개
+                            </td>
+                            <td class="td_grpset">
+                                <input type="checkbox" name="chk_ca_it_noti_qty" value="1" id="chk_ca_it_noti_qty">
+                                <label for="chk_ca_it_noti_qty">분류적용</label>
+                                <input type="checkbox" name="chk_all_it_noti_qty" value="1" id="chk_all_it_noti_qty">
+                                <label for="chk_all_it_noti_qty">전체적용</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="it_buy_min_qty">최소구매수량</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">상품 구매시 최소 구매 수량을 설정합니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="text" name="it_buy_min_qty" id="it_buy_min_qty" class="frm_input" size="8"> 개
+                            </td>
+                            <td class="td_grpset">
+                                <input type="checkbox" name="chk_ca_it_buy_min_qty" value="1" id="chk_ca_it_buy_min_qty">
+                                <label for="chk_ca_it_buy_min_qty">분류적용</label>
+                                <input type="checkbox" name="chk_all_it_buy_min_qty" value="1" id="chk_all_it_buy_min_qty">
+                                <label for="chk_all_it_buy_min_qty">전체적용</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="it_buy_max_qty">최대구매수량</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">상품 구매시 최대 구매 수량을 설정합니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="text" name="it_buy_max_qty" id="it_buy_max_qty" class="frm_input" size="8"> 개
+                            </td>
+                            <td class="td_grpset">
+                                <input type="checkbox" name="chk_ca_it_buy_max_qty" value="1" id="chk_ca_it_buy_max_qty">
+                                <label for="chk_ca_it_buy_max_qty">분류적용</label>
+                                <input type="checkbox" name="chk_all_it_buy_max_qty" value="1" id="chk_all_it_buy_max_qty">
+                                <label for="chk_all_it_buy_max_qty">전체적용</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="it_notax">상품과세 유형</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">상품의 과세유형(과세, 비과세)을 설정합니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <select name="it_notax" id="it_notax">
+                                    <option>과세</option>
+                                    <option>비과세</option>
+                                </select>
+                            </td>
+                            <td class="td_grpset">
+                                <input type="checkbox" name="chk_ca_it_notax" value="1" id="chk_ca_it_notax">
+                                <label for="chk_ca_it_notax">분류적용</label>
+                                <input type="checkbox" name="chk_all_it_notax" value="1" id="chk_all_it_notax">
+                                <label for="chk_all_it_notax">전체적용</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">상품선택옵션
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">옵션항목은 콤마(,) 로 구분하여 여러개를 입력할 수 있습니다. 옷을 예로 들어 [옵션1 : 사이즈 , 옵션1 항목 : XXL,XL,L,M,S] , [옵션2 : 색상 , 옵션2 항목 : 빨,파,노]<br><strong>옵션명과 옵션항목에 따옴표(\', ")는 입력할 수 없습니다.</strong></span>
+                                </span>
+                            </th>
+                            <td colspan="2">
+                                <div class="sit_option">
+                                    <table>
+                                    <caption>상품선택옵션 입력</caption>
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <label for="opt1_subject">옵션1</label>
+                                            <input type="text" name="opt1_subject" id="opt1_subject" class="frm_input" size="15">
+                                        </th>
+                                        <td>
+                                            <label for="opt1"><b>옵션1 항목</b></label>
+                                            <input type="text" name="opt1" value="" id="opt1" class="frm_input" size="50">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <label for="opt2_subject">옵션2</label>
+                                            <input type="text" name="opt2_subject" id="opt2_subject" class="frm_input" size="15">
+                                        </th>
+                                        <td>
+                                            <label for="opt2"><b>옵션2 항목</b></label>
+                                            <input type="text" name="opt2" value="" id="opt2" class="frm_input" size="50">
+                                        </td>
+                                    </tr>
+                                     <tr>
+                                        <th scope="row">
+                                            <label for="opt3_subject">옵션3</label>
+                                            <input type="text" name="opt3_subject" id="opt3_subject" class="frm_input" size="15">
+                                        </th>
+                                        <td>
+                                            <label for="opt3"><b>옵션3 항목</b></label>
+                                            <input type="text" name="opt3" value="" id="opt3" class="frm_input" size="50">
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    </table>
+                                    <div class="btn_confirm">
+                                        <button type="button" id="option_table_create" class="btn_03">옵션목록생성</button>
+                                    </div>
+                                </div>
+                                <div id="sit_option_frm" class="table_01">
+                                    <table>
+                                    <caption>옵션 목록</caption>
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <label for="opt_chk_all" class="sound_only">전체 옵션</label>
+                                            <input type="checkbox" name="opt_chk_all" value="1" id="opt_chk_all">
+                                        </th>
+                                        <th scope="col">옵션</th>
+                                        <th scope="col">추가금액</th>
+                                        <th scope="col">재고수량</th>
+                                        <th scope="col">통보수량</th>
+                                        <th scope="col">사용여부</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="td_chk">
+                                            <input type="hidden" name="opt_id[]" value="1">
+                                            <label for="opt_chk_0" class="sound_only"></label>
+                                            <input type="checkbox" name="opt_chk[]" id="opt_chk_0" value="1">
+                                        </td>
+                                        <td class="td_left">빨강 &gt; XXXL</td>
+                                        <td>
+                                            <label for="opt_price_0" class="sound_only"></label>
+                                            <input type="text" name="opt_price[]" value="0" id="opt_price_0" class="tbl_input" size="9">
+                                        </td>
+                                        <td>
+                                            <label for="opt_stock_qty_0" class="sound_only"></label>
+                                            <input type="text" name="opt_stock_qty[]" value="9999" id="opt_stock_qty_0" class="tbl_input" size="5">
+                                        </td>
+                                        <td>
+                                            <label for="opt_noti_qty_0" class="sound_only"></label>
+                                            <input type="text" name="opt_noti_qty[]" value="100" id="opt_noti_qty_0" class="tbl_input" size="5">
+                                        </td>
+                                        <td>
+                                            <label for="opt_use_0" class="sound_only"></label>
+                                            <select name="opt_use[]" id="opt_use_0">
+                                                <option value="1" selected="selected">사용함</option>
+                                                <option value="0">사용안함</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                    </table>
+
+                                    <fieldset>
+                                        <legend>옵션 일괄 적용</legend>
+                                        <span class="frm_info">전체 옵션의 추가금액, 재고/통보수량 및 사용여부를 일괄 적용할 수 있습니다. 단, 체크된 수정항목만 일괄 적용됩니다.</span>    
+                                        <label for="opt_com_price">추가금액</label>
+                                        <label for="opt_com_price_chk" class="sound_only">추가금액일괄수정</label>
+                                        <input type="checkbox" name="opt_com_price_chk" value="1" id="opt_com_price_chk" class="opt_com_chk">
+                                        <input type="text" name="opt_com_price" value="0" id="opt_com_price" class="frm_input" size="5">
+                                        <label for="opt_com_stock">재고수량</label>
+                                        <label for="opt_com_stock_chk" class="sound_only">재고수량일괄수정</label>
+                                        <input type="checkbox" name="opt_com_stock_chk" value="1" id="opt_com_stock_chk" class="opt_com_chk">
+                                        <input type="text" name="opt_com_stock" value="0" id="opt_com_stock" class="frm_input" size="5">
+                                        <label for="opt_com_noti">통보수량</label>
+                                        <label for="opt_com_noti_chk" class="sound_only">통보수량일괄수정</label>
+                                        <input type="checkbox" name="opt_com_noti_chk" value="1" id="opt_com_noti_chk" class="opt_com_chk">
+                                        <input type="text" name="opt_com_noti" value="0" id="opt_com_noti" class="frm_input" size="5">
+                                        <label for="opt_com_use">사용여부</label>
+                                        <label for="opt_com_use_chk" class="sound_only">사용여부일괄수정</label>
+                                        <input type="checkbox" name="opt_com_use_chk" value="1" id="opt_com_use_chk" class="opt_com_chk">
+                                        <select name="opt_com_use" id="opt_com_use">
+                                            <option value="1">사용함</option>
+                                            <option value="0">사용안함</option>
+                                        </select>
+                                        <button type="button" id="opt_value_apply" class="btn_frmline">일괄적용</button>
+                                    </fieldset>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">상품추가옵션
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">옵션항목은 콤마(,) 로 구분하여 여러개를 입력할 수 있습니다. 스마트폰을 예로 들어 [추가1 : 추가구성상품 , 추가1 항목 : 액정보호필름,케이스,충전기]<br><strong>옵션명과 옵션항목에 따옴표(\', ")는 입력할 수 없습니다.</strong></span>
+                                </span>
+                            </th>
+                            <td colspan="2">
+                                <div id="sit_supply_frm" class="sit_option tbl_frm01">
+                                    <table>
+                                    <caption>상품추가옵션 입력</caption>
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <label for="spl_subject_1">추가1</label>
+                                            <input type="text" name="spl_subject[]" id="spl_subject_1" class="frm_input" size="15">
+                                        </th>
+                                        <td>
+                                            <label for="spl_item_1"><b>추가 항목</b></label>
+                                            <input type="text" name="spl[]" id="spl_item_1" value="" class="frm_input" size="40">
+                                            <button type="button" class="btn_frmline">삭제</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">
+                                            <label for="spl_subject_2">추가2</label>
+                                            <input type="text" name="spl_subject[]" id="spl_subject_2" class="frm_input" size="15">
+                                        </th>
+                                        <td>
+                                            <label for="spl_item_2"><b>추가 항목</b></label>
+                                            <input type="text" name="spl[]" id="spl_item_2" value="" class="frm_input" size="40">
+                                            <button type="button"  class="btn_frmline">삭제</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    </table>
+                                    <div id="sit_option_addfrm_btn"><button type="button" id="add_supply_row" class="btn_01">옵션추가</button></div>
+                                    <div class="btn_confirm">
+                                        <button type="button" id="supply_table_create" class="btn_03">옵션목록생성</button>
+                                    </div>
+                                </div>
+                                <div id="sit_option_addfrm" class="table_01">
+                                    <table>
+                                    <caption>추가옵션 목록</caption>
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <label for="spl_chk_all" class="sound_only">전체 추가옵션</label>
+                                            <input type="checkbox" name="spl_chk_all" id="spl_chk_all" value="1">
+                                        </th>
+                                        <th scope="col">옵션명</th>
+                                        <th scope="col">옵션항목</th>
+                                        <th scope="col">상품금액</th>
+                                        <th scope="col">재고수량</th>
+                                        <th scope="col">통보수량</th>
+                                        <th scope="col">사용여부</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <td class="td_chk">
+                                            <label for="spl_chk_0" class="sound_only">추가 추가항목 2</label>
+                                            <input type="checkbox" id="spl_chk_0" value="1">
+                                        </td>
+                                        <td class="td_left">추가</td>
+                                        <td class="td_left">추가항목 2</td>
+                                        <td>
+                                            <label for="spl_price_0" class="sound_only">상품금액</label>
+                                            <input type="text" value="0" id="spl_price_0" class="tbl_input" size="9">
+                                        </td>
+                                        <td>
+                                            <label for="spl_stock_qty_0" class="sound_only">재고수량</label>
+                                            <input type="text"  value="9999" id="spl_stock_qty_0" class="tbl_input" size="5">
+                                        </td>
+                                        <td>
+                                            <label for="spl_noti_qty_0" class="sound_only">통보수량</label>
+                                            <input type="text" value="100" id="spl_noti_qty_0" class="tbl_input" size="5">
+                                        </td>
+                                        <td>
+                                            <label for="spl_use_0" class="sound_only">사용여부</label>
+                                            <select id="spl_use_0">
+                                                <option value="1" selected="selected">사용함</option>
+                                                <option value="0">사용안함</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td_chk">
+                                            <label for="spl_chk_1" class="sound_only">추가 추가항목 1</label>
+                                            <input type="checkbox" id="spl_chk_1" value="1">
+                                        </td>
+                                        <td class="td_left">추가</td>
+                                        <td class="td_left">추가항목 1</td>
+                                        <td>
+                                            <label for="spl_price_1" class="sound_only">상품금액</label>
+                                            <input type="text" value="1" id="spl_price_1" class="tbl_input" size="9">
+                                        </td>
+                                        <td>
+                                            <label for="spl_stock_qty_1" class="sound_only">재고수량</label>
+                                            <input type="text" value="9999" id="spl_stock_qty_1" class="tbl_input" size="5">
+                                        </td>
+                                        <td>
+                                            <label for="spl_noti_qty_1" class="sound_only">통보수량</label>
+                                            <input type="text"  value="111" id="spl_noti_qty_1" class="tbl_input" size="5">
+                                        </td>
+                                        <td>
+                                            <label for="spl_use_1" class="sound_only">사용여부</label>
+                                            <select id="spl_use_1">
+                                                <option value="1" selected="selected">사용함</option>
+                                                <option value="1">사용안함</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="btn_list01 btn_list">
+                                    <button type="button" id="sel_supply_delete" class="btn_02">선택삭제</button>
+                                </div>
+
+                                <fieldset>
+                                    <span class="frm_info">전체 추가 옵션의 상품금액, 재고/통보수량 및 사용여부를 일괄 적용할 수 있습니다.  단, 체크된 수정항목만 일괄 적용됩니다.</span>
+                                    <label for="spl_com_price">상품금액</label>
+                                    <label for="spl_com_price_chk" class="sound_only">상품금액일괄수정</label>
+                                    <input type="checkbox" name="spl_com_price_chk" value="1" id="spl_com_price_chk" class="spl_com_chk">
+                                    <input type="text" name="spl_com_price" value="0" id="spl_com_price" class="frm_input" size="9">
+                                    <label for="spl_com_stock">재고수량</label>
+                                    <label for="spl_com_stock_chk" class="sound_only">재고수량일괄수정</label>
+                                    <input type="checkbox" name="spl_com_stock_chk" value="1" id="spl_com_stock_chk" class="spl_com_chk">
+                                    <input type="text" name="spl_com_stock" value="0" id="spl_com_stock" class="frm_input" size="5">
+                                    <label for="spl_com_noti">통보수량</label>
+                                    <label for="spl_com_noti_chk" class="sound_only">통보수량일괄수정</label>
+                                    <input type="checkbox" name="spl_com_noti_chk" value="1" id="spl_com_noti_chk" class="spl_com_chk">
+                                    <input type="text" name="spl_com_noti" value="0" id="spl_com_noti" class="frm_input" size="5">
+                                    <label for="spl_com_use">사용여부</label>
+                                    <label for="spl_com_use_chk" class="sound_only">사용여부일괄수정</label>
+                                    <input type="checkbox" name="spl_com_use_chk" value="1" id="spl_com_use_chk" class="spl_com_chk">
+                                    <select name="spl_com_use" id="spl_com_use">
+                                        <option value="1">사용함</option>
+                                        <option value="0">사용안함</option>
+                                    </select>
+                                    <button type="button" id="spl_value_apply" class="btn_frmline">일괄적용</button>
+                                </fieldset>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section>
+                <h2><button type="button" class="btn_op">배송비 입력<span class="btn_op_bg">열기</span></button></h2>
+                <div class="table_basic table_form op_area">
+                    <table>
+                        <caption>배송비 입력</caption>
+                        <tbody>
+                        <tr>
+                            <th scope="row"><label for="it_sc_type">배송비 유형</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">배송비 유형을 선택하면 자동으로 항목이 변환됩니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <select name="it_sc_type" id="it_sc_type">
+                                    <option value="0">쇼핑몰 기본설정 사용</option>
+                                    <option value="1">무료배송</option>
+                                    <option value="2">조건부 무료배송</option>
+                                    <option value="3">유료배송</option>
+                                    <option value="4">수량별 부과</option>
+                                </select>
+                            </td>
+                            <td rowspan="4" id="sc_grp" class="td_grpset">
+                                <input type="checkbox" name="chk_ca_it_sendcost" value="1" id="chk_ca_it_sendcost">
+                                <label for="chk_ca_it_sendcost">분류적용</label>
+                                <input type="checkbox" name="chk_all_it_sendcost" value="1" id="chk_all_it_sendcost">
+                                <label for="chk_all_it_sendcost">전체적용</label>
+                            </td>
+                        </tr>
+                        <tr id="sc_con_method">
+                            <th scope="row"><label for="it_sc_method">배송비 결제</label></th>
+                            <td>
+                                <select name="it_sc_method" id="it_sc_method">
+                                    <option value="0">선불</option>
+                                    <option value="1">착불</option>
+                                    <option value="2">사용자선택</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr id="sc_con_basic">
+                            <th scope="row"><label for="it_sc_price">기본배송비</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">무료배송 이외의 설정에 적용되는 배송비 금액입니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                <input type="text" name="it_sc_price" id="it_sc_price" class="frm_input" size="8"> 원
+                            </td>
+                        </tr>
+                        <tr id="sc_con_minimum">
+                            <th scope="row"><label for="it_sc_minimum">배송비 상세조건</label></th>
+                            <td>
+                                주문금액 <input type="text" name="it_sc_minimum" id="it_sc_minimum" class="frm_input" size="8"> 이상 무료 배송
+                            </td>
+                        </tr>
+                        <!--
+                        <tr id="sc_con_qty">
+                            <th scope="row"><label for="it_sc_qty">배송비 상세조건</label>
+                                <span class="tooltip">
+                                    <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                    <span class="tooltip_area">상품의 주문 수량에 따라 배송비가 부과됩니다. 예를 들어 기본배송비가 3,000원 수량을 3으로 설정했을 경우 상품의 주문수량이 5개이면 6,000원 배송비가 부과됩니다.</span>
+                                </span>
+                            </th>
+                            <td>
+                                주문수량 <input type="text" name="it_sc_qty" id="it_sc_qty" class="frm_input" size="8"> 마다 배송비 부과
+                            </td>
+                        </tr>
+                        -->
+                    </tbody>
+                    </table>
+                </div>
+            </section>
+
+             <section>
+                <h2><button type="button" class="btn_op">이미지<span class="btn_op_bg">열기</span></button></h2>
+                <div class="table_basic table_form op_area">
+                    <table>
+                        <caption>이미지 업로드</caption>
+                        <tbody>
+                         <tr>
+                            <th scope="row"><label for="it_img1">이미지 1</label></th>
+                            <td>
+                                <input type="file" name="it_img1" id="it_img1">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+             <section id="anc_sitfrm_relation" class="srel">
+                <h2><button type="button" class="btn_op">관련상품<span class="btn_op_bg">열기</span></button></h2>
+                <div class="op_area">
+                    <div class="local_desc02 local_desc">
+                        <p>
+                            등록된 전체상품 목록에서 상품분류를 선택하면 해당 상품 리스트가 연이어 나타납니다.<br>
+                            상품리스트에서 관련 상품으로 추가하시면 선택된 관련상품 목록에 <strong>함께</strong> 추가됩니다.<br>
+                            예를 들어, A 상품에 B 상품을 관련상품으로 등록하면 B 상품에도 A 상품이 관련상품으로 자동 추가되며, <strong>확인 버튼을 누르셔야 정상 반영됩니다.</strong>
+                        </p>
+                    </div>
+
+                    <div class="compare_wr">
+                        <section class="compare_left">
+                            <h3>등록된 전체상품 목록</h3>
+                            <label for="sch_relation" class="sound_only">상품분류</label>
+                            <span class="srel_pad">
+                                <select id="sch_relation">
+                                    <option>분류별 상품</option>
+                                </select>
+                                <label for="sch_name" class="sound_only">상품명</label>
+                                <input type="text" name="sch_name" id="sch_name" class="frm_input" size="15">
+                                <button type="button" id="btn_search_item" class="btn_frmline">검색</button>
+                            </span>
+                            <div id="relation" class="srel_list">
+                                <ul>
+                                    <li class="list_res">
+                                        <div class="list_item">
+                                            <img src="http://sora.gnutest.com/yc5/data/item/1441153391/thumb-bn_50x50.jpg" width="50" height="50" alt=""> 
+                                            <span>상품명</span>
+                                            <button type="button" class="add_item btn_02">추가</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!--<p>상품의 분류를 선택하시거나 상품명을 입력하신 후 검색하여 주십시오.</p>-->
+                            </div>
+                        </section>
+
+                        <section class="compare_right">
+                            <h3>선택된 관련상품 목록</h3>
+                            <span class="srel_pad"></span>
+                            <div id="reg_relation" class="srel_sel">
+                                <ul>
+                                    <li>
+                                        <div class="list_item">
+                                            <img src="http://sora.gnutest.com/yc5/data/item/1441153391/thumb-bn_50x50.jpg" width="50" height="50" alt=""> 
+                                            <span>상품명</span>
+                                            <button type="button" class="del_item btn_02">삭제</button>
+
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!--<p>선택된 상품이 없습니다.</p>-->
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+            </section>
+
+            <section id="anc_sitfrm_event" class="srel">
+                <h2><button type="button" class="btn_op">관련이벤트<span class="btn_op_bg">열기</span></button></h2>
+                <div class="op_area compare_wr">
+                    <section class="compare_left">
+                        <h3>등록된 전체이벤트 목록</h3>
+                        <div id="event_list" class="srel_list srel_noneimg">
+                            <ul>
+                                <li>
+                                    <div class="list_item">
+                                    <span>이벤트명</span>
+                                    <button type="button" class="add_item btn_02">추가</button>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!--<p>등록된 이벤트가 없습니다.</p>-->
+                        </div>
+                    </section>
+ 
+                    <section class="compare_right">
+                        <h3>선택된 관련이벤트 목록</h3>
+                        <div id="reg_event_list" class="srel_sel srel_noneimg">
+                            <ul>
+                                <li>
+                                    <div class="list_item">
+                                        <span>이벤트명</span>
+                                        <button type="button" class="del_item btn_02">삭제</button>
+                                    </div>
+                                </li>
+
+                            </ul>
+                            <!-- <p>선택된 이벤트가 없습니다.</p>-->
+                        </div>
+                        <input type="hidden" name="ev_list">
+                    </section>
+                </div>
+            </section>
+
+            <section>
+                <h2><button type="button" class="btn_op">상세설명설정<span class="btn_op_bg">열기</span></button></h2>
+                <div class="op_area table_form table_basic">
+                    <table>
+                    <caption>상세설명설정</caption>
+
+                    <tbody>
+                    <tr>
+                        <th scope="row">상품상단내용
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">상품상세설명 페이지 상단에 출력하는 HTML 내용입니다.</span>
+                            </span>
+                        </th>
+                        <td><textarea></textarea></td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_head_html" value="1" id="chk_ca_it_head_html">
+                            <label for="chk_ca_it_head_html">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_head_html" value="1" id="chk_all_it_head_html">
+                            <label for="chk_all_it_head_html">전체적용</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">상품하단내용
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">상품상세설명 페이지 하단에 출력하는 HTML 내용입니다.</span>
+                            </span>
+                        </th>
+                        <td><textarea></textarea></td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_tail_html" value="1" id="chk_ca_it_tail_html">
+                            <label for="chk_ca_it_tail_html">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_tail_html" value="1" id="chk_all_it_tail_html">
+                            <label for="chk_all_it_tail_html">전체적용</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">모바일 상품상단내용
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">모바일 상품상세설명 페이지 상단에 출력하는 HTML 내용입니다.</span>
+                            </span>
+                        </th>
+                        <td><textarea></textarea></td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_mobile_head_html" value="1" id="chk_ca_it_mobile_head_html">
+                            <label for="chk_ca_it_mobile_head_html">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_mobile_head_html" value="1" id="chk_all_it_mobile_head_html">
+                            <label for="chk_all_it_mobile_head_html">전체적용</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">모바일 상품하단내용
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">모바일 상품상세설명 페이지 하단에 출력하는 HTML 내용입니다..</span>
+                            </span>
+                        </th>
+                        <td><textarea></textarea></td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_it_mobile_tail_html" value="1" id="chk_ca_it_mobile_tail_html">
+                            <label for="chk_ca_it_mobile_tail_html">분류적용</label>
+                            <input type="checkbox" name="chk_all_it_mobile_tail_html" value="1" id="chk_all_it_mobile_tail_html">
+                            <label for="chk_all_it_mobile_tail_html">전체적용</label>
+                        </td>
+                    </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="anc_sitfrm_extra">
+                <h2><button type="button" class="btn_op">여분필드 설정<span class="btn_op_bg">열기</span></button></h2>
+
+                <div class="table_basic table_form op_area">
+                    <table>
+                    <tbody>
+                    <tr>
+                        <th scope="row">여분필드1</th>
+                        <td class="td_extra">
+                            <label for="it_1_subj">여분필드 1 제목</label>
+                            <input type="text" name="it_1_subj" id="it_1_subj" class="frm_input">
+                            <label for="it_1">여분필드 1 값</label>
+                            <input type="text" name="it_1" id="it_1" class="frm_input">
+                        </td>
+                        <td class="td_grpset">
+                            <input type="checkbox" name="chk_ca_1" value="1" id="chk_ca_1">
+                            <label for="chk_ca_1">분류적용</label>
+                            <input type="checkbox" name="chk_all_1" value="1" id="chk_all_1">
+                            <label for="chk_all_1">전체적용</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">입력일시
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">상품을 처음 입력(등록)한 시간입니다.</span>
+                            </span>
+
+                        </th>
+                        <td colspan="2">2017-01-16 14:01:03</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">수정일시
+                            <span class="tooltip">
+                                <button type="button" class="tooltip_btn"><span class="sound_only">도움말</span></button>
+                                <span class="tooltip_area">상품을 최종 수정한 시간입니다.</span>
+                            </span>
+                        </th>
+                        <td colspan="2">2017-01-16 14:01:03 </td>
+                    </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </section>
+            <div class="btn_fixed_top">
+                <a href="" class="btn_02 btn">상품보기</a>
+                <input type="submit" value="확인" class="btn_submit btn">
+            </div>
+        </div>
+        </form>
+        
+    </div>
+    
+    <script>
+    $(function(){ 
+
+        $(".btn_op").click(function(){
+            $(this).parent().next(".op_area").toggle();
+        });
+
+        $(".tooltip_btn").on('click mouseover',function(){
+            $(this).next(".tooltip_area").fadeIn();
+        }).mouseout(function(){
+            $(".tooltip_area").fadeOut("fast");
+        }).mousemove(function(e){
+            $(".tooltip_area").css({
+                top:e.pageY+0+"px",
+                left:e.pageX+10+"px"
+            });
+        });
+    });
+
+    </script>
+    <!-- 하단 레이아웃 -->
+    <div id="ft">
+        <p>
+            Copyright © abc.com. All rights reserved.
+        </p>
+        <button type="button" class="scroll_top"><span class="top_img"></span><span class="top_txt">TOP</span></button>
+    </div>
+</div>
+<script>
+$(".scroll_top").click(function(){
+     $("body,html").animate({scrollTop:0},400);
+})
+</script>
+
+
+
+</body>
+</html>

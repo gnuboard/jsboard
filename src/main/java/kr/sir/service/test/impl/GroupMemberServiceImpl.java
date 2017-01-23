@@ -5,27 +5,27 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.sir.domain.GroupMember;
-import kr.sir.domain.repository.test.GroupMemberRepository;
+import kr.sir.domain.BoardGroupMember;
+import kr.sir.domain.repository.test.TestGroupMemberRepository;
 import kr.sir.service.test.GroupMemberService;
 
 @Service
 public class GroupMemberServiceImpl implements GroupMemberService {
 	
-	private GroupMemberRepository groupMemberRepository; 
+	private TestGroupMemberRepository groupMemberRepository; 
 	
 	@Autowired
-	public void setGroupMemberRepository(GroupMemberRepository groupMemberRepository) {
+	public void setGroupMemberRepository(TestGroupMemberRepository groupMemberRepository) {
 		this.groupMemberRepository = groupMemberRepository;
 	}
 
 	// findMemberByNo()
-	public GroupMember findMemberByNo(int id) {
+	public BoardGroupMember findMemberByNo(int id) {
 		return groupMemberRepository.findById(id);
 	}
 
 	// GroupMember findAll()
-	public List<GroupMember> AllGroupMember() {
+	public List<BoardGroupMember> AllGroupMember() {
 		return groupMemberRepository.findAll();
 	}
 }

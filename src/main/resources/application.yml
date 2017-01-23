@@ -1,8 +1,20 @@
+spring:  
+  profiles.active: common, logging-daily, local-a     # test 서버에 올리려고 packaging할 때  common, test, logging-daily 로 변경해야 한다.
+                                                      # 그리고 Run Configurations에서 Goal에 package 를 넣고 Run 클릭.  
+
+---
+
 spring:
+  profiles: common
   mvc:
     view:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 10Mb
+      max-request-size: 10Mb
   thymeleaf:
     cache: false
   jpa:
@@ -12,6 +24,19 @@ spring:
       ddl-auto: none
       naming:
         physical-strategy: kr.sir.common.PrefixNamingStrategy
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+---
+
+spring:
+  profiles: logging-daily
+  
+logging:
+  config: classpath:logback-spring.xml    
 
 ---
 
@@ -31,6 +56,10 @@ logging:
     org.springframework.boot: INFO
     org.springframework.web: INFO
     org.springframework.data: DEBUG
+    kr.sir: DEBUG
+
+path: 
+  fileName: src/main/resources/config.yml
   
 ---
 
@@ -50,15 +79,18 @@ logging:
     org.springframework.boot: INFO
     org.springframework.web: INFO
     org.springframework.data: DEBUG
+    kr.sir: DEBUG
+
+path: 
+  fileName: src/main/resources/config.yml
 
 ---
 
 spring:
-  profiles: cafe24-test
+  profiles: test
   datasource:
      initialize: true
      url: "jdbc:mysql://localhost:3306/sirjsp?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull"
-#     url: "jdbc:mysql://sirjsp.cafe24.com:3306/sirjsp?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull"
      username: sirjsp
      password: sirjsp12
      driver-class-name: com.mysql.jdbc.Driver
@@ -69,11 +101,7 @@ logging:
     org.springframework.boot: INFO
     org.springframework.web: INFO
     org.springframework.data: DEBUG
+    kr.sir: DEBUG
     
----
-
-spring:
-  profiles: logging-daily
-  
-logging:
-  config: classpath:logback-spring.xml    
+path: 
+  fileName: ../webapps/ROOT/WEB-INF/classes/config.yml

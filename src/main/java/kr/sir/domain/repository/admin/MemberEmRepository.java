@@ -36,6 +36,30 @@ public class MemberEmRepository {
 		
 		return em.createNativeQuery(query, MemberGroupCount.class).getResultList();
 	}
+	
+	//회원 리스트에서 회원 삭제
+	public void deleteMembers(String ids,String prefix){
+		//그누보드5에서 삭제가 안되서 일부러 냅둠ㅈㅈ
+	}
+	
+	
+	
+	
+	//모든 회원 포인트 합계
+	public int getTotalPoint(String prefix) {
+		String query = "select sum(mb_point) as totalPoint from "+prefix+"member";
+		Object object=em.createNativeQuery(query).getSingleResult();
+		
+		if(object != null) {
+			return Integer.parseInt(object.toString()); 
+		} else {
+			return 0;
+		}	
+	}
+	
+	
+	
+	
 
 	public List<Member> findMembers(String sfl,String stx,String sst,String sod){
 		String query="select m from Member m where m.";

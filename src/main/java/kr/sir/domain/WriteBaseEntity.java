@@ -55,6 +55,9 @@ public abstract class WriteBaseEntity implements Serializable{
 	@Column(name="wr_option")
 	private String option;
 	
+	@Column(name="wr_notice")
+	private int notice;
+	
 	@Column(name="wr_subject")
 	private String subject;
 	
@@ -140,7 +143,7 @@ public abstract class WriteBaseEntity implements Serializable{
 	private String extra8;
 	
 	@Column(name="wr_9")
-	private String extra19;
+	private String extra9;
 	
 	@Column(name="wr_10")
 	private String extra10;

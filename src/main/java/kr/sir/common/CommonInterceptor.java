@@ -1,11 +1,11 @@
 package kr.sir.common;
 
-import java.io.FileNotFoundException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import kr.sir.common.util.CommonUtil;
 
 // 공통 인터셉터
 public class CommonInterceptor extends HandlerInterceptorAdapter {
@@ -36,7 +36,7 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
 		}
 		
 	}
-
+	
 	private boolean existConfigTable() {
 		String table_prefix = CommonUtil.getTablePrefix();
 		if(table_prefix != "")

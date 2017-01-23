@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.sql.SQLException;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
@@ -13,7 +14,7 @@ import javax.transaction.Transactional;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
-import kr.sir.common.CommonUtil;
+import kr.sir.common.util.CommonUtil;
 import kr.sir.domain.Config;
 import kr.sir.domain.InstallAdmin;
 import kr.sir.domain.Member;
@@ -28,7 +29,7 @@ public class InstallEmRepository {
 	
 	// 전체 table 생성
 	@Transactional(dontRollbackOn = Exception.class)
-	public void createTable(ClassPathResource classPathResource, String prefix) {
+	public int createTable(ClassPathResource classPathResource, String prefix) throws SQLException, IOException {
 		BufferedReader br = null;
 		
 		try {		
@@ -46,23 +47,27 @@ public class InstallEmRepository {
 			for (String sql : querys) {
 				em.createNativeQuery(sql).executeUpdate();
 			}
-		} catch(Exception e) {		
+		} catch(Exception e) {
+			throw new SQLException("테이블을 생성하는데 실패했습니다. \n" + e.getMessage());
 		} finally {
 			if(br!=null) {
 				try {
 					br.close();
-				} catch (IOException e) {}
+				} catch (IOException e) {
+					throw new IOException(classPathResource.getFile().getName() + "파일을 닫는데 실패하였습니다.");
+				}
 			}
 		}
-
+		
+		return 1;
 	}
 	
 	// insert to config table
 	@Transactional
 	public int writeConfigInfo(String prefix, InstallAdmin adminForm) {
 		double JS_VERSION = 1.0;
-		String query = "insert into `"+ prefix +"config`"
-            + "set cf_title = '" + JS_VERSION + "',"
+		String query = "INSERT INTO `"+ prefix +"config`"
+				+ "SET cf_title = '" + JS_VERSION + "',"
                 + "cf_theme = 'basic',"
                 + "cf_admin = '" + adminForm.getMemberId() + "',"
                 + "cf_admin_email = '" + adminForm.getMemberId() + "',"
@@ -140,8 +145,8 @@ public class InstallEmRepository {
 	// admin 추가
 	@Transactional
 	public int writeAdminInfo(String prefix, Member member) throws UnknownHostException {
-		String query = "insert into `"+ prefix +"member`"
-            + "set mb_id = '" + member.getMemberId() + "',"
+		String query = "INSERT INTO `"+ prefix +"member`"
+				+ "SET mb_id = '" + member.getMemberId() + "',"
                 + "mb_password = '" + member.getPassword() + "',"		// 암호화 필요.
                 + "mb_name = '" + member.getName() + "',"
                 + "mb_nick = '" + member.getName() + "',"

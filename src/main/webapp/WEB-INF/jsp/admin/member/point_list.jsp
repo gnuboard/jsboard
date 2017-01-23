@@ -19,7 +19,7 @@
             <div class="local_ov">
                 <a href="/adm/member/pointlist" class="btn_ov02">전체목록</a>
                 <span class="btn_ov01"><span class="ov_txt">전체 </span><span class="ov_num"> ${countPointlist} 건 </span></span>
-                <span class="btn_ov01"><span class="ov_txt">전체포인트 합계 </span><span class="ov_num"> <fmt:formatNumber value="${totalPoint.totalPoint}" pattern="#,###.##"/>포인트 </span></span>
+                <span class="btn_ov01"><span class="ov_txt">전체포인트 합계 </span><span class="ov_num"> <fmt:formatNumber value="${totalPoint}" pattern="#,###.##"/>포인트 </span></span>
             </div>                                                                                  
             <form id="fsearch" name="fsearch" class="local_sch" method="post">
 
@@ -36,7 +36,7 @@
         </div>
 
         <form name="fpointlist" id="fpointlist" method="post" action="/adm/member/deletepoint" onsubmit="return fpointlist_submit(this);">
-        
+        	<input type="hidden" name="_method" value=""/>
 			<input type="hidden" name="sst" value="${sst}">
 			<input type="hidden" name="sod" value="${sod}">
 			<input type="hidden" name="sfl" value="${sfl}">
@@ -71,7 +71,7 @@
 	                	<input type="hidden" name="memberid[${i.index}]" value="${pointContent.memberId}" id="mb_id_${i.index}">
 	          			<input type="hidden" name="id[${i.index}]" value="${pointConten.id}" id="po_id_${i.index}">
 	                    <label class="sound_only">${pointContent.content}</label>
-	                    <input type="checkbox" name="chk[]" id="chk_${i.index}">
+	                    <input type="checkbox" name="chk[]" id="chk_${i.index}" value="${pointContent.id}">
 	                    
 	                </td>
 	                <td class="td_left">${pointContent.memberId}</td>
@@ -79,8 +79,8 @@
 	                <td class="td_left">${pointContent.nick}</td>
 	                <td class="td_left">${pointContent.content}</td>
 	                <td class="td_num"><fmt:formatNumber value="${pointContent.point}" pattern="#,###.##"/></td>
-	                <td class="td_datetime">${fn:substring(pointContent.datetime,0,18)}</td>
-	                <td class="td_datetime2">${fn:substring(pointContent.datetime,0,18)}</td>
+	                <td class="td_datetime"><fmt:formatDate value="${pointContent.datetime}" pattern="yy-MM-dd hh:mm:ss"/></td>           
+	                <td class="td_datetime2"><fmt:formatDate value="${pointContent.expireDate}" pattern="yyyy-MM-dd"/></td>
 	                <td class="td_num"><fmt:formatNumber value="${pointContent.memberPoint}" pattern="#,###.##"/> </td>
 	            </tr> 
 	          	</c:forEach>
@@ -98,7 +98,8 @@
         </div>
         </form>
 
-        <form action="/adm/member/updatepoint" method="post">
+        <form name="fupdatepoint" action="/adm/member/updatepoint" method="post" onsubmit="return fupdatepoint_submit(this);">
+        <input type="hidden" name="_method" value=""/>
         <div class="add_form">
             <h2 class="h2_frm">개별회원 포인트 증감 설정</h2>
             <div class="table_basic table_form">
@@ -148,15 +149,22 @@ function fpointlist_submit(f)
         if(!confirm("선택한 자료를 정말 삭제하시겠습니까?")) {
             return false;
         }
+        $("input:hidden[name=_method]").val("DELETE");
     }
+    return true;    
+}
 
-    return true;
+function fupdatepoint_submit(f){
+	 $("input:hidden[name=_method]").val("PUT");
+	 return true;
 }
 
 
-	
-
-
 </script>    
+    
+    
+    
+    
+    
     
 <jsp:include page="../main/tail.jsp"></jsp:include>    

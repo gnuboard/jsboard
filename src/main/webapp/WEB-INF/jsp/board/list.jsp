@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,52 +12,77 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 function selectDelete() {
-
 	if(confirm("선택한 게시물을 정말 삭제하시겠습니까?\n\n"
 			+"한번 삭제한 자료는 복구할 수 없습니다.\n\n"
 			+"답변글이 있는 게시글을 선택하신 경우\n"
 			+"답변글도 선택하셔야 게시글이 삭제됩니다.")
 		== true) {
-		submitDelete();
+		$("input:hidden[name=_method]").val("DELETE");
 	} else {
 		return;
 	}
-	
 }
 
 function submitDelete() {
-
-	$("input:hidden[name=_method]").val("DELETE");
-	var form = $("#BoardForm");
-	var formData = $("#BoardForm").serialize();
-	$.ajax({
-		url : form.action,
-		type : "delete",
-		cache : false,
-		data : formData,
-		dataType : "json",
-	});
-
+// 	$.ajax({
+// 		url : "/board/delete",
+// 		type : "DELETE",
+// 		cache : false,
+// 		data : $("#boardForm").serialize(),
+// 		dataType : "json",
+// 		success : function(data) {
+// 			alert("삭제 성공!, data : " + data.result);
+// 		},
+// 		error:function(request,status,error){
+// 	        alert("code:"+request.status+"\n"+"error:"+error);
+// 	    }
+// 	});
 }
 
 function checkAllClicked(){
 	if($("#check_all").is(":checked")) {
-		$("input:checkbox[name='id']").prop("checked", true);
+		$("input:checkbox[name='selectedId']").prop("checked", true);
 	} else {
-		$("input:checkbox[name='id']").prop("checked", false);
+		$("input:checkbox[name='selectedId']").prop("checked", false);
 	}
+}
+
+function selectCopy() {
+	alert("선택 수정");
 }
 
 </script>
  <body>
  <div id="container">
-    <h1 class="container_tit">게시판 이름.(bo_id로 board테이블에서 가져오기)</h1>
+    <h1 class="container_tit">${boardName} 게시판</h1> | <a href="/index">커뮤니티 메인</a>
+   
     <div class="bo_cate">
-        <h2>게시판01 카테고리</h2>
+        <h2>게시판 ${boardName} 카테고리</h2>
         <ul>
-            <li class="on"><a href="#">전체</a></li>
-            <li><a href="#">카테고리1</a></li>
-            <li><a href="#">카테고리2</a></li>
+            <c:forEach var="category" items="${categoryList}">
+            	<c:choose>
+            		<c:when test = "${ category eq 'all' }" >
+            			<li 
+            			<c:if test="${ category eq currentCategory }">
+							class="on" 			
+            			</c:if> 
+            					id="${category}">
+            				<a href="/board/${boardName}/list/1/category/${category}">전체</a>
+            			</li>
+            		</c:when>
+            		<c:when test = "${ category eq '' }" >
+            		</c:when>
+            		<c:otherwise>
+				   		<li 
+            			<c:if test="${ category eq currentCategory }">
+							class="on" 			
+            			</c:if> 
+            					id="${category}">
+           					<a href="/board/${boardName}/list/1/category/${category}">${category}</a>
+        				</li>
+	                </c:otherwise>
+            	</c:choose>
+            </c:forEach>
         </ul>
     </div>
     <div id="bo_list">
@@ -67,15 +93,18 @@ function checkAllClicked(){
         <div class="bo_fx">
             <div class="btn_bo_user">
                 <a href="" class="btn_admin btn">관리자</a>
-                <a href="./add" class="btn_b02 btn">글쓰기</a>
+                <a href="/board/${boardName}/save" class="btn_b02 btn">글쓰기</a>
             </div>
         </div>
-       	<form action="./${currentPage}" name="BoardForm" id="BoardForm" method="post">
-       	<input type="hidden" name="totalCount" value="${totalCount}"/>
-       	<input type="hidden" name="pagePerPosts" value="${pagePerPosts}"/>
+       	<form action="/board/list/${currentPage}" name="boardForm" id="boardForm" method="post">
+       	<input type="hidden" name="totalCount" value="${totalCount}" />
+       	<input type="hidden" name="pagePerPosts" value="${pagePerPosts}" />
+       	<input type="hidden" name="currentCategory" value="${currentCategory}" />
+       	<input type="hidden" name="boardName" value="${boardName}" />
+       	<input type="hidden" name="_method" value=""/>
         <div class="table_basic">
             <table>
-                <caption>게시판01(bo_id로 board테이블에서 가져오기) 목록</caption>
+                <caption>게시판 ${boardName} 목록</caption>
                 <thead>
                 <tr>
                     <th scope="col">번호</th>
@@ -91,7 +120,7 @@ function checkAllClicked(){
                 </thead>
 
                 <tbody>
-				<c:forEach var="write" items="${writeList}" varStatus="i">                
+				<c:forEach var="write" items="${writeList}" varStatus="i">
 <!--                 <tr class="bo_notice"> -->
 <!--                     <td class="td_num_c"><span class="notice_icon">공지</span></td> -->
 <!--                     <td class="td_chk"> -->
@@ -104,13 +133,33 @@ function checkAllClicked(){
 <!--                     <td class="td_num_c">195</td> -->
 <!--                 </tr> -->
                 <tr>
-                    <td class="td_num_c">${write.id}</td>
+                    <td class="td_num_c">
+                    	<!-- 로딩된 게시물 번호를 매기는 로직 -->
+                    	${totalCount - (pagePerPosts * (currentPage -1 )) - i.index}
+                   	</td>
                     <td class="td_chk">
                         <label class="sound_only">${write.subject} 게시물</label>
-                       	<input type="hidden" name="_method"/>
-                       	<input type="checkbox" name="id" value="${write.id}">
+                       	<input type="checkbox" name="selectedId" value="${write.id}">
                     </td>
-                    <td><a href="#" class="bo_cate_link">[${write.categoryName}]</a> <a href="#">${write.subject}</a></td>
+                    <td>
+                    	<c:if test="${fn:length(write.reply) > 0}">
+                   			<img src="/img/reply.gif" alt="답변글" style="margin-left:${fn:length(write.reply) * 15}px;">
+                   		</c:if>
+                    	<a href="/board/${boardName}/view/${write.id}/page/${currentPage}/category/${currentCategory}" class="bo_cate_link">
+                    		<c:choose>
+                    			<c:when test='${write.categoryName eq "" }'>
+                    				${write.categoryName}
+                    			</c:when>
+                    			<c:otherwise>
+                    				[${write.categoryName}]
+                   				</c:otherwise>
+                    		</c:choose>
+                   		</a>
+                    	<a href="/board/${boardName}/view/${write.id}/page/${currentPage}/category/${currentCategory}">
+                    		${write.subject}
+                    		<span class="cnt_cmt"><span class="sound_only">댓글</span>${write.comment}</span>
+                   		</a>
+                   	</td>
                     <td class="td_name">${write.name}</td>
                     <td class="td_date"><fmt:formatDate value="${write.datetime}" pattern="yy/MM/dd"/></td>
                     <td class="td_num_c">${write.hit}</td>
@@ -122,31 +171,30 @@ function checkAllClicked(){
         <div class="bo_fx">
             <div class="btn_bo_adm">
                 <input type="submit" value="선택삭제" class="btn" onclick="selectDelete();">
-                <input type="submit" value="선택복사" class="btn">
+                <input type="submit" value="선택복사" class="btn" onclick="selectCopy();">
                 <input type="submit" value="선택이동" class="btn">
             </div>
         
             <div class="btn_bo_user">
-                <a href="./add" class="btn_b02 btn">글쓰기</a>    
+                <a href="/board/${boardName}/save" class="btn_b02 btn">글쓰기</a>    
             </div>
         </div>
         </form>
         
         <div class="pagination">
             <h2>페이징</h2>
-			            
             <div class="pg_wr">
             	<c:if test = "${ currentPage > pageGroupPerSize}" >
-	                <a href="./1" class="first">맨 처음으로</a>
-                	<a href="./${prevPageGroupLastPage}" class="prev">이전</a>
+	                <a href="/board/${boardName}/list/1/category/${currentCategory}" class="first">맨 처음으로</a>
+                	<a href="/board/${boardName}/list/${prevPageGroupLastPage}/category/${currentCategory}" class="prev">이전</a>
                 </c:if>
                 <c:forEach var="i" begin="${currentPageGroupFirstPage}" end="${currentPageGroupLastPage}">
                 	<c:choose>
 	                	<c:when test = "${ currentPage eq i}" >
-			                <a href="./${i}" class="active">${i}</a>
+			                <a href="/board/${boardName}/list/${i}/category/${currentCategory}" class="active">${i}</a>
 		                </c:when>
 		                <c:otherwise>
-		                	<a href="./${i}">${i}</a>
+		                	<a href="/board/${boardName}/list/${i}/category/${currentCategory}">${i}</a>
 		                </c:otherwise>
 	                </c:choose>
                 </c:forEach>
@@ -154,13 +202,11 @@ function checkAllClicked(){
                 	<c:when test = "${ totalPages eq pageGroupPerSize }" >
                 	</c:when>
 	                <c:when test = "${ currentPage <= totalPages - (totalPages % pageGroupPerSize) }" >
-		                <a href="./${nextPageGroupFirstPage}" class="next">다음</a>
-		                <a href="./${totalPages}" class="last">맨 마지막으로</a>
+		                <a href="/board/${boardName}/list/${nextPageGroupFirstPage}/category/${currentCategory}" class="next">다음</a>
+		                <a href="/board/${boardName}/list/${totalPages}/category/${currentCategory}" class="last">맨 마지막으로</a>
 		            </c:when>
-		            
 	            </c:choose>
             </div>
-            
         </div>
 
         <fieldset id="bo_sch">

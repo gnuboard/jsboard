@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>커뮤니티</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<div id="hd">
+    <h1 id="hd_h1">커뮤니티</h1>
+    <div id="tnb">
+        <ul>
+            <!--<li><a href="#"><b>관리자</b></a></li>-->
+            <li><a href="#">정보수정</a></li>
+            <li><a href="#">로그아웃</a></li>
+            <!--
+            <li><a href="#">로그인</a></li>
+            <li><a href="#">회원가입</a></li>
+            -->
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">1:1문의</a></li>
+            <li><a href="#">접속자 11</a></li>
+            <li><a href="#">새글</a></li>
+        </ul>
+    </div>
+    <div id="hd_wrapper">
+
+        <div id="logo">
+            <a href="./index.html"><img src="./img/logo.png" alt="커뮤니티 로고"></a>
+        </div>
+
+        <fieldset id="hd_sch">
+            <legend>사이트 내 전체검색</legend>
+            <form>
+            <label for="sch_stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+            <input type="text" name="stx" id="sch_stx" maxlength="20">
+            <input type="submit" id="sch_submit" value="검색">
+            </form>
+        </fieldset>
+
+        <div id="text_size">
+            <button id="size_down"><img src="./img/ts01.gif" alt="기본"></button>
+            <button id="size_def"><img src="./img/ts02.gif" alt="크게"></button>
+            <button id="size_up"><img src="./img/ts03.gif" alt="더크게"></button>
+        </div>
+    </div>
+
+    
+    <nav id="gnb">
+        <h2>메인메뉴</h2>
+        <ul id="gnb_ul">
+            <li class="gnb_li"><a href="#" class="gnb_li_a">메뉴01<span class="gnb_bg"></span></a>
+                <ul class="gnb_sub">
+                    <li><a href="#">메뉴01-01</a></li>
+                    <li><a href="#">메뉴01-02</a></li>
+                    <li><a href="#">메뉴01-03</a></li>
+                </ul>
+            </li>
+            <li class="gnb_li"><a href="#" class="gnb_li_a">메뉴02</a></li>
+            <li class="gnb_li"><a href="#" class="gnb_li_a">메뉴03<span class="gnb_bg"></span></a>
+                <ul class="gnb_sub">
+                    <li><a href="#">메뉴03-01</a></li>
+                    <li><a href="#">메뉴03-02</a></li>
+                    <li><a href="#">메뉴03-03testtesttesttesttesttesttesttesttest</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <script>
+    $(function(){ 
+        $(".gnb_li").mouseover(function(){
+            $(this).children(".gnb_sub").show();
+        });
+        $(".gnb_li").mouseout(function(){
+            $(this).children(".gnb_sub").hide();
+        });
+    });
+    </script>
+</div>
+<!--상단-->
+
+<div id="wrapper">
+    <div id="aside">
+        <!--로그인전-->
+        <section id="ol_before">
+            <h2>회원로그인</h2>
+            <form>
+            <fieldset>
+                <label for="ol_id" id="ol_idlabel" class="ol_idlabel">회원아이디<strong class="sound_only">필수</strong></label>
+                <input type="text" id="ol_id" name="mb_id" required="" class="required" maxlength="20">
+                <label for="ol_pw" id="ol_pwlabel" class="ol_pwlabel">비밀번호<strong class="sound_only">필수</strong></label>
+                <input type="password" name="mb_password" id="ol_pw" required="" class="required" maxlength="20">
+                <input type="submit" id="ol_submit" value="로그인">
+                <div id="ol_svc">
+                    <a href="#"><b>회원가입</b></a>
+                    <a href="#" id="ol_password_lost">정보찾기</a>
+                </div>
+                <div id="ol_auto">
+                    <input type="checkbox" name="auto_login" value="1" id="auto_login">
+                    <label for="auto_login" id="auto_login_label">자동로그인</label>
+                </div>
+            </fieldset>
+            </form>
+            <script>
+            $omi = $('#ol_id');
+            $omp = $('#ol_pw');
+            $omi_label = $('#ol_idlabel');
+            $omi_label.addClass('ol_idlabel');
+            $omp_label = $('#ol_pwlabel');
+            $omp_label.addClass('ol_pwlabel');
+
+            $(function() {
+                $omi.focus(function() {
+                    $omi_label.css('visibility','hidden');
+                });
+                $omp.focus(function() {
+                    $omp_label.css('visibility','hidden');
+                });
+                $omi.blur(function() {
+                    $this = $(this);
+                    if($this.attr('id') == "ol_id" && $this.attr('value') == "") $omi_label.css('visibility','visible');
+                });
+                $omp.blur(function() {
+                    $this = $(this);
+                    if($this.attr('id') == "ol_pw" && $this.attr('value') == "") $omp_label.css('visibility','visible');
+                });
+
+            });
+            </script>
+        </section>
+
+        <!--로그인후-->
+        <!--<section id="ol_after">
+            <header id="ol_after_hd">
+                <h2>나의 회원정보</h2>
+                <strong>최고관리자</strong>님</strong>-->
+                <!--<a href="#" class="btn_admin">관리자 모드</a>-->
+            <!--</header>
+            <ul id="ol_after_private">
+                <li>
+                    <a href="#" target="_blank" id="ol_after_memo" class="win_memo">
+                        <span class="sound_only">안 읽은 </span>쪽지
+                        <strong>0</strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" target="_blank" id="ol_after_pt" class="win_point">
+                        포인트
+                        <strong>13,680</strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" target="_blank" id="ol_after_scrap" class="win_scrap">스크랩</a>
+                </li>
+            </ul>
+            <footer id="ol_after_ft">
+                <a href="#" id="ol_after_info">정보수정</a>
+                <a href="#" id="ol_after_logout">로그아웃</a>
+            </footer>
+        </section>-->
+
+        <!--설문조사-->
+        <div id="aside_wr">
+            <section id="poll">
+            <header>
+                <h2>설문조사</h2>
+                <!--<a href="#" class="btn_admin">설문조사 관리</a>-->
+                <p>설문제목</p>
+            </header>
+            <ul>
+                <li><input type="radio" name="gb_poll" value="1" id="gb_poll_1"> <label for="gb_poll_1">설문항목1</label></li>
+                <li><input type="radio" name="gb_poll" value="2" id="gb_poll_2"> <label for="gb_poll_2">설문항목2</label></li>
+            </ul>
+            <footer>
+                <input type="submit" value="투표하기">
+                <a href="">결과보기</a>
+            </footer>
+        </section>
+
+        <!--인기검색어-->
+        <section id="popular">
+            <h2>인기검색어</h2>
+            <ul>
+                <li><a href="#">검색어1</a></li>
+                <li><a href="#">검색어2</a></li>
+                <li><a href="#">검색어3</a></li>
+                <li><a href="#">검색어4</a></li>
+                <li><a href="#">검색어5</a></li>
+                <li><a href="#">검색어6</a></li>
+            </ul>
+        </section>
+        <!--접속자집계-->
+        <section id="visit">
+            <h2>접속자집계</h2>
+            <dl>
+                <dt>오늘</dt>
+                <dd>1</dd>
+                <dt>어제</dt>
+                <dd>2</dd>
+                <dt>최대</dt>
+                <dd>20</dd>
+                <dt>전체</dt>
+                <dd>1,370</dd>
+            </dl>
+        </section>
+        
+        </div>
+    </div>
+    <div id="container">
+        <!--컨텐츠-->
+        <div id="lt_wr">
+            <div class="lt">
+                <strong class="lt_title"><a href="./list.html">자유게시판</a></strong>
+                <ul>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span></a> <img src="./img/icon_new.gif" alt="새글"> <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span> </a> <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span></a>  <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span></a>  <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span></a>  <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                </ul>
+                <div class="lt_more"><a href="#"><span class="sound_only">자유게시판</span>더보기</a></div>
+            </div>
+            <div class="lt lt_right">
+                <strong class="lt_title"><a href="#">자유게시판</a></strong>
+                <ul>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span></a> <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span> </a> <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span></a>  <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span></a>  <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span></a>  <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                </ul>
+                <div class="lt_more"><a href="#"><span class="sound_only">자유게시판</span>더보기</a></div>
+            </div>
+                    <div class="lt">
+                <strong class="lt_title"><a href="">자유게시판</a></strong>
+                <ul>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span></a> <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span> </a> <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span></a>  <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span></a>  <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span></a>  <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                </ul>
+                <div class="lt_more"><a href="#"><span class="sound_only">자유게시판</span>더보기</a></div>
+            </div>
+            <div class="lt lt_right">
+                <strong class="lt_title"><a href="#">자유게시판</a></strong>
+                <ul>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span></a> <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span> </a> <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span></a>  <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span></a>  <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                    <li>
+                        <a href="">게시물제목 <span class="cnt_cmt">3</span></a>  <img src="./img/icon_file.gif" alt="첨부파일"> <img src="./img/icon_link.gif" alt="관련링크"> 
+                    </li>
+                </ul>
+                <div class="lt_more"><a href="#"><span class="sound_only">자유게시판</span>더보기</a></div>
+            </div>
+
+        </div>
+        <!--컨텐츠-->
+    </div>
+</div>
+
+<!--하단-->
+<div id="ft">
+    <div id="ft_wr">
+        <div class="ft_link">
+            <a href="#" class="ft_link1">회사소개</a>
+            <a href="#">개인정보처리방침</a>
+            <a href="#">서비스이용약관</a>
+            <a href="#">모바일버전</a>
+
+        </div>
+        <div id="ft_logo"><img src="./img/ft_logo.jpg" alt="커뮤니티 하단로고"></div>
+        <div id="ft_copyright">Copyright © <b>소유하신 도메인.</b> All rights reserved.</div>
+        <a href="#hd" id="ft_totop">상단으로</a>
+    </div>
+</div>
+</body>
+</html>

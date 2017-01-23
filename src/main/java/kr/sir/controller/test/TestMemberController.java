@@ -54,13 +54,15 @@ public class TestMemberController {
 	public String search(@Valid MemberSearch member, Model model) {
 		String searchWord = member.getSearchWord();		// 검색어
 		String keyword = member.getKeyword();			// 검색 키워드
+		String orderBy = member.getOrderBy();			// 정렬순서
 		
 		@SuppressWarnings("unchecked")
-		List<Member> searchMember = (List<Member>) commonService.search(keyword, searchWord, new Member());	// 검색 실행
+		List<Member> searchMember = (List<Member>) commonService.search(keyword, searchWord, new Member(), orderBy);	// 검색 실행
 		
 		model.addAttribute("searchMember", searchMember);
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("keyword", keyword);
+		model.addAttribute("orderBy", orderBy);
 		return "/admin/test/result";
 	}
 	

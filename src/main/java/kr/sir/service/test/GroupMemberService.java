@@ -2,9 +2,9 @@ package kr.sir.service.test;
 
 import java.util.List;
 
-import kr.sir.domain.GroupMember;
+import kr.sir.domain.BoardGroupMember;
 
 public interface GroupMemberService {
-	public GroupMember findMemberByNo(int id);
-	public List<GroupMember> AllGroupMember();
+	public BoardGroupMember findMemberByNo(int id);
+	public List<BoardGroupMember> AllGroupMember();
 }

@@ -17,11 +17,11 @@ import kr.sir.common.CommonInterceptor;
 public class WebConfig extends WebMvcConfigurerAdapter {
 
 	// Http method 'PUT' Usable config
-	@Bean
-	public HttpPutFormContentFilter httpPutFormContentFilter() {
-		return new HttpPutFormContentFilter();
-	}
-
+//	@Bean
+//	public HttpPutFormContentFilter httpPutFormContentFilter() {
+//		return new HttpPutFormContentFilter();
+//	}
+	
 	@Bean
 	public MySQLDialect mySQLDialect() {
 		return new MySQLMyISAMDialect();
@@ -42,6 +42,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		return new CommonInterceptor();
 	}
 
+	// HTTP METHOD 사용을 위한 Filter 설정.
+	// view에서 <input type="hidden" name="_method" /> 에 값을 넣어서 사용.
 	@Bean
 	public FilterRegistrationBean httpMethodFilter() {
 		FilterRegistrationBean filter = new FilterRegistrationBean();

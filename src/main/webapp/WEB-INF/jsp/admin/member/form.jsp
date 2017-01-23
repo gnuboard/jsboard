@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<jsp:useBean id="today" class="java.util.Date" />
+
 
 <!-- $sub_menu = "200100";
 include_once('./_common.php');
@@ -59,7 +59,7 @@ auth_check($auth[$sub_menu], 'w');
 
         <form name="fmember" id="fmember" action="${actionLink}" onsubmit="return fmember_submit(this);" method="post" enctype="multipart/form-data">
        
-        
+        <input type="hidden" name="_method" value=""/>
         <div class="table_basic table_form">
             <table>
             <caption>회원 추가</caption>
@@ -68,7 +68,9 @@ auth_check($auth[$sub_menu], 'w');
                 <th scope="row"><label for="mb_id">아이디 ${soundOnly} </label></th>
                 <td>
                     <input type="text" name="memberId" id="mb_id" class="frm_input" size="15" value="${member.memberId}">
-                     <input type="hidden" name="id" value="${member.id}" />
+                    <c:if test="${type eq 'update' }">
+                    <input type="hidden" name="id" value="${member.id}" />
+                    </c:if>
                 </td>
                 <th scope="row"><label for="mb_password">비밀번호 ${soundOnly}</label></th>
                 <td><input type="password" name="password" id="mb_password" class="frm_input" size="15"></td>
@@ -114,9 +116,9 @@ auth_check($auth[$sub_menu], 'w');
             <tr>
                 <th scope="row">본인확인</th>
                 <td>
-                    <input type="radio" name="isCertify" value="1" id="mb_certify_yes" <c:if test="${member.certify=='1'}">checked</c:if> >
+                    <input type="radio" name="isCertify" value="1" id="mb_certify_yes" <c:if test="${!empty member.certify}">checked</c:if> >
                     <label for="mb_certify_yes">예</label>
-                    <input type="radio" name="isCertify" value="0" id="mb_certify_no" <c:if test="${empty member.certify||member.certify=='0'}">checked</c:if> >
+                    <input type="radio" name="isCertify" value="0" id="mb_certify_no" <c:if test="${empty member.certify}">checked</c:if> >
                     <label for="mb_certify_no">아니오</label>
                 </td>
                 <th scope="row"><label for="mb_adult">성인인증</label></th>
@@ -131,7 +133,7 @@ auth_check($auth[$sub_menu], 'w');
                 <th scope="row">주소</th>
                 <td colspan="3" class="td_addr_line">
                     <label for="mb_zip" class="sound_only">우편번호 ${soundOnly}</label>
-                    <input type="text" name="zipCode" id="mb_zip" class="frm_input readonly" size="5" maxlength="6" value="${member.zipCode1} ${member.zipCode2}">
+                    <input type="text" name="zipCode" id="mb_zip" class="frm_input readonly" size="5" maxlength="6" value="${member.zipCode1}${member.zipCode2}">
                     <button type="button" class="btn_frmline" onclick="win_zip('fmember', 'mb_zip', 'mb_addr1', 'mb_addr2', 'mb_addr3', 'mb_addr_jibeon')">주소 검색</button><br>
                     <input type="text" name="address1" id="mb_addr1" class="frm_input readonly" size="60" value="${member.address1}">
                     <label for="mb_addr1">기본주소</label><br>
@@ -253,20 +255,68 @@ auth_check($auth[$sub_menu], 'w');
                 </td>
             </tr>
 
-			 <c:forEach begin="1" end="10" var="j">
-            	<tr>
-                	<th scope="row"><label for="mb_${j}">여분 필드 ${j}</label></th>
-                	<td colspan="3"><input type="text" name="extra${j}" id="mb_${j}" class="frm_input" size="30" maxlength="255"></td>
-            	</tr>
-            </c:forEach>
+            <tr>
+               	<th scope="row"><label for="mb_1">여분 필드 1</label></th>
+               	<td colspan="3"><input type="text" name="extra1" id="mb_1" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_2">여분 필드 2</label></th>
+               	<td colspan="3"><input type="text" name="extra2" id="mb_2" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_3">여분 필드 3</label></th>
+               	<td colspan="3"><input type="text" name="extra3" id="mb_3" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_4">여분 필드 4</label></th>
+               	<td colspan="3"><input type="text" name="extra4" id="mb_4" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_5">여분 필드 5</label></th>
+               	<td colspan="3"><input type="text" name="extra5" id="mb_5" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_6">여분 필드 6</label></th>
+               	<td colspan="3"><input type="text" name="extra6" id="mb_6" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_7">여분 필드 7</label></th>
+               	<td colspan="3"><input type="text" name="extra7" id="mb_7" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_8">여분 필드 8</label></th>
+               	<td colspan="3"><input type="text" name="extra8" id="mb_8" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_9">여분 필드 9</label></th>
+               	<td colspan="3"><input type="text" name="extra9" id="mb_9" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
+            <tr>
+               	<th scope="row"><label for="mb_10">여분 필드 10</label></th>
+               	<td colspan="3"><input type="text" name="extra10" id="mb_10" class="frm_input" size="30" maxlength="255"></td>
+            </tr>
             </tbody>
             </table>
         </div>
                 
-        <div class="btn_fixed_top">
-            <input type="submit" class="btn_submit btn"  value="확인">
+        <div class="btn_fixed_top">        	
+            <input type="submit" class="btn_submit btn"  value="${htmlTItle}" onclick="document.pressed='${htmlTItle}'">  
         </div>
+        
         </form>
     </div>
- 
+    
+     
+ <script>
+function fmember_submit(f) {
+
+		if(document.pressed == '추가') {
+	
+		}else if (document.pressed == '수정') {
+			$("input:hidden[name=_method]").val("PUT");
+			
+		}
+		return true;
+	}
+</script>
  <jsp:include page="../main/tail.jsp"></jsp:include>
